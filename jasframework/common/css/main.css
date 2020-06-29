@@ -1,0 +1,833 @@
+@charset "utf-8";
+/** 
+ * @file
+ * @author  xxx
+ * @desc  home页面布局样式
+ * @date  2017-08-15
+ * @last modified by xxx
+ * @last modified time  2017-08-15
+ */
+
+/* -----------婵＄偑鍊楅弫璇差焽娴兼潙鏋佺紓鍫㈠Х缁夊ジ鏌″鍛Щ缂佹唻绱曢敓鍊燁潐閻喚绮婚敓锟�-閻庢鍣幏宄扳攽椤曞棙瀚�------------ */
+* {
+	margin: 0;
+	font-size: 12px;
+	font-family:"MicrosoftYaHei";
+}
+
+html{
+	height:100%;
+	width:100%;
+	overflow-x: hidden;
+	overflow-y: hidden; 
+	border:none;
+}
+
+body{
+	height:100%;
+	width:100%;
+	background:#1066b5;
+	font-size:12px;
+	position:relative;
+	overflow:hidden;
+}
+/* -----------婵＄偑鍊楅弫璇差焽娴兼潙鏋佺紓鍫㈠Х缁夊ジ鏌″鍛Щ缂佹唻绱曢敓鍊燁潐閻喚绮婚敓锟�-缂傚倷鐒﹂幐璇差焽閿燂拷------------ */
+
+/* -----------婵犲﹥鑹炬慨鈺呭级閳╁啰澹夌�殿喖绻愮槐鎴炴叏閿燂拷------------ */
+
+
+/* -----------logo闂佸憡鐗曢幖顐︽偂濞嗘挸鍐�鐎瑰嫭澹嗙涵锟介柣搴ゎ潐閻喚绮婚敓锟�--閻庢鍣幏宄扳攽椤曞棙瀚�----------- */
+
+#top{ 
+	background:#3589df;
+	height:59px; 
+	overflow:hidden;
+	border-bottom: 1px solid #2a82dd;
+}
+#top .logo{
+	float:left;
+	height:60px; 
+}
+#top .top-toolbar{
+	margin-right:10px;
+	float:none;
+	text-align:right;
+	font-size:0;
+}
+#top .top-toolbar>ul{
+	display:inline-block;
+	height:60px;
+	vertical-align:middle;
+	font-size:0;
+}
+#top .top-toolbar>ul>li{
+	display:inline-block;
+	position:relative;
+	margin-right:1px;
+}
+#top .top-toolbar>ul>li .border-line{
+	position:absolute;
+	right:-1px;
+	top:22px;
+	display:inline-block;
+	width:0px;
+	height:20px;
+	border-left:1px solid #0571de;
+/* 	border-right:1px solid #3284ce; */
+}
+#top .top-toolbar>ul>li .border-line.long-line{
+	top:10px;
+	right:0;
+	height:40px;
+}
+
+/****************************/
+/* #top .top-toolbar .manage-toolbar{
+	margin-right:30px;
+} */
+#top .top-toolbar .person-toolbar{
+	margin-left:20px;
+}
+#top .top-toolbar .active{
+	background:#2d84d4
+}
+
+#top .top-toolbar a{
+	display:block;
+	height:60px;
+	line-height:60px;
+}
+#top .top-toolbar a:hover{
+	background:#2d84d4;
+}
+#top .top-toolbar a span{
+	display:inline-block;
+	color:#fff;
+}
+#top .top-toolbar a .menu_icon{
+	width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    vertical-align: middle;
+}
+/****************************/
+#top .top-toolbar .manage-toolbar a{
+	padding:0 20px;
+}
+
+#top .top-toolbar .manage-toolbar a span{
+	/* display: block;
+    margin: auto;
+    padding-top:5px; */
+    font-size:14px;
+}
+#top .top-toolbar .manage-toolbar a .menu_icon{
+    /* padding-top:10px; */
+    line-height: 15px;
+    font-size:16px;
+}
+/****************************/
+
+#top .person-toolbar li{
+	vertical-align:middle;
+}
+#top .person-toolbar li a{
+	padding: 0 10px;
+}
+#top .person-toolbar li span{
+	line-height:60px;
+	font-size:14px;
+}
+ #top .person-toolbar li .menu_icon{
+	font-size:16px;
+	line-height: 15px;
+} 
+/****************************/
+#top .person-toolbar .l-btn,
+#top .person-toolbar .l-btn-small,
+#top .person-toolbar .l-btn-plain,
+#top .person-toolbar .m-btn,
+#top .person-toolbar .m-btn-small,
+#top .person-toolbar .m-btn-plain-active
+{
+	border:1px solid transparent;
+	border-radius:0;
+	background: transparent;
+	filter:none;
+	padding:0;
+}
+#top .person-toolbar .l-btn-focus{
+	outline:none;
+}
+
+#top .person-toolbar .easyui-menubutton{
+	/*height:58px;*/
+	padding:0;
+	min-width:120px;
+}
+#top .person-toolbar .easyui-menubutton .l-btn-left,
+#top .person-toolbar .m-btn .l-btn-left .l-btn-text {
+	margin-left:0;
+    margin-right: 0; 
+}
+#top .person-toolbar .m-btn-downarrow,
+#top .person-toolbar .m-btn-line{
+	display:none;
+}
+#top .person-toolbar li.active,
+#top .top-toolbar .person-toolbar a:hover{
+	background:none;
+} 
+#top .person-toolbar li.active span,
+#top .top-toolbar .person-toolbar a:hover span{
+	color:#c9e3fc;
+}
+
+#top #userPhoto{
+	width:30px;
+	height:30px;
+	margin-right:8px;
+	
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+	
+    background-image: url(../../login/image/logo/logo.png);
+    background-repeat:no-repeat;
+    -webkit-background-size:100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../login/image/logo/logo.png', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../login/image/logo/logo.png', sizingMethod='scale')"; 
+}
+
+ #top .textbox a:hover{
+	background-color: #E0ECFF;
+	background-image: url(../image/combo_arrow.png);
+	background-position: center center;
+	background-repeat: no-repeat ; 
+	opacity:1
+} 
+
+/* 隐藏功能菜单：鼠标悬浮或者点击的下拉菜单 */
+
+/* .menu {
+    background-color: #1066b5; 
+    border-color: #1066b5;
+    color: #dedede;
+}
+.menu .menu-item,
+.menu .menu-item .menu-text{
+	height:25px !important;
+	line-height:25px !important;
+	color:#fff;
+}
+.menu .menu-rightarrow{
+	background: url(../image/menu_arrows.png) no-repeat -32px center;
+}
+.menu .menu-active{
+	background:#2d84d4;
+	border-color:#2d84d4;
+	border-radius:0;
+}
+.menu .menu-line,
+.menu .menu-sep{
+	border: 0px solid transparent;
+	margin:0;
+}
+
+#tabsMenu.menu{
+	background-color: #fefefe; 
+    border-color: #fefefe;
+    border-radius:4px;
+}
+#tabsMenu .menu-item,
+#tabsMenu .menu-item .menu-text{
+	color:#075297;
+	color:#666;
+}
+#tabsMenu .menu-item:hover,
+#tabsMenu .menu-active{
+	background:#adddfc;
+	border-color:#adddfc;
+	border-radius:4px;
+	color:#fff; 
+}
+.menu-shadow {
+    background: #fafafa;
+    -moz-box-shadow: 0px 0px 0px #fafafa;
+    -webkit-box-shadow: 0px 0px 0px #fafafa;
+    box-shadow: 0px 0px 0px #fafafa;
+    filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=0,MakeShadow=false,ShadowOpacity=0.2);
+} */
+/*-----------logo闂佸憡鐗曢幖顐︽偂濞嗘挸鍐�鐎瑰嫭澹嗙涵锟介柣搴ゎ潐閻喚绮婚敓锟�--缂傚倷鐒﹂幐璇差焽閿燂拷----------- */
+
+
+/*-----------閻庡綊娼荤紓姘跺疾閸洘鍤曟繝濠傚暙缁�瀣煕閺嵮勬儓闁绘挻鐟╁钘夌暋閹殿喚顢呴柣搴ゎ潐閻喚绮婚敓锟�--閻庢鍣幏宄扳攽椤曞棙瀚�----------- */
+#left{ 
+	width:200px;
+	height:500px; 
+	float:left;
+	overflow-x:hidden;
+	overflow-y:auto; 
+}
+#left .accordion{
+	border:none;
+}
+#left .accordion-body{
+	display:none;
+	background:#f5f5f5;
+}
+#left .accordion-body-selected{
+	display:block;
+	height:auto;
+	overflow:auto;
+}
+#left .accordion-header,
+#left .accordion-header-selected{
+	cursor:pointer;
+	height:40px;
+	padding:0 20px 0 20px;
+	position:relative;
+}
+#left .accordion-header-title,
+#left .accordion-header-title .panel-title{
+	text-overflow: ellipsis;
+	white-space:nowrap;
+	overflow:hidden; 
+}
+
+#left .accordion-header-tool a{
+	display:inline-block;
+	width:16px;
+	height:16px;
+	opacity:0.9;
+	filter:alpha(opacity=90);
+	margin-left:2px;
+}
+#left .accordion-header-tool a:hover{
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+
+#left,
+#left-container,
+#left .accordion-header{ 
+	background:#fff;
+}
+
+#left-container .accordion-header{
+	/* border-top:1px solid #3284ce; */
+	border-bottom:1px solid #e6e6e6;
+} 
+
+/* #left-container .panel-last .accordion-header{
+	outline-bottom:solid thin #16598e;
+} */
+
+#left-container .accordion-header,
+#left-container .panel-title {
+    height: 40px;
+    line-height: 40px;
+    font-size:14px;
+    color:#333333;
+    font-weight:normal;
+}
+#left-container .tree-node,
+#left-container .tree-title{
+   height:30px;
+   line-height:30px;
+   color:#333333;
+   font-size:13px;
+}
+#left-container .tree-node{
+	padding-left:20px;
+}
+#left .tree-file,
+#left .tree-folder,
+#left .tree-collapsed,
+#left .tree-expanded{
+	margin-top:5px;
+}
+#left .accordion-header:hover,
+#left .tree-node:hover,
+#left .tree-node-selected{
+	background:#3589df !important;
+}
+#left .accordion-header:hover .panel-title,
+#left .accordion-header:hover .panel-icon,
+#left .tree-node:hover .tree-title,
+#left .tree-node-selected .tree-node,
+#left .tree-node-selected .tree-title{
+	color:#fff
+}
+ 
+
+#left .accordion-collapse,
+#left .accordion-expand {
+	 background: url(../image/accordion_collapse_gray.png) no-repeat;
+}
+
+#left .accordion-header-selected .accordion-collapse {
+    background: url(../image/accordion_expand_gray.png) no-repeat;
+}
+
+#left .accordion-header:hover .accordion-collapse {
+    background: url(../image/accordion_expand2.png) no-repeat;
+}
+
+
+
+/* 鏇存崲tree鍥炬爣 */
+#left #left-container .tree-folder,
+#left #left-container .tree-folder-open,
+#left #left-container .tree-file{
+	background:url();
+} 
+#left .tree-hit{
+	position:relative;
+	left:10px;
+}
+#left .tree-hit.tree-expanded{
+	background:url('../image/bottom_arrow_black.png') no-repeat center center;
+}
+#left .tree-hit.tree-collapsed{
+	background:url('../image/right_arrow_black.png') no-repeat center center;
+}
+
+#left .tree-node:hover .tree-hit.tree-expanded,
+#left .tree-node-selected .tree-hit.tree-expanded{
+	background:url('../image/bottom_arrow.png') no-repeat center center;
+}
+#left .tree-node:hover .tree-hit.tree-collapsed,
+#left .tree-node-selected .tree-hit.tree-collapsed{
+	background:url('../image/right_arrow.png') no-repeat center center;
+}
+
+#left .panel-icon {
+    left: 16px;
+    margin-top: -7px;
+    color: #3589df;
+}
+
+#dragBtn{
+	width:5px;
+	height:300px;
+	background:#aac5e7;
+	position:absolute;
+    top: 60px;
+    left: 340px;
+    display:none;
+    cursor:e-resize;
+}
+/*-----------閻庡綊娼荤紓姘跺疾閸洘鍤曟繝濠傚暙缁�瀣煕閺嵮勬儓闁绘挻鐟╁钘夌暋閹殿喚顢呴柣搴ゎ潐閻喚绮婚敓锟�--缂傚倷鐒﹂幐璇差焽閿燂拷----------- */
+
+
+
+/*-----------闂佸憡鐟ラ崢鏍疾閸洖绀岄柛婵嗗閸樼敻鏌″鍛Щ缂佹唻绱曢敓鍊燁潐閻喚绮婚敓锟�--閻庢鍣幏宄扳攽椤曞棙瀚�----------- */
+#right {
+}
+/*-----------闂佸憡鐟ラ崢鏍疾閸洖绀岄柛婵嗗閸樼敻鏌″鍛Щ缂佹唻绱曢敓鍊燁潐閻喚绮婚敓锟�--缂傚倷鐒﹂幐璇差焽閿燂拷----------- */
+
+
+/*-----------footer闂佸憡鐗曢幖顐︽偂濞嗘挸鍐�鐎瑰嫭澹嗙涵锟介柣搴ゎ潐閻喚绮婚敓锟�--閻庢鍣幏宄扳攽椤曞棙瀚�----------- */
+
+.ui-layout-south .bottom{
+	height:30px;
+	line-height:30px;
+/* 	padding-left:200px; */
+	background:#3589df;
+	color:#c9e3fc;
+	text-align:center;
+}
+
+/*-----------footer闂佸憡鐗曢幖顐︽偂濞嗘挸鍐�鐎瑰嫭澹嗙涵锟介柣搴ゎ潐閻喚绮婚敓锟�--閻庢鍣幏宄扳攽椤曞棙瀚�----------- */
+
+
+
+
+/*--------------------------------------------功能区域样式------------------------------------- */
+
+/* 功能区域样式 */
+#centerTab{
+	background:#f1f1f1
+}
+.center-content-area{
+	/* padding:5px; */
+	box-sizing:border-box;
+	padding-top:1px;
+	overflow:hidden;
+}
+.center-content-area dt{
+	height:100%;
+	display:none;
+}
+.center-content-area dt.on{
+	height:100%;
+	display:block;
+}
+
+/* tab页签样式 */
+.tab,
+.tab_map{
+	padding-top:0px;
+	height:100%;
+	width:100%;
+	position:relative;
+	overflow:hidden;
+}
+.tab ul{
+	height:34px;
+	height:34px !important;
+	margin:0;
+	padding:0;
+	background:#fff;
+	/* border-bottom:1px solid red */
+}
+.tab_map ul{
+	margin:0;
+	padding:0;
+	background:#fff;
+}
+.tab ul li,
+.tab_map ul li{ 
+	display: inline-block;
+	float:left; 
+	height:32px;
+	line-height:32px;
+	padding:0;
+	margin:0 0 0 0;
+	border-top:2px solid #fff;
+}
+
+.tab ul li a{
+	display:block; 
+	float:left;  
+}
+
+.tab_map ul li .map_tab_titleDiv,
+.tab_map ul li .map_tab_toolsDiv {
+	display: inline-block;
+}
+/*.tab_map ul li .map_tab_toolsDiv a  */
+.tab_map ul li .map_tab_toolsDiv .tab_map_close,
+.tab_map ul li .map_tab_toolsDiv .tab_map_close_on{
+	/* display: inline-block;
+	width:10px;
+	height:10px;
+	padding-right: 5px; */
+	display: inline-block;
+    width: 10px;
+    height: 35px;
+    padding-right: 5px;
+    vertical-align: middle;
+
+}
+
+.tab_map_close{
+	    background: url(../image/tabs_icons.png) no-repeat -34px center;
+}
+.tab_map_close_on{
+	    background: url(../image/tabs_icons2.png) no-repeat -34px center;
+}
+
+/* ,
+.tab_map ul li a */
+.tab ul li a span{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:keep-all;
+	display:inline-block;
+	margin-top:-4px;
+}
+
+
+.tabs-scroller-left,
+.tabs-scroller-right{
+	background-color:#fff;
+}
+ #centerTabtag .tabs{
+	padding:0;
+	border:0;
+}
+#centerTabtag .tabs-header{
+	padding-top:0;
+}
+.tabs li a.tabs-inner,
+.tab_map ul li{
+	color: #333;
+	font-size:13px;
+	font-weight: normal;
+	border-color:#fff;
+	background:transparent !important;
+    filter: none;
+    border-right: 1px solid #eee !important;
+    -moz-border-radius: 0 0 0 0;
+    -webkit-border-radius:  0 0 0 0;
+    -ms-border-radius:  0 0 0 0;
+    border-radius:  0 0 0 0;
+	
+}
+
+ .tab_map ul li .map_tab_titleDiv {
+	 padding:0 5px 0 10px; 
+	
+} 
+.tabs li a.tabs-inner{
+	padding:8px 10px;
+}
+.tabs-title{
+	height:25px;
+	line-height:25px;
+	font-size:13px;
+}
+.tabs-header, 
+.tabs-scroller-left, 
+.tabs-scroller-right,
+.tabs-tool,
+.tabs, .tabs-panels,
+.tabs li a.tabs-inner,  
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner, 
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner, 
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner,
+.tabs li.tabs-selected a.tabs-inner{
+	border:0;
+}
+ .tab_map ul li.current .map_tab_titleDiv{
+ 	vertical-align: top;
+ }   
+.tab_map ul li.current,
+.tab_map ul li.current .map_tab_titleDiv,
+.tab_map ul li.current .map_tab_toolsDiv,
+.tab_map li:hover,
+#centerTab.tab .tabs li:hover,
+#centerTab.tab ul .tabs-selected{
+	background:#d2e9fc;
+	border-top-color:#d2e9fc;
+	overflow:hidden;
+}
+
+
+#centerTab.tab .tabs li:hover .tabs-title,
+.tabs li.tabs-selected a.tabs-inner {
+    color: #1065b5;
+    font-weight:normal;
+    background:#d2e9fc;
+    filter: none;
+	background-color: #d2e9fc;
+}
+.tabs li:hover a .tabs-title{
+	color:#075297;
+}
+.tabs li a.tabs-close, .tabs-p-tool {
+    margin-top: -6px; 
+}
+.tabs li a.tabs-close {
+    background: url(../image/tabs_icons.png) no-repeat -34px center;
+}
+#centerTab.tab ul li:hover a.tabs-close,
+#centerTab.tab ul .tabs-selected a.tabs-close {
+    background: url(../image/tabs_icons2.png) no-repeat -34px center;
+}
+/* 
+.tab_map{
+	height:100%;
+	width:100%;
+	margin-top:-1px;
+}
+.tab_map ul li { 
+	float:left; 
+	padding:0 0 0 9px; 
+	height:28px;
+	margin:0 0 0 0px;
+	line-height:28px;
+}
+.tab_map ul{
+	height:34px;
+	margin:0;
+	padding:0;
+	background:#fff;
+}
+.tab_map ul li a {
+	display:inline-block; 
+	padding:0px 0px 0 0px; 
+	height:12px;
+	width:16px;
+	color:#555; 
+	font-weight:bold; 
+	float:left; 
+	text-decoration:none; 
+}
+.tab ul li a:hover,.tab_map ul li a:hover{ 
+	
+}
+
+.tab ul li.mouseover ,.tab_map ul li.mouseover {
+	padding:0 0 0 15px;
+	color:#FFF;
+} 
+
+.tab ul li.current {
+	padding:0 0 0 15px;
+	color:#FFF;
+}
+
+.tab_map ul li.current {
+}
+
+.tab ul li.current a{ 
+	color:#000;
+	padding:2px 4px 3px 4px;
+	text-shadow:0 0 1px #fff;
+}
+.tab ul li.current a span{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:keep-all;
+	display:inline-block;
+}
+.tab_map ul li.current a{ 
+}
+
+.tab ul li.mouseover a ,.tab_map ul li.mouseover a{ 
+
+	padding:2px 3px 3px 4px;
+	text-shadow:0 0 1px #fff;
+}
+
+.tab ul li a img,.tab_map ul li a img{
+	width:12px;
+	height:12px;
+	display:inline;
+	float:right;
+	right:5px;
+	margin:5px 15px 5px 5px;
+}
+ .map_tab_titleDiv{
+	position:absolute;
+	left:10px;
+	top:3px;
+	font-weight:bold; 
+}
+.map_tab_toolsDiv{
+	position:absolute;
+	height:10px;
+	right:1px;
+	top:8px;
+}
+.tab_map_max{
+	background:url('../image/tab_map_max.png') no-repeat;
+}
+.tab_map_max_on{
+	background:url('../image/tab_map_max_on.png') no-repeat;
+}
+.tab_map_restore{
+	background:url('../image/tab_map_restore.png') no-repeat;
+}
+.tab_map_restore_on{
+	background:url('../image/tab_map_restore_on.png') no-repeat;
+}
+.tab_map_min{
+	background:url('../image/tab_map_min.png') no-repeat;
+}
+.tab_map_min_on{
+	background:url('../image/tab_map_min_on.png') no-repeat;
+}
+.tab_map_close{
+	background:url('../image/tab_map_close.png') no-repeat;
+}
+.tab_map_close_on{
+	background:url('../image/tab_map_close1.png') no-repeat;
+}
+
+.mapArea{
+	margin:35 auto;
+	overflow:hidden;
+}
+.mapArea dt{
+	height:100%;
+	display:none;
+}
+.mapArea dt.on{
+	display:block;
+} */
+
+/*----------------------------------------功能区域样式结束----------------------------- */
+
+
+
+/* --------闂佸憡鐗曢幖顐︽偂濞嗘挸鍙婇柛鎾椾椒绮垫繛鎴炴尭闁帮絽鈻撻敐澶嬪癄闊洦鏌ㄩ惁濠氭⒑閺傘倖瀚�-閻庢鍣幏宄扳攽椤曞棙瀚�-------- */
+/* .showhideleft{margin:auto 0 auto 0;float:left; width:4px; height:100%;}
+.hiddenleft{ margin:auto 0 auto -2px; width:9px; height:42px;background:url(../image/left.jpg) no-repeat; cursor:pointer;z-index:100;position:absolute;left:200px;top:355px;}
+.showleft{ margin:auto 0 auto 0; width:9px; height:42px;background:url(../image/right.jpg) no-repeat; cursor:pointer;z-index:100;position:absolute;left:0px;top:355px;}
+.showhidetop{ margin:0 auto 0 auto; width:100%; height:3px;}
+.hiddentop{ margin:-4px auto 0 auto; width:42px; height:9px; background:url(../image/up.jpg) no-repeat; cursor:pointer;z-index:100;position:absolute;left:550px;top:55px;}
+.showtop{ margin:0 auto 0 auto; width:42px; height:9px; background:url(../image/down.jpg) no-repeat; cursor:pointer;z-index:100;position:absolute;left:550px;top:0px;} */
+/* --------闂佸憡鐗曢幖顐︽偂濞嗘挸鍙婇柛鎾椾椒绮垫繛鎴炴尭闁帮絽鈻撻敐澶嬪癄闊洦鏌ㄩ惁濠氭⒑閺傘倖瀚�-缂傚倷鐒﹂幐璇差焽閿燂拷-------- */
+
+
+/*缂備焦鍔栭〃鍛般亹濞戙垺鐒兼い鏃傚亾绾句即鎮橀悙鎻掍喊缂佽鲸绻堥幃浠嬪Ω閵堝洩澹橀柣鐔哥懕缁蹭粙宕伴崨顖滅幓婵°倧鎷风憸鐗堢〒閹噣鎮冲〒鍍糹veX闂佺鐭囬崒娑卞仺闂備緡鍓﹂崰妤冧焊閸涘瓨鈷掓い鏇嫹妞わ綇鎷�*/
+.window-maskDiv{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+/* 	filter:alpha(opacity=40);
+	opacity:0.40;
+	background:#ccc; */
+	font-size:1px;
+	*zoom:1;
+	overflow:hidden;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+} 
+
+/*闁烩剝甯掗幊姗�骞楁總绋跨闁靛鍎辩粻鐢告⒒閸曗晛锟芥稑鈻嶉崟顓犳／闁兼剚鍨抽悵鑸典繆濡ゅ瀚�*/
+a{ text-decoration:none; outline:none;} /*ie8闂侀潧妫撮幏锟�9*/
+a:active {star:expression(this.onFocus=this.blur());} /*ie7*/
+
+/*-- 濠碘槅鍨兼禍婊堝箖濠婂牊鍤曟繝濠傚暙缁�瀣煛瀹ュ懎妲荤紒鎲嬬磿閿熷�燁潐閻喚绮婚敓锟� 閻庢鍣幏宄扳攽椤曞棙瀚� 闂佸搫顦崝宥嗙閽樺妲堥柨鐕傛嫹20140424濠电儑缍�椤曆勬叏閿燂拷 --*/
+/* .navigatorMenu {position: absolute;left:0px;top:50px;width:100%;height:30px;background: url(../image/nav_bg.png) no-repeat 0 -36px;}
+.navlist {height: 30px;line-height: 30px;overflow: hidden;margin: 0 0px;background: url(../image/nav_bg.png) repeat-x 0 0;}
+.navigatorMenu li {float: left;display: inline;margin: 0 0 0 -2px;padding: 0 4px 0 6px;background: url(../image/nav_bg.png) no-repeat 0 -108px;}
+.navigatorMenu a {display: block;width: 100px;text-align: center;font-size: 120%; text-decoration:none;}
+.navigatorMenu a:link, .navigatorMenu a:visited {color: #fff;text-decoration:none;}
+.navigatorMenu a:hover, .navigatorMenu a:active {color: #fff;font-weight: bold;background: url(../image/nav_bg.png) no-repeat 50% -144px;text-decoration:none;}
+.navigatorMenu a span {width: 100px;overflow:hidden;text-overflow:ellipsis;word-break:keep-all;display:inline-block;} */
+/*-- 濠碘槅鍨兼禍婊堝箖濠婂牊鍤曟繝濠傚暙缁�瀣煛瀹ュ懎妲荤紒鎲嬬磿閿熷�燁潐閻喚绮婚敓锟� 缂傚倷鐒﹂幐璇差焽閿燂拷--*/
+
+
+/* 系统提示信息的文字轮播 */
+#top .top-toolbar .system-info{
+	display: inline-block;
+    width: 300px;
+    height: 30px;
+    vertical-align: middle;
+    color: #fff;
+    margin-right: 20px;
+ /*    border: 1px solid red; */
+    font-size: 14px;
+	line-height: 30px;
+	white-space: nowrap;
+    overflow:hidden;
+}
+.hint-info-container .hint-info{
+	width:8000%;
+	height:30px;
+}
+.hint-info-container .hint-info div{
+	float:left;
+	height:30px; 
+	font-size: 14px;
+	white-space:nowrap;
+	overflow:hidden; 
+	zoom:1;
+}
+
+
+

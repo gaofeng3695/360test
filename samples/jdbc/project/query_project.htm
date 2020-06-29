@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>项目管理页面</title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css"/>
+
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css"/>
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>      <!-- 国际化js文件 -->
+<script type="text/javascript" src="js/query_project.js"></script> 
+
+</head>
+<body>
+	<!--  菜单id隐藏域-->
+	<input type="hidden" id="menuid" value="1017080101"/>
+	<!-- 	查询面板 -->
+   <!--<div class="query-conditions"  id="queryDiv" >
+		<form method="post" id="queryForm">
+			<table class="query-table" align="center" >
+				<tr>
+					<td width="10%"><span >出发地：</span></td>
+					<td width="30%"><input type="text" id="departure"  name="departure" class="easyui-validatebox input_bg" /></td>
+					<td width="10%"><span >出发时间：</span></td>
+					<td width="30%"><input id="time" name="time"  onfocus="WdatePicker({dateFmt:'yyyy-MM'})" class="Wdate easyui-validatebox input_bg" /></td>
+					<td align="center" colspan="2">
+						<a href="#" id='nohiddenbutton' class="easyui-linkbutton query-btn"  onclick="queryProject()"><span >查询</span></a>
+						<a href="#" id='nohiddenbutton' class="easyui-linkbutton clear-btn"  onclick="clearQueryForm('queryForm',true,true,true,true,reloadTable)"><span>清空</span></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	 </div> -->
+	 <div class="query-conditions"  id="queryDiv" >
+		<form method="post" id="queryForm">
+			<table class="query-table" align="center" >
+				<tr>
+					<td width="10%"><span >关键字：</span></td>
+					<td width="30%"><input type="text" id="keywords"  name="departure" class="easyui-validatebox input_bg" /></td>
+					<td align="right" colspan="2">
+						<a href="#" id='nohiddenbutton1' class="easyui-linkbutton query-btn"  onclick="queryProject()"><span >查询</span></a>
+						<a href="#" id='nohiddenbutton2' class="easyui-linkbutton clear-btn"  onclick="clearQueryForm('queryForm',true,true,true,true,'dg')"><span>清空</span></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	 </div>
+	
+
+	<table id="dg" class="easyui-datagrid"></table>
+	
+	<!-- 	按钮工具栏 -->
+	<div id="toolbar"> 
+		<a href="#" id="viewTicket" class="easyui-linkbutton fa fa-eye" plain="true" onclick="viewProject();">查看</a> 
+		<a href="#" id="commitTicket" class="easyui-linkbutton fa fa-plus"  plain="true" onclick="addProject();">新增</a> 
+	    <a href="#" id="commitTicket" class="easyui-linkbutton fa fa-edit"  plain="true" onclick="updateProject();">修改</a> 
+	    <a href="#" id="commitTicket" class="easyui-linkbutton fa fa-minus"  plain="true" onclick="deleteProject();">删除</a>     
+	</div> 
+</body>
+</html>

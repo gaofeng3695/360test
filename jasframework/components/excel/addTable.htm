@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../../common/css/add.css"/>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/excel.js"></script>
+	<script type="text/javascript" src="js/addTable.js"></script>
+	<title>模板基本信息</title>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+	<form id="saveExcelTableInfo" method="post">
+		<input id="templateId" name="templateId" type="hidden"> 
+		<!-- 表单区域 -->
+		<table class="edit-table">
+			<tr>
+				<td width="20%"><span>表名称：</span></td>
+				<td width="30%"><input id="tableName" name="tableName" class="easyui-combobox" required="true" style="width:100%;" /></td>
+				<td width="20%"><span>表别名：</span></td>
+				<td width="30%"><input id="tableAlias" name="tableAlias" class="easyui-validatebox input_bg" required="true" maxlength="120" /></td>
+			</tr>
+			<tr>
+				<td><span>表单类型：</span></td>
+				<td><input id="formType" name="formType" class="easyui-combobox" required="true" style="width:100%;" /></td>
+				<td><span>表类型：</span></td>
+				<td><input id="geometryType" name="geometryType" class="easyui-combobox" required="true" style="width:100%;" /></td>
+			</tr>
+			<tr>				
+				<td><span>是否主表：</span></td>
+				<td><input id="isMainTable" name="isMainTable" class="easyui-combobox" required="true" style="width:100%;" /></td>
+				<td><span>sheet索引：</span></td>
+				<td><input id="sheetIndex" name="sheetIndex" class="easyui-validatebox input_bg" data-options="validType:'number'" /></td>
+			</tr>
+			<tr>
+				<td><span>字段名称：</span></td>
+				<td colspan="3"><input id="fieldNames" name="fieldNames" class="easyui-validatebox input_bg" /></td>
+			</tr>
+			<!-- <tr>
+				<td><span>实体全路径：</span></td>
+				<td colspan="3"><input id="entityPath" name="entityPath" class="easyui-validatebox input_bg" /></td>
+			</tr> -->
+			<tr>
+				<td><span>备注：</span></td>
+				<td colspan="3"><textarea name="remark" cols="25" rows="5" id="remark" class="easyui-validatebox" validType="maxLength[300]"></textarea></td>
+			</tr>
+		</table>
+		<!-- 按钮区域 -->
+		<div class="button-area">
+			<table width="100%">
+				<tr>
+	 				<td>
+	 					<a id="saveExcelTableInfoButton" href="#" class="easyui-linkbutton save-btn"  onclick="saveExcelTableInfo()">保存</a>
+						<a id="closeExcelTableInfoButton" href="#" class="easyui-linkbutton cancel-btn"  onclick="closePanel();">取消</a>
+	 				</td>
+	  			</tr>
+	  		</table>	
+  		</div> 
+	</form>
+</div>
+</body>
+</html>

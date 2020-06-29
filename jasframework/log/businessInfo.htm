@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>业务信息</title>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	
+	<link rel="stylesheet" href="../common/css/common.css" type="text/css"></link>
+	 
+    <link rel="stylesheet" type="text/css" href="../common/css/detail.css"/>
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../components/attachment/js/download.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	
+	<script type="text/javascript">
+		function loadData() {	
+			var param = this.location.search;
+			if(param != null && "" != param) {
+				var eventid = getParamter("eventid");
+// 				businessid=eventid;
+				var url = rootPath+"jasframework/logsample/queryInfo.do"+param;
+				$.getJSON(url,{"datagridNumber":"10712410"},function(jso) {
+					if(jso.username==null) {
+						$("#username").text("无权限");
+					}else{
+						$("#username").text(jso.username);
+					}
+					if(jso.sex==null) {
+						$("#sex").text("无权限");
+					}else{
+						$("#sex").text(jso.sex);
+					}
+					
+					filedownload(eventid);
+				});
+			}
+		}
+	</script>
+</head>
+<body onload="loadData();" >
+	<input type="hidden" id="eventid" name="eventid" />
+	<input type="hidden" class="workflowVar" id="area" value="area4" />
+	<div>
+		<table class="detail-table">
+			<tr>
+				<th>姓名：</th>
+				<td><span id="username"></span></td>
+				<th>性别：</th>
+				<td><span id="sex"></span></td>
+			</tr>
+			<tr></tr>
+		</table>
+	</div>
+	<div id="downloadDIV"></div>
+</body>
+</html>

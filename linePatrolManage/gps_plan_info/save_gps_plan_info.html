@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/querySpanCommon.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">
+
+		
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/save_gps_plan_info.js"></script>	
+<style>
+	.insfrequnitparrent .textbox{
+		float:left;
+		margin: 0 10px;
+	}
+</style>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 表单区域，每行四列 -->
+		<form id="gpsPlanInfoForm" class="content-area-main" style="padding:0;" method="post">
+		<input id="isPis" name="isPis" type="hidden" value="0" />
+		<input id="uptoids" name="uptoids" type="hidden" value="" />
+		<input id="deloids" name="deloids" type="hidden" value="" />		
+		<input id="planflag" name="planflag" type="hidden" value="01" />		
+	
+			<table id="plantable" align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>巡检计划编号：</span></td>
+					<td width="30%">
+						<input id="planno" name="planno" class="easyui-validatebox input_bg"  required="true"  validType="" maxlength="50"/>
+					</td>
+					<td width="20%"><span>巡检类型：</span></td>
+					<td width="30%">
+						<select id="instype" name="instype"  class="easyui-validatebox select" required="true" validType="comboxExists['instype']" ></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>执行单位：</span></td>
+					<td width="30%">
+						<select id="execunitid" name="execunitid"  class="easyui-validatebox select" required="true"  ></select>
+					</td>
+					<td width="20%"><span>巡检人员类型：</span></td>
+					<td width="30%">
+						<select id="inspectortype" name="inspectortype"  class="easyui-validatebox select" required="true" validType="comboxExists['inspectortype']" ></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>巡检频次：</span></td>
+					<td class="insfrequnitparrent" width="30%;" style="padding-left:4px" >
+						<input id="insfrequnitval" name="insfrequnitval"  class="easyui-validatebox input_bg" validType="number" maxlength="22" required="true"  style="float:left;width:25%"/>
+					 	<select id="insfrequnit" name="insfrequnit"  class="easyui-validatebox select" required="true" ></select>
+						<input id="insfreq" name="insfreq"  class="easyui-validatebox input_bg" validType="number" maxlength="22" required="true"  style="float:left;width:25%;margin-left: 3px;"/>
+						<span style="float:left;width:10%;line-height:30px;text-align: center;padding-left:5px;    margin-left: 5px;"/>巡</span>
+					</td>
+					<td width="20%"><span>制作依据：</span></td>
+					<td width="30%">
+						<input id="determinant" name="determinant" class="easyui-validatebox input_bg"   validType="" maxlength="500"/>
+					</td>
+					<!-- <td width="20%"><span>巡检频次单位：</span></td>
+					<td width="30%">
+						<select id="insfrequnit" name="insfrequnit"  class="easyui-validatebox select" required="true" ></select>
+					</td>
+					<td width="20%"><span>巡检频次单位值：</span></td>
+					<td width="30%">
+						<input id="insfrequnitval" name="insfrequnitval"  class="easyui-validatebox input_bg" validType="number" maxlength="22" required="true" />
+					</td> -->
+				</tr>
+				<tr>
+					<td width="20%"><span>巡检方式：</span></td>
+					<td width="30%">
+						<select id="insvehicle" name="insvehicle"  class="easyui-validatebox select" required="true" validType="comboxExists['insvehicle']" ></select>
+					</td>
+					<td width="20%"><span>巡检速度设置(km/h)：</span></td>
+					<td width="30%">
+						<input id="speedmax" name="speedmax"  class="easyui-validatebox input_bg" validType="number" maxlength="22" required="true" />
+					</td> 
+				</tr>
+				<tr>
+					<td width="20%"><span>计划开始时间：</span></td>
+					<td width="30%">
+						<input id="insbdate" name="insbdate"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  required="true" />
+					</td>
+					<td width="20%"><span>计划结束时间：</span></td>
+					<td width="30%">
+						<input id="insedate" name="insedate"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+					</td>
+				</tr>
+				<tr>
+						<td width="20%"><span>工作开始时间：</span></td>
+						<td width="30%">
+							<input id="beginWorkTime" name="beginWorkTime"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'HH:mm:ss'})"  />
+						</td>
+						<td width="20%"><span>工作结束时间：</span></td>
+						<td width="30%">
+							<input id="endWorkTime" name="endWorkTime"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'HH:mm:ss'})" />
+						</td>
+					</tr>
+			</table>	
+		<!-- </div>	 -->
+		<div class="table-content" id='lineplandiv'>
+			<h6 id="linetitle" class="table-title">巡检线路信息</h6>
+			<table id="lineplantable" align="center" class="easyui-datagrid"></table>
+		 </div>
+		</form>
+	</div>
+	<div id="button-area" class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" ><span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="toolbar">
+		<a id="" href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="add()"><label><span>新增</span></label></a>
+		<a id="" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="update()"><label><span>修改</span></label></a>
+		<a id="" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele()"><label><span>删除</span></label></a>
+	</div>
+	<!-- 计算位置div -->
+	<div id="calculationMileage" class="table-content" style = "display:none; padding-right: 3em;">
+	</div>
+</body>
+</html>

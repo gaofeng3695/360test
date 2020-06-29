@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据信息</title>
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/default/easyui.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/icon.css"></link>
+<link rel="stylesheet" href="../../common/css/querystyle_easyuicombo.css"
+	type="text/css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../common/css/querystyle.css"></link>
+<script type="text/javascript"
+	src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript"
+	src="../../components/attachment/js/download.js"></script>
+<script type="text/javascript" src="js/geotoolsAdd.js"></script>
+</head>
+
+<body onload="loadDataSel();">
+	<input type="hidden" id="objectid" name="objectid" />
+	<div>
+		<table class="xiangxitablelb">
+			<tr>
+				<th>名称</th>
+				<td><span id="nameID"></span></td>
+				<th>类型</th>
+				<td><span id="typeID"></span></td>
+			</tr>
+			<tr>
+				<th>创建时间</th>
+				<td><span id="createdateID"></span></td>
+				<th>序列号</th>
+				<td><span id="ordinalID"></span></td>
+			</tr>
+			<tr>
+				<th>x坐标</th>
+				<td><span id="xcoordinateID"></span></td>
+				<th>y坐标</th>
+				<td><span id="ycoordinateID"></span></td>
+			</tr>
+			<tr>
+				<td height="33" colspan="4" class="button_area" align="center">
+					<table width="200px" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td><a id="10060107" href="#" class="easyui-linkbutton"
+								iconCls="icon-ok" align="center" onclick="closView();">确定</a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

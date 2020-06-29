@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 员工详细信息查看界面   dingwei  add  2013/04/20-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>员工详细信息查看界面</title>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../common/css/addAndUpdateStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../../common/css/query.css"/>
+    <link rel="stylesheet" type="text/css" href="../../common/css/detail.css"/>
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script> 
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="js/employeeView.js"></script>
+	<script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="../../components/attachment/js/download.js"></script>
+</head>
+<body>
+<div id="main_area">
+<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="100602"/>
+	<form id="employeeView" method="post">
+		<input type="hidden" id="eventid" name="eventid"/>
+		<table class="detail-table">
+			<tr>
+			    <td width="10%"><span>员工编号:</span></td>
+				<td width="35%"><span id="employeeId"></span></td>
+				<td width="15%"><span>性别:</span></td>
+				<td width="35%"><span id="sex"></span></td>
+			</tr>
+			<tr>
+			    <td width="10%"><span>员工姓名:</span></td>
+				<td width="35%"><span id="name"></span></td>
+				<td width="15%"><span>岗位:</span></td>
+				<td width="35%"><span id="post"></span>
+				</td>
+			</tr>
+			<tr>
+			    <td width="10%"><span>通讯地址:</span></td>
+				<td width="35%"><span id="address"></span></td>
+				<td width="15%"><span>联系电话:</span></td>
+				<td width="35%"><span id="telephone"></span>					
+				</td>
+			</tr>
+			<tr>
+			    <td width="10%"><span>备&nbsp;&nbsp;注:</span></td>
+				<td width="35%" colspan=4><span id="description"></span>
+				</td>
+			</tr>
+		</table>
+	<div id="downloadDIV"></div>
+	</form>
+	</div>
+	<div class="button_area_absolute">
+		<table width="100%">
+			<tr>
+				 <td >
+					<a id="10060107" href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeWindow();">关闭</a>
+				 </td>
+  			</tr>
+	    </table>
+	</div>
+</body>
+</html>

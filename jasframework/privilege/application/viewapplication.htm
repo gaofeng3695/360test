@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="-1">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/viewapplication.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+<!-- 权限编号 -->
+<input type="hidden" id="menuid" value="P-PRI-0020"/>
+	<table class="detail-table">
+		<tr>
+			<th><span key="app.appId" class="paltform-i18n">应用系统ID：</span></th>
+			<td><span id="appId"></span></td>
+			<th><span key="app.appName" class="paltform-i18n">应用系统名称：</span></th>
+			<td><span id="appName"></span></td>
+		</tr>
+		<tr>
+		   <th><span key="app.roleName" class="paltform-i18n">管理角色：</span></th>
+			<td colspan="3"><span id="roleName"></span></td>
+		</tr>
+		<tr>
+			<th><span key="app.appUrl" class="paltform">应用系统前缀：</span></th>
+			<td colspan="3"><span id="appUrl"></span></td>
+		</tr>
+		<tr>
+		    <th><span key="app.description" class="paltform-i18n">描述：</span></th>
+		    <td colspan="3"><span id="description"></span></td>
+		</tr>
+	</table>
+	<table  align="center" class="buttontable">
+	 </table>
+	
+</div>
+	  <div class="button-area">
+		<table width="100%">
+			<tr>
+				<td>
+					<a href="#" class="easyui-linkbutton close-btn"  onclick="closeRole();">
+						<span key="close" class="paltform-i18n">关闭</span>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</body>
+</html>

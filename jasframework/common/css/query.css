@@ -1,0 +1,405 @@
+﻿@charset "utf-8";
+
+/** 
+ * @file
+ * @author  xxx
+ * @desc  查看页面样式
+ * @date  2017-08-15
+ * @last modified by xxx
+ * @last modified time  2017-08-15
+ */
+ 
+a{
+	text-decoration: none;
+	color:#1b9af7
+}
+
+/* .panel.panel-htop{
+	box-sizing:border-box;
+} */
+
+/* 查询区域样式 */
+.query-conditions{
+	-webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -ms-border-radius:4px;
+	border-radius:4px;
+	padding:10px;
+	margin-bottom:5px;
+	background:#fff;
+}
+
+.query-table {
+	width: 100%; 
+	border: 0px solid #d6d9e2;
+	text-align: left;
+	vertical-align: top;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.query-table th,
+.query-table td{
+	height: 30px;
+	padding:5px;
+	font-weight: normal
+}
+
+.input_bg,
+.select{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	margin: 1px 0px ;
+	border:1px solid #ddd;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+input[type=file]{
+	height: 30px;
+	line-height: 30px;
+}
+
+/* 设置下拉树的边框 */
+.combo-p{
+	border:1px solid #ddd;
+	border:1px solid #ddd !important;
+}
+
+/* .button_area {
+	padding-bottom: 4px;
+} */
+/*****************************更多搜索表格样式 *********************************/
+/* 更多搜索表格样式 */
+
+.more-query-btn .accordion-expand{
+	background: url(../image/accordion_expand1.png) no-repeat;
+}
+.more-query-btn .accordion-collapse{
+	background: url(../image/accordion_collapse1.png) no-repeat;
+} 
+
+.more-query-table{
+	position:relative;
+	width:100%;
+	box-sizing:border-box;
+	padding:10px;
+	margin-top:10px;
+	
+	border:1px solid #eee;
+	border-radius:8px;
+	background:#fafafa;
+	
+	display:none;
+}
+.more-query-table.active{
+	display:table;
+}
+.more-query-table td{
+	height:40px;
+	line-height:40px;
+}
+.more-query-table td>a{
+	height:25px;
+	line-height:25px;
+	padding:0px 5px;
+	color:#666666;
+	border-radius:4px;
+	border:1px solid transparent;
+	display:inline-block;
+}
+.more-query-table td>a:hover{
+	color:#399bff;
+}
+.more-query-table td>a.selected{
+	border-color:#399bff;
+	color:#399bff;
+}
+ .more-query-table .table-arrow{
+ 	position:absolute;
+	top:-20px;
+	right:50px;
+	display:inline-block;
+	width:25px;
+	height:25px;
+	text-align:center;
+ }
+ .more-query-table .table-arrow img{
+	width:25px;
+	height:25px;
+} 
+
+/******************************************datagrid  table的样式*********************************8************/
+
+/* datagrid  table的样式 */
+.datagrid{
+	padding: 5px;
+	background:#fff;
+	border:0;
+	-moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    -ms-border-radius:4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+.datagrid .datagrid-header .datagrid-header-row .datagrid-cell{
+	 font-weight:bold;
+	 color:#333;
+}
+
+.datagrid .datagrid-view{
+	/* border-bottom:1px solid #eee; */
+	outline: 1px solid #eee;
+    outline-offset: -1px;
+	
+	-moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    -ms-border-radius:4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+/* .datagrid .datagrid-view1 .datagrid-body{
+	border-left:1px solid #eee;
+} 
+.datagrid .datagrid-view2 .datagrid-body{
+	border-right:1px solid #eee;
+}
+*/
+.datagrid .datagrid-header-row, 
+.datagrid .datagrid-row,
+.datagrid .datagrid-cell,
+.datagrid .datagrid-cell-group,
+.datagrid .datagrid-header-rownumber, 
+.datagrid .datagrid-cell-rownumber{
+	height:35px;
+	line-height:35px;
+	font-size:12px;
+}
+
+.datagrid .datagrid-header td,
+.datagrid .datagrid-body td,
+.datagrid .datagrid-footer td{
+      border-width:0 1px 1px 0;
+   	  border-style: solid;
+   	  border-color:#e5e5e5;
+  }
+
+/* toobar样式与分页按钮样式 */ 
+.datagrid .datagrid-toolbar,
+.datagrid .datagrid-pager{
+	background:#fff;
+    border:0; 
+}
+.datagrid .datagrid-pager{
+	padding:5px 0 0 0;
+} 
+
+.datagrid .datagrid-toolbar{
+	padding-bottom:5px; 
+}
+.datagrid .datagrid-toolbar a{
+	padding: 0px 3px;
+	border:1px  solid #59b6fc;
+	color:#1b9af7;
+	background:#fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#ffffff,GradientType=0);
+    
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    -ms-border-radius:4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.datagrid .datagrid-toolbar .l-btn-left{
+	vertical-align:middle;
+}
+.datagrid .datagrid-toolbar .fa{
+	padding-left:5px\9;
+	padding-left:5px\9 !important;/*ie6,ie7,ie8*/
+
+}
+.datagrid .datagrid-toolbar .fa::before{
+   	position:relative;
+    top:2px;
+}
+.datagrid .datagrid-toolbar a:hover,
+.datagrid .datagrid-toolbar .l-btn-focus{
+	background: #d2e9fc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2e9fc,endColorstr=#d2e9fc,GradientType=0);
+}
+
+/* 另一种toobar的样式 */
+#right .datagrid-toolbar a{
+	border:1px solid transparent;
+}
+#right .datagrid-toolbar a:hover,
+#right .datagrid-toolbar .l-btn-focus{
+	border:1px solid #59b6fc;
+}
+
+ /* 表头 */
+.datagrid .datagrid-header-inner,
+.datagrid .datagrid-header,
+.datagrid .datagrid-header-row,
+.datagrid .datagrid-header td{
+	background:#e7f2fd !important;
+}
+.datagrid .datagrid-header-row td:hover{
+	background:#d2e9fb !important;
+}
+
+/* 表身斑马线1 */
+.datagrid .datagrid-btable tr:nth-child(even){
+	background:#fff url();
+}
+.datagrid .datagrid-btable tr:nth-child(odd){
+	background:#f6f6f6 url();
+} 
+
+/* 表格左侧序号咧 */
+.datagrid-header,
+.datagrid-td-rownumber{
+	background:transparent;
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#00000000,endColorstr=#00000000);
+}
+
+/* 表格复选框选中样式 */
+.datagrid-header-check-check,
+.datagrid-row-selected .datagrid-cell-check input{
+	-webkit-appearance:none;
+	width:15px;
+	height:15px;
+	outline:none;
+	
+	-moz-border-radius: 4px;
+    -webkit-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius: 4px;
+    
+	background: url(../image/checkbox.png) no-repeat center center;
+    background-size: 100% 100%;
+    background: none\9;     /*针对IE8的hack，目的是除掉之前background*/
+    /*下一行为关键设置  路径是绝对路径 这里不对*/
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jasframework/common/image/checkbox.png', sizingMethod='scale');        
+}
+.datagrid-header-check input, .datagrid-cell-check input{
+	width:15px;
+	height:15px;
+}
+
+/* 表格通用操作栏样式 */
+.datagrid .table-operate{
+	text-align:center;
+}
+.datagrid .table-operate a{
+	padding:0 5px;
+}
+
+/* 表格任务状态栏样式 */
+.datagrid .processing,
+.datagrid .checking,
+.datagrid .end{
+	-moz-border-radius: 4px;
+    -webkit-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius: 4px;
+    
+	padding:2px 3px;
+	color:#fff;
+	
+}
+/* 进行中 */
+.datagrid .processing{
+	background:#ffab3e;
+}
+/* 审核中 */
+.datagrid .checking{
+	background:#59b6fc;
+}
+/* 结束 */
+.datagrid .end{
+	background:#50c979;
+}
+
+/* 表格状态栏样式 */
+.datagrid .no-normal{
+	color:red
+}
+
+/* 表格右键菜单样式 */
+.menu-top.menu{
+	padding:5px;
+}
+.menu-line {
+    left: 30px;
+}
+
+
+/*****************************  左右布局的样式  *********************************/
+/* .layout-panel-west{
+	box-sizing:border-box;
+} */
+.layout-split-west {
+    border-right: 5px solid #red;
+}
+
+/* 左右布局的样式 */
+.layout-panel-west{
+	padding:5px;
+	padding:5px !important;
+	border-radius: 4px;
+    background: #fff;
+}
+.layout-panel-center{
+	background:#f1f1f1;
+	background:#f1f1f1  !important;
+	padding-left:5px;
+}
+
+/* 左侧树菜单的样式 */
+#cc .layout-panel-west .panel-header{
+	height:25px;
+	background-color: #59b6fc;
+	background: #59b6fc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#59b6fc,endColorstr=#59b6fc,GradientType=0);
+}
+#cc .layout-panel-west .panel-header .panel-title{
+	line-height:25px;
+	color:#fff;
+}
+#cc .layout-button-left{
+	background: url(../image//layout_arrows1.png) no-repeat 0 0;
+}
+
+#tt{
+	padding:10px 0;
+}
+#right{
+	background:#f1f1f1;
+	background:#f1f1f1  !important;
+	overflow:hidden;
+}
+
+/***************************** 修改用户密码 *********************************/
+/* 修改用户密码 */
+#updateUserPass{
+	border-radius:4px;
+	padding:10px 15px;
+	margin: 0 0 5px 0;
+	background:#fff;
+}
+.logininfo table tr input{
+	height:26px;
+	line-height:26px;
+	text-indent:0.5em;
+}
+.logininfo table tr:last-of-type{
+	height:40px;
+	padding-top:14px;
+}
+
+/*********************************************************/
+/* 修改下拉按钮的样式 小三角颜色换成浅蓝 */
+.datagrid-toolbar .m-btn-downarrow, .datagrid-toolbar.s-btn-downarrow {
+    background: url(../image/menu_arrows1.png) no-repeat 0 center;
+}

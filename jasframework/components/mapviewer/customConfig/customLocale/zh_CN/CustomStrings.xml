@@ -1,0 +1,12 @@
+<strings>
+	<string key="identify" value="属性" />
+	<string key="contour" value="截面图" />
+	<string key="shape" value="导出shape文件" />
+	<string key="printMap" value="打印地图" />
+	<string key="attachment" value="添加附件" />
+	
+	<string key="squareSelect" value="矩形选择" />
+	<string key="polygonSelect" value="多边形选择" />
+	<string key="workAreaQuery" value="工区查询" />
+	<string key="wellheadCoordinates" value="井口坐标" />
+</strings>

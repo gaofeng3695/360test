@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css">
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.jasfc.jasfcFactory.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/SubFunctionConfiguration.js"></script>
+	<script type="text/javascript" src="js/SubUpdateBusiness.js"></script>
+	<script type="text/javascript" src="js/FunctionAttachment.js"></script>
+	<script type="text/javascript" src="js/commonMethod.js"></script>
+	<title></title>
+</head>
+<body>
+	<div id="updateDiv"></div>
+	<script type="text/javascript">
+		var APP_NUMBER =top.APP_NUMBER;
+		var language =top.language;
+		//表的唯一标示列
+		var idField = getParamter("pkfield");
+		//修改记录id
+		var businessDataId = getParamter("businessDataId");
+		var subeventid =getParamter("subeventid"); //主表字段值
+	 	var subIdField =getParamter("subIdField"); //从表关联字段
+		//功能id
+		var functionName = getParamter("functionName");
+		//修改页面注册信息
+		var config = $("#updateDiv").SubFunctionConfiguration({divid:"#updateDiv","functionName":functionName,"app_number":APP_NUMBER,"language":language});
+	 	var updateJson =config.SubFunctionConfiguration('getFunctionConfig',functionName);
+		var functionConfig = JSON.stringify(updateJson.updateFields);
+		var updateDiv =$("#updateDiv").SubUpdateBusiness({
+			idField : idField,
+			functionName : functionName,
+			updatefunctionData : functionConfig,
+			businessDataId : businessDataId,
+			configuration:updateJson,
+			divid:'#updateDiv'
+		});
+		updateDiv.SubUpdateBusiness("loadUpdatePage");
+	</script>
+</body>
+</html>

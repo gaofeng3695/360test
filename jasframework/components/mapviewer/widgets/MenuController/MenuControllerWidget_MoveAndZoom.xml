@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<configuration>
+<!-- 	线条样式：颜色及宽度 -->
+	<lineStyle>
+		<color>0xFF0000</color>
+		<width>2</width>
+	</lineStyle>
+<!-- 	填充样式：颜色、网格样式、是否显示 -->
+	<fillStyle>
+		<color>0xFF0000</color>
+		<style>diagonalcross</style>   <!-- 可选项：backwarddiagonal cross diagonalcross forwarddiagonal horizontal null solid vertical -->
+		<alpha>1</alpha>
+	</fillStyle>
+<!-- 	点的样式：颜色及半径 -->
+	<pointStyle>
+		<color>0xFF0000</color>  
+		<size>12</size>  
+		<style>circle</style> <!-- 可选项 ： circle | cross | diamond | square | triangle | x -->
+	</pointStyle>
+</configuration>
+
+<!--
+    See HeaderController widget tag reference at
+    http://links.esri.com/headercontrollerwidget
+-->

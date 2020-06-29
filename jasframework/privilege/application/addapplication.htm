@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/addapplication.js"></script>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+		<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-PRI-0020" />
+	<form id="saveappForm" method="post">
+	<!-- 数据eventid -->
+		<table align="center" class="edit-table">
+			<tr>
+				<td  width="20%"><span key="app.appName" class="paltform-i18n">系统名称：</span></td>
+				<td  width="30%"><input name="appName" class="easyui-validatebox input_bg" 
+					required="true" id='appName' validType="general" maxLength=25 /></td>
+			
+			
+				<td  width="20%"><span key="app.roleName" class="paltform-i18n">管理角色：</span></td>
+				<td  width="30%"><select id="roleselect" name="roleId"
+					required="true" editable=false class="easyui-combobox input_bg"
+					style="width: 200px">
+				</select></td>
+			</tr>	
+			<tr>
+				<td width="20%"><span key="app.appUrl" class="paltform-i18n">系统前缀</span></td>
+				<td><input name="appUrl" id="systemurl" class="easyui-validatebox input_bg"  validType="priUrl"/></td>
+			</tr>
+			<tr>
+				<td colspan="1"><span key="app.description"
+					class="paltform-i18n">描述：</span></td>
+				<td colspan="3"><textarea name="description" cols="25" rows="5"
+						id="description" class="easyui-validatebox"
+						validType="maxLength[300]"></textarea></td>
+			</tr>
+		</table>
+		
+	</form>
+</div>
+<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td colspan="4" align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton submit"  onclick="savecheck()"> <span key="save" class="paltform-i18n">保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel" onclick="closePanel()"> <span key="cancel" class="paltform-i18n">取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

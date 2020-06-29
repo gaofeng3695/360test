@@ -1,0 +1,123 @@
+﻿图层配置范例（图层只能是feature、wfs类型，以feature类型为例）：
+
+<layer id="layerCoating" label="点" type="feature" visible="false" alpha="1.0" index="2"
+	url="http://pcofinakcis/ArcGIS/rest/services/EsriDemo/FeatureServer/2" 
+	labelUrl="http://192.168.30.25/LabelNew/MOC_Oil/Layers/_alllayers/" labelType="esritiled"
+	symbolUrl="http://192.168.30.25/LabelNew/MOC_Oil/Layers/_alllayers/"
+	renderParameter='{ 
+		"initSymbol":{"symbolType":"simple","symbol":{"size":"8","style":"square","alpha":"1","color":"0xFF0000"}},
+		"highlightSymbol":{"symbolType":"simple","symbol":{"size":"15","style":"square","alpha":"1","color":"0x0000FF"}},
+		"hoverResponseHandler":{"responseType":"map_tip",
+			"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"BOREHOLE_NUMBER,DESCRIPTION","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+		},
+		"clickResponseHandler":{"responseType":"map_tip",
+				"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"BOREHOLE_NUMBER,DESCRIPTION","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+			},
+		"dbclickResponseHandler":{"responseType":"iframe_tip",
+				"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","title":"详细信息"} 
+		}
+	}' />
+
+1、使用说明
+	1.1、支持点、线、面要素。
+	1.2、在配置文件config.xml中layer图层节点属性添加renderParameter属性，见上	
+	1.3、不建议配置多个动态交互图层
+
+2、renderParameter参数说明:
+	2.1 initSymbol：要素初始渲染配置样式【配置参照highlightSymbol】
+	2.2 highlightSymbol：要素高亮渲染配置样式
+	    2.2.1  点渲染样式配置：
+		 	symbolType:渲染样式类型，simple|picture|polygon，默认为simple（不建议使用polygon，数据量大时可能会导致浏览器崩溃）
+		 	symbol:渲染样式属性
+		 		simple: //(简单样式渲染属性)
+		 			 color:填充颜色，16进制，以0x开头，默认为0xC0C0C0
+				     size:点半径，默认是12
+				     style:点样式，默认是circle（可选项：circle | cross | diamond | square | triangle | x）
+				     alpha:透明度，取值范围为0-1,默认为1
+				picture： // (图片样式渲染属性)
+					 iconUrl：渲染图片目录，相对目录地址为：mapviewer;如该值为"assets/extension",
+							   代表其路径在platform/mapviewer/assets/extension下。（只合适于点要素图层）
+					 iconPrefix：是否针对某个字段做不同图片图标渲染（只合适于点要素图层）
+					 groupby：图片名称前缀。如果groupby为空，那么渲染出来的图片名称为iconPrefix+".png";如果不为空,图片名为iconPrefix+groupby字段的值+".png";
+				polygon： //(复杂样式渲染属性，不推荐，耗内存)
+					 color:填充颜色，16进制，以0x开头，默认为0xC0C0C0
+				     size:点半径，默认是12
+				     style:点样式，默认是circle（可选项：circle | cross | diamond | square | triangle | x）
+				     alpha:透明度，取值范围为0-1,默认为1
+				     borderColor：外边框颜色，16进制，以0x开头，默认为0x00FF00
+				     borderWidth：外边框宽度，默认为2
+				     borderAlpha：外边框透明度，默认为1
+			
+	   	   	例如： "highlightSymbol":{"symbolType":"simple","symbol":{"size":"8","style":"square","alpha":"1","color":"0xFF0000"}},
+				 "highlightSymbol":{"symbolType":"picture","symbol":{"iconUrl":"assets/images/","iconPrefix":"edit_markertool","groupby":""}},
+				 "highlightSymbol":{"symbolType":"polygon","symbol":{"size":"10","style":"cicle","alpha":"1","color":"0xFF0000","borderColor":"0x0000FF","borderWidth":"2","borderAlpha":"1"}},
+				 
+		2.2.2  线渲染样式配置：
+			symbolType:渲染样式类型，simple|polygon，默认为simple（不建议使用polygon，数据量大时可能会导致浏览器崩溃）
+		 	symbol:渲染样式属性
+		 		simple: //(简单样式渲染属性)
+		 			 color:线条颜色，16进制，以0x开头，默认为0xC0C0C0
+			         width:线条宽度，默认为4
+			      	 alpha:线条透明度，默认为1
+			      	 style:线条样式，默认为solid（可选项：solid | dash | dashdot | dashdotdot | dot | none）				
+				polygon： //(复杂样式渲染属性，不推荐，耗内存)
+					 color:线条颜色，16进制，以0x开头，默认为0xC0C0C0
+			         width:线条宽度，默认为4
+			      	 alpha:线条透明度，默认为1
+			      	 style:线条样式，默认为solid（可选项：solid | ）
+				     borderColor：外边框颜色，16进制，以0x开头，默认为0x00FF00
+				     borderWidth：外边框宽度，默认为2
+				     borderAlpha：外边框透明度，默认为1
+			
+	   	   	例如： "highlightSymbol":{"symbolType":"simple","symbol":{"width":"5","style":"dash","alpha":"1","color":"0xFF0000"}}
+				 "highlightSymbol":{"symbolType":"polygon","symbol":{"symbolType":"polygon","width":"5","style":"dashdot","alpha":"1","color":"0xFF0000","borderColor":"0x00FF00","borderWidth":"2","borderAlpha":"1"}}
+
+	                 
+   		2.2.3 面渲染样式配置：
+   			symbol:渲染样式属性
+		 	    color:填充颜色，16进制，以0x开头，默认为0xC0C0C0
+		      	style:填充样式，默认为solid,   (可选项：solid | backwarddiagonal | cross | diagonalcross | forwarddiagonal | horizontal | vertical)
+		     	alpha:填充透明度，默认为1
+		       	borderWidth:线条宽度，默认为4
+		     	borderColor:线条颜色，16进制，以0x开头，默认为0x00FF00
+		     	borderAlpha:线条透明度，默认为1
+		     	borderStyle:边框线条样式，默认为solid。（可选项：solid | dash | dashdot | dashdotdot | dot | none）
+	  		例如： "highlightSymbol":{"borderWidth":"4","borderColor":"0x123456","borderAlpha":"0.3","fillColor":"0x345","fillAlpha":"0.3","fillStyle":"diagonalcross"}
+  	
+	2.3 hoverResponseHandler：鼠标悬浮事件处理函数【配置参照dbclickResponseHandler】
+	2.4 clickResponseHandler：鼠标单击事件处理函数【配置参照dbclickResponseHandler】
+	2.5 dbclickResponseHandler：鼠标双击事件处理函数 
+	    responseType：用户鼠标图标响应模式。值有:js_function（回调JS函数）\iframe_tip(IFrameTip页面显示)\map_tip(地图Tip显示)
+	    attribute：//属性配置
+	    	1、js_function（回调JS函数）
+	    		returnObjectId：返回鼠标选中对象的ObjectID，值为true/false,默认为true。调用callback回调函数的返回数据，对象参数名称为ObjectId,值为字符串.
+	    		returnGeometry：返回鼠标选中对象的几何坐标，值为true/false,默认为false，调用callback回调函数的返回数据，对象参数名称为Geometry，值为几何Json字符串.在线、面要素下不推荐使用！
+	    		returnAttributes：返回鼠标选中对象的属性，值为true/false,默认为false，调用callback回调函数的返回数据，对象参数名称为Attributes,值为Json字符串.
+	    		outFields：指定返回鼠标选中对象的指定字段值，以英文逗号隔开。向URL后缀传值,URL参数名称为outFields,值为Json字符串.
+	    		callback：JS回调函数名称，该函数必须位于map.html中，建议置于不同js文件中，该文件被map.html引用.
+	    		para：传入的其他参数值，多个用逗号隔开，如"eventid=111,name=test"
+	    		示例返回值：{"Attributes":{"GROUND_WATER_DEPTH_M":1.89,"CREATEDBY":null,"GROUND_WATER_LEVEL_M":2.01,"CREATEDDATE":null,"EXPLORATIONDEPTH":3,"DESCRIPTION":"Elastic Silt(3.00m)","LASTMODIFIED":null,"OBJECTID":3315,"REMARK":null,"BOREHOLE_NUMBER":"WDSP-ZK18","MODIFIEDBY":null,"COORDINATEX":732268.029,"EXISTING_GROUND_LEVEL_M":3.9,"COORDINATEY":3506570.044},"Geometry":{"x":47.449976306999986,"y":31.670930440999996,"spatialReference":{"wkid":4326}},"graphicLocation":{"x":47.449767197709996,"y":31.670961686770674,"spatialReference":{"wkid":4326}},"outFields":{"BOREHOLE_NUMBER":"WDSP-ZK18"},"eventid":"111","name":"test","ObjectId":"3315","location":{"x":47.449767197709996,"y":31.670961686770674,"spatialReference":{"wkid":4326}},"locationStage":{"y":391.55000000004657,"x":1140.1500000000233}}	    		
+	    	2、iframe_tip(IFrameTip页面显示)
+	    		tipUrl：IFrame页链接地址，如"demo/IFrameTipDemo.htm"
+	    		tipWidth：tip信息框宽度
+	    		tipHeight：tip信息框高度
+	    		returnObjectId：返回鼠标选中对象的ObjectID，值为true/false,默认为true。向URL后缀传值，URL参数名称为ObjectId,值为字符串.
+	    		returnGeometry：返回鼠标选中对象的几何坐标，值为true/false,默认为false，URL参数名称为Geometry，值为几何Json字符串.在线、面要素下不推荐使用！
+	    		returnAttributes：返回鼠标选中对象的属性，值为true/false,默认为false，向URL后缀传值,URL参数名称为Attributes,值为Json字符串.
+				outFields：指定返回鼠标选中对象的指定字段值，以英文逗号隔开。向URL后缀传值,URL参数名称为outFields,值为Json字符串.
+				title：tip信息框标题
+				示例：假如tipUrl="demo/IFrameTipDemo.htm";则地图会自动往tipUrl追加相应设置参数，如：
+					http://localhost/flexviewer/demo/IFrameTipDemo.htm?&ObjectId=19&Geometry={"x":454973,"y":2514287,"spatialReference":{"wkid":2383}}&Attributes={"NAME":"Demo1","mouseEventType":"click","OBJECT_ID":1457,"CODE":"215219"}&outFields={"Objectid":"19","name":"Demo1"}&MouseEventType=click"
+			3、map_tip(地图Tip显示)
+	    		tipWidth：tip信息框宽度
+	    		displayField：显示字段字符串，以逗号隔开，一定要确定在图层中有该属性
+	    		defaultFieldTitle：与displayField对应的字段显示名称,以逗号隔开,长度与之一致
+	    		title：tip信息框标题
+	    		
+	    例如："hoverResponseHandler":{"responseType":"map_tip",
+				"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"BOREHOLE_NUMBER,DESCRIPTION","defaultFieldTitle":"编号,描述","title":"详细信息"} }
+		   "dbclickResponseHandler":{"responseType":"js_function",
+				"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","para":"eventid=111,name=test","callback":"drawPolygonHandler"}
+		   "clickResponseHandler":{"responseType":"iframe_tip",
+				"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","title":"详细信息"}}
+			

@@ -1,0 +1,25 @@
+二维带动三维:
+
+1、初次点击联动按钮时，地图开始监听地图范围变化事件，并调用APIFor3D.js中的
+	setIsLinkage函数(setIsLinkage函数名可由地图config.xml中setIsLinkage变量值决定).
+2、移动地图时，地图调用APIFor3D.js中的的mapExtendChangeHanlder函数(mapExtendChangeHanlder函数名由地图config.xml中的JsSynchMapExtentChangeFunction变量决定).
+3、mapExtendChangeHanlder函数先获取三维控件所在IFrame对象（通过top.getEarthIframe()方法获得）,如非platform项目，获取三维IFrame对象须调整修改。
+4、mapExtendChangeHanlder函数调用三维中的changeTo3D方法（该方法在Scd3D.html页中）完成三维联动。
+
+
+
+停止联动。
+1、当二三维处于联动状态时，再次点击了二维地图中的联动按扭，自动取消联动。
+2、再次点击联动按钮时，地图移除地图范围变化回调函数，并调用APIFor3D.js中的setIsLinkage函数.
+3、当三维再次调用二维地图范围设置函数（APIFor3D.js中zoomToLodAndCenterAt）时，由于标志位变量top.isLinkage值为false,故二维不会产生变化。
+但三维范围变化回调函数仍在执行。
+
+
+三维带动二维：
+
+前提：必须在二维中点击联联动按钮后再会带动二维。
+
+1、三维页面（Scd3D.html）完成加载时，自动注册范围变化事件回调函数callbackMove函数。
+2、callbackMove函数调用changeTo2D（）方法。
+3、changeTo2D方法先获取地图所在IFrame（通过top.getMapIFrame()）,如非platform项目，获取二维IFrame对象须调整修改。
+4、changeTo3D方法调用APIFor3D.js中的zoomToLodAndCenterAt方法进行地图范围改变。

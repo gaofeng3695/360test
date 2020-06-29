@@ -1,0 +1,46 @@
+.row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+}
+
+.cell {
+    text-align: center;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.el-header {
+    padding-top: 0px;
+}
+
+.el-main {
+    min-height: 100%;
+}
+
+.el-footer {
+    flex: 0 0 auto
+}
+
+.el-footer .row-bg{
+    padding: 3px 0;
+    background-color: #ffffff;
+}
+
+.el-button+.el-button {
+    margin-left: 0px;
+}
+
+.el-input__inner {
+    height: 38px ;
+    margin-top: 2px;
+}
+
+.el-tag--medium {
+    height: 27px;
+}
+
+.level-name {
+    cursor: pointer;
+}

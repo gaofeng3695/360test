@@ -1,0 +1,54 @@
+
+
+.uniturl{
+	text-decoration:underline;
+	cursor: pointer;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.countfont{
+	font-size:17px;
+	font-weight:bold;
+	padding-right:20px;
+}
+
+.insinfo{
+	font-size:14px;
+	font-weight:bold;
+}
+
+
+.batterymm {
+    width: 28px;
+    margin: 0 auto;
+    align:left;
+    cursor: pointer;
+    float:left;
+}
+ 
+.batterycc {
+    position: relative;
+    width: 28px;
+    height: 14px;
+    border: 1px solid #ccc;
+}
+ 
+.batteryright {
+    position: absolute;
+    top: 2px;
+    left: 28px;
+    width: 2px;
+    height: 8px;
+    margin-left: 0px;
+    border: 1px solid #ccc;
+}
+ 
+.batteryfiller {
+    position: absolute;
+    height: 12px;
+    margin: 1px;
+    /* background-color:rgba(100,250,50,1); */
+    /* background-color:rgba(255,87,34,1); */
+}
+

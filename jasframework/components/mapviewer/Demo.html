@@ -1,0 +1,1333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="utf-8" xml:lang="utf-8">
+    <head>
+        <title>MapViewerDemo</title>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+        <script type="text/javascript" src="js/jquery-1.8.min.js"></script> 
+        <script type="text/javascript">            
+            function centerAt(x,y)
+            {
+            	top.centerAt(x,y);
+            }
+            //////////////////// Samples /////////////////////////////
+            
+            function flashPointsSample()
+            {
+            	// 点
+            	var pointsString = "103,35";
+            	
+            	// 符号
+            	var markerSymbolObject = new Object();
+                
+                markerSymbolObject.style = "square";
+                markerSymbolObject.size = 16.0;
+                markerSymbolObject.color = 0xFF0000;
+                markerSymbolObject.alpha = 1.0;
+                markerSymbolObject.xoffset = 0.0;
+                markerSymbolObject.yoffset = 0.0;
+                markerSymbolObject.angle = 0.0;
+                
+                // 闪烁
+            	top.flashPoints(pointsString, 500, 12, markerSymbolObject);
+            }
+            
+            function flashPolylineSample()
+            {
+            	// 线
+            	var polylineString = "103,35,108,42";
+            	
+            	// 符号
+            	var lineSymbolObject = new Object();
+            	
+            	lineSymbolObject.style = "solid";	
+            	lineSymbolObject.color = 0xEE82EE;
+            	lineSymbolObject.alpha = 1;
+            	lineSymbolObject.width = 5;
+                
+                // 闪烁
+            	top.flashPolyline(polylineString, 750, 10, lineSymbolObject);
+            }
+            
+            function flashPolygonSample()
+            {
+            	// 面
+            	var polygonString = "103,35,108,42,109,34,103,35";
+            	
+            	// 符号
+            	var fillSymbolObject = new Object();
+            	
+            	fillSymbolObject.style = "solid";	
+            	fillSymbolObject.color = 0xEE82EE;
+            	fillSymbolObject.alpha = 1;
+                
+                // 闪烁
+            	top.flashPolygon(polygonString, 750, 10, fillSymbolObject);
+            }
+            
+            function animatePolylineInTimeSample()
+            {
+            	// 线
+            	var polylineString = "103,35,108,42,109,34";
+            	
+            	// 符号
+            	var lineSymbolObject = new Object();
+            	
+            	lineSymbolObject.style = "solid";	
+            	lineSymbolObject.color = 0xEE82EE;
+            	lineSymbolObject.alpha = 1;
+            	lineSymbolObject.width = 5;
+            	
+            	top.animatePolylineInTime(polylineString, lineSymbolObject, 50000)
+            }
+            
+            function animatePolylineInSpeedSample()
+            {
+            	// 线
+            	var polylineString = "103,35,108,42,109,34";
+            	
+            	// 符号
+            	var lineSymbolObject = new Object();
+            	
+            	lineSymbolObject.style = "solid";	
+            	lineSymbolObject.color = 0xEE82EE;
+            	lineSymbolObject.alpha = 1;
+            	lineSymbolObject.width = 5;
+            	
+            	top.animatePolylineInSpeed(polylineString, lineSymbolObject, 1, 1000);
+            }
+            
+            function setPointLayerRendererSample()
+            {
+                var markerSymbolObject = new Object();
+                
+                markerSymbolObject.style = "square";
+                markerSymbolObject.size = 16.0;
+                markerSymbolObject.color = 0xFF0000;
+                markerSymbolObject.alpha = 1.0;
+                markerSymbolObject.xoffset = 0.0;
+                markerSymbolObject.yoffset = 0.0;
+                markerSymbolObject.angle = 0.0;
+                
+                var outlineSymbolObject = new Object();
+                outlineSymbolObject.style = "solid";
+                outlineSymbolObject.color = 0x0000FF;
+                outlineSymbolObject.alpha = 1.0;
+                outlineSymbolObject.width = 3.0;
+                
+                markerSymbolObject.outlineSymbolObject = outlineSymbolObject;
+                
+            	top.setPointLayerRenderer("gxKcd", markerSymbolObject);
+            	top.refreshLayerByName("勘探点");
+            }
+            
+            function setPointLayerPictureRendererSample()
+            {
+            	var pictureMarkerSymbolObject = new Object();
+            	pictureMarkerSymbolObject.source = "assets/images/i_police.png";
+            	pictureMarkerSymbolObject.height = 20;
+            	pictureMarkerSymbolObject.width = 20;
+            	
+            	top.setPointLayerPictureRenderer("gxKcd", pictureMarkerSymbolObject);
+            	top.refreshLayerByName("勘探点");
+            }
+            
+            function setPointLayerFlashRendererSample()
+            {
+            	var pictureMarkerSymbolObject = new Object();
+            	pictureMarkerSymbolObject.source = "assets/images/Red_glow.swf";
+            	pictureMarkerSymbolObject.height = 20;
+            	pictureMarkerSymbolObject.width = 20;
+            	
+            	top.setPointLayerPictureRenderer("gxKcd", pictureMarkerSymbolObject);
+            	top.refreshLayerByName("勘探点");
+            }
+            
+            function setLineLayerRendererSample()
+            {
+            	var lineSymbolObject = new Object();
+            	
+            	lineSymbolObject.style = "dash";	
+            	lineSymbolObject.color = 0xEE82EE;
+            	lineSymbolObject.alpha = 1;
+            	lineSymbolObject.width = 5;
+            	
+            	top.setLineLayerRenderer("gx", lineSymbolObject);
+            	top.refreshLayerByName("管线");
+            }
+            
+            function highlightPointsSample()
+            {
+            	// 点
+            	var pointsString = "103,35";
+            	
+            	// 符号
+            	var markerSymbolObject = new Object();
+                
+                markerSymbolObject.style = "square";
+                markerSymbolObject.size = 16.0;
+                markerSymbolObject.color = 0xFF0000;
+                markerSymbolObject.alpha = 1.0;
+                markerSymbolObject.xoffset = 0.0;
+                markerSymbolObject.yoffset = 0.0;
+                markerSymbolObject.angle = 0.0;
+                
+                var outlineSymbolObject = new Object();
+                outlineSymbolObject.style = "solid";
+                outlineSymbolObject.color = 0x0000FF;
+                outlineSymbolObject.alpha = 1.0;
+                outlineSymbolObject.width = 3.0;
+                
+                markerSymbolObject.outlineSymbolObject = outlineSymbolObject;
+                
+                // 清空
+                top.clearGraphicsLayer("HightlightLayer");
+                
+                // 高亮
+                top.addPointGraphics(pointsString, markerSymbolObject);
+                
+                // 刷新
+                top.refreshLayerByName("HightlightLayer");
+            }
+            
+            function highlightPolylineSample()
+            {
+            	// 线
+            	var polylineString = "103,35,109,40";
+            	
+            	// 符号
+            	var lineSymbolObject = new Object();
+            	
+            	lineSymbolObject.style = "solid";	
+            	lineSymbolObject.color = 0xEE82EE;
+            	lineSymbolObject.alpha = 1;
+            	lineSymbolObject.width = 5;
+                
+                // 清空
+                top.clearGraphicsLayer("HightlightLayer");
+                
+                // 高亮
+                top.addPolylineGraphics(polylineString, lineSymbolObject);
+                
+                // 刷新
+                top.refreshLayerByName("HightlightLayer");
+            }
+            
+            
+            
+            function highlightPolygonSample()
+            {
+            	// 面
+            	var polygonString = "103,35,108,42,109,34,103,35";
+            	
+            	// 符号
+            	var fillSymbolObject = new Object();
+            	
+            	fillSymbolObject.style = "solid";	
+            	fillSymbolObject.color = 0xEE82EE;
+            	fillSymbolObject.alpha = 1;
+                
+                // 清空
+                top.clearGraphicsLayer("HightlightLayer");
+                
+                // 高亮
+                top.addPolygonGraphics(polygonString, fillSymbolObject);
+                
+                // 刷新
+                top.refreshLayerByName("HightlightLayer");
+            }
+            
+            function querySample()
+            {
+            	$.get("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer/1/query", {objectids:"1", f:"pjson"}, function(data) { alert("字段名称：" + data.displayFieldName);
+				}, "jsonp");
+            }
+            
+            function queryPostSample()
+            {
+            	$.post("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer/1/query", {objectids:"1", f:"pjson"}, function(data) { alert("字段名称：" + data.displayFieldName);
+				}, "jsonp");
+            }
+            
+            function queryDateSample()
+            {
+            	$.get("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/Since_1970/MapServer/0/query", {where:"Date_ <= date '2011-09-01 09:09:09'", f:"pjson"}, function(data) { alert("查询结果共 " + data.features.length + " 条");
+				}, "jsonp");
+            }
+            
+            //////// 1.2 新增 /////////////
+            
+            function projectSample()
+            {
+            	// 参考：http://localhost/ArcGIS/SDK/REST/project.html
+            	$.get('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/project?inSR=4326&outSR=102113&geometries={"geometryType":"esriGeometryPoint","geometries":[{"x":-117,"y":34}]}&f=pjson',function(data){alert(data.geometryType);}, "jsonp");
+            }
+            
+            function animateArrowLineInTimeSample()
+            {
+            	var polylineString = "103,35,104,36,108,42";
+            	
+            	//var arrowLineSymbolObject = new Object();
+            	//arrowLineSymbolObject.style = "solid";
+            	//arrowLineSymbolObject.color = 0xEE82EE;
+            	//arrowLineSymbolObject.alpha = 0.7;
+            	//arrowLineSymbolObject.width = 2;
+            	//arrowLineSymbolObject.arrowLength = 15;
+            	//arrowLineSymbolObject.arrowWidth = 5;
+            	
+            	
+            	var arrowLineSymbolObject = new Object();
+				arrowLineSymbolObject.style = "solid";
+				arrowLineSymbolObject.alpha = 0.7;
+				arrowLineSymbolObject.width = 1;
+				arrowLineSymbolObject.arrowLength = 10;
+				arrowLineSymbolObject.arrowWidth = 1;
+				arrowLineSymbolObject.color = 0xFF0000;
+            	var polyline="113.51129833333333,22.502491666666668,113.50853333333333,22.501078333333332";
+            	
+            	var polyline2="438489.08291525743,2557275.576483189,485637.83291525743,2582993.076483189,508974.08291525743,2568229.326483189,517546.58291525743,2556799.326483189";
+            	
+            	top.animateArrowLineInTime(polylineString, arrowLineSymbolObject, 3000);
+            	//alert(555);
+            	//top.animateArrowLineInTime(polyline2, arrowLineSymbolObject, 20000);
+            }
+            
+            function animateArrowLineInSpeedSample()
+            {
+            	var polylineString = "103,35,108,42";
+            	
+            	var arrowLineSymbolObject = new Object();
+            	arrowLineSymbolObject.style = "solid";
+            	arrowLineSymbolObject.color = 0xEE82EE;
+            	arrowLineSymbolObject.alpha = 0.7;
+            	arrowLineSymbolObject.width = 2;
+            	arrowLineSymbolObject.arrowLength = 15;
+            	arrowLineSymbolObject.arrowWidth = 5;
+            	
+            	top.animateArrowLineInSpeed(polylineString, arrowLineSymbolObject, 1, 1000);
+            }
+            
+            function showInfoWindowSample()
+            {
+            	var simpleHtml="hello,flex1,hello,flex1,hello,flex1,hello,flex1,hello,flex1,hello,flex1,<br/>hello,flex2<br/>hello,flex3<br/>hello,flex4<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>hello,flex5<br/>";
+            	top.showInfoWindow(103,35, "我的标题", simpleHtml,200,300);
+            }
+            
+            function addPolygonGraphicClickInfoWindowSample()
+            {
+            	// 面
+            	var polygonString = "103,35,108,42,109,34,103,35";
+            	
+            	// 符号
+            	var fillSymbolObject = new Object();
+            	
+            	fillSymbolObject.style = "solid";	
+            	fillSymbolObject.color = 0xEE82EE;
+            	fillSymbolObject.alpha = 1;
+                
+                // 清空
+                top.clearGraphicsLayer("HightlightLayer");
+                
+                // 高亮
+                top.addPolygonGraphicInfoWindow(polygonString, fillSymbolObject, "click", "我的标题", "Hello World", 100, 80);
+            }
+            
+            function addPolygonGraphicHoverInfoWindowSample()
+            {
+            	// 符号
+            	var fillSymbolObject = new Object();
+            	
+            	fillSymbolObject.style = "solid";	
+            	fillSymbolObject.color = 0xEE82EE;
+            	fillSymbolObject.alpha = 1;
+                
+                // 清空
+                top.clearGraphicsLayer("HightlightLayer");
+                
+                // 面1
+            	var polygonString1 = "103,35,108,42,109,34,103,35";
+                
+                top.addPolygonGraphicInfoWindow(polygonString1, fillSymbolObject, "hover", "", "<b>Hello World 1</b>", 300, 200);                
+            }
+            
+            function addMultiOpenInfoWindowSample()
+            {
+            	top.clearGraphicsLayer("HightlightLayer");
+            	var pictureMarkerSymbolObject = new Object();
+            	pictureMarkerSymbolObject.source = "assets/images/i_police.png";
+            	pictureMarkerSymbolObject.height = 20;
+            	pictureMarkerSymbolObject.width = 20;
+            	
+            	top.addPointInfoWindow("point1",103,35, pictureMarkerSymbolObject, "hover", "", "<b>Hello World 1</b>", 300, 200);  
+            	top.addPointInfoWindow("point2",108,42, pictureMarkerSymbolObject, "hover", "", "<b>Hello World 2</b>", 300, 200);          	
+            }
+            
+            function addPointHoverInfoWindowSample()
+            {
+            	top.clearGraphicsLayer("HightlightLayer");
+            	
+            	top.addPointInfoWindow("point1",103,35, null, "hover", "标题1", "Hello World 1", 200, 200);
+            	
+            	var pictureMarkerSymbolObject = new Object();
+            	pictureMarkerSymbolObject.source = "assets/images/i_police.png";
+            	pictureMarkerSymbolObject.height = 20;
+            	pictureMarkerSymbolObject.width = 20;
+            	
+            	top.addPointInfoWindow("point2",108,42, pictureMarkerSymbolObject, "click", "标题2", "Hello");
+            }            
+           
+            
+            /************获取地图坐标************/
+            function btnGetXY()
+            {
+            	top.getXY(getXYCallBack);
+            }
+            
+            function getXYCallBack(obj)
+            {
+            	alert(obj);
+            	alert("getXY success");
+            }
+            
+            function drawGraphicCallback(obj)
+            {
+            	alert(obj);
+            	alert("draw success");
+            }
+            
+             /************编辑线************/
+             
+             function btDrawPolyline()
+             {
+             	top.drawGraphic("polyline2","polyline");             
+             }
+             
+             function btDrawPolyline2()
+             {
+             	top.drawGraphic("polyline3","polyline",drawGraphicCallback);             
+             }
+             
+             function btEditPolyline()
+             {
+             	var polylineJson = {"paths":[[[103,35],[108,42]]],"spatialReference":{"wkid":2383}};
+             	top.editPolyline("polyline1",polylineJson);
+             }    
+             
+             function btSavePolyline()
+             {
+             	top.getEidtGraphic("polyline1",editPolylineCallBack);
+             } 
+             
+             
+             function editPolylineCallBack(obj)
+             {
+             	alert(obj);
+            	alert("editPolyline success");
+             }
+             
+             
+             /************编辑面************/
+             function btDrawPolygon()
+             {
+             	top.drawGraphic("polyline2","polygon"); 
+             	  //top.clearGraphicsLayer("HightlightLayer");
+             }
+             
+              function btDrawPolygon2()
+             {
+             	top.drawGraphic("polyline2","polygon",drawGraphicCallback); 
+             }
+             
+             function btEditPolygon()
+             {
+             	var polygon={"rings":[[[103,35],[108,42],[109,34],[103,35]]],"spatialReference":{"wkid":2383}};
+             	top.editPolygon("ploygon1",polygon);
+             }             
+            
+             function btSavePolygon()
+             {
+             	top.getEidtGraphic("ploygon1",editPolygonCallBack);
+             }
+             
+             function editPolygonCallBack(obj)
+             {
+             	alert(obj);
+            	alert("editPolygon success");
+             }
+             
+             function btnDraw(strType)
+             {
+             	top.drawGraphic("graphic1",strType,drawGraphicCallback); 
+             }
+             
+             /********************根据ArcGIS Geo Json绘图************/
+             
+             //不推荐使用，可使用btEsriAddGraphic()相关方法
+             function btDrawGraphicByErisGeoJson()
+             {
+             	var point={"x" : 103,"y" : 35};
+             	var polyline={"paths":[[[103,36],[107,43]]],"spatialReference":{"wkid":2383}};
+             	var polygon={"rings":[[[103,35],[108,42],[109,34],[103,35]]],"spatialReference":{"wkid":2383}};
+             	
+             	top.drawGraphicByErisGeoJson("point1","Point",point);
+             	top.drawGraphicByErisGeoJson("polyline1","Polyline",polyline);
+             	top.drawGraphicByErisGeoJson("polygon1","Polygon",polygon);
+             }   
+             
+             /**************停气分析调用参考***********************/
+             function btnMA()
+             {
+             	//top.startGeoNetworkAnalysis(445774.483,2532707.492);
+             	
+             	//带回调参考
+             	top.startGeoNetworkAnalysis(527598.9548368829,2526379.8068563133,30000,"both",btStartNAWithMapWithCallback);
+             } 
+             
+             //从地图取点启动停气分析
+             function btStartNAWithMap()
+             {
+             	top.startGeoNetworkAnalysisWithMap();
+             } 
+             
+             function btStartNAWithMapWithCallback()
+             {
+            	 top.startGeoNetworkAnalysisWithMap(geoNACallback);
+             }
+             
+             function geoNACallback(attr)
+             {
+            	 alert(attr);
+             }
+             
+			 var pictureMarkerSymbol=
+			 {
+				"type" : "esriPMS",
+				"url" : "assets/images/i_police.png",
+				"imageData" : "",
+				"contentType" : "image/png",
+				"width" : 21,
+				"height" : 21,
+				"angle" : 0,
+				"xoffset" : 0,
+				"yoffset" : 0
+			 };
+			
+			 var simpleMarkerSymbol=
+			 {
+				"type" : "esriSMS",
+				"style" : "esriSMSCircle",//< esriSMSCircle | esriSMSCross | esriSMSDiamond | esriSMSSquare | esriSMSTriangle | esriSMSX >
+				"color" : 0xFF0000, //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+				"size" : 16,
+				"angle" : 0,
+				"xoffset" : 0,
+				"yoffset" : 0
+			 };
+			
+			 var simpleLineSymbol={	
+				"type" : "esriSLS",
+				"style" : "solid",//< none | solid | dot | dash | dashdot | dashdotdot >
+				"color" : [0,255,0,255],//color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+				"width" : 3
+			 };
+			
+			 var simpleFillSymbol={
+				"type" : "esriSFS",
+				"style" : "solid", //< solid | backwarddiagonal | cross | diagonalcross | forwarddiagonal | horizontal | vertical>
+				"color" : [0,0,255,255],
+				"alpha":1,   
+				"outline" :{
+				    //<simpleLineSymbol>if outline has been specified
+				     "type": "esriSLS",
+				     "style": "solid",//< none | solid | dot | dash | dashdot | dashdotdot >
+				     "color": [0,0,255,255],
+				     "width": 4
+				 }
+			 };
+             function btEsriAddGraphic()
+             {
+             	 
+             }  
+             
+             function btEsriAddPointGraphic(){
+            	var id="point1";
+             	var geometryObject={"x" : 111,"y" : 35};
+             	var multipoint={"points":[[102.7917,35.31085]]};
+             	var tipMode="click";
+             	var attribute={"attr1":"valueTest"};
+             	var symbolObject=pictureMarkerSymbol;
+             	var tipClass="IFrame";
+             	var tipWidth=200;
+             	var tipHeight=250;
+             	var tipUrl="demo/IFrameTipDemo.htm";
+             //	top.addGraphic(id,multipoint,tipMode,attribute,null,tipClass,tipWidth,tipHeight,tipUrl,false);
+             	
+             	 id="point2";
+             	 geometryObject={"x":103,"y":35};
+             	 tipMode="hover";
+             	 attribute={"title":"title1","simpleHtml":"valueTest2大大大大大大大大大大大大大大大大大"};
+             	 symbolObject=simpleMarkerSymbol;
+             	 tipClass="SimpleHtml";
+             	 tipWidth=100;
+             	 tipHeight=50;
+             	 tipUrl="demo/IFrameTipDemo.htm";
+             	 top.addGraphic(id,geometryObject,tipMode,attribute,symbolObject,tipClass,tipWidth,tipHeight,tipUrl,true,"customLayer",0,true,2000,4);
+             }
+             
+             function btEsriAddPolylineGraphic(){
+            	 var polyline={"paths":[[[103,35],[108,42]]],"spatialReference":{"wkid":2383}};           	 
+             	 var points={"points":[[106.86496777090974,35.65614379561569],[116.63170409591818,35.806897256915455]]};
+             	 id="polyLineDemo";             	 
+             	 tipMode="hover";
+             	 attribute={"attr3":"valueTest4","simpleHtml":"This is a TestLine"};
+             	 symbolObject=simpleLineSymbol;
+             	 tipClass="None";
+             	 top.addGraphic(id,polyline,tipMode,attribute,symbolObject,tipClass);
+             }
+             /**
+             *方法描述：定位线并回调
+             */
+              function btEsriAddPolylineGraphic1(){
+            	 var polyline={"paths":[[[103,35],[108,42]]],"spatialReference":{"wkid":2383}};           	 
+             	 id="polyLineDemo";             	 
+             	 top.addGraphic(id,polyline);
+             	  //再获取图形
+             	 top.getGraphic("polyLineDemo",defaultJSFunction);  
+             }
+             
+             
+             function btEsriAddPolygonGraphic(){
+            	 var polygon={"rings":[[[103,35],[103,23],[102,34],[103,35]]],"spatialReference":{"wkid":2383}};
+            	 
+            	 id="polygonDemo";
+             	 geometryObject=polygon;
+             	 tipMode="None";
+             	 attribute={"attr2":"valueTest2"};
+             	 symbolObject=simpleFillSymbol;             	
+             	 top.addGraphic(id,geometryObject,tipMode,attribute,symbolObject);
+             }
+             
+             function btSetFlashWmode(){
+            	 top.getFlexApp(appName);
+             }
+             
+             function zoomGeometrys(){
+            	 var polyline={"paths":[[[102,33],[103.5,34.5]]],"spatialReference":{"wkid":2383}};
+             	 var polygon={"rings":[[[103,35],[108,42],[109,34],[103,35]]],"spatialReference":{"wkid":2383}};
+             	 top.zoomGeometrys([polyline,polygon]);
+             }
+             
+             function drawCircle(){
+            	 //centerIconUrl:String="assets/extension/flag_1.png",xoffset:Number=9,yoffset:Number=8
+            	 var center={"x":105,"y":29};
+            	 var radius=900;
+            	 var pictureMarkerSymbol=
+				 {
+					"type" : "esriPMS",
+					"url" : "assets/extension/flag_1.png",
+					"imageData" : "",
+					"contentType" : "image/png",
+					"width" : 0,
+					"height" :0,
+					"angle" : 0,
+					"xoffset" : 9,
+					"yoffset" : 8
+				 };
+            	 top.addCircle(center,radius,pictureMarkerSymbol,null,null,true);
+             }
+             /**
+             *手绘圆
+             */
+              function drawCircle1(){
+             	top.drawGraphic("circle","circle",drawGraphicCallback);             
+             }
+             function addLevelEventListener(){
+            	 top.addZoomEventListener(levelEventCallback);
+             }
+             
+             function removeLevelEventListener(){
+            	 top.removeZoomEventListener();
+             }
+             
+             function levelEventCallback(obj){
+            	 alert(obj);
+            	 alert("222");
+             }
+             
+             function btnPointsLocate(){
+            	var id="point1";
+             	var geometryObject={"x" : 103,"y" : 35};
+             	var tipMode="click";
+             	var attribute={"title":"Demo1","simpleHtml":"Demo2<br/>hello,flex","attributes":"and so on"};
+             	var symbolObject=pictureMarkerSymbol;   
+             	var tipClass="simplehtml";
+             	var tipWidth=500;
+             	var tipHeight=250;
+             	var tipUrl="demo/IFrameTipDemo.htm";             	
+             	
+             	var id1="point2";
+             	var geometryObject1={"x" : 103.1,"y" : 35.1};
+             	var tipMode1="doubleclick";
+             	var attribute1={"title":"Demo2","simpleHtml":"Demo2<br/>hello,flex","attributes":"and so on"};
+             	var symbolObject1=simpleMarkerSymbol;
+             	var tipClass1="simplehtml";
+             	var tipWidth1=500;
+             	var tipHeight1=250;
+             	var tipUrl1="demo/IFrameTipDemo.htm";
+             	
+             	var id2="point3";
+             	var geometryObject2={"x" : 103.2,"y" : 35.3};
+             	var tipMode2="hover";
+             	var attribute2={"title":"Demo1","simpleHtml":"Demo2<br/>hello,flex","attributes":"and so on"};
+             	var symbolObject2=pictureMarkerSymbol;
+             	var tipClass2="simplehtml";
+             	var tipWidth2=100;
+             	var tipHeight2=250;
+             	var tipUrl2="demo/IFrameTipDemo.htm";
+             	
+             	
+             	//简单应用
+             	//top.addGraphics([id,id1],[geometryObject,geometryObject1,geometryObject2]);
+             	//高级应用
+             	//top.addGraphics([id,id1],[geometryObject,geometryObject1,geometryObject2],[tipMode,tipMode1,tipMode2],[attribute,attribute1,attribute2],[symbolObject,symbolObject1,symbolObject2],[tipClass,tipClass1,tipClass2],[tipWidth],[tipHeight],[tipUrl,tipUrl1]);
+             	//top.addGraphics([id1],[geometryObject1],[tipMode1],[attribute1],[symbolObject1],[tipClass1],[tipWidth],[tipHeight],[tipUrl1]);
+             	top.addGraphics([id,id1,id2],[geometryObject,geometryObject1,geometryObject2],[tipMode,tipMode1,tipMode2],[attribute,attribute1,attribute2],
+             	[symbolObject,symbolObject1,symbolObject2],[tipClass,tipClass1,tipClass2],[tipWidth,tipWidth1,tipWidth2],
+             	[tipHeight,tipHeight1,tipHeight2],[tipUrl1],true,"HightlightLayer",true,2000,6);
+             	
+             }
+             
+             function getGeometrysExtent(){
+             		var geometryObject={"x" : 103,"y" : 35};
+             		var geometryObject1={"x" : 103.1,"y" : 35.1};
+             		var geometryObject2={"x" : 103.2,"y" : 35.3};
+             		var polyline={"paths":[[[88.95762588,43.1774681],[103.08210641,37.69518995]]]};
+             		var polyline2={"paths":[[[89.95762588,43.1774681],[104.08210641,37.69518995]]]};
+             		var s =top.getGeometrysExtent([polyline,geometryObject1]);
+             		alert("结果："+s);
+             		
+             }
+             
+             function dd(){
+            	 var id1="point2";
+			     	var geometryObject1=[{"x" : 485637.83291525743,"y" : 2582993.076483189},{"x" : 495637.83291525743,"y" : 2682993.076483189}];
+			     	//var geometryObject1={"x" : 485637.83291525743,"y" : 2582993.076483189};
+			     	var tipMode1="hover";
+			     	var attribute1={"attr2":"valueTest2"};
+			     	var symbolObject1=pictureMarkerSymbol;
+			     	var tipClass1="IFrame";
+			     	var tipWidth1=200;
+			     	var tipHeight1=250;
+			     	var tipUrl1="demo/IFrameTipDemo.htm";
+			     	var symbolObject2=simpleMarkerSymbol;
+			     	//简单应用
+			     	//top.addGraphics([id,id1],[geometryObject,geometryObject1,geometryObject2]);
+			     	//高级应用
+			     	//top.addGraphics([id,id1],[geometryObject,geometryObject1,geometryObject2],[tipMode,tipMode1,tipMode2],[attribute,attribute1,attribute2],[symbolObject,symbolObject1,symbolObject2],[tipClass,tipClass1,tipClass2],[tipWidth],[tipHeight],[tipUrl,tipUrl1]);
+			     	top.addGraphics([id1],[geometryObject1],[tipMode1],[attribute1],[symbolObject1,symbolObject2,symbolObject2],[tipClass1],[tipWidth1],[tipHeight1],[tipUrl1],"",true);
+             }
+             
+             function btnGetMapLevel(){
+            	 top.getMapLevel(getMapLevelCallback);
+             }
+             
+             function getMapLevelCallback(level){
+            	 alert(level);            	 
+             }
+             
+             function btnSetVerifiedLayer()
+             {
+            	 var layIds="gxKcd,geo";
+            	 top.setVerifiedLayer(layIds);
+             }
+             
+             function btnRemoveGrahpics()
+             {
+            	 top.removeGraphics("*","customLayer");
+             }
+             
+             function btnUtils()
+             {
+             	var polygon={"rings":[[[103,35],[108,42],[109,34],[103,35]]],"spatialReference":{"wkid":2383}};
+             	var jsonReturn=top.getCenterLocation(polygon);
+             	alert(jsonReturn);
+             }
+             
+             function flashGraphic()
+             {
+         		var geometryObject={"x" : 103,"y" : 35};
+		     	var tipMode1="hover";
+		     	var attribute1={"attr2":"valueTest2"};
+		     	var symbolObject1=pictureMarkerSymbol;
+		     	var tipClass1="IFrame";
+		     	var tipWidth1=200;
+		     	var tipHeight1=250;
+		     	var tipUrl1="demo/IFrameTipDemo.htm";
+		     	top.flashGraphic("graphic1",geometryObject,pictureMarkerSymbol,750,10,"click",attribute1,"IFrame",200,200,tipUrl1);		     	
+             }
+             
+             function getGraphic()
+             {
+             	//先添加一个测试图形
+             	var polygon={"rings":[[[103,35],[108,42],[109,34],[103,35]]],"spatialReference":{"wkid":2383}};
+            	 
+            	 id="myRouteModify";
+             	 geometryObject=polygon;
+             	 tipMode="None";             	 
+             	 symbolObject=simpleFillSymbol;             	
+             	 top.addGraphic(id,geometryObject,tipMode,null,symbolObject);
+             	 
+             	 //再获取图形
+             	 top.getGraphic("myRouteModify",defaultJSFunction);   
+             	// top.getRoute("myRouteModify",defaultJSFunction);          	
+             }
+             
+             var defaultGeometry;
+             function defaultJSFunction(obj)
+             {
+             alert(obj);
+             	//obj=encodeURI(obj);
+             	//obj=decodeURI(obj);
+             	//defaultGeometry=obj;
+             	//alert(obj)
+             	//alert());
+             }
+             
+             function drawRoute1()
+             {
+             	//先绘制管道选线路由
+             //	top.drawRoute("myRouteModify",defaultJSFunction);
+            	top.drawRoute("myRouteModify");
+             	//再编辑管道选线路由
+             	var polyline={"paths":[[[88.95762588,43.1774681],[103.08210641,37.69518995]]]};
+             	var routeObject={
+					geometry:polyline,
+					attributes:[
+						{
+							objectId:1,
+							name:"桩号1",							
+							x:88.95762588,
+							y:43.1774681,
+						//	z:0,
+							m:0
+						},
+						{
+							objectId:4,
+							name:"桩号4",							
+							x:103.08210641,
+							y:37.69518995,
+						//	z:0,
+							m:0
+						}
+					]
+				}
+				var polyline1={"paths":[[[105.08210641,37.69518995],[120.08210641,43.1774681]]]};
+				var routeObject1={
+					geometry:polyline1,
+					attributes:[
+						{
+							objectId:2,
+							name:"桩号2",							
+							x:105.08210641,
+							y:37.69518995,
+							//z:0,
+							m:0
+						},
+						{
+							objectId:3,
+							name:"桩号3",							
+							x:120.08210641,
+							y:43.1774681,
+							//z:0,
+							m:0
+						}
+					]
+				}
+             	
+             	top.editRoute("myRouteModify",routeObject,defaultJSFunction);  
+            //top.editRoute("myRouteModify",routeObject);
+             //	top.locateRoute("myRouteModify",routeObject,defaultJSFunction);               	
+            //	top.locateRoute("myRouteModify1",routeObject1,defaultJSFunction);
+             }
+             
+             
+             function getRouteCallback(obj)
+             {
+             	defaultGeometry=obj;
+             	obj=decodeURI(obj);
+             	alert(obj)
+             }
+             function getRoute1()
+             {
+             	if(defaultGeometry!=null&&defaultGeometry.attributes!=null)
+             	{
+             		//top.editRoute("myRouteModify",defaultGeometry,defaultJSFunction);  
+             	}
+             	else
+             	{
+             		top.getRoute("myRouteModify",getRouteCallback);
+             	}
+             	
+             	//var geometryObject={"x" : 105.08210641,"y" : 37.69518995};
+             	//var radius=5; 
+             	//top.addCircle(geometryObject,radius);        	
+            	           	 
+            	//attribute={"title":"title1","simpleHtml":"valueTest2大大大大大大大大大大大大大大大大大"};             	 
+             	          	
+             	//top.addGraphic("g1",geometryObject,"click",attribute,null,"SimpleHtml");
+            	
+             }
+             
+             
+            /* function zoomToMapExtent(){
+             	top.zoomToMapExtent("105,30,103,31");
+             }*/
+             
+             function setPlaceName(){
+             	top.addExtentEventListener(extentCallback);
+             }
+             
+             function extentCallback(extent){
+             	alert("extentTest");
+             	var obj={
+             		country:"中国",
+             		province:"河北省"
+             	};
+             	top.loadPlaceName(obj);
+             }
+             
+	         function loadGraphic(){
+	         	var obj={line:{geometryType:"esriGeometryPolyline",features:[{geometry:{spatialReference:{wkid:4610},paths:[[[106.52938672995593,38.68717727969963],[112.33527158418181,33.16682774617338]]]},attributes:{STYLE:"solid",COLOR:16711680,WIDTH:3,COMMENT_:"",INFORMATION:"",ALPHA:1,NAME:""}}]}};
+	         	top.loadPlotToolbar("oo1",obj,callback);
+	         }
+	         
+	         function callback(obj){
+	         	alert(obj);
+	         }
+	         
+	         function addGraphic()
+             {
+             	//先添加一个测试图形
+             	var polygon={"rings":[[[107,31],[107.5,31.3],[108.9,33],[107,31]]],"spatialReference":{"wkid":2383}};
+            	var point={"x" : 107,"y" : 31};
+            	var id="myRouteModify";
+             	//top.addGraphic(id,point,null,null,null,null,null,null,null,false);	//不自动定位
+             	top.addGraphic(id,polygon);	//自动定位
+             }
+             
+             /**
+			  * 
+			  * 方法描述：绘制管线
+			  * 
+			  */
+             function drawRoute()
+             {
+            	top.drawRoute("myRouteModify");
+        	}
+        	
+        	/**
+			  * 
+			  * 方法描述：获取管线
+			  * 
+			  */
+        	function getRoute()
+             {
+     		 	top.getRoute("myRouteModify",getRouteCallback);
+             }
+             
+             /**
+			  * 
+			  * 方法描述：获取管线
+			  * 
+			  */
+        	function editRoute()
+             {
+				var routeObject={
+					geometry:{"paths":[[[105.08210641,37.69518995],[120.08210641,43.1774681]]]},
+					attributes:[
+						{
+							objectId:2,
+							name:"桩号2",							
+							x:105.08210641,
+							y:37.69518995,
+							//z:0,
+							m:0
+						},
+						{
+							objectId:3,
+							name:"桩号3",							
+							x:120.08210641,
+							y:43.1774681,
+							//z:0,
+							m:0
+						}
+					]
+				}
+             	top.editRoute("myRouteModify",routeObject,editRouteCallback); 
+             }
+             
+             function editRouteCallback(obj){
+             	alert(obj);             
+         	}
+         	
+         	function drawPoint()
+             {
+             	top.drawGraphic("point","mappoint",drawGraphicCallback);             
+             }
+             
+             /**
+			 * 
+			 * 方法描述：加载大量图层性能测试
+			 *
+			 */
+             function btnPerformanceTest(){
+             	//未加载URL
+ 				//top.loadLayersPerformanceTest("test");
+ 				//加载URL
+ 				top.loadLayersPerformanceTest("test","http://192.168.10.58/MapCacheService/%E5%B1%85%E6%B0%91%E5%9C%B0/");       
+ 				//加载URL，并且图层显示级数为1和2
+ 				//top.loadLayersPerformanceTest("test","http://192.168.10.58/MapCacheService/%E5%B1%85%E6%B0%91%E5%9C%B0/","1,2");     
+             }
+             
+             function btnAddMapLoadedEventListener(){
+             	top.addMapLoadedEventListener(mapLoadedCallback);
+             }
+             function mapLoadedCallback(){
+             	alert("1");
+             }
+             function btnRemoveMapLoadedEventListener(){
+             	top.removeMapLoadedEventListener();
+             }
+             
+             function btnLoadSchemeName(){
+             	top.loadSchemeName("name1");
+             }
+             
+             function testAddGraphics(){
+             	var id2="point3";
+             	var geometryObject2={"x" : 103,"y" : 35};
+             	alert(1);
+             	top.addGraphics(["id"],[geometryObject2],"","","","","","","","",true);
+             	
+             }
+             
+            /**
+			 * 方法描述：图层是否可见开关
+			 */
+             function btnLayerVisibleSwitch(){
+             	top.layerVisibleSwitch("geo",false);
+             }
+             
+             /**
+			 * 方法描述：查看图层是否可见
+			 */
+             function btnLayerVisibility(){
+             	top.getLayerVisible("geo",funcallback);
+             }
+             
+             function funcallback(visible){
+             	alert(visible);
+             }
+             
+             /**
+			  * 方法描述：刷新图层
+			  */
+             function refreshLayer(){
+             	//根据id刷新图层
+             	top.refreshLayerByID('geo');
+             	//根据图层名称刷新图层
+             	top.refreshLayerByName('勘探点');
+             }
+             /**
+			  * 方法描述：监听地图缩放
+			  */
+             function btnMapExtent(){
+             	top.addExtentEventListener(extentEventCallback);
+             }
+             function extentEventCallback(obj){
+             	alert(obj);
+             	top.removeExtentEventListener();
+             }
+             
+             /**
+			  * 方法描述：获取地图中心点坐标
+			  */
+             function btnGetMapCenter(){
+             	alert(top.getMapCenter());
+             }
+             
+             /**
+			  * 方法描述：获取地图范围坐标
+			  */
+             function btnGetMapExtent(){
+             	alert(top.getMapExtent());  
+             }
+             
+             /**
+			  * 方法描述：下载地图
+			  */
+             function btnMapDownload(){
+             	top.mapDownload(51,9,168,56);
+             	
+             }
+             function mapDownloadCallback(){
+             	top.mapDownload(70,35,142.561,59.855);
+             }
+             
+             /**
+			  * 方法描述：将地图定位到指定范围
+			  */
+             function btnZoomExtent(){
+             	top.zoomExtent(46,35,50,59.855,zoomExtentCallback);
+             }
+            
+             
+             function zoomExtentCallback(){
+             	alert("zoomExtentCallback");
+             }
+             
+             /**
+			  * 方法描述：拖拽矩形框
+			  */
+             function btnDrawExtent(){
+             	top.drawExtent(mapZoomInCallback);
+             }
+             function mapZoomInCallback(obj){
+             	obj=JSON.parse(obj);
+             	top.mapDownload(obj.xmin,obj.ymin,obj.xmax,obj.ymax);
+             }
+              /**
+			  * 方法描述：根据UTM投影法获取投影坐标
+			  */
+             function btnUTMCoordinate(){
+             	var point=top.getUTMCoordinate(44.886703,32.546813);
+             	alert(point);
+             }
+             
+              /**
+			  * 方法描述：创建菜单
+			  */
+             function createMenuList(){
+             	//定义菜单基本属性
+			 		//label:菜单显示名称
+			 		//name:标识菜单项，必须唯一
+			 		//iconName:图标，图片存放于assets/icon/下
+				var data = [
+			 		{"label":"菜单一","name":"menu1","iconName":"menu1.png"},   
+			 		{"label":"菜单二","name":"menu2","iconName":"menu2.png"},
+			 		{"label":"菜单三","name":"menu3","iconName":"menu3.png"}];
+			 	var attribute = new Object();
+			 	attribute.data=data;
+			 	attribute.width=150;  //菜单栏宽度
+			 	attribute.height=200; //菜单栏高度
+			 	//定义菜单样式
+			 	var style = new Object();
+			 	style.selectionColor = "#3DDDDB"; //选中菜单颜色
+			 	style.focusColor = "#50BBC8";   //焦点菜单颜色
+			 	//如果为list菜单，则还需定义以下参数
+			 	style.backgroundColor ="#eeeeee" ; //菜单背景颜色
+				style.color = "#212DC9";   //字体颜色，默认0xffffff
+			 	style.fontSize = 14; //字体大小，默认18
+			 	style.fontFamily = "黑体"; //字体样式，默认“微软雅黑”
+			 	style.fontWeight = "bold"; //字体粗细，，默认normal（取值bold||normal）
+			 	attribute.style = style;
+			 	top.createMenuList("mentTest",150,30,attribute,true,"list");
+             }
+              /**
+			  * 方法描述：移除菜单
+			  */
+             function removeMenuList(){
+             	top.removeMenuList("secondMenu");
+             }
+             /**
+             *方法描述：获取圆坐标串
+             */
+               function getCircle()
+             {
+            	 var center={"x":734109.673,"y":3506901.672};
+            	 var radius=100;
+            	 var pointSize = 5;
+            	 var circle=top.getCircle(center,radius,pointSize);
+            	 alert(circle);
+             }
+             function addAttachment(){
+             
+                 id="12345678765678";
+             	 geometryObject={"x":103,"y":35};
+             	 tipMode="hover";
+             	 attribute={"title":"title1","simpleHtml":"valueTest2大大大大大大大大大大大大大大大大大",name:"附件一",type:"attachment"};
+             	 symbolObject=pictureMarkerSymbol;
+             	 tipClass="SimpleHtml";
+             	 tipWidth=100;2
+             	 tipHeight=50;
+             	 tipUrl="demo/IFrameTipDemo.htm";
+             	// top.addGraphic(id,geometryObject,tipMode,attribute,symbolObject,tipClass,tipWidth,tipHeight,tipUrl,true,"customLayer");
+             	// top.addGraphic("123222332",geometryObject,tipMode,{"title":"title2","simpleHtml":"valueTest大",name:"附件二",type:"attachment"},symbolObject,tipClass,tipWidth,tipHeight,tipUrl,true,"customLayer");
+             	 
+             	 top.addGraphic("test01", {"x":47,"y":34}, 'click', {"title" : "查看标绘附件","type":"attachment"},
+				symbolObject, 'IFrame', 500, 100, tipUrl,true,"plottingAttachmentLayer");
+             }
+             function showPlotName(){
+             	 var id="test";
+             	 geometryObject={"x":47,"y":35};
+             	 
+             //	 top.loadPlotToolbar(id,geometryObject,"标绘一",drawGraphicCallback);
+             	 	 //解决跨域ajax不能使用问题
+		$.support.cors = true;
+             	 	$.ajax({
+			url:"http://127.0.0.1:8088/jasdoc/webservice/JasDocInterfaceRestWebService/addFolder",
+			type:"POST",
+			crossDomain: true,
+			data:{
+					"parentId":"034967bd-5372-44ee-b40f-94768cebe85f",
+					"userId":"1df621c3346c4a8bac91d1238afc8400",
+					"folderName":"神界测试",
+					"description":"描述"
+				},
+			dataType:"json",
+			success:function(result){
+					alert(JSON.stringify(result));
+			},error:function(error){
+				alert(JSON.stringify(error));
+			}
+		});
+             }
+             
+             function flashPointGraphicEffect(){
+             	//闪烁单个点
+            	var pointsGeometry = {"x" : 103,"y" : 35};
+            	var markerSymbolObject = simpleMarkerSymbol;
+                
+            	top.flashGraphic("simplePoint",pointsGeometry, markerSymbolObject,500, 12,null,null,null,null,null,null,false,true);
+             }
+              function flashLineGraphicEffect(){
+             	//闪烁单个线
+            	var polyline={"paths":[[[103,35],[108,42]]],"spatialReference":{"wkid":2383}};           	 
+             	symbolObject=simpleLineSymbol;
+            	top.flashGraphic("simpleLine",polyline, symbolObject,500, 1,null,null,null,null,null,null,true,true,0,"HightlightLayer",1000,6);
+             }
+             function flashPolygonGraphicEffect(){
+             	//闪烁单个面
+             	 var geometryObject={"rings":[[[103,35],[108,42],[109,34],[103,35]]],"spatialReference":{"wkid":2383}};
+             	 symbolObject=simpleFillSymbol;       
+             	 top.flashGraphic("simplePolygon",geometryObject, symbolObject,500, 12,null,null,null,null,null,null,true,true);      	
+             }
+             function mulitflashGraphicEffect(){
+             	//闪烁多个图形
+             	var pointsGeometry = {"x" : 100,"y" : 35};
+            	var pointSymbol = simpleMarkerSymbol;
+            	var polylineGeometry={"paths":[[[103,35],[108,42]]],"spatialReference":{"wkid":2383}};           	 
+             	var polylineSymbol=simpleLineSymbol;
+             	var polygonGeometry={"rings":[[[104,32],[107,42],[129,34],[104,32]]],"spatialReference":{"wkid":2383}};
+             	var polygonSymbol=simpleFillSymbol; 
+             	var ids = ["simplePoint","simpleLine","simplePolygon"];
+             	var geometrys = [pointsGeometry,polylineGeometry,polygonGeometry];
+             	var symbols = [pointSymbol,polylineSymbol,polygonSymbol];
+            	top.flashGraphics(ids,geometrys, symbols,500, 12,null,null,null,null,null,null,true,true);
+             }
+        </script>
+    </head>
+    <body bgcolor="#9999CC">
+       <div>
+        	<input type="button" id="uttonCenterAt" onclick="centerAt(105.323,32.892)" value="居中" />
+        	<input type="button" id="buttonPanUp" onclick="top.panUp()" value="向下平移" />
+        	<input type="button" id="buttonPanDown" onclick="top.panDown()" value="向上平移" />
+        	<input type="button" id="buttonPanLeft" onclick="top.panLeft()" value="向右平移" />
+        	<input type="button" id="buttonPanRight" onclick="top.panRight()" value="向左平移" />
+        	<input type="button" id="buttonRefreshLayer" onclick="refreshLayer()" value="刷新图层" />
+        	<input type="button" id="buttonRemoveAllLayers" onclick="top.removeAllLayers()" value="删除所有图层" />
+        	<input type="button" id="buttonClearAllGraphics" onclick="top.clearAllGraphics()" value="清除所有图形" />
+        	<input type="button" id="buttonPrintMap" onclick="top.printMap('主标题','副标题')" value="打印地图" />
+        	<input type="button" id="buttonFlashPoint" onclick="flashPointsSample()" value="闪烁点" />
+        	<input type="button" id="buttonFlashPolyline" onclick="flashPolylineSample()" value="闪烁线" />
+        	<input type="button" id="buttonFlashPolygon" onclick="flashPolygonSample()" value="闪烁面" />
+        	<input type="button" id="buttonAnimatePolylineInTime" onclick="animatePolylineInTimeSample()" value="按时间动画线" />
+        	<input type="button" id="buttonAnimatePolylineInSpeed" onclick="animatePolylineInSpeedSample()" value="按速度动画线" />
+        	<input type="button" id="buttonSetPointLayerRenderer" onclick="setPointLayerRendererSample()" value="渲染点层" />
+        	<input type="button" id="buttonSetPointLayerPictureRenderer" onclick="setPointLayerPictureRendererSample()" value="图片渲染点层" />
+        	<input type="button" id="buttonSetPointLayerFlashRenderer" onclick="setPointLayerFlashRendererSample()" value="Flash渲染点层" />
+        	<input type="button" id="buttonSetLineLayerRenderer" onclick="setLineLayerRendererSample()" value="渲染线层" />
+        	<input type="button" id="buttonHighlightPoints" onclick="highlightPointsSample()" value="高亮点" />
+        	<input type="button" id="buttonHighlightPolyline" onclick="highlightPolylineSample()" value="高亮线" />
+        	<input type="button" id="buttonHighlightPolygon" onclick="highlightPolygonSample()" value="高亮面" />
+        	<input type="button" id="buttonQuery" onclick="querySample()" value="后台查询" />
+        	<input type="button" id="buttonQueryPost" onclick="queryPostSample()" value="后台查询（Post）" />
+        	<input type="button" id="buttonQueryDate" onclick="queryDateSample()" value="日期查询" />
+        	<input type="button" id="buttonProject" onclick="projectSample()" value="坐标转换" />
+        	<input type="button" id="buttonSetLevel" onclick="top.setLevel(5);" value="设置级别" />
+        	<input type="button" id="buttonLevelUp" onclick="top.levelUp();" value="提升级别" />
+        	<input type="button" id="buttonLevelDown" onclick="top.levelDown();" value="降低级别" />
+        	<input type="button" id="buttonZoomOut" onclick="top.zoomIn();" value="放大" />
+        	<input type="button" id="buttonZoomIn" onclick="top.zoomOut();" value="缩小" />
+        	<input type="button" id="buttonAnimateArrowLineInTime" onclick="animateArrowLineInTimeSample();" value="按时间动画箭头线" />
+        	<input type="button" id="buttonAnimateArrowLineInSpeed" onclick="animateArrowLineInSpeedSample();" value="按速度动画箭头线" />
+        	<input type="button" id="buttonShowInfoWindow" onclick="showInfoWindowSample();" value="显示信息窗" />
+        	<input type="button" id="buttonAddPolygonGraphicClickInfoWindow" onclick="addPolygonGraphicClickInfoWindowSample();" value="添加多边形及单击信息窗" />
+        	<input type="button" id="buttonAddPolygonGraphicHoverInfoWindow" onclick="addPolygonGraphicHoverInfoWindowSample();" value="添加多边形及悬停信息窗" />
+        	<input type="button" id="buttonZoom" onclick="top.zoomAt(1,109,35);" value="地图缩放" />        	
+        	<input type="button" id="buttonaddPointHoverInfoWindowSample" onclick="addPointHoverInfoWindowSample()" value="添加点悬停信息窗" />
+        	<input type="button" id="btnGetXY" onclick="btnGetXY()" value="获取地图坐标" />
+        	<input type="button" id="btEditPolyline" onclick="btDrawPolyline()" value="画线" />
+        	<input type="button" id="btEditPolyline" onclick="btDrawPolygon()" value="画面" />
+        	<input type="button" id="btDrawPolyline" onclick="btDrawPolyline2()" value="画线并回调" />
+        	<input type="button" id="btDrawPolygon" onclick="btDrawPolygon2()" value="画面并回调" />
+        	<input type="button" id="btEditPolyline" onclick="btEditPolyline()" value="编辑线" />
+        	<input type="button" id="btEditPolyline" onclick="btSavePolyline()" value="保存线" />
+        	<input type="button" id="btEditPolygon" onclick="btEditPolygon()" value="编辑面" />
+        	<input type="button" id="btEditPolygon" onclick="btSavePolygon()" value="保存面" />
+        	<input type="button" id="btnDrawPoint" onclick="btnDraw('mappoint')" value="画点" />
+        	<input type="button" id="btnDrawRect" onclick="btnDraw('extent')" value="画矩形" />
+        	<input type="button" id="btDrawGraphicByErisGeoJson" onclick="btDrawGraphicByErisGeoJson()" value="EsriGeoJson图形" />
+        	<!--<input type="button" id="btMA" onclick="btnMA()" value="停气分析" />
+        	<input type="button" id="btnStartNAWithMap" onclick="btStartNAWithMap()" value="取点停气分析" />  
+        	<input type="button" id="btnStartNAWithMapWithCallback" onclick="btStartNAWithMapWithCallback()" value="取点停气分析带回调" /> -->  
+        	<input type="button" id="btnEsriAddPointGraphic" onclick="btEsriAddPointGraphic()" value="定位点" /> 
+        	<input type="button" id="btnEsriAddPolylineGraphic" onclick="btEsriAddPolylineGraphic()" value="定位线" />
+        	<input type="button" id="btnEsriAddPolylineGraphic1" onclick="btEsriAddPolylineGraphic1()" value="定位线并回调" />   
+        	<input type="button" id="btnEsriAddPolygonGraphic" onclick="btEsriAddPolygonGraphic()" value="定位面" />    
+        	<input type="button" id="btnZoomExtent" onclick="btnZoomExtent()" value="范围定位" />	
+        	<input type="button" id="btnZoomGeometrys" onclick="zoomGeometrys()" value="几何图形缩放" />
+        	<input type="button" id="btnDrawCircle" onclick="drawCircle()" value="画圆" />
+        	<input type="button" id="btnDrawCircle1" onclick="drawCircle1()" value="手绘圆" />
+        	<input type="button" id="btnAddLevelEventListener" onclick="addLevelEventListener()" value="添加Level事件" />
+        	<input type="button" id="btnRemoveLevelEventListener" onclick="removeLevelEventListener()" value="移除Level事件" />
+        	<input type="button" id="btnPointsLocate" onclick="btnPointsLocate()" value="专题点" /> 
+        	<input type="button" id="btnGetMapLevel" onclick="btnGetMapLevel()" value="获取地图级数" /> 
+        	<input type="button" id="btnSetVerifiedLayer" onclick="btnSetVerifiedLayer()" value="设置图层树" />
+        	<input type="button" id="btnRemoveGrahpics" onclick="btnRemoveGrahpics()" value="删除标记" />
+        	<input type="button" id="btnUtils" onclick="btnUtils()" value="获取几何中心点" />
+        	<input type="button" id="btnFlashGraphic" onclick="flashGraphic()" value="闪烁并提示" />
+        	<input type="button" id="btnGetGraphic" onclick="getGraphic()" value="获取图形坐标" />
+        	<input type="button" id="btnRoute" onclick="drawRoute1()" value="选线与改线" />
+        	<input type="button" id="btnget" onclick="getRoute1()" value="获取选线" />
+        	<input type="button" id="btnPlot" onclick="top.openAndClosePlotToolbar()" value="标绘开关" />
+        	<!--<input type="button" id="btnPlaceName" onclick="setPlaceName()" value="设置地名信息" />-->
+        	<input type="button" id="btnLoad" onclick="loadGraphic()" value="加载地图标绘" />
+        	<input type="button" id="btnAddGraphic" onclick="addGraphic()" value="绘制图形" />
+        	<input type="button" id="btnDrawRoute" onclick="drawRoute()" value="绘制管线" />
+        	<input type="button" id="btnGetRoute" onclick="getRoute()" value="获取管线" />
+        	<input type="button" id="btnEditRoute" onclick="editRoute()" value="编辑管线" />
+        	<input type="button" id="btnDrawPoint" onclick="drawPoint()" value="画点并回调" />
+        	<!--<input type="button" id="btnPerformanceTest" onclick="btnPerformanceTest()" value="性能测试" />-->
+        	<input type="button" id="btnAddMapLoaded" onclick="btnAddMapLoadedEventListener()" value="添加加载地图事件监听" />
+        	<input type="button" id="btnRemoveMapLoaded" onclick="btnRemoveMapLoadedEventListener()" value="移除加载地图事件监听" />
+       		<!--<input type="button" id="btnLoadSchemeName" onclick="btnLoadSchemeName()" value="加载方案名称" />-->
+        	<input type="button" id="btnLayerVisibleSwitch" onclick="btnLayerVisibleSwitch()" value="图层显示开关" />
+        	<input type="button" id="btnLayerVisibility" onclick="btnLayerVisibility()" value="查看图层可见性" />
+        	<input type="button" id="btnLayerVisibility" onclick="btnMapExtent()" value="监听地图缩放" />
+        	<input type="button" id="btnLayerVisibility" onclick="btnGetMapCenter()" value="获取中心点坐标" />
+        	<input type="button" id="btnLayerVisibility" onclick="btnGetMapExtent()" value="获取范围坐标" />
+        	<input type="button" id="btnMapPrint" onclick="btnMapDownload()" value="地图下载" />
+        	<input type="button" id="btnMapPrint" onclick="btnDrawExtent()" value="拖拽矩形框" />
+        	<input type="button" id="btnUTMCoordinate" onclick="btnUTMCoordinate()" value="UTM坐标投影" />
+        	<input type="button" id="createMenuList" onclick="createMenuList()" value="创建菜单" />
+        	<input type="button" id="removeMenuList" onclick="removeMenuList()" value="移除菜单" />
+        	<input type="button" id="removeMenuList" onclick="getCircle()" value="获取圆" />
+        	<input type="button" id="addAttachment" onclick="addAttachment()" value="添加附件" />
+        	<input type="button" id="showPlot" onclick="showPlotName()" value="显示方案名" />
+        	<input type="button" id="flashPointGraphicEffect" onclick="flashPointGraphicEffect()" value="光晕图形闪烁(点)" />
+        	<input type="button" id="flashLineGraphicEffect" onclick="flashLineGraphicEffect()" value="光晕图形闪烁(线)" />
+        	<input type="button" id="flashPolygonGraphicEffect" onclick="flashPolygonGraphicEffect()" value="光晕图形闪烁(面)" />
+        	<input type="button" id="mulitflashGraphicEffect" onclick="mulitflashGraphicEffect()" value="光晕图形闪烁(多图形)" />
+        	<input type="button" id="getGeometrysExtent" onclick="getGeometrysExtent()" value="获取图形范围" />
+        </div>        
+   </body>
+</html>

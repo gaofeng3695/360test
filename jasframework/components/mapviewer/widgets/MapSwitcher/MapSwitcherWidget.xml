@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<configuration>
+	<!-- 
+	图层配置已移除，配置请修改config.xml	
+	 -->
+    <layerlist visible="true" label="业务列表...">
+        <!-- <excludelayer>The Label Of Some Layer In Main Config File</excludelayer> -->
+    </layerlist>
+    <!-- 是否使用图层列表：true/false。（默认 false） -->
+	<useLayerList>true</useLayerList>
+	<!-- 是否展开业务树：true/false。（默认 false）展开有性能消耗-->
+	<expandTree>true</expandTree>
+	<!-- 业务树节点，暂不支持森林。
+	 	label为节点标签；
+	 	checked表示节点初始状态（0-不勾选，1-勾选，2-中间态），要求显式设定，建议全设为0，因1、3需人工推算；
+	 	isBranch是否可有子节点；默认为false。注意，标识区分大小写
+		 url仅用于叶节点，表示要素服务地址；
+		 minlevel表示最小可见比例尺级别；若不设置，取服务值。
+	 	maxlevel表示最大可见比例尺级别；若不设置，取服务值。
+	 -->
+	<treedata label="APDM Core">
+		<node label="所有图层" checked="0">
+			<node label="基础图层" checked="0">
+				<node id="layerCounty" label="县界" type="feature" visible="false" checked="0" alpha="1.0" url="http://localhost:8399/arcgis/rest/services/GISDemoFeature/FeatureServer/2"/>
+				<node id="layerHighWay" label="高速公路" type="feature" checked="0" visible="false" alpha="1.0" url="http://localhost:8399/arcgis/rest/services/GISDemoFeature/FeatureServer/1"/>				
+			</node>
+			<node label="设施图层" checked="0">								
+				<node id="layerCenterline" label="管道中线" type="feature" visible="true" checked="1" alpha="1.0" url="http://localhost:8399/arcgis/rest/services/DplngGasNet2/MapServer/4"/>
+				<node id="layerSite" label="站场与阀室" visible="false" checked="0" alpha="1.0" url="waiting" minlevel="6" maxlevel="10"/>				
+			
+			</node>
+			<node label="业务图层" checked="0">	
+				<node id="layerPI" label="管道事件" type="feature" checked="1" visible="true" alpha="1.0" url="http://localhost:8399/arcgis/rest/services/GISDemoFeatureAccess/FeatureServer/0"/>				
+				<node id="layerRE" label="水工保护" visible="false" checked="0" alpha="1.0" url="waiting" minlevel="5"/>								  
+				<node id="layerGeoNetworkPoint" label="维护影响阀门" type="feature" visible="false" checked="0" alpha="1.0" url="http://localhost:8399/arcgis/rest/services/GeoNetwork/MapServer/0"/>
+				<node id="layerGeoNetwork" label="维护影响分析" type="feature" visible="false" checked="0" alpha="1.0" url="http://localhost:8399/arcgis/rest/services/GeoNetwork/MapServer/2" visibleLayers="2"/>
+			</node>	
+		</node>
+	</treedata>
+</configuration>
+

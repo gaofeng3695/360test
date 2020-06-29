@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>选人办理</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    <link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css" type="text/css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/detail.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../privilege/page/js/person.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<style type="text/css">
+        .window{
+       	 	border-top: 1px solid #aaacad;
+        }
+		.window, .window .window-header {
+		    background: #aaacad !important;
+		}
+	</style>
+	<script type="text/javascript">
+	
+	var businessKey,processKey,subject, autoPassFirstNode,auditContent,flowVars;
+	$(document).ready(function(){
+		businessKey = getParamter('businessKey');
+		processKey = getParamter('processKey');
+		subject = getParamter('subject');
+		autoPassFirstNode = getParamter('autoPassFirstNode');
+		auditContent = getParamter('auditContent');
+		flowVars = getParamter('flowVars');
+	});
+	
+	/**
+	 * 打开选人页面
+	 * @returns
+	 */
+	function selectUserPage(){
+		var selectType = getParamter("selectType")||"default"; //选人类型，默认为用户
+		var paramsJSON = {};  //传递给选人页面的参数
+		//打开选人页面
+		personchoose.showPersonSelectWindow('nextApproveUserNames','nextApproveUserIds',selectType,JSON.stringify(paramsJSON));
+	}
+	
+	/**
+	* 发起流程
+	*/
+	function save(){
+		//设置下一节点候选办理人
+		var nextCandidateUsers = $("#nextApproveUserIds").val()+"";
+		if(nextCandidateUsers==""){
+			top.showAlert(getLanguageValue("tip"), getLanguageValue("workflow.selectNextApproveUser"), 'info');
+			return;
+		}
+		flowVars[flowVars.chooseUserVariable]=nextCandidateUsers;
+		//发起流程
+		workflow.startWorkflow(businessKey,processKey,subject,autoPassFirstNode,auditContent,workflowSuccessCallback,flowVars);
+	}
+	
+	function workflowSuccessCallback(result) {
+		if(result.status==-1){
+			top.showAlert('error', result.msg, 'error');
+			return;
+		}
+		$.messager.alert('正确', "流程启动成功", 'ok', function() {
+			closeWindows();
+		});
+		
+	}
+	/**
+	 * 关闭窗口
+	 */
+	function closeWindows(){
+		top.closeDlg('chooseNextUsers');
+	}
+	</script>
+	
+</head>
+<body class="easyui-layout">
+	<!-- 国际化编号 -->
+	<input type="hidden" id="menuid" value="P-WF-0020"/>
+    <div id="selectPerson" title="请先选择候选办理人" style="width:400px;height:200px;" class="easyui-window" 
+     data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,closable:false"  >  
+    	<div style="line-height:30px;">
+    		<span style="color: red; vertical-align: bottom; margin-right:5px;">*</span><span>下个节点候选办理人/部门：</span>
+    	</div>
+    	
+	    <table class="detail-table" cellpadding="0" cellspacing="0" >
+	    	<tr>
+				<td id="nextApproveUserNames" class="" style="text-align: left; width: 85%;border: 0px;">
+				</td>
+				<td style="border: 0px;text-align: right;">
+					<input id="nextApproveUserIds" type="hidden" name="nextApproveUserIds" value="" />
+					<a href="#" class="easyui-linkbutton" onclick="selectUserPage();">
+						<span key="workflow.select" class="paltform-i18n">选择</span>
+					</a> 
+					<a href="#" class="easyui-linkbutton" onclick="personchoose.reSetUser('nextApproveUserNames','nextApproveUserIds','nextApproveUserNames','nextApproveUserIds')">
+						<span key="workflow.clear" class="paltform-i18n">清空</span>
+					</a>
+				</td>
+			</tr>
+	    </table>
+	    <div style="align:center;width:90%;text-align:center;position: absolute;bottom: 10px;">
+			<a href="#" id="readBtn" class="easyui-linkbutton save-btn" onclick="save()">确认</a>
+			<a href="#" class="easyui-linkbutton cancel" onclick="closeWindows()">取消</a>
+		</div>
+	</div> 
+</body>
+</html>

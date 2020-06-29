@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet"  type="text/css" href="css/statistics.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../common/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="../../../common/echarts/theme/macarons.js"></script>
+<script type="text/javascript" src="js/statistics.js"></script> 	
+
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value=""/>
+	<!-- 	查询区域 -->
+	<!-- <div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>年份：</span></td>
+					<td width="15%">
+						<input id="year" name="year"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy'})"/>
+					</td>
+					
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="query()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,true)"><span>清空</span></a>
+					</td>
+				 </tr>
+			</table>
+		</form>
+	</div> -->
+	<form method="post" id="queryForm">
+	<div id="statisticstable" style="overflow-y: scroll;height: calc(100% - 30px);">
+		<div style="background-color:white;margin-bottom:10px;">
+			<span>年份：</span><input id="year" name="year" class="easyui-validatebox Wdate yearmonth" onclick="WdatePicker({dateFmt:'yyyy'})"/>
+			<a href="#" class="easyui-linkbutton query-btn" onclick="query()"><span>查询</span></a>
+			<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm()"><span>清空</span></a>
+			<div id="happendateChart" style="width:100%;height:300px;"></div>
+		</div>
+		<div style="background-color:white;height:300px;margin-bottom:10px;">
+			<span> 年月：</span><input id="ymbegin" name="ymbegin" class="easyui-validatebox Wdate yearmonth" onclick="WdatePicker({dateFmt:'yyyy-MM'})"/>
+			<span>  ~   </span><input id="ymend" name="ymend" class="easyui-validatebox Wdate yearmonth" onclick="WdatePicker({dateFmt:'yyyy-MM'})"/>
+			<a href="#" class="easyui-linkbutton query-btn" onclick="queryYears()"><span>查询</span></a>
+			<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQuery()"><span>清空</span></a>
+			<div id="eventtypeChart" style="width:100%;height:100%;"></div>
+		</div>
+	</div>
+	<!-- <table align="center" id="statisticstable">
+		<tr height="50%" >
+			<td style="background-color:white;">
+				<div>
+					<span>年份：</span><input id="year" name="year" class="easyui-validatebox Wdate yearmonth" onclick="WdatePicker({dateFmt:'yyyy'})"/>
+					<a href="#" class="easyui-linkbutton query-btn" onclick="query()"><span>查询</span></a>
+					<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm()"><span>清空</span></a>
+				</div>
+				<div id="happendateChart" style="height:85%;"></div>
+			</td>
+		</tr>
+		<tr height="50%" style="background-color:white;">
+			<td>
+				<div>
+					<span> 年月：</span><input id="ymbegin" name="ymbegin" class="easyui-validatebox Wdate yearmonth" onclick="WdatePicker({dateFmt:'yyyy-MM'})"/>
+					<span>  ~   </span><input id="ymend" name="ymend" class="easyui-validatebox Wdate yearmonth" onclick="WdatePicker({dateFmt:'yyyy-MM'})"/>
+					<a href="#" class="easyui-linkbutton query-btn" onclick="queryYears()"><span>查询</span></a>
+					<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQuery()"><span>清空</span></a>
+				</div>
+				<div id="eventtypeChart" style="width:100%;height:85%;"></div>
+			</td>
+		</tr>
+	</table> -->
+	</form>
+</body>
+</html>

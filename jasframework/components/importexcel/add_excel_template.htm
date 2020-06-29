@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/font-awesome.css" >
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">     
+<!-- 文件上传插件css -->
+<link rel="stylesheet" type="text/css" href="../../common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/webuploader/initialize_webuploader.css">
+
+</head>
+<body>
+
+    <div id="contentArea" class="content-area">
+        <!-- 上传文件扩展名 -->
+        <input type="hidden" id="exts" name="exts" value="xls,xlsx" ></input>
+        
+        <form id="tableForm" class="content-area-main" method="post">
+            <div class="table-content">
+                <h6 class="table-title">模板信息</h6>
+                <table align="center" class="edit-table">
+                    <tr>
+                        <td width="20%"><span>模板名称：</span></td>
+                        <td width="30%">
+                            <input class="easyui-validatebox input_bg" id="excelTemplateName" name="excelTemplateName" 
+                                required="true"  validType="" maxlength="50"/>
+                        </td>
+                        <td width="20%"><span>模板编号：</span></td>
+                        <td width="30%">
+                            <input class="easyui-validatebox input_bg" id="excelTemplateCode" name="excelTemplateCode"  required="true"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%"><span>模板类型：</span></td>
+                        <td width="30%">
+                            <select class="easyui-validatebox input_bg" id="excelTemplateType" name="excelTemplateType" 
+                                required="true" >
+                                <option value="1">导入模板</option>
+                                <option value="2">导出模板</option>
+                            <slect>    
+                        </td>
+                    </tr>
+                    <tr rowspan="3">
+                        <td width="20%"><span>备注：</span></td>
+                        <td colspan="3" width="80%">
+                            <textarea style="height: 60px;" class="easyui-validatebox" id="remark" name="remark" 
+                                validType="" maxlength="200"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="table-content">
+                <h6 class="table-title">模板文件</h6>
+                <table class="edit-table">
+                    <tr>
+                        <td style="width: 100px;"></td>
+                        <td style="width: 325px; height:25px">
+                            <input id="file" name="file" class="file input_bg" type="text" readonly/>
+                        </td>
+                        <td style="width:120px;height:23px">
+                            <div id="addFile" class="easyui-linkbutton submit">选择excel文件</div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="padding-left:200px;padding-top:20px;color:red;">支持excel2003、2007及以上版本</div>
+            </div>
+        </form>
+    </div>
+    <div class="button-area">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <a href="#" id="saveButton01" class="easyui-linkbutton save-btn" onclick="saveBaseInfo()"><span>保存</span></a>
+                    <a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<!-- 文件上传插件js -->
+<script type="text/javascript" src="../../common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../common/lib/other/jquery.inputDefault.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/add_excel_template.js"></script> 
+</html>

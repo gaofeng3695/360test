@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/querySpanCommon.css"></link>
+
+	<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script><script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/save_gps_marker_staff_ref.js"></script>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 表单区域，每行四列 -->
+		<form id="gpsMarkerStaffRefForm" class="content-area-main" method="post">
+			<div class="table-content">
+				<h6 class="table-title">光纤预警系统基础信息</h6>
+				<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>光纤系统名称：</span></td>
+					<td width="30%">
+						<input id="fiberSystemId" name="fiberSystemId" class="easyui-validatebox input_bg"  validType="" maxlength="76"/>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td width="20%"><span>光纤系统管线：</span></td>
+					<td width="30%">
+						<input id="opticalFiberLineloop" name="opticalFiberLineloop" required="true"  class="easyui-validatebox input_bg"  validType="" maxlength="200"/>
+					</td>
+					<td width="20%"><span>光纤系统所属站：</span></td>
+					<td width="30%">
+						<input id="opticalFiberStation" name="opticalFiberStation" required="true"  class="easyui-validatebox input_bg"  validType="" maxlength="200"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>起始桩：</span></td>
+					<td width="30%">
+						<input id="startMarkeroid" name="startMarkeroid" required="true"   class="easyui-validatebox input_bg"  validType="" maxlength="76"/>
+					</td>
+					<td width="20%"><span>终止桩：</span></td>
+					<td width="30%">
+						<input id="endMarkeroid" name="endMarkeroid" required="true"  class="easyui-validatebox input_bg"  validType="" maxlength="76"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>起始里程(m)：</span></td>
+					<td width="30%">
+						<input id="startMileage" name="startMileage" required="true"  class="easyui-validatebox input_bg"  validType="" maxlength="22"/>
+					</td>
+					<td width="20%"><span>终止里程(m)：</span></td>
+					<td width="30%">
+						<input id="endMileage" name="endMileage" required="true"  class="easyui-validatebox input_bg"  validType="" maxlength="22"/>
+					</td>
+				</tr>
+			</table>
+			</div>
+			<div class="table-content">
+				<h6 class="table-title">巡检系统基础数据</h6>
+				<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>部门名称：</span></td>
+					<td width="30%">
+						<input id="unitid" name="unitid" class="easyui-validatebox input_bg" required="true" validType="" maxlength="76"/>
+					</td>
+					<td width="20%"><span>管线名称：</span></td>
+					<td width="30%">
+						<input id="lineloopoid" name="lineloopoid" class="easyui-validatebox input_bg" required="true"  validType="" maxlength="76"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>站长/区长：</span></td>
+					<td width="30%">
+						<input id="stationMaster" name="stationMaster" class="easyui-validatebox input_bg" required="true"   validType="" maxlength="76"/>
+					</td>
+					<td width="20%"><span>站长/区长电话：</span></td>
+					<td width="30%">
+						<input id="stationMasterTel" name="stationMasterTel" class="easyui-validatebox input_bg" readonly="readonly" validType="" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>区间技术负责人：</span></td>
+					<td width="30%">
+						<input id="sectionLeader" name="sectionLeader" class="easyui-validatebox input_bg" required="true"  validType="" maxlength="76"/>
+					</td>
+					<td width="20%"><span>区间技术负责人电话：</span></td>
+					<td width="30%">
+						<input id="sectionLeaderTel" name="sectionLeaderTel" class="easyui-validatebox input_bg" readonly="readonly"  validType="" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>段长：</span></td>
+					<td width="30%">
+						<input id="segment" name="segment" class="easyui-validatebox input_bg" required="true"  validType="" maxlength="76"/>
+					</td>
+					<td width="20%"><span>段长电话：</span></td>
+					<td width="30%">
+						<input id="segmentTel" name="segmentTel" class="easyui-validatebox input_bg" readonly="readonly"  validType="" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>巡线工：</span></td>
+					<td width="30%">
+						<input id="inspector" name="inspector" class="easyui-validatebox input_bg" required="true"   validType="" maxlength="76"/>
+					</td>
+					<td width="20%"><span>巡线工电话：</span></td>
+					<td width="30%">
+						<input id="inspectorTel" name="inspectorTel" class="easyui-validatebox input_bg" readonly="readonly"  validType="" maxlength="20"/>
+					</td>
+				</tr>
+					<tr>
+						<td width="20%"><span>备注：</span></td>
+						<td width="80%" colspan="3"><textarea id="remarks" name="remarks" style="height: 100px" class="easyui-validatebox input_bg" validType="maxLength[600]"></textarea></td>
+					</tr>
+			</table>
+			</div>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="saveGpsMarkerStaffRef()"><span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

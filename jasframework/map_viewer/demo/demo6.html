@@ -1,0 +1,74 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/query.css"></link>
+<link rel="stylesheet"  type="text/css" href="css/demo6.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/demo6.js"></script>
+
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 表单区域，每行四列 -->
+		<form id="playbackform" class="content-area-main" method="post">	
+			<table id="queryTable" class="query-table" align="center">
+				<tr>
+					<td width="40%">
+						<input id="statisticsdate" placeholder="时间" name="statisticsdate" onclick="WdatePicker({dateFmt:'yyyy-MM'})" class="Wdate input_bg"/>
+					</td>
+					<td width="40%">
+						<select id="unitid" name="unitid" class="input_bg" ></select>
+					</td>
+					
+					<td width="20%" align="right">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','gpsdayworkdatagrid')"><span>查询</span></a>
+					</td>
+				 </tr>
+			</table>
+			<table class="table-header" id="tableHeader" style="width:100%">
+				<tr>
+					<td width="40%" align="left">人员</td>
+					<td width="30%" align="center">配置度</td>
+					<td width="30%" align="center">成绩</td>
+				</tr>
+			</table>
+			<div id="detailContent" class="detail-content">
+				<div id="detailList" class="detail-info-list">
+		
+				</div>
+			</div>
+		</form>
+	</div>
+	<div id="button-area" class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="saveGpsPlanInfo()"><span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

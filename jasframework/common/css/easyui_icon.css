@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+/** 
+ * @file
+ * @author  xxx
+ * @desc  自定义easyui图标样式
+ * @date  2017-08-15
+ * @last modified by xxx
+ * @last modified time  2017-08-15
+ */
+.icon-test{
+	background:url('../image/icons/test.png') no-repeat center center;
+}

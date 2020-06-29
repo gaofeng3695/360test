@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>我发起的流程</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/myProInst.js"></script>
+	
+</head>
+<body>
+	<!-- 权限编码 -->
+	<input type="hidden" id="menuid" value="P-WF-0100"/>
+	<!-- 查询条件 -->
+	<div id="queryDiv" class="query-conditions">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span key="workflow.proInstId" class="paltform-i18n">流程实例ID：</span></td>
+					<td width="15%" ><input type="text" id="proInstId" name="proInstId" class="easyui-validatebox input_bg" /></td>
+					<td width="10%" class="text-right"><span key="workflow.proInstName" class="paltform-i18n">流程主题：</span></td>
+					<td width="15%"><input type="text" id="proInstName" name="proInstName" class="easyui-validatebox input_bg" /></td>
+				 	<td width="10%" class="text-right"><span key="workflow.processName" class="paltform-i18n">流程名称：</span></td>
+					<td width="15%"><select id="processKey" name="processKey"  class="easyui-combobox" ></select></td>
+					
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryData()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,'consDcsBoxculvertdatagrid')"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				 <tr>
+					<td width="11%" class="text-right"><span>发起时间：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input type="text" id="startTimeBegin" name="startTimeBegin" class="Wdate input_bg" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'startTimeEnd\')}',dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
+								<td width="10%" class="text-center">-</td>
+								<td width="45%" style="padding-right:0em"><input type="text" id="startTimeEnd" name="startTimeEnd" class="Wdate input_bg" onclick="WdatePicker({minDate:'#F{$dp.$D(\'startTimeBegin\')}',dateFmt:'yyyy-MM-dd HH:mm'})"/</td>
+							</tr>
+						</table>
+					</td>
+					<td width="11%" class="text-right"><span>结束日期：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em">
+									<input type="text" id="endTimeBegin" name="endTimeBegin" class="Wdate input_bg" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'endTimeEnd\')}',dateFmt:'yyyy-MM-dd HH:mm'})" />
+								</td>
+								<td width="10%" class="text-center">-</td>
+								<td width="45%" style="padding-right:0em">
+									<input type="text" id="endTimeEnd" name="endTimeEnd" class="Wdate input_bg" onclick="WdatePicker({minDate:'#F{$dp.$D(\'endTimeBegin\')}',dateFmt:'yyyy-MM-dd HH:mm'})"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="11%" class="text-right"><span key="workflow.proInstStatus" class="paltform-i18n">流程状态：</span></td>
+					<td>
+						<select id="status" name="status" class="easyui-combobox" >
+							<option value="" >全部</option>
+							<option value="finished" >办结</option>
+							<option value="unfinished" >运行中</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- datagrid查询列表 -->
+	<table id="1011070201" toolbar="#toolbar"></table>
+	<!-- datagrid功能按钮 -->
+	<div id="toolbar">
+		<a href="#" id="" class="easyui-linkbutton fa fa-stethoscope" plain="true" onclick="showWorkFlowChart()">
+			<span key="workflow.workflowChart" class="paltform-i18n">流程图</span>
+		</a>
+		<a href="#" id="101107020102" class="easyui-linkbutton fa fa-file-text-o " plain="true" onclick="showApproveHistory()">
+			<span key="workflow.approveHistory" class="paltform-i18n">审批记录</span>
+		</a>
+	</div>
+</body>
+</html>

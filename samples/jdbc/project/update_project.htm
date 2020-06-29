@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">
+
+<!-- 图片预览插件css  注意顺序 -->
+
+<!-- <link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/webuploader/view_photo.css"></link> -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/webuploader/initialize_webuploader.css">
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+
+<!-- 图片预览插件js  注意顺序 -->
+<script type="text/javascript" src="../../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<!-- <script type="text/javascript" src="../../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/view_images.js"></script> -->
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/view_file.js"></script>
+
+<script type="text/javascript" src="./js/update_project.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+
+</head>
+<body>
+<div id="contentArea" class="content-area">
+	<!--  菜单id隐藏域 -->
+	<input type="hidden" id="menuid" value="100601"/>
+	
+	<form id="saveProject"  class="content-area-main"  method="post">
+		<input id="oid" name="oid" type="hidden" value="" />
+		<div class="table-content">
+		<h6 class="table-title">基本信息</h6>
+			<table align="center" class="edit-table">
+				<!-- eventid隐藏域	 -->
+				<tr>
+				    <td width="20%"><span>项目名称：</span></td>
+					<td width="30%"><input type="text" id=projectName name='projectName' validtype="general" required="true" class="easyui-validatebox input_bg"
+									missingmessage="不能为空" maxlength="25"></td>
+					<td width="20%"><span>项目编号：</span></td>
+					<td width="30%">
+						<input type="text" id="projectCode" name="projectCode" class="easyui-validatebox input_bg" validType="general" maxlength="18">
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<!-- 存放附件的容器   带描述-->
+		<div class="table-content">
+			<h6 class="table-title">附件信息</h6>
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%">附加文件：</td>
+					<td width="80%" align="left"  class="add-attachment again-add-btn">
+						<div id="addFile" class="save-btn"></div>
+						<div id="againSaveFileBtn"  class="again-save-btn"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" id="viewFileContainer"></td>
+				</tr>
+			</table>	
+		</div>
+		
+		<!-- 存放图片的容器  不带描述-->
+		<!-- <div class="table-content">
+			<h6 class="table-title">图片信息</h6>
+			<div id="viewPicContainer"></div>
+		</div>  -->
+		
+		<!-- 存放图片的容器  带描述-->
+		<!-- <div class="table-content">
+			<h6 class="table-title">附件信息</h6>
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%">附加图片：</td>
+					<td width="80%" align="left"  class="add-attachment again-add-btn">
+						<div id="addPicBtn" class="save-btn"></div>
+						<div id="againSavePicBtn"  class="again-save-btn"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" id="viewPicContainer"></td>
+				</tr>
+			</table>	
+		</div> -->
+		
+	</form>
+</div>
+
+<div class="button-area">
+	<table width="100%">
+		<tr>
+			<td  align="center">
+			    <a href="#" id="savebutton" class="easyui-linkbutton save-btn"  onclick="update()"><span>保存</span></a>
+				<a href="#" class="easyui-linkbutton cancel-btn"  onclick="closePanel()"><span>取消</span></a>
+			 </td>
+		</tr>
+	</table>	 
+</div>
+
+</body>
+</html>

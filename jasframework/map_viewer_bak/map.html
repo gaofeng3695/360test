@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>贵州燃气集团管道完整性管线系统-地图应用</title>
+
+    <!--第三方工具-->
+    <link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+    <script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+
+    <!--项目-->
+    <link href="./style/default.css" rel="stylesheet"/>
+    <script src="index.js"></script>
+
+    <!--arcgis依赖-->
+    <link href="../common/lib/esri/3.18/dijit/themes/claro/claro.css" rel="stylesheet"/>
+    <link href="../common/lib/esri/3.18/esri/css/esri.css" rel="stylesheet"/>
+    <script src="../common/lib/esri/3.18/init.js"></script>
+    <!--api-->
+    <script id="mapApi" data-config="../../mapconfig/get.do?configFile=config/config.json" data-options='{"appName":"app-viewer","mapApiLoaded":"mapApiLoaded"}' src="../common/js/mapjs/map2DApi.js"></script>
+</head>
+<body class="claro">
+    <div id="mapDivId"></div>
+    <div id="mapMainTools" class="mapWidget map-widget-toolbars" style="display: none;">
+        <ul>
+            <li><img src="images/dock/mapPan.png" title="平移地图" /></li>
+            <li><img src="images/dock/zoomIn.png" title="放大地图" /></li>
+            <li><img src="images/dock/zoomOut.png" title="缩小地图" /></li>
+            <li><img src="images/dock/measureDistance.png" title="测量距离" /></li>
+            <li><img src="images/dock/measureArea.png" title="测量面积" /></li>
+            <li><img src="images/dock/clear.png" title="清空标记" /></li>
+            <!--
+            <li><img src="images/dock/export.png" title="导出图片" /></li>
+            <li><img src="images/dock/print.png" title="打印地图" /></li>
+            -->
+            <li class="toggle"><img src="images/dock/draw.png" title="地图标绘" /></li>
+            <!--
+            <li><img src="images/dock/relationOff.png" title="二三维联动" /></li>
+            -->
+            <li><img src="images/dock/locate.png" title="定位查询"  /></li>
+            <li class="toggle"><img src="images/dock/layers.png" title="图层控制"  /></li>
+            <li><img src="images/dock/quicklocate.png" title="快速定位"  /></li>
+            <li><img src="images/dock/queryByCircle.png" title="圆查询"  /></li>
+            <li><img src="images/dock/queryByPolygon.png" title="面查询"  /></li>
+            <!--
+            <li><img src="images/dock/basemapImage.jpg" title="底图切换" /></li>
+            -->
+            <li><img src="images/dock/basemapImage.jpg" title="test" /></li>
+
+        </ul>
+    </div>
+    <!--
+    <div id="mapCoorsPicker" class="mapWidget"></div>
+    -->
+    <div id="mapLayerListSliderPanel" class="mapLayerListSliderPanel hide"></div>
+    <div id="mapDrawBar" class="map-widget-DrawBox" style="display: none;position: absolute;top:60px;right:5px;">
+        <ul style="list-style: none;">
+            <li><img src="images/plot/delete.png" title="点击删除某个标绘" data-tool="DELETE" ></li>
+            <li><img src="images/plot/point.png" title="点" data-tool="POINT" ></li>
+            <!--
+            <li><img src="images/polygon.png" title="多点" data-tool="MULTI_POINT" ></li>
+            -->
+            <li><img src="images/plot/line.png" title="线" data-tool="LINE"></li>
+            <li><img src="images/plot/polyline.png" title="折线" data-tool="POLYLINE"></li>
+            <li><img src="images/plot/polygon.png" title="面" data-tool="POLYGON"></li>
+            <li><img src="images/plot/rect.png" title="矩形" data-tool="RECTANGLE"></li>
+            <li><img src="images/plot/polygon.png" title="箭头" data-tool="ARROW"></li>
+            <li><img src="images/plot/circle.png" title="圆" data-tool="CIRCLE"></li>
+            <li><img src="images/plot/ellipse.png" title="椭圆" data-tool="ELLIPSE"></li>
+            <li><img src="images/plot/bitmap.png" title="图标" data-tool="PICTURE" ></li>
+            <li><img src="images/plot/text.png" title="文字" data-tool="TEXT" ></li>
+        </ul>
+    </div>
+
+    <div id="mapBasemapGallay" class="map-widget-BasemapGallay"></div>
+
+    <div id="mapCoorsPositionDialog" class="map-widget-CoorsPositionDialog"></div>
+    <div id="mapScaleRangeSlider" class="map-widget-ScaleRangeSlider"></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>arcgis测试</title>
+<meta http-equiv="pragma" content="no-cache" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/icon.css" />
+<script type="text/javascript"
+	src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/js/privilege.js"></script>
+<script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+<script type="text/javascript" src="js/arcgisDemo.js"></script>
+</head>
+
+<body scroll="no" style="margin:0px">
+	<input type="hidden" id="menuid" value="101305"></input>
+	<iframe id="exprotPlanframe" style="display: none;"></iframe>
+	<div class="easyui-panel" id="searchpanel" collapsed="true"
+		collapsible="true"></div>
+	<!-- 查询面板结束 -->
+	<table id="loginLogTable" class="easyui-datagrid"
+		url="../../arcgis/arcgisGetAll.do"  rownumbers="true" pagination="true"
+		toolbar="#tb"> 
+		<thead>
+			<tr>
+				<th field="ck" checkbox="true" />
+				<th field="name" width="150"><span id="loginLog.name"
+					class="paltform-i18n">名称</span></th>
+				<th field="type" width="150"><span id="loginLog.type"
+					class="paltform-i18n">类型</span></th>
+				<th field="createdate" width="150"><span
+					id="loginLog.createdate" class="paltform-i18n">创建时间</span></th>
+				<th field="ordinal" width="150"><span id="loginLog.ordinal"
+					class="paltform-i18n">序列号</span></th>
+			</tr>
+		</thead>
+	</table>
+	<div id="tb">
+		<a href="#" id="10130501" class="easyui-linkbutton"
+			iconCls="icon-view" plain="true" onclick="sel();">查看</a> <a href="#"
+			id="10130502" class="easyui-linkbutton" iconCls="icon-view"
+			plain="true" onclick="add();">添加</a> <a href="#" id="10130503"
+			class="easyui-linkbutton" iconCls="icon-view" plain="true"
+			onclick="update();">更新</a> <a href="#" id="10130504"
+			class="easyui-linkbutton" iconCls="icon-view" plain="true"
+			onclick="dele();">删除</a>
+	</div>
+</body>
+</html>

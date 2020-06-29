@@ -1,0 +1,100 @@
+input[type=range] {
+    -webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track{
+    height: 2px;
+    background-color: #eee;
+}
+
+input[type='range']::-moz-range-track{
+    height: 2px;
+    background-color: #eee;
+}
+
+input[type="range"]::-ms-track{
+    height: 2px;
+    color:transparent;
+    background-color: #eee;
+}
+
+/* 按钮样式*/
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 2px solid #1ba1e2;
+    height: 9px;
+    width: 9px;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    margin-top: -4px;
+    position: relative;
+}
+input[type='range']::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: 2px solid #1ba1e2;
+    height: 9px;
+    width: 9px;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    margin-top: -4px;
+    position: relative;
+}
+
+input[type='range']::-ms-thumb {
+    -webkit-appearance: none;
+    border: 2px solid #1ba1e2;
+    height: 9px;
+    width: 9px;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    margin-top: -4px;
+    position: relative;
+}
+
+
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-thumb:after {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: #209cee;
+    border-radius: 5px;
+    color: #209cee;
+    padding: 5px 10px;
+    border: 2px solid #209cee;
+}
+
+input[type=range]:focus::-ms-thumb:after {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #209cee;
+    border-radius: 5px;
+    color: #209cee;
+    padding: 5px 10px;
+    border: 2px solid #209cee;
+}
+
+input[type=range]:focus::-moz-range-thumb:after {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #209cee;
+    border-radius: 5px;
+    color: #209cee;
+    padding: 5px 10px;
+    border: 2px solid #209cee;
+}
+
+

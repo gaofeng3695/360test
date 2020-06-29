@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css"/>
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.jasfc.jasfcFactory.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../apdmWidget/js/initmarkermessage.js"></script>
+	<script type="text/javascript" src="js/FunctionConfiguration.js"></script>
+	<script type="text/javascript" src="js/AddBusiness.js"></script>
+	<script type="text/javascript" src="js/FunctionAttachment.js"></script>
+	<script type="text/javascript" src="../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="js/commonMethod.js"></script>
+	<title></title>
+</head>
+<body>
+	 <div id="addDiv">
+	 </div>
+	 <script type="text/javascript">
+	var subeventid='';
+	   //功能id
+	 var functionName = getParamter("functionName");
+	 
+	 //唯一标示列
+	 var idField =getParamter("pkfield");
+	 var APP_NUMBER =top.APP_NUMBER;
+	 var language =top.language;
+	 var subeventid ="";
+	 var subIdField ="";
+	 var title =getParamter("title");	//主表tab标签页名称
+	 var masterFieldValue = "";
+	 //新增页面注册信息
+	 var config = $("#addDiv").FunctionConfiguration({divid:"#addDiv","functionName":functionName,"app_number":APP_NUMBER,"language":language});
+	 var addJson =config.FunctionConfiguration('getFunctionConfig',functionName);
+	 var functionConfig =  JSON.stringify(addJson.addFields);
+	 var addDiv = $("#addDiv").AddBusiness({
+	 	idField:idField,
+		functionName:functionName,
+		addfunctionData:functionConfig,
+		divid:"#addDiv",
+		configuration:addJson
+	 });
+	 addDiv.AddBusiness('initPageUI');
+	 </script>
+</body>
+</html>

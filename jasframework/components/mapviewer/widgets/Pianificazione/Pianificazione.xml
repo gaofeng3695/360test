@@ -1,0 +1,15 @@
+<configuration>
+
+    <wfs>
+       <URL>http://localhost:8080/geoserver/wfs</URL>
+       <namespace>GeoDemo</namespace>
+       <wkid>EPSG:2383</wkid>
+       <shapefield>SHAPE</shapefield>
+       <featurelimit>1000</featurelimit>
+       <maxfeatures>500</maxfeatures>
+       
+       <!-- get all features containing "Zone" or "Percorsi" and the following string -->
+       <featureTitleFilter>CONTROLPOINT</featureTitleFilter>
+    </wfs>
+
+</configuration>

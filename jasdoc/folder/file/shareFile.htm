@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../js/shareFile.js"></script>
+</head>
+<body>
+	<div id="dlg" class="easyui-panel" buttons="#dlg-buttons">
+		<form id="fileShare" method="post">
+			<input type="hidden" name="eventid" id="eventid"/>
+			<input type="hidden" name="createuser" id="createuser"/>
+			<input type="hidden" name="role" id="role"/>
+			<input type="hidden" name="deptIds" id="deptIds"/>
+			<input type="hidden" name="roleIds" id="roleIds"/>
+			<input type="hidden" name="userIds" id="userIds"/>
+			<input type="hidden" name="shareid" id="shareid"/>
+			<table border=0 width=100% align=center>
+				<tr>
+					<td width="20%"><span>共享范围：</span><span style='color:red;vertical-align: bottom;'>*</span></td>
+					<td width="80%">
+						<table border=0 cellspacing=0 cellpadding=0 width=100% >
+							<tr>
+								<td width="80%"><input type='text' id='sharescope' name='sharescope' class="easyui-validatebox input_bg" disabled value=""></td>
+								<input id="fen1" type="hidden" name="nextUsers" value="" />
+								<td width="20%" ALIGN=RIGHT><a href="#" class="easyui-linkbutton"  onclick="personchoose.showPersonWindow()"><span key="unit.save" class="paltform-i18n">选择</span></a></td>
+							</tr>
+						</table>			
+					</td>
+				</tr>
+				<tr height=5><td colspan=2></td></tr>
+				<tr>
+					<td valign=top><span>共享描述：</span><span style='color:red;vertical-align: bottom;'>*</span></td>
+					<td >
+						<textarea id='shareRemark' name='shareRemark' style='height:50px'></textarea>			
+					</td>
+				</tr>
+				<tr height=5><td colspan=2></td></tr>
+				<tr>
+					<td valign=top><span>权限类型：</span><span style='color:red;vertical-align: bottom;'>*</span></td>
+					<td >
+						<div id="privelegetype" style="height:90px; width:100%;overflow:auto; border-style:inset; border-width:1px; background-color:#ffffff;">
+							<div id="10" style='width: 50%;' >
+								<input type="checkbox" value="10" id="PreviewFile" name="PreviewFile" onclick="clickBox(10)">
+								查看
+							</div>
+							<div id="20" style='width: 50%;'>
+								<input type="checkbox" value="20" id="DownloadFile" name="DownloadFile" onclick="clickBox(20)">
+								预览
+							</div>
+							<div id="30" style='width: 50%;'>
+								<input type="checkbox" value="30" id="ModifyFile" name="ModifyFile" onclick="clickBox(30)">
+								下载
+							</div>
+<!--							display:none;-->
+			 
+						</div>
+					</td>
+				</tr>
+				<tr height=5><td colspan=2></td></tr>
+				<tr>
+					<td ><span>过期时间：</span><span style='color:red;vertical-align: bottom;'>*</span></td>
+					<td >
+						<input id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" />			
+					</td>
+				</tr>
+			</table>
+	
+		    <div class="button_area_absolute">
+		   <table width="100%">
+		 		  <tr>
+		      			<td align="center">
+         					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveShare()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closePanol()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+         				</td>
+         		</tr>
+         	</table>	 
+		    </div>
+			</form>
+			
+	</div>
+</body>
+</html>
+	

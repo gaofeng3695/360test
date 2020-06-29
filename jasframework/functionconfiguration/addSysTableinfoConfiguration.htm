@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css"/>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/commonMethod.js"></script>
+	<script type="text/javascript" src="js/addSysTableinfoConfiguration.js"></script>
+	<title>新增功能模块基本信息</title>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+	<form id="saveSysTableinfo" method="post">
+<!-- 	表单区域 -->
+		<table class="edit-table">
+			<tr>
+				<td width="20%"><span>功能名称：</span></td>
+				<td width="30%"><input id="businessname" name="businessname" class="easyui-validatebox input_bg" required="true" validType="TaskpointName" maxlength="120"/></td>
+				<td width="20%"><span>数据库类型：</span></td>
+				<td width="30%"><select id="databasetype" name="databasetype" panelHeight="auto" required="true"></select></td>
+			</tr>
+			<tr>
+				<td><span>数据源：</span></td>		<!-- 原名称：数据源bean的id -->
+				<td><select id="datasourcename" name="datasourcename" panelHeight="auto" required="true"></select></td>
+				<td><span>表类型：</span></td>		<!-- 原名称：空间表类型 -->
+				<td><select id="geometerytype" name="geometerytype" panelHeight="auto" required="true"></select></td>
+				
+			</tr>
+			<tr>
+			    <td><span>数据表：</span></td>	<!-- 原名称：视图对应的表名 -->
+				<td><select id=tablename name="tablename" panelHeight="200px" required="true"></select></td>
+				<td><span>视图表：</span></td>	<!-- 原名称：视图名称 -->
+				<td><select id=viewname name="viewname" panelHeight="200px"></select></td>
+			</tr>
+			<tr>
+				<td><span>菜单编号：</span></td>
+				<!-- <td><input id="functionnumber" name="functionnumber" class="easyui-validatebox input_bg" required="true" validType="number" maxlength="30" /></td> -->
+				<td><input id="functionnumber" name="functionnumber" class="input_bg" disabled="disabled"/></td>
+				<td><span>是否含有工作流：</span></td>	<!-- 原名称：包含工作流 -->
+				<td><select id="hasworkflow" name="hasworkflow" panelHeight="auto" required="true"></select></td>
+			</tr>
+			<tr>
+				<td><span>工作流名称：</span></td>
+				<td><input id="workflowname" name="workflowname" class="easyui-validatebox input_bg" validType="TaskpointName" maxlength="254" required="true" value="无"/></td>
+				<td><span>是否含有附件：</span></td>	<!-- 原名称：包含附件 -->
+				<td><select id="hasattachment" name="hasattachment" panelHeight="auto" required="true"></select></td>
+			</tr>
+			<tr>
+				<td><span>默认过滤条件：</span></td>
+				<td><input id="defaultwherefilter" name="defaultwherefilter" class="easyui-validatebox input_bg" maxlength="100"/></td>
+				<td><span>默认排序子句：</span></td>	<!-- 原名称：排序子句 -->
+				<td><input id="orderby" name="orderby" class="easyui-validatebox input_bg" maxlength="128"/></td>
+			</tr>
+		</table>
+		<!-- 按钮区域 -->
+		<div class="button-area">
+			<table width="100%">
+				<tr>
+	 				<td>
+	 					<a id="saveSysTableInfoButton" href="#" class="easyui-linkbutton submit" onclick="saveSystableinfo()">保存</a>
+						<a id="10060107" href="#" class="easyui-linkbutton cancel"  onclick="top.closeDlg('tableinfoadd')">取消</a>
+	 				</td>
+	  			</tr>
+	  		</table>	
+  		</div> 
+	</form>
+</div>
+</body>
+</html>

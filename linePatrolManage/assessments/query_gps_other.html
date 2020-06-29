@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>网格化页面</title>
+	<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+	<!-- css引用，注意引用顺序 -->
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+	<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+	<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/query.css"></link>
+	<link rel="stylesheet"  type="text/css" href="../../common/css/navigation.css"></link>
+	<!-- js引用， 注意引用顺序 -->
+
+	<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/query_gps_other.js"></script>
+	<script type="text/javascript" src="../../common/js/navigation.js"></script>
+
+	<style>
+
+		#notediv {
+					line-height: 26px;
+					left: 15px;
+					position: relative;
+					bottom: 4px;
+				 }
+
+		body {
+			background-color: white !important;
+		}
+
+		.e-nav {
+			padding: 5px 6px !important;
+		}
+
+		#statisticsUnit {
+			position: relative;
+			padding-top: 4px;
+			padding-bottom: 4px;
+			top: -3px;
+			/*font-size: 15px;
+			display: block;
+			margin-top: 3px;*/
+		}
+
+		#statisticsUnit img {
+			position: relative;
+			top: 4px;
+
+		}
+
+	</style>
+</head>
+<body style="overflow-y: auto;">
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+<input type="hidden" id="menuid" value=""/>
+<!-- 	datagrid列表  -->
+<table id="gpsUnitscoredatagrid" class="easyui-datagrid"></table>
+<div id="toolbar">
+	<div style="float: left;margin-top: 5px">
+		<!--<div style="    font-size: 18px;float:left;position: relative;top:-2px">统计部门：</div>-->
+		<!--<div style="float:left;" id="statisticsUnit"></div>-->
+		<img class = 'home' src="../../common/images/home.jpg" /><span class = 'localHost' id ="localHost"></span>
+	</div>
+	<div style="float: right;">
+		<div style="float: left;margin-top: 1px;margin-right: 5px">
+			<a class = "easyui-linkbutton" href="#" onclick="upDay()">前一天</a>
+			<a class = "easyui-linkbutton" href="#" onclick="nextDay()">后一天</a>
+			<!--<a class = "easyui-linkbutton" href="#" onclick="exportQuery()">导出</a>-->
+		</div>
+		<div style="float: right;margin-top:-2px">
+			<input style="width: 100px" id="statisticsdate" name="statisticsdate" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({onpicked:function(){dateOnChange();},dateFmt:'yyyy-MM-dd'})"/>
+		</div>
+	</div>
+</div>
+<div id="notediv" style="color: red;font-size: 14px">
+</div>
+
+<!-- 	定义导出弹出窗 -->
+<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+
+</body>
+</html>

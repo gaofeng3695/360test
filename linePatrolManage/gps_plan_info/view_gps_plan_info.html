@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/view_gps_plan_info.js"></script> 	 
+</head>
+<body>
+    <div id="contentArea" class="content-area">
+    	<form class="content-area-main">
+		<!-- 表单区域，每行四列 -->
+		<!-- <div id="plandiv" class="table-content">
+			<h6 class="table-title">巡检计划信息</h6> -->
+			<table id="plantable" align="center" class="detail-table" >
+				<tr>
+					<th width="20%"><span>巡检计划编号</span></th>
+					<td width="30%"><span id="planno"></span></td>
+					<th width="20%"><span>巡检类型</span></th>
+					<td width="30%"><span id="instypeCodeName"></span></td>
+				</tr>
+				<tr>
+					<th width="20%"><span>执行单位</span></th>
+					<td width="30%"><span id="execunitid"></span></td>
+				
+					<th width="20%"><span>巡检人员类型</span></th>
+					<td width="30%"><span id="inspectortypeCodeName"></span></td>
+				</tr>
+				<tr>
+					<th width="20%"><span>巡检频次</span></th>
+					<td width="30%"><span id="insfreqcont"></span></td>
+					<th width="20%"><span>制作依据</span></th>
+					<td width="30%"><span id="determinant"></span></td>
+					
+				</tr>
+				<tr>
+					<th width="20%"><span>巡检方式</span></th>
+					<td width="30%"><span id="insvehicleCodeName"></span></td>
+					<th width="20%"><span>巡检速度设置(km/h)</span></th>
+					<td width="30%"><span id="speedmax"></span></td>
+				
+				</tr>
+				<tr>
+					<th width="20%"><span>计划开始时间</span></th>
+					<td width="30%"><span id="insbdate"></span></td>
+					<th width="20%"><span>计划结束时间</span></th>
+					<td width="30%"><span id="insedate"></span></td>
+				</tr>
+				<tr>
+					<th width="20%"><span>计划废除日期</span></th>
+					<td width="30%"><span id="repealdate"></span></td>
+					<th width="20%"><span>计划执行状态</span></th>
+					<td width="30%"><span id="planflagCodeName"></span></td>
+				</tr>
+				<tr>
+					<th width="20%"><span>制定部门</span></th>
+					<td width="30%"><span id="unitid"></span></td>
+					<th width="20%"><span>同步时间</span></th>
+					<td width="30%"><span id="syncdate"></span></td>
+				</tr>
+				<tr>
+					<th width="20%"><span>工作开始时间</span></th>
+					<td width="30%"><span id="beginWorkTime"></span></td>
+					<th width="20%"><span>工作结束时间</span></th>
+					<td width="30%"><span id="endWorkTime"></span></td>
+				</tr>
+				<tr>
+					<th width="20%"><span>是否PIS同步</span></th>
+					<td width="30%" colspan="3"><span id="ispis"></span></td>
+				</tr>
+			</table>
+		<!-- </div>
+		<div class="table-content">
+			<h6 id="linetitle" class="table-title">巡检线路信息</h6> -->
+			<table id="lineplantable" align="center" class="easyui-datagrid" ></table>
+		<!-- </div>	 -->
+		</form>
+	</div>
+	<div id="button-area" class="button-area">
+		<table width="100%">
+			<tr>
+				<td  align="center">
+					<a href="#" class="easyui-linkbutton close-btn" onclick="closePanel()"> <span>关闭</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

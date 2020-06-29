@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<meta name="description" content="">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+
+		<title></title>
+		<link rel="stylesheet" type="text/css"
+			href="../../platform/common/lib/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css"
+			href="../../platform/common/lib/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css"
+			href="../../platform/common/css/querystyle.css">
+		<script type="text/javascript"
+			src="../../platform/common/lib/jquery.min.js">
+</script>
+		<script type="text/javascript"
+			src="../../platform/common/lib/easyui/jquery.easyui.min.js">
+</script>
+		<script type="text/javascript"
+			src="../../platform/common/lib/easyui/locale/easyui-lang-zh_CN.js">
+</script>
+		<script type="text/javascript"
+			src="../../platform/common/js/validate_class.js">
+</script>
+		<script type="text/javascript"
+			src="../../platform/common/js/common.js">
+</script>
+		<script type="text/javascript"
+			src="../../platform/common/My97DatePicker/WdatePicker.js">
+</script>
+		<script type="text/javascript" src="js/attendancestatistics.js">
+</script>
+		<script type="text/javascript">
+//getFileName();
+$(document).ready(function() {
+	initDatagrigHeight('01010104', 'queryDiv', '65');
+});
+</script>
+	</head>
+	<body>
+		<input type="hidden" id="menuid" value="1006" />
+		<div id="queryDiv" class="easyui-panel"
+			key="crms.importantevent.importantevent.queryTitle" title="考勤统计查询"
+			collapsible="true" collapsed="true" style="padding: 1px">
+			<table align="center" class="querytable" id="q_form">
+				<tr>
+					<td width="15%">
+						<span id="crms.importantevent.importantevent.stattime"
+							class="paltform-i18n">部门名称 ：</span>
+					</td>
+					<td width="35%">
+						<select id="unitid" class="easyui-validatebox">
+							<option value="quanbu">
+								--请选择--
+							</option>
+							<option value="40288ae03957a9d5013957bd82290000">
+								研发中心
+							</option>
+						<option value="4028816037104415013710483c170002">中盈</option>
+						</select>
+					</td>
+					<td width="15%">
+						<span id="platform.log.onlineuser.stattime" class="paltform-i18n">统计月份
+							：</span>
+					</td>
+					<td width="35%">
+						<input id="tongjitime" class="easyui-validatebox"
+							onfocus="WdatePicker({dateFmt:'yyyy-MM'})" class="Wdate">
+					</td>
+
+				</tr>
+				<tr>
+					<td width="15%">
+					员工姓名：
+					</td>
+					<td width="35%">
+						<input type="text" id="username" name="name"
+							class="easyui-validatebox" />
+					</td>
+					<td colspan="4">
+						<a id="10060105" href="#" class="easyui-linkbutton"
+							iconCls="icon-query" onclick="queryAS()"><label>
+								<span id="crms.importantevent.importantevent.query"
+									class="paltform-i18n">查询</span>
+							</label>
+						</a>
+						<a id="10060108" href="#" class="easyui-linkbutton"
+							iconCls="icon-clear" onclick="clearQueryForm('q_form')"><label>
+								<span id="crms.importantevent.importantevent.clear"
+									class="paltform-i18n">清空</span>
+							</label>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<table id="01010104" class="easyui-datagrid" toolbar="#toolbar"
+			width="98%" nowrap="false" striped="true" collapsible="false"
+			pagination="true" sigleSelect="false">
+		</table>
+		<div id="toolbar">
+			<a id="" href="#" class="easyui-linkbutton" iconCls="icon-excel"
+				plain="true" onclick="exportExcel()"><label>
+					<span id="crms.importantevent.importantevent.export"
+						class="paltform-i18n">导出</span>
+				</label>
+			</a>
+
+		</div>
+		<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+		<!--<script type="text/javascript">
+  		i18nDivTitle();
+  	</script>
+-->
+	</body>
+</html>

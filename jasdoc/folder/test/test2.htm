@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tree Lines - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<!-- 	<script type="text/javascript" src="js/test.js"></script> -->
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+		$('#cc').combobox({
+			data:[{id:'2',text:'2'},{id:'1',text:'1'},{id:'3',text:'3'}],
+		    onChange:function(n,o){
+// 		    	alert(33);
+		    }
+		});  
+	});
+	</script>
+</head>
+<body>
+	<input id="cc"/>
+</body>
+</html>

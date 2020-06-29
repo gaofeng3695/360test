@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css" ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/query.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/updateUserPass.js" ></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/EditPassword.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<input type="hidden" id="menuid" value="100601"/>
+	<div id="contentArea" class="content-area">
+		<form id="editpassword" method="post">
+			<table align="center" class="query-table">
+				<tr>
+					<td width="30%">
+						<span class="paltform-i18n" id="user.oldPassword" >原始密码：</span>
+					</td>
+					<td width="70%">
+						<input type="password" class="easyui-validatebox input_bg" id="oldPwd" name='oldPwd' validType="verifySpace" required="true"  missingMessage="不能为空" />
+					</td>
+				</tr>
+				<tr>
+					<td width="30%">
+						<span class="paltform-i18n" id="user.writeNewPassword" >新密码：</span>
+					</td>
+					<td width="70%">
+						<input  type="password" class="easyui-validatebox input_bg" id="newPwd" name="newPwd" validType="verifySpace" required="true" maxlength="20" />
+					</td>
+				</tr>
+				<tr>
+					<td width="30%">
+						<span  class="paltform-i18n" id="user.writeConfirmPassword" >确认密码：</span>
+					</td>
+					<td width="70%">
+						<input  type='password' class="easyui-validatebox input_bg" id="confirmPassword" validType="verifySpace" required="true" name='confirmPassword' missingMessage="不能为空" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td>
+					<a href="#" id="savebutton" class="easyui-linkbutton save-btn"  onclick="editPassword()">
+						<span key="save" class="paltform-i18n">保存</span>
+					</a>
+					<a href="#" class="easyui-linkbutton cancel-btn"  onclick="closePass()">
+						<span key="cancel" class="paltform-i18n">取消</span>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

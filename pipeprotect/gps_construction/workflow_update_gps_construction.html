@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">		
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../..//jasframework/common/css/webuploader/view_photo.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/webuploader/initialize_webuploader.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/querySpanCommon.css"></link>		
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_images.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_file.js"></script>
+<script type="text/javascript" src="../../jasframework/workflow/js/workflow.js"></script>
+
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/workflow_update_gps_construction.js"></script> 	
+
+<style>
+	.location-image {
+		width: 31px;
+	    height: 31px;
+	    cursor: pointer;
+	    position: relative;
+	    top: 10px;
+	    left: 1px;
+	}
+	
+	.input_bg.lat {
+		width: 100%;
+	}
+</style>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 	上传文件扩展名 -->
+		<input type="hidden" id="exts" name="exts" value="rar,zip,doc,docx,txt,jpg,png,xls,xlsx,pdf" ></input>
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsConstructionForm" class="content-area-main" method="post">
+			<input id="oid" name="oid" type="hidden" value="" />
+			<input type="hidden" id="temporarykeypointoid" name="temporarykeypointoid" value=""></input>
+			<div class="table-content">
+				<h6 class="table-title">基础信息</h6>
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%"><span>部门名称：</span></td>
+						<td width="30%">
+							<select id="unitid" name="unitid"  class="easyui-validatebox select" required = "required" readonly="readonly"></select>
+						</td>
+						<td width="20%"><span>管线名称：</span></td>
+						<td width="30%">
+							<select id="lineloopoid" name="lineloopoid"  class="easyui-validatebox select" ></select>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>项目名称：</span></td>
+						<td width="30%">
+							<input id="projectname" name="projectname" class="easyui-validatebox input_bg" required = "required" validType="" maxlength="100"/>
+						</td>
+						<td width="20%"><span>施工原因：</span></td>
+						<td width="30%">
+						<!--	<select id="constructreason" name="constructreason"  class="easyui-validatebox select" required = "required"></select>-->
+							<input id="constructreason" name="constructreason" class="easyui-validatebox input_bg"  validType="" maxlength="100" required = "required"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>位置经度：</span></td>
+						<td width="30%">
+							<input id="lon" name="lon"  class="easyui-validatebox input_bg" required = "required" validType="lon" maxlength="22" />
+						</td>
+						<td width="20%"><span>位置纬度：</span></td>
+						<td width="30%">
+							<input id="lat" name="lat"  class="easyui-validatebox input_bg lat" required = "required" validType="lat" maxlength="22" />
+							<!--<img id = 'locationXY' class = 'location-image' title="定位" src="../../common/images/locate.png"/>-->
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>施工开始日期：</span></td>
+						<td width="30%">
+							<input id="happenbegindate" name="happenbegindate"  class="easyui-validatebox Wdate input_bg" required = "required" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+						</td>
+						<td width="20%"><span>桩号：</span></td>
+						<td width="30%">
+							<select id="stakenum" name="stakenum"  class="easyui-validatebox select" validType="comboxExists['stakenum']"></select>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>施工地点：</span></td>
+						<td width="30%">
+							<input id="location" name="location" class="easyui-validatebox input_bg"  validType="" maxlength="1000"/>
+						</td>
+						<td width="20%"><span>距离管线长度(m)：</span></td>
+						<td width="30%">
+							<input id="distanceline" name="distanceline" required = "required" class="easyui-validatebox input_bg" oninput="distancelinechange()" validType="doubleNumber" maxlength="22"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>风险等级：</span></td>
+						<td width="30%">
+							<select id="riskrating" name="riskrating" required = "required" readonly="readonly" class="easyui-validatebox select" validType="comboxExists['riskrating']"></select>
+						</td>
+						<td width="20%"><span>工程进展：</span></td>
+						<td width="30%">
+							<select id="progressid" name="progressid"  class="easyui-validatebox select" validType="comboxExists['progressid']"></select>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>建设（施工）单位联系人：</span></td>
+						<td width="30%">
+							<input id="companyContacts" name="companyContacts" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+						<td width="20%"><span>建设（施工）单位联系方式：</span></td>
+						<td width="30%">
+							<input id="companyContactsPhone" name="companyContactsPhone" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>输油站现场负责人：</span></td>
+						<td width="30%">
+							<input id="stationLeading" name="stationLeading" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+						<td width="20%"><span>输油站现场负责人电话：</span></td>
+						<td width="30%">
+							<input id="stationLeadingPhone" name="stationLeadingPhone" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>建设（施工）单位名称：</span></td>
+						<td width="30%">
+							<input id="constructunit" name="constructunit" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+						<td width="20%"><span>现场监护巡线工：</span></td>
+						<td width="30%">
+							<select id="inspectoroid" name="inspectoroid" required = "required" class="easyui-validatebox select" ></select>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="20%"><span>施工业主单位名称：</span></td>
+						<td width="30%">
+							<input id="ownerUnitName" name="ownerUnitName" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+						<td width="20%"><span>施工业主单位联系人：</span></td>
+						<td width="30%">
+							<input id="ownerContacts" name="ownerContacts" required = "required"  class="easyui-validatebox input_bg"></input>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="20%"><span>施工业主单位联系电话：</span></td>
+						<td width="30%">
+							<input id="ownerContactsPhone" name="ownerContactsPhone" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+						</td>
+						<td width="20%"><span>预计结束日期：</span></td>
+						<td width="30%">
+							<input id="estimateEndDate" required = "required" name="estimateEndDate" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" required="true"/>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="20%"><span>现场巡线工电话：</span></td>
+						<td width="30%">
+							<input id="inspectorphone" name="inspectorphone" class="easyui-validatebox input_bg"  validType="mobile" maxlength="45"/>
+						</td>
+						<td width="20%"><span>临时关键点：</span></td>
+						<td width="30%">
+							<input id="temporarykeypointoidname" name="temporarykeypointoidname" class="easyui-validatebox input_bg" onclick="temporarykeypoint()" readonly="readonly" validType="" maxlength="45"/>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="20%"><span>采取措施（100字以内）：</span></td>
+						<td width="80%" colspan="3">
+							<textarea id="measures" name="measures"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[100]"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>工程简要描述（100字以内）：</span></td>
+						<td width="80%" colspan="3">
+							<textarea id="constructdescr" name="constructdescr"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[1000]"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>风险点描述（100字以内）：</span></td>
+						<td width="80%" colspan="3">
+							<textarea id="riskdescr" name="riskdescr"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[1000]"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>备注（100字以内）：</span></td>
+						<td width="80%" colspan="3">
+							<textarea id="descr" name="descr"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[1000]"></textarea>
+						</td>
+					</tr>
+				</table>		
+			</div>
+			<!--<div id="uploadanddownloadDIV" align="right"></div>-->
+			<!-- 存放图片的容器  不带描述-->
+			<div class="table-content">
+				<h6 class="table-title">图片信息</h6>
+				<div id="viewPicContainer"></div>
+			</div> 
+					<!-- 存放附件的容器   带描述-->
+			<div class="table-content">
+				<h6 class="table-title">附件信息</h6>
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%">添加附件：</td>
+						<td width="80%" align="left"  class="add-attachment again-add-btn">
+							<div id="addFile" class="save-btn"></div>
+							<div id="againSaveFileBtn"  class="again-save-btn"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="viewFileContainer"></td>
+					</tr>
+				</table>	
+			</div>
+		</form>
+	</div>
+</body>
+</html>

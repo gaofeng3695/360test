@@ -1,0 +1,64 @@
+#language_index .select_box{
+	width:80px;
+	height:18px;
+}
+#language_index div.tag_select{
+	display:block;
+	color:#868686;
+	width:80px;
+	height:18px;
+	background:transparent url("../image/language_index.gif") no-repeat 0 0;
+	padding:0 10px;
+	line-height:18px;
+}
+#language_index div.tag_select_hover{
+	display:block;
+	color:#868686;
+	width:80px;
+	height:18px;
+	background:transparent url("../image/language_index.gif") no-repeat 0 -18px;
+	padding:0 10px;
+	line-height:18px;
+}
+#language_index div.tag_select_open{
+	display:block;
+	color:#868686;
+	width:80px;
+	height:18px;
+	background:transparent url("../image/language_index.gif") no-repeat 0 -36px;
+	padding:0 10px;
+	line-height:18px;
+}
+
+#language_index ul.tag_options{
+	position:absolute;
+	padding:0;
+	margin:0;
+	list-style:none;
+	background:transparent url("../image/language_index.gif") no-repeat right bottom;
+	width:78px;
+	padding:0 0 5px;
+	margin:0;
+	border: 1px solid  #868686;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+}
+#language_index ul.tag_options li{
+	background:transparent url("../image/language_index.gif") repeat-y -80px 0;
+	display:block;
+	width:58px;
+	padding:0 10px;
+	height:18px;
+	text-decoration:none;
+	line-height:18px;
+	color:#868686;
+}
+
+#language_index ul.tag_options li.open_hover{
+	background:transparent url("../image/language_index.gif") no-repeat -1px -54px;
+	color:#fff;
+}
+#language_index ul.tag_options li.open_selected{
+	background:transparent url("../image/language_index.gif") no-repeat -1px -72px;
+	color:#fff;
+} 

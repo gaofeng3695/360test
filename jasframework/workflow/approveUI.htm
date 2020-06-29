@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>任务办理</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    <link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css" type="text/css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/detail.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../privilege/page/js/person.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/approveUI.js"></script>
+	<style type="text/css">
+        .window{
+       	 	border-top: 1px solid #aaacad;
+        }
+		.window, .window .window-header {
+		    background: #aaacad !important;
+		}
+	</style>
+	
+	
+</head>
+<body class="easyui-layout">
+	<!-- 国际化编号 -->
+	<input type="hidden" id="menuid" value="P-WF-0020"/>
+	<div region="center">
+   		<div class="easyui-tabs" fit="true" border="false" id="tabPanel">
+   			<!-- 业务信息页面 -->
+			<div id='businessInfo' key="workflow.businessInfo" title="业务信息">
+				<iframe width="100%" height="100%" src="" frameborder="0" id="businessInfoFrame" onload="hiddenBusinessPageContent();"></iframe>
+			</div>
+			<!-- 审批记录页面 -->
+			<div id="approveHistory" key="workflow.approveInfo" title="审批记录" >
+				<table id="approveHistoryDataGrid"></table>
+			</div>
+		</div>
+    </div>  
+    
+    <div region="south" style="height: 130px; padding: 1px; overflow:hidden" >
+    	<div style="width:100%;height:100%;margin:0px;">
+    		<!-- 办理输入信息 -->
+			<table class="detail-table" cellpadding="0" cellspacing="0" >
+				<tr id="approveCommont">
+					<th style="width: 12%;">
+						<span key="workflow.approveAuditContent" class="paltform-i18n">审批意见：</span>
+					</th>
+					<td style="width: 88%;" colspan="4">
+						<form id="approveCommentForm">
+							<textarea name="auditContent" id="auditContent" required = "required"  class="easyui-validatebox" validType="maxLength[1000]" rows="4"></textarea>
+						</form>
+					</td>
+				</tr>
+				<!-- <tr id="copyTo">
+					<th>
+						<span key="workflow.copyToUsers" class="paltform-i18n">传阅人：</span>
+					</th>
+					<td colspan="4">
+						<table width="100%">
+							<tr>
+								<td id="copyToUserNames" class="" style="text-align: left; width: 85%;border: 0px">
+								</td>
+								<td style="border: 0px;text-align: right;">
+									<input id="copyToUserIds" type="hidden" name="copyToUserIds" value="">
+									<a href="#" class="easyui-linkbutton" onclick="personchoose.showPersonWindow('copyToUserNames','copyToUserIds');">
+										<span key="workflow.select" class="paltform-i18n">选择</span>
+									</a> 
+									<a href="#" class="easyui-linkbutton" onclick="personchoose.reSetUser('copyToUserNames','copyToUserIds','copyToUserNames','copyToUserIds')">
+										<span key="workflow.clear" class="paltform-i18n">清空</span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr id="copyToRemark">
+					<th>
+						<span key="workflow.carbonRemark" class="paltform-i18n">传阅备注：</span>
+					</th>
+					<td colspan="4">
+						<form id="copyToRemarkForm">
+							<textarea id="remark" name='remark' class="easyui-validatebox"  validType="maxLength[500]"  rows="4"></textarea>
+						</form>
+					</td>
+				</tr> -->
+			</table>
+			<!-- 办理操作按钮 -->
+			<div class="button_area">
+				<table style="width: 100%;height: 100%;">
+				 	<tr>
+						<td align="center" id="approveButtons"></td>
+					</tr>
+			 	</table>
+			</div>
+		</div>
+    </div>  
+    <div id="selectPerson" title="请先选择候选办理人" style="width:400px;height:200px;" class="easyui-window" 
+     data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,closable:false"  >  
+    	<div style="line-height:30px;">
+    		<span style="color: red; vertical-align: bottom; margin-right:5px;">*</span><span>下个节点候选办理人/部门：</span>
+    	</div>
+    	
+	    <table class="detail-table" cellpadding="0" cellspacing="0" >
+	    	<tr>
+				<td id="nextApproveUserNames" class="" style="text-align: left; width: 85%;border: 0px;">
+				</td>
+				<td style="border: 0px;text-align: right;">
+					<input id="nextApproveUserIds" type="hidden" name="nextApproveUserIds" value="" />
+					<a href="#" class="easyui-linkbutton" onclick="selectUserPage();">
+						<span key="workflow.select" class="paltform-i18n">选择</span>
+					</a> 
+					<a href="#" class="easyui-linkbutton" onclick="personchoose.reSetUser('nextApproveUserNames','nextApproveUserIds','nextApproveUserNames','nextApproveUserIds')">
+						<span key="workflow.clear" class="paltform-i18n">清空</span>
+					</a>
+				</td>
+			</tr>
+	    </table>
+	    <div style="align:center;width:90%;text-align:center;position: absolute;bottom: 10px;">
+			<a href="#" id="readBtn" class="easyui-linkbutton save-btn" onclick="confirmUser()">确认</a>
+			<a href="#" class="easyui-linkbutton cancel" onclick="$('#selectPerson').dialog('close')">取消</a>
+		</div>
+	</div> 
+</body>
+</html>

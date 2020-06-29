@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>系统日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css" ></link>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/myStatisticalchart.js"></script>
+</head>
+<body>
+	<input type="hidden" name="eventid" />
+	<!-- 查询面板开始 -->
+	<!-- <div class="easyui-panel" id="searchpanel" title="图表查询" collapsed="true" collapsible="true"> -->
+	<div class="query-conditions" id="searchpanel">
+		<table align="center" class="query-table" id="queryDiv">
+			<tr>
+				<td width="15%"><span key="" class="paltform-i18n">统计图名称：</span></td>
+				<td width="35%"><input id="chartname" name="chartname" class="easyui-validatebox input_bg" maxlength="25"></td>
+				<td width="15%"><span key="" class="paltform-i18n">统计图类型：</span></td>
+			    <td width="35%"><input id="charttype" name="charttype" class="easyui-combobox input_bg"/></td>
+			</tr>
+			<tr>
+				<td width="15%"><span key="" class="paltform-i18n">业务表名：</span></td>
+				<td width="35%"><input id="businesstablename" name="businesstablename" class="easyui-combobox input_bg"/></td>
+			</tr>
+			<tr>
+				<td colspan="4" class="button_area"> 
+					<a href="#" class="easyui-linkbutton submit" onclick="chartQuery()"><span key="syslog.query" class="paltform-i18n">查询</span></a>
+					<a href="#" class="easyui-linkbutton cancel" onclick="chartClearAll()"><span key="syslog.clear" class="paltform-i18n">清空</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- 查询面板结束 -->
+<!-- 	运行日志列表 -->
+	<!-- <table id="chartTable" title="图表列表" class="easyui-datagrid" url="../../statisticalchart/querychartByuserId.do" rownumbers="true" pagination="true" nowrap="true" toolbar="#tb">
+		<thead>
+			<tr>
+				<th field="ck" checkbox="true" />
+	            <th field="businesstablename" width="300"><span key="" class="paltform-i18n">业务表名</span></th>
+	            <th field="methodname" width="150"><span key="syslog.methodname" class="paltform-i18n">方法名</span></th>
+	            <th field="chartname" width="150"><span key="" class="paltform-i18n">统计图名</span></th>
+	            <th field="charttype" width="300"><span key="" class="paltform-i18n">统计图类型</span></th>
+	    	</tr>
+	    </thead>
+	</table> -->
+	<table id="chartTable" class="easyui-datagrid" ></table>
+	
+	<div id="tb">  
+	    <a href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="viewChart()"><span key="syslog.select" class="paltform-i18n">查看</span></a>  
+		<a href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="addChart()"><span key="add" class="paltform-i18n">新增</span></a>
+		<a href="#" class="easyui-linkbutton fa fa-edit"  plain="true" onclick="updateChart()"><span key="edit" class="paltform-i18n">修改</span></a>
+		<a href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="removeChart()"><span key="delete" class="paltform-i18n">删除</span></a>
+<!-- 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="addMyChart()"><span key="delete" class="paltform-i18n">收藏为我的图表</span></a> -->
+	</div>  
+</body>
+</html>

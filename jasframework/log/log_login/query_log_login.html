@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>登录日志信息</title>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" href="../../common/css/common.css" type="text/css"></link>
+	 
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css"></link>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-en.js"></script>
+	<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="js/query_log_login.js"></script>
+	<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+	<!-- zh_CN -->
+</head>
+<body class="detail-info">
+<input type="hidden"  id="menuid" value="101301"></input>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>用户姓名：</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="userName" name="userName"/></td>
+					<td width="10%" class="text-right"><span>登录名：</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="loginName" name="loginName"/></td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryLog()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,'logLoginDatagrid')"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../common/image/triangle.png" /></td></tr>
+				 <tr>
+					 <td width="11%" class="text-right"><span>登录时间：</span></td>
+					 <td width ="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id=loginDateBegin name="loginDateBegin" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'loginDateEnd\')}',dateFmt:'yyyy-MM-dd HH:mm'})" class="Wdate input_bg"/></td>
+								<td width="10%">到：</td>
+								<td width="45%" style="padding-right:0em"><input id="loginDateEnd" name="loginDateEnd" onclick="WdatePicker({minDate:'#F{$dp.$D(\'loginDateBegin\')}',dateFmt:'yyyy-MM-dd HH:mm'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					 </td>
+					 <td></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+<!-- 登录日志网格列表 -->
+	<table id="logLoginDatagrid" key="loginlog.list" class="easyui-datagrid"></table>
+</body>
+</html>

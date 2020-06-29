@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="-1">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+  
+<link rel="stylesheet" type="text/css" href="../common/css/detail.css"/>
+
+<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../common/js/common.js"></script>
+ <script type="text/javascript" src="js/viewWebServiceLog.js"></script>
+</head>
+<body>
+<div id="contentArea"  class="content-area">
+	<table class="detail-table" >
+		<tr>
+			<th><span key="" class="paltform-i18n">服务模块：</span></th>
+			<td><span id="serviceModule"></span></td>
+			<th><span key="" class="paltform-i18n">服务名称：</span></th>
+			<td><span id="serviceName"></span></td>
+		</tr>
+		<tr>
+		    <th><span key="" class="paltform-i18n">服务描述：</span></th>
+		    <td colspan="3"><span id="serviceDesc"></span></td>
+		</tr>
+		<tr>
+			<th><span key="" class="paltform-i18n">操作人：</span></th>
+			<td><span id="userName"></span></td>
+			<th><span key="" class="paltform-i18n">操作时间：</span></th>
+			<td><span id="operateTime"></span></td>
+		</tr>
+			<tr>
+		    <th><span key="" class="paltform-i18n">系统名称：</span></th>
+		    <td colspan="3"><span id="systemName"></span></td>
+		</tr>
+		<tr>
+		    <th><span key="" class="paltform-i18n">详细记录：</span></th>
+		    <td colspan="3"><span id="detailInfo"></span></td>
+		</tr>
+	</table>
+	<div class="button-area">
+		<table style="width:100%;">
+			<tr>
+				<td align="center">
+					<a href="#" class="easyui-linkbutton cancel" onclick="closeLog();">
+							<span key="" class="paltform-i18n">关闭</span>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+	</body>
+</html>

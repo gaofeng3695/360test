@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<configuration>
+    	<fields>URL</fields>
+        <titlefield>Name</titlefield>
+        <linkfield>URL</linkfield>    
+        <datefields></datefields> <!-- field in milliseconds -->
+        <fieldtextvisible>false</fieldtextvisible>
+        <buttonzoomvisible>false</buttonzoomvisible>
+        <zoomscale>10000</zoomscale>
+        <iframewidth>700</iframewidth>
+        <iframeheight>550</iframeheight>    
+        <!-- <noimageurl>http://netsci.asu.edu/drupal/sites/default/files/images/noImageAvailable.jpg<noimageurl> -->
+    	<noimageurl>http://i631.photobucket.com/albums/uu38/nooky_bucket/lol_cat-12926.jpg</noimageurl>
+</configuration>

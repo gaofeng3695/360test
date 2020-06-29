@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<configuration>
+    <fields>URL</fields>
+    <titlefield>LOCATION</titlefield>
+    <linkfield>URL</linkfield>    
+    <datefields></datefields> <!-- field in milliseconds -->
+    <fieldtextvisible>false</fieldtextvisible>
+    <buttonzoomvisible>false</buttonzoomvisible>
+    <zoomscale>5000</zoomscale>
+    <iframewidth>364</iframewidth>
+    <iframeheight>296</iframeheight>
+    <noimageurl>http://netsci.asu.edu/drupal/sites/default/files/images/noImageAvailable.jpg</noimageurl>    
+</configuration>

@@ -1,0 +1,186 @@
+.level-cons {
+    margin-bottom: 0px;
+    border-bottom: 0px #dbdbdb dotted;
+    height: 50px;
+}
+.level-cons .level-cons-left {
+    border: 1px #b3b3b3 dotted;
+    width: 58%;
+    height: 97%;
+    float:left;
+    margin-left: 2px;
+}
+
+.level-cons .level-cons-right {
+	height: 97%;
+	border: 1px #b3b3b3 dotted;
+    margin-right: 5px ;
+    width:35%;
+    float:right;
+}
+
+.level-cons .level-cons-right  .cons-img{
+    height: 25px;
+    width:20%;
+    float:left;
+    margin-top:10px;
+}
+
+.level-cons .level-cons-right .cons-count{
+	width:78%;
+   float:right;
+   margin-top:12px;
+   cursor: pointer;
+}
+
+
+.level-cons-left .level-cons-top{
+    height: 50%;
+    width: 97%;
+    margin: 1px 2px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.level-cons-left .level-cons-top .cons-img{
+	height:25px;
+    width:15%;
+    float :left;
+    margin: -1px 1px;
+}
+
+.level-cons-left .level-cons-top .cons-count{
+    width:84%;
+    float :right;
+    cursor: pointer;
+    line-height:20px;
+}
+
+.level-cons-left .level-cons-top .cons-count .heading{
+	display:inline-block;
+	width:76%;
+    float :left;
+    margin:0px 0px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.level-cons-left .level-cons-top .cons-count .count{
+	width:19%;
+    float :left;
+    margin:0px 0px;
+    cursor: pointer;
+}
+
+.level-cons-left .level-cons-under{
+    height: 16px;
+    width: 97%;
+}
+
+.level-cons-left .level-cons-under .cons-rby{
+	padding-left: 6px;
+	box-sizing:border-box;
+	margin-top: 3px;
+	width:33%;
+	float:left;
+	height:95%;
+}
+
+.level-cons-left .level-cons-under .cons-rby .img{
+	width:33%;
+	float:left;
+	margin:1px 1px;
+}
+
+.level-cons-left .level-cons-under .cons-rby .rbycount{
+	width:60%;
+	float:right;
+	margin:-1px 1px 1px 1px;
+	cursor: pointer;
+	text-align:center;
+}
+.level-item .cons-rby .rbycount{
+	cursor: pointer;
+}
+.level-protectright .level-protectright heading .group-top{
+	position: relative;
+	width:100%;
+}
+
+.all-company{
+	width:100%;
+}
+.level-cons-top{
+	    display: flex;
+    	flex-direction: row;
+        margin: 0px 5px;
+    	height: 50%;
+}
+.all-company .conscount-detail {
+	width:100%;
+    position: relative;
+    top: 22px;
+    right: 2px;
+}
+.all-company .level-protect.count-detail-img {
+    position: relative;
+    top: 25px;
+    left:20px;
+}
+.level-protectleft {
+    position: relative;
+    width:35%;
+}
+.level-protectright {
+    position: relative;
+    width:65%;
+}
+.level-protectright .level-protectright heading{
+    position: relative;
+    width:100%;
+}
+.group-top-left {
+	float:left;
+}
+.level-item-conslist {
+	width: 98%;
+    margin: 3px 3px;
+}
+.level-item-conslist-row{
+	width:100%;
+	float:left;
+	line-height: 20px;
+    font-size: 17px;
+}
+.level-item-conslist .conslist-left{
+	display:inline-block;
+	position: relative;
+	float: left;
+	width:30%;
+	text-align: center;
+	/* text-align:right; */
+}
+.level-item-conslist .conslist-right{
+	display:inline-block;
+	position: relative;
+	float: right;
+	width: 65%;
+    margin: 0px 10px 0px 0px;
+}
+
+.level-left.form-cons {
+    top: 14px;
+    margin-bottom: 8px;
+}
+.level-left.form-cons input {
+    width: 100px;
+    height: 30px;
+    box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px ;
+    font-size: 11px;
+    margin-left: 5px;
+}
+.level-left.form-cons .button {
+    width: 49px;
+    height: 30px;
+    font-size: 11px;
+    margin-left: 10px;
+}

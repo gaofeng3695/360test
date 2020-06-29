@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	
+	<link rel="stylesheet" href="../common/css/font-awesome.css" type="text/css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css">
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="js/configurationHelp.js"></script>
+	<title></title>
+</head>
+
+<body>  
+	<!-- 查询面板 -->
+	<!-- <div class="easyui-panel" id="queryDiv" title="配置信息查询" collapsed="true" collapsible="true"> -->
+	 <div id="queryDiv" class="query-conditions">
+		<form method="post" id="queryform">
+			<table class="query-table" align="center" >
+				<tr>
+				<td width="20%"><span key="functionNum" class="paltform-i18n">功能编号：</span></td>
+				<td width="30%"><input id="functionNumber" name="functionNumber" class="input_bg"/></td>
+				<td align="right" colspan="2">
+					<a href="#" id='queryButton' class="easyui-linkbutton submit" onclick="queryConfig()"><span key="query" class="paltform-i18n">查询</span></a>
+					<a href="#" id='clearButton' class="easyui-linkbutton cancel" onclick="clearQueryForm('queryform',true,true,true,true)"><span  key="clean" class="paltform-i18n">清空</span></a>
+				</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!--数据列表 -->
+	<table id="configurationTable">
+	</table>
+	
+	<div id="toolbars">
+		<a href="#" id="createTableInfo" class="easyui-linkbutton fa fa-eye"  plain="true" onclick="createTableInfo()"><span key="view" >创建表</span></a>
+		<a href="#" id="addSysTableInfo" class="easyui-linkbutton fa fa-plus" plain="true" onclick="addSysTableInfo()"><span key="add" >新增</span></a>
+		<a href="#" id="10120302" class="easyui-linkbutton fa fa-edit" plain="true" onclick="editTableInfo()"><span key="edit" >修改</span></a>
+		<a href="#" id="10120303" class="easyui-linkbutton fa fa-minus" plain="true" onclick="removeTableInfo()"><span key="delete" >删除</span></a>
+		<a href="#" id="10120304" class="easyui-linkbutton fa fa-venus-double" plain="true" onclick="fieldMatch()"><span  >字段信息配置</span></a>
+		<a href="#" id="10120305" class="easyui-linkbutton fa fa-download" plain="true" onclick="downloadModel()"><span >下载模板</span></a>
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>已办工作</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	
+	<link rel="stylesheet" href="../common/css/common.css" type="text/css"></link>
+	 
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css"></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/trackingtask.js"></script>
+</head>
+<body style="overflow:auto" class="easyui-layout">
+	<!-- 国际化编号 -->
+	<input type="hidden" id="menuid" value="101110"/>
+	 <div region="west" split="true" title="系统列表" style="width:260px;">
+      	 <ul id="systemList" class="easyui-tree"></ul>
+      </div>
+      <div region="center" title="" style="padding:5px;background:#eee;" id="taskInfo">
+      		<!-- datagrid查询列表 -->
+		<table id="tracklingTaskList" ></table>
+      </div>  	
+</body>
+</html>

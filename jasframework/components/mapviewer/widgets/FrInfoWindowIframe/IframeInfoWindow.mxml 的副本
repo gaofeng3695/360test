@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+//
+// IframeInfoWindow - Version 2.4
+//
+//
+// 
+// 
+// 
+// 
+// Created by Frank Roberts
+////////////////////////////////////////////////////////////////////////////////
+-->
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:viewer="com.esri.viewer.*"
+				   xmlns:flexiframe="http://code.google.com/p/flex-iframe/"
+				   creationComplete="init()"
+				   implements="com.esri.viewer.IInfowindowTemplate">
+	<fx:Script>
+		<![CDATA[
+			import com.esri.ags.geometry.MapPoint;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var contentList:ArrayCollection;
+			private var fields:Array;
+			private var datefields:Array;
+			// added by fr
+			[Bindable]
+			public var linkFieldValue:String = "http://www.google.com";
+			[Bindable]
+			private var iframewidth:Number;
+			[Bindable]
+			private var iframeheight:Number;
+			private var linkField:String;
+			private var titleField:String;
+			[Bindable]
+			public var fieldtextvisible:String;
+			public var zoombuttonvisible:String;
+			private var zoomScale:Number = 10000;
+			private var noimageurl:String;
+			
+			private function init():void
+			{
+				this.addEventListener(FlexEvent.DATA_CHANGE, setInfoParameters);
+				map.infoWindow.addEventListener(CloseEvent.CLOSE, closeButtonClicked);
+				map.infoWindow.addEventListener(Event.OPEN,open_handler);
+				//infoClass = SimpleInfoWinWidget;
+				infoClass = IframeInfoWindow;
+				setInfoParameters(null);
+				slowLoadingIFrameWithLoadIndicator.visible = true;				
+			}
+			
+			private function open_handler(event:Event):void
+			{
+				slowLoadingIFrameWithLoadIndicator.visible = true;
+			}
+			
+			private function setInfoParameters(event:FlexEvent):void
+			{
+				slowLoadingIFrameWithLoadIndicator.visible = true;
+			}
+			//Changed by fr
+			//private var _infoClass:Class = SimpleInfoWinWidget;
+			private var _infoClass:Class = IframeInfoWindow;
+			
+			public function set infoClass(value:Class):void
+			{
+				_infoClass = value;
+			}
+			
+			public function get infoClass():Class
+			{
+				return _infoClass;
+			}
+			
+			public function set infoConfig(value:XML):void
+			{
+				configXML = value;
+			}
+			
+			private function closeButtonClicked(closeEvent:Event):void { 
+				slowLoadingIFrameWithLoadIndicator.visible = false;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:VGroup id="infoCanvas"
+			  horizontalAlign="center"
+			  minHeight="90"
+			  paddingTop="1"
+			  >		
+		<flexiframe:IFrame id="slowLoadingIFrameWithLoadIndicator"										   
+						   source="http://www.google.cn"
+						   loadIndicatorClass="widgets.FrInfoWindowIframe.SampleLoadIndicator"
+						   backgroundColor="#cccccc"
+						   width="100"
+						   height="100" visible="false"/>		
+	</s:VGroup>	
+</viewer:BaseWidget>
+
+

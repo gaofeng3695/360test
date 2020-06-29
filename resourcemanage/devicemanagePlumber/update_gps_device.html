@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">	
+<!-- 文件上传插件css -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/webuploader/initialize_webuploader.css">		
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_photo.css"></link>
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_images.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_file.js"></script>
+
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/update_gps_device.js"></script> 	
+
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsDeviceForm" class="content-area-main" method="post">
+		<!-- 	上传文件扩展名 -->
+		<input type="hidden" id="exts" name="exts" value="rar,zip,doc,docx,txt,jpg,png,xls,xlsx,pdf" ></input>
+			<input id="oid" name="oid" type="hidden" value="" />
+			<input id="approvalStatus" name="approvalStatus" type="hidden" value="" />
+			<div class="table-content">
+			<h6 class="table-title">基础数据</h6>
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>部门名称：</span></td>
+					<td width="30%">
+						<input required = "required" id="unitid" name="unitid" class="easyui-validatebox input_bg"  validType="" maxlength="45"/>
+					</td>
+					<td width="20%"><span>设备状态：</span></td>
+					<td width="30%">
+						<input readonly="readonly" required = "required" id="status" name="status" class="easyui-validatebox input_bg"  validType="" maxlength="2"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>设备的分配情况：</span></td>
+					<td width="30%">
+						<input readonly="readonly" required = "required" id="condition" name="condition" class="easyui-validatebox input_bg"  validType="" maxlength="2"/>
+					</td>
+					<td width="20%"><span>设备名称：</span></td>
+					<td width="30%">
+						<input required = "required" id="devname" name="devname" class="easyui-validatebox input_bg"  validType="" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>设备编号：</span></td>
+					<td width="30%">
+						<input id="devcode" name="devcode" class="easyui-validatebox input_bg"  validType="" maxlength="40"/>
+					</td>
+					<td width="20%"><span>设备类型：</span></td>
+					<td width="30%">
+						<input required = "required" id="devtype" name="devtype" class="easyui-validatebox input_bg"  validType="" maxlength="2"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>SIM卡号：</span></td>
+					<td width="30%">
+						<input required = "required" id="sim" name="sim" class="easyui-validatebox input_bg"  validType="" maxlength="20"/>
+					</td>
+					<td width="20%"><span>投产日期：</span></td>
+					<td width="30%">
+						<input id="releasedate" name="releasedate" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>保修终止日期：</span></td>
+					<td width="30%">
+						<input id="ewarrantydate" name="ewarrantydate" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+					</td>
+					<td width="20%"><span>生产厂家：</span></td>
+					<td width="30%">
+						<input id="manufacturer" name="manufacturer" class="easyui-validatebox input_bg"  validType="" maxlength="100"/>
+					</td>
+				</tr>
+			</table>	
+			</div>
+			<div class="table-content">
+				<!-- <h6 class="table-title">其他数据</h6> -->
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%"><span>描述：</span></td>
+						<td width="80%"><textarea id="description" name="description"
+								style="height: 100px" class="easyui-validatebox input_bg"
+								validType="maxLength[500]"></textarea></td>
+					</tr>
+				</table>
+			</div>			
+			<!-- 存放图片的容器  不带描述-->
+			<div class="table-content">
+				<h6 class="table-title">图片信息</h6>
+				<div id="viewPicContainer"></div>
+			</div> 
+					<!-- 存放附件的容器   带描述-->
+			<div class="table-content">
+				<h6 class="table-title">附件信息</h6>
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%">添加附件：</td>
+						<td width="80%" align="left"  class="add-attachment again-add-btn">
+							<div id="addFile" class="save-btn"></div>
+							<div id="againSaveFileBtn"  class="again-save-btn"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="viewFileContainer"></td>
+					</tr>
+				</table>	
+			</div>				
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsDevice()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

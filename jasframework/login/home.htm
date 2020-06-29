@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>西南管道公司巡检管理系统</title>
+ 
+    <link rel="stylesheet" type="text/css" href="../common/css/jasframework-layout.css" />
+    <link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+
+	  <link rel="icon" href="../../common/images/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="../common/css/font-awesome.css"  type="text/css"/>
+    <link rel="stylesheet" href="../common/css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../common/css/main.css" type="text/css"/>
+
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-latest.js"></script> 
+ 	<script type="text/javascript" src="js/jquery.layout-latest.min.js"></script>
+  	<script type="text/javascript" src="js/jasframework.layout.js"></script> 
+	<script type="text/javascript" src="js/jasframework.functionMenu.js"></script>
+	<script type="text/javascript" src="js/jasframework.tab.js"></script>
+	<script type="text/javascript" src="js/jasframework.topButton.js"></script>
+	<script type="text/javascript" src="../common/js/AppMethod.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	
+	<script type="text/javascript" src="js/home.js"></script> 
+	<script type="text/javascript" src="js/xnhome.js"></script>
+
+	  <script type="text/javascript">
+          /* 判断用户是否是pis，如果是pis，就不能修改密码。 */
+          $.get(rootPath+"jasframework/privilege/syncDeptUser/getUserByName.do?name="+JSON.parse(localStorage.getItem("user")).loginName+"&&token="+localStorage.getItem("token"),function(data) {
+              if(data.isPis == '1') {
+                  $('#modifyPsd').css("display","none");
+			  }
+          })
+	  </script>
+	  <style>
+
+		  /* 大屏 */
+		  .icon-declare {
+			  background: transparent url("image/screen.png") no-repeat scroll center center;
+			  margin-bottom: 3px;
+			  margin-right: 3px;
+		  }
+
+		  /* App下载 */
+		  .icon-app {
+			  background: transparent url("image/app-download.png") no-repeat scroll center center;
+		  }
+
+		  /* 消息 */
+		  .icon-message {
+			  background: transparent url("image/message.png") no-repeat scroll center center;
+		  }
+
+		  #top .person-toolbar .easyui-menubutton {
+			  min-width: 100px;
+		  }
+	  </style>
+ </head>  
+
+<body oncontextmenu="return false">
+	<input type="hidden" id="menuid" value="home"/>
+	
+<!-- top区 -->
+  	<div id="outerNorth" class="ui-layout-north" style="height:60px;">
+    	<div id="top">
+			<div class="logo">
+				 <img src="image/logo/logo5.png" />
+<!--                  <img src="image/logo/logo6.png" /> -->
+			</div>
+			<div class="top-toolbar">
+			    <!--  系统提示信息 方式1  无缝循环展示-->
+			    <div id="hintInfo" class="hint-info-container system-info" onclick="showWeatherInfo()">
+				  <div class="hint-info">
+				    <div id="hintInfo1" class="info-tip"></div>
+				    <div id="hintInfo2" class="info-tip"></div>
+				  </div>
+				</div>
+		
+				<!-- 管理工具 -->
+				<!-- <ul class="manage-toolbar">
+					<li>
+						<a href="#" onclick="changeToHome()">
+							<span class="menu_icon fa fa-home"></span>
+							<span>主页</span>
+						</a>
+						<i class="border-line"></i>	
+					</li>
+					<li>
+						<a href="#" onclick="changeToWork()">
+							<span class="menu_icon fa fa-pencil"></span>
+							<span>工作桌面</span>
+						</a>
+						<i class="border-line"></i>	
+					</li>
+				</ul>
+				 -->
+				
+				<!-- 个人操作 -->
+				<ul class="person-toolbar">
+					<li>	
+						<a href="#" class="easyui-menubutton"  data-options="menu:'#selfInfo'">
+							<span class="menu_icon" id="userPhoto" ></span>
+							<span id="userName"></span>
+						</a>
+						<i class="border-line"></i>	
+					</li>	
+					<li>
+						<a href="#" onclick="showmap2d()">
+							<span class="menu_icon fa fa-map-marker"></span>
+							<span>地图</span>
+						</a>
+						<i class="border-line"></i>	
+					</li>
+
+					<li id = "message">
+						<a href="#" onclick="showMessages()">
+							<span class="menu_icon fa icon-message"></span>
+							<span>消息</span>
+						</a>
+						<i class="border-line"></i>
+					</li>
+					<!--<li>
+						<a href="#">
+							<span class="menu_icon fa fa-bell-o"></span>
+							<span>App下载</span>
+						</a>
+						<img id = "output" src="image/1558843268.png" alt="App下载"/>
+						<i class="border-line"></i>
+
+					</li>-->
+
+					<li>
+						<a href="#" onclick="throwingScreen()">
+							<span class="menu_icon fa icon-declare"></span>
+							<span>投屏</span>
+						</a>
+						<i class="border-line"></i>
+					</li>
+
+					<li>
+						<a href="#" class="easyui-menubutton"  data-options="menu:'#code'">
+							<span class="menu_icon icon-app" data-options="iconCls:'fa icon-logout'" ></span>
+							<span>App下载</span>
+						</a>
+						<i class="border-line"></i>
+					</li>
+
+					<li>
+						<a href="#" class="easyui-menubutton"  data-options="menu:'#help'">
+							<span class="menu_icon fa fa-question-circle-o" data-options="iconCls:'fa icon-logout'" ></span>
+							<span>帮助</span>
+						</a>
+						<i class="border-line"></i>
+					</li>
+
+					<!--<li>
+						<a href="#" onclick="downloadFile(1);">
+							<span class="menu_icon fa fa-question-circle-o" ></span>
+							<span>帮助</span>
+
+						</a>
+						<i class="border-line"></i>	
+					</li>-->
+					<li>
+						<a href="#"  onclick="login_out()">
+							<span class="menu_icon fa fa-sign-out"></span>
+							<span>退出</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+    </div>
+    
+<!-- 菜单区 -->
+	<!-- <div id="left" class="ui-layout-west" onresize="leftResize()" onmousemove="dragAble(event)"></div> -->
+	<div id="left" class="ui-layout-west" onresize="leftResize()"></div>
+	<style>
+		#left {
+		z-index: 2 !important;
+		}
+	</style>
+<div style="height:50px;width:4px;margin-top:-10px;background: #1066b5;position: absolute;top:50%;left:0;z-index:1;cursor: pointer;"
+onclick="$('.ui-layout-toggler.ui-layout-toggler-west')[0].click()" title="展开菜单"></div>
+<!-- 功能区 -->
+  	<div id="outerCenter" class="ui-layout-center">  
+  	    <!-- map地图区域 -->
+	  	<div id="innerNorth" class="ui-layout-north">
+	  		<div id="innerNorthCenter" class="ui-layout-center"> 
+	  			<div id="innerNorthCenterTab" class="tab_map" onresize="resizeDiv(this)">
+					<ul id="innerNorthCenterTabtag"></ul>
+					<dl id="innerNorthCenterContentArea" class="contentArea content"  style="z-index: 2;overflow: hidden;"></dl>
+				</div>
+				<div class="map_btn"><span class="max-map" id="maxMap"></span> | <span class="close-map" id="closeMap"></span></div>	
+	  		</div>
+	  		<!-- <div id="innerNorthEast" class="ui-layout-east"> 
+		  		<div id="innerNorthEastTab" class="tab_map" onresize="resizeDiv(this)">
+					<ul id="innerNorthEastTabtag"></ul>
+					<dl id="innerNorthEastContentArea" class="contentArea"  style="z-index: 2;overflow: hidden;"></dl>
+				</div>
+	  		</div> -->
+		</div>	
+		<!-- 业务功能区 -->
+	  	<div id="innerCenter" class="ui-layout-center"> 
+		<!-- 业务功能区 -->
+			<div id="centerTab" class="tab" onresize="resizeDiv(this)">	
+				<ul id="centerTabtag"></ul>
+				<dl id="centerContentArea" class="center-content-area"  style="z-index: 2;padding: 5px;overflow: hidden;">
+				
+				</dl>
+			</div>
+	  	</div>
+	  	<div id="innerEast" class="ui-layout-east" style="overflow: hidden;"></div>	
+	</div>
+	
+<!-- bottom区 -->
+  	<div id="outerSouth" class="ui-layout-south" style="height:30px;">
+  		<div class="bottom"><p>Copyright <span class="fa fa-copyright"></span> 中国石油天然气股份有限公司西南管道分公司</p></div>
+  	</div> 
+  	
+<!-- tab页签右键菜单 -->
+	<div id="tabsMenu" class="easyui-menu" style="width:150px;">
+	    <div id="m-closeall">全部关闭</div>
+	    <div class="menu-sep"></div>
+	    <div id="m-closeother">除此之外全部关闭</div>
+	    <div class="menu-sep"></div>
+	    <div id="m-close">关闭当前</div>
+	</div>
+	
+<!-- 个人资料菜单 -->
+	<div id="selfInfo" class="easyui-menu" >
+        <div onclick="showInformation()">个人资料</div>
+        <div id="modifyPsd" onclick="updatePassward()">修改密码</div>
+        <!-- <div class="menu-sep"></div>
+          <div>
+             <span>主题设置</span>
+             <div style="width:150px;"> 
+                 <div><b>默认</b></div>
+                 <div>浅蓝</div>
+                 <div>灰色</div>
+             </div>
+         </div> -->
+     </div>
+
+	<div id="code" class="easyui-menu" >
+		<!--<div id="Layer1" style="display:none;position:absolute;z-index:1;"></div>
+		<a target = "_blank" href="image/1558843268.png" onmouseout="hiddenPic('Layer1');" onmousemove="showPic('Layer1',this.href,300,300,event);">鼠标过来,我在这里</a>
+		-->
+		<div id = "extranet" onclick="showExtranet()" >管道工下载</div>
+		<div id = "intranet" onclick="showIntranet()" >巡线工下载</div>
+		<!--<div id = "appDownload"  onclick="appDownload()" >下载</div>-->
+	</div>
+
+	<div id="help" class="easyui-menu" >
+		<div id = "userHelp" onclick="downloadFile(1)" >巡检系统用户使用手册V1.1</div>
+		<div id = "trainHelp" onclick="downloadFile(2)" >巡线工APP端系统培训文档</div>
+		<div id = "managerHelp" onclick="downloadFile(3)" >管道工APP端系统培训文档</div>
+		<div id = "PCHelp" onclick="downloadFile(4)" >PC端系统培训文档</div>
+	</div>
+<!-- 左侧拖动按钮 -->   
+    <div id="dragBtn"></div>
+
+<a id = "appDownloadFile" style="display: none;" href="#"></a>
+  </body>
+</html>

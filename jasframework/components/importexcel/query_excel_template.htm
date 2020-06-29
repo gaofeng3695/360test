@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="../../common/css/font-awesome.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../../common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/query.css"></link>
+
+</head>
+<body>
+    <!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+    <input type="hidden" id="menuid" value=""/>
+    <!--    查询区域 -->
+    <div class="query-conditions" id="queryDiv">
+        <form method="post" id="queryForm">
+            <!-- 简单查询区域 -->
+            <table class="query-table" align="center">
+                <tr>
+                    <td width="10%" class="text-right"><span>模板名称：</span></td>
+                    <td width="15%"><input class="easyui-validatebox input_bg" id="excelTemplateName" name="excelTemplateName" type="text"/></td>
+                    <td width="10%" class="text-right"><span>模板编号</span></td>
+                    <td width="15%"><input class="easyui-validatebox input_bg" id="excelTemplateCode" name="excelTemplateCode" type="text"/></td>
+                    <td align="right" colspan="2">
+                        <a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','queryDatagrid')"><span>查询</span></a>
+                        <a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true)"><span>清空</span></a>
+                    </td>
+                 </tr>
+            </table>
+        </form>
+    </div>
+    <!-- datagrid列表  -->
+    <table id="queryDatagrid" class="easyui-datagrid"></table>
+    <div id="toolbar">
+        <a id="" href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="add()"><label><span>新增</span></label></a>
+        <a id="" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="view()"><label><span>查看</span></label></a>
+        <a id="" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="update()"><label><span>修改</span></label></a>
+        <a id="" href="#" class="easyui-linkbutton fa fa-upload" plain="true" onclick="importExcel()"><label><span>业务数据导入</span></label></a>
+    </div>
+    <iframe id="downloadExcelIframe" style="display: none;" hidden></iframe>
+</body>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/query_excel_template.js"></script>
+</html>

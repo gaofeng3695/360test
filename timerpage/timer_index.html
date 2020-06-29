@@ -1,0 +1,243 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<!--<link rel="stylesheet"  type="text/css" href="../jasframework/common/css/bulma.min.css"></link>-->
+	<link rel="stylesheet" href="../common/css/bulma.min.css">
+	<link rel="stylesheet" href="css/index.css">
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/timer_index.js"></script>
+	<style>
+
+		h1 {
+			border-bottom: solid 1px #58585858;
+			padding-bottom: 8px;
+			margin-top: 19px;
+		}
+
+		.subtitle {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="content">
+	<H1>基础数据同步（每天零点十分定时执行）</H1>
+	<!-- PIS数据同步 -->
+	<div class="tile is-ancestor">
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">系统集成号</p>
+				<div class="content">
+					<p>系统集成号每三个月过期一次</p>
+				</div>
+				<a class="button is-primary" onclick="syncSafetySN()">执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">巡检部门</p>
+				<div class="content">
+					<p>同步所有巡检部门</p>
+				</div>
+				<a class="button is-primary" onclick="syncDept()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">用户数据</p>
+				<div class="content">
+					<p>同步所有用户数据</p>
+				</div>
+				<a class="button is-primary" onclick="syncUser()" >执行</a>
+			</article>
+		</div>
+	</div>
+
+	<div class="tile is-ancestor">
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">管线数据</p>
+				<div class="content">
+					<p>同步所有管线数据</p>
+				</div>
+				<a class="button is-primary" onclick="syncPineLoop()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">桩数据</p>
+				<div class="content">
+					<p>同步所有桩数据</p>
+				</div>
+				<a class="button is-primary" onclick="syncMarker()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">巡检计划</p>
+				<div class="content">
+					<p>同步所有巡检计划</p>
+				</div>
+				<a class="button is-primary" onclick="syncPlanInfo()" >执行</a>
+			</article>
+		</div>
+	</div>
+
+	<div class="tile is-ancestor">
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">不巡检范围</p>
+				<div class="content">
+					<p>同步所有不巡检范围</p>
+				</div>
+				<a class="button is-primary" onclick="syncUnSubIns()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">巡检范围</p>
+				<div class="content">
+					<p>同步所有巡检范围</p>
+				</div>
+				<a class="button is-primary" onclick="syncSubIns()" >执行</a>
+			</article>
+		</div>
+	</div>
+
+	<H1>业务数据同步</H1>
+	<!-- 业务功能定时器 -->
+	<div class="tile is-ancestor">
+		<!--<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">删除管道工巡检区段</p>
+				<div class="content">
+					<p>业主要求：每周一定时删除管道工区段</p>
+				</div>
+				<a class="button is-primary" onclick="deleteGInsrange()" >执行</a>
+			</article>
+		</div>-->
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">生成覆盖率预警记录</p>
+				<div class="content">
+					<p>每天凌晨1点10分执行</p>
+				</div>
+				<a class="button is-primary" onclick="generateCoverwarnRecord()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">GPS坐标点转空间数据</p>
+				<div class="content">
+					<p>每天凌晨一点定时执行</p>
+				</div>
+				<a class="button is-primary" onclick="savePatrolxyLine()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">巡检覆盖率统计</p>
+				<div class="content">
+					<p>每天凌晨六点执行</p>
+				</div>
+				<a class="button is-primary" onclick="saveStationfstatistic()" >执行</a>
+			</article>
+		</div>
+	</div>
+
+	<div class="tile is-ancestor">
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">分数统计 </p>
+				<div class="content">
+					<p>每天凌晨五点执行</p>
+				</div>
+				<a class="button is-primary" onclick="statisticsScore()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">标准轨迹线转空间数据</p>
+				<div class="content">
+					<p>每天凌晨二点执行</p>
+				</div>
+				<a class="button is-primary" onclick="convertPolyline()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">同步异常处理结果</p>
+				<div class="content">
+					<p>每天23点同步到PIS</p>
+				</div>
+				<a class="button is-primary" onclick="getNinspectionForDate()" >执行</a>
+			</article>
+		</div>
+	</div>
+	<div class="tile is-ancestor">
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">生成日常任务</p>
+				<div class="content">
+					<p>每天4点执行</p>
+				</div>
+				<a class="button is-primary" onclick="generateInspectortask()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">生成临时任务</p>
+				<div class="content">
+					<p>每天3点执行</p>
+				</div>
+				<a class="button is-primary" onclick="generateTemporarytask()" >执行</a>
+			</article>
+		</div>
+		<div class="tile is-parent">
+			<article class="tile is-child box">
+				<p class="subtitle">生成登录预警记录</p>
+				<div class="content">
+					<p>每天凌晨1点20分执行</p>
+				</div>
+				<a class="button is-primary" onclick="generateLoginwarnRecord()" >执行</a>
+			</article>
+		</div>
+	</div>
+
+		<div class="tile is-ancestor">
+			<div class="tile is-parent">
+				<article class="tile is-child box">
+					<p class="subtitle">段长区长算分</p>
+					<div class="content">
+						<p>计算段长和区长的算分，如果段长任务和区长任务已经完成，并且是周一，就重新生成段长和区长的子任务。</p>
+					</div>
+					<a class="button is-primary" onclick="generateSegmentScore()" >执行</a>
+				</article>
+			</div>
+		</div>
+		<div class="local-notice mask"></div>
+		<div class="local-notice warn">
+			<div class="title"><img src = "images/loading.gif"></div>
+			<div class="content">正在处理中，请稍后...</div>
+		</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 员工信息列表和查询界面   dingwei  add  2013/04/20 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+<link rel="stylesheet" type="text/css" href="../../common/css/query.css"/>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+<script type="text/javascript" src="js/employeeDataGrid.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../i18n/i18n.js"></script>
+<title>员工信息列表界面</title>
+</head>
+<body>
+	<div id="cc" class="easyui-layout" fit="true">
+		<!-- 部门树 -->
+		<div id="left" region="west" maxWidth=200 scroll="no"
+			class="easyui-panel" collapsible="false" key="unit.zuzhijigouguanli"
+			split="true" title="部门结构" style="width: 200px; height: 90%;">
+			<div>
+				<!-- 部门树 -->
+				<ul id="tt">
+				</ul>
+			</div>
+		</div>
+		<!-- 查询和列表 -->
+		<div id="right" scroll="no" region="center" style="padding: 1px; margin-right: 1px; background: #ffffff; overflow: hidden">
+			<!--查询面板 -->
+			<div class="easyui-panel" key="searchRole" id="queryDiv" title="员工查询" collapsed="true" collapsible="true">
+				<form method="post" id="approvalQueryForm">
+					<table class="querytable" align="center" >
+					<tr>
+							<td width="10%"><span key="employeeBo.name" class="paltform-i18n">员工名称：</span></td>
+							<td width="25%"><input type="text" id="name" class="easyui-validatebox input_bg" /></td>
+							<td width="10%"><span key="employeeBo.address" class="paltform-i18n">通讯地址：</span></td>
+							<td width="25%"><input type="text" id="address" class="easyui-validatebox input_bg" /></td>
+						</tr>
+						<tr>
+							<td ><span key="role.roleunit" class="paltform-i18n">&nbsp;</span></td>
+							<td >&nbsp;</td>
+							<td align="right" colspan="2">
+								<a href="#" id='query' class="easyui-linkbutton" iconCls="icon-search" onclick="queryEmployee()"><span key="query" class="paltform-i18n">查询</span></a>
+								<a href="#" id='clear' class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryForm('approvalQueryForm',true,true,true,true)"><span  key="clean" class="paltform-i18n">清空</span></a>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<!-- 数据列表 -->
+			<table id="**"></table>
+			<table id="employeeListTable" class="easyui-datagrid" url="../../sample/getAll.do?datagridNumber=10130530" rownumbers="true" pagination="true"  nowrap="true" toolbar="#tb" title="员工列表">
+				<thead>
+					<tr>
+						<th field="ck" checkbox="true" />
+			            <th field="name" width="150"><span id="employee.name" class="paltform-i18n">员工名称</span></th>
+			            <th field="eventid" width="150"><span id="employee.eventid" class="paltform-i18n">员工编号</span></th>
+		            	<th field="post" width="150"><span id="employee.post" class="paltform-i18n">岗位</span></th>
+		            	<th field="sex" width="150"><span id="employee.sex" class="paltform-i18n">性别</span></th>
+		            	<th field="address" width="250"><span id="employee.address" class="paltform-i18n">通讯地址</span></th>
+		            	<th field="telephone" width="150"><span id="employee.telephone" class="paltform-i18n">联系方式</span></th>
+			    	</tr>
+			    </thead>
+			</table>
+			<!--datagrid工具栏 -->
+			<div id="tb">  
+			    <a href="#" id="10130501" class="easyui-linkbutton" iconCls="icon-view" plain="true" onclick="see();">查看</a>  
+			    <a href="#"  id="10130502" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add();">添加</a>  
+			    <a href="#" id="10130503" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upda();">更新</a>  
+			    <a href="#" id="10130504" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="dele();">删除</a>  
+			</div>  
+		</div>
+	</div>
+</body>
+</html>

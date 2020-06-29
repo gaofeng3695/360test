@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>回收站</title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css"></link>
+	<link rel="Stylesheet" type="text/css" href="jqModal.css" />
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="jqModal.js"></script>
+	<script type="text/javascript" src="../js/queryRecyclebin.js"></script>
+	
+<style type="text/css">
+	#user{
+		margin:0;
+		padding:10px 30px;
+	}
+	.ftitle{
+		font-size:14px;
+		font-weight:bold;
+		color:#666;
+		padding:5px 0;
+		margin-bottom:10px;
+		border-bottom:1px solid #ccc;
+	}
+	.fitem{
+		margin-bottom:5px;
+	}
+	.fitem label{
+		display:inline-block;
+		width:80px;
+	}
+</style>
+</head>
+<body oncontextmenu="return true" onload="loadDatagrid()">
+	<input type="hidden" id="id" value=""/>
+	<input type="hidden" id="foldertype" value=""/>
+	<div class="easyui-panel" key="searchRole" id="searchpanel" title="回收站查询" collapsed="true" collapsible="true">
+		<form method="post" id="approvalQueryForm">
+			<table class="querytable" align="center" >
+				<tr>
+					<td width="10%"><span key="delete.objname" class="paltform-i18n">删除对象名称：</span></td>
+					<td width="23%"><input type="text" id="deleteObjName" name="deleteObjName" class="easyui-validatebox input_bg" /></td>
+					<td width="10%"><span key="delete.time" class="paltform-i18n">删除时间：</span></td>
+					<td width="23%"><input id="beginDeleteObjTime" name="beginDeleteObjTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					<td width="2%">到</td>
+					<td width="23%"><input id="endDeleteObjTime" name="endDeleteObjTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					
+				</tr>
+				<tr>
+					<td colspan="6">
+						<a href="#" id='nohiddenbutton' class="easyui-linkbutton" iconCls="icon-search" onclick="queryRecyclebin()"><span key="role.query" class="paltform-i18n">查询</span></a>
+						<a href="#" id='nohiddenbutton' class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryForm('approvalQueryForm',true,true,true,true)"><span id="role.clean" class="paltform-i18n">清空</span></a>
+					</td>
+				</tr>
+			</table>
+			</form>
+	</div>
+	<table id="dg"  key="role_roleList" ></table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-arrow_redo" plain="true" onclick="restoreRecycleObj()"><span key="file.up" class="paltform-i18n">还原</span></a>
+		<a href="#"   class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteRecycleObj()"><span key="file.dele" class="paltform-i18n">删除</span></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-recycle" plain="true" onclick="clearRecycleBin()"><span key="file.classify" class="paltform-i18n">清空回收站</span></a>
+	</div>
+</body>
+</html>

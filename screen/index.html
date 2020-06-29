@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>西南管道投屏界面</title>
+	<link rel="icon" href="../common/images/favicon.ico" type="image/x-icon">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<mate name="viewport" content="width=device-width,initial-scale=1.0"></mate>
+	<meta charset="utf-8" />
+	<!-- 引入样式 -->
+	<!--<link rel="stylesheet" href="js/theme-chalk/index.css" />-->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+		html {
+			width: 100%;
+			height: 100%;
+		}
+
+		.i_font {
+			position: absolute;
+			top: 10px;
+			font-size: 1.2em;
+			right: 28%;
+			color: #0497e6;
+		}
+
+		body {
+			margin: 0 auto;
+			font-family: Tahoma, Verdana, Arial, sans-serif;
+			background: url("./images/bg.png") no-repeat center center;
+			background-size: 100% 100%;
+			width: 100%;
+			height: 100%;
+			color: #00d8ff;
+		}
+		.el-input__prefix,.el-input__suffix {
+			top: -5px;
+			color: #fff;
+		}
+		.el-input--prefix .el-input__inner {
+			line-height: 28px;
+			height: 28px;
+			background: #021648;
+			border-color: #0f49c6;
+			box-shadow: inset 0px 0px 12px 5px #09407d;
+			color: #fff;
+		}
+		.titalcss {
+			width: 100%;
+			height: 100%;
+			max-height: 56px;
+			background: url("./images/title_bg.png") no-repeat center center;
+			background-size: 100% 100%;
+		}
+		.borderdiv {
+			width: 10px;
+			height: 10px;
+			position: absolute;
+		}
+
+		.bor1 {
+			background: url("./images/左上.png") no-repeat top left;
+			top: -1px;
+			left: -1px;
+		}
+
+		.bor2 {
+			background: url("./images/右上.png") no-repeat top left;
+			top: -1px;
+			right: -1px;
+		}
+
+		.bor3 {
+			background: url("./images/左下.png") no-repeat top left;
+			bottom: -1px;
+			left: -1px;
+		}
+
+		.bor4 {
+			background: url("./images/右下.png") no-repeat top left;
+			bottom: -1px;
+			right: -1px;
+		}
+
+		.boxshadow1 {
+			position: relative;
+			/* box-shadow: inset 0px 0px 12px 5px #001C3C; */
+			border-radius: 5px;
+			/* opacity:0.7; */
+			background-color: rgba(0,28,60,0.5);
+			border: 1px solid #0f498a;
+		}
+		.gradientcolor{
+			font-size: 1.125em;
+			font-weight: 600;
+			line-height: 30px;
+			display: inline-block;
+
+			/* background-clip: text;
+            font-family: '微软雅黑';
+            background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 128, 0, 1)), to(rgba(51, 51, 51, 1)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; */
+
+			color:rgba(212,226,242,1);
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-image: -moz-linear-gradient(top,  rgba(212,226,242,1) 0%, rgba(255,255,255,1)  100%);
+			background-image: -webkit-linear-gradient(bottom, rgba(212,226,242,1) 0%, rgba(255,255,255,1)  100%);
+		}
+		.leftgradient{
+			font-size: 0.75em;
+		}
+		.btncss{
+			background: -moz-linear-gradient(top,  rgba(6,118,196,1) 0%, rgba(4,41,119,1)  100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(6,118,196,1) 0%, rgba(4,41,119,1)  100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(6,118,196,1) 0%, rgba(4,41,119,1)  100%);
+			border: 1px solid  #032e93;
+			color: #fdfeff;
+			font-size: 12px;
+			padding: 7px 8px;
+		}
+		.borderbottomCSS{
+
+			border-top: 1px solid;
+			/* border-image: -moz-linear-gradient(left,  rgba(134,221,234,1) 0%, rgba(255,255,255,1)  100%);
+            border-image: -webkit-linear-gradient(right,  rgba(134,221,234,1) 0%, rgba(255,255,255,1)  100%);
+            border-image: linear-gradient(to left,  rgba(134,221,234,1) 0%, rgba(255,255,255,1)  100%);  */
+			border-image: -webkit-linear-gradient(  right, rgba(153,202,226,0) , rgba(153,202,226,0.3)  )  30 30;
+			border-image: -moz-linear-gradient( left,  rgba(153,202,226,0)  , rgba(153,202,226,0.3)  )   30 30;
+			border-image: linear-gradient( to right,  rgba(153,202,226,0)  , rgba(153,202,226,0.3)  )  30 30;
+		}
+		.activeCSS{
+			color: #d4e2f2;
+			background: -moz-linear-gradient(right,  rgba(8,148,246,0) 0%, rgba(8,148,246,0.3)  100%);
+			background: -webkit-linear-gradient(left,  rgba(8,148,246,0) 0%, rgba(8,148,246,0.3)  100%);
+			background: linear-gradient(to right ,  rgba(8,148,246,0) 0%, rgba(8,148,246,0.3)  100%);
+		}
+		.leftborbox{
+			width: 80%;
+			position: absolute;
+			height: 46%;
+			background: url(./images/left_text_bor1.png) left top / 100% 100% no-repeat;
+			top: 0%;
+			left: 10%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 0.75em;
+		}
+		.leftnumbox{
+			align-items: flex-end;
+			margin-top: 10%; padding-bottom: 10%;
+			box-sizing: border-box;display: flex;
+			justify-content: center;
+			height:80%;
+			background: url('./images/left_textbor2.png') no-repeat top left;
+			background-size: 100% 100%;
+			font-size: 1.125em;
+		}
+		.leftpersonbox{
+			height: 38%;
+			width: 100%;
+			padding-left: 35%;
+			box-sizing: border-box;
+			position: relative;
+			display: flex;
+			flex-flow: row;
+			justify-content: space-around;
+			background: url(./images/left_textbor4.png) no-repeat center left;
+			background-size: 100% 80%;
+		}
+		.leftpersonboxleft{
+			position: absolute;
+			background: url(./images/left_textbor3.png) no-repeat left top;
+			top: 0%;
+			left: 0%;
+			height: 100%;
+			width: 35%;
+			background-size: 100% 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.lefttaskbox{
+			position: relative;
+			width: 100%;
+			height:31%;
+			display: flex;flex-flow:column;justify-content:space-between;
+			/* background: url(./images/left_boxbg.png) no-repeat left top; */
+			background-size: 100% 100%;
+		}
+		.itemtitlecss{
+			color: #92e2ff;
+			font-size: 0.85em;
+			padding: 15px 0 0 20px;
+		}
+		.scrollCSS{
+			overflow-y: scroll;
+			overflow-x: hidden;
+			/* -ms-overflow-style: none; */
+			scrollbar-arrow:none;
+			scrollbar-arrow-color: rgba(4,41,119,1); /**//*三角箭头的颜色*/
+			scrollbar-face-color: rgba(4,41,119,1); /**//*立体滚动条的颜色*/
+			scrollbar-3dlight-color: transparent; /**//*立体滚动条亮边的颜色*/
+			scrollbar-highlight-color: transparent; /**//*滚动条空白部分的颜色*/
+			scrollbar-shadow-color: transparent; /**//*立体滚动条阴影的颜色*/
+			scrollbar-darkshadow-color: transparent; /**//*立体滚动条强阴影的颜色*/
+			scrollbar-track-color: rgba(6,118,196,1); /**//*立体滚动条背景颜色*/
+			scrollbar-base-color: transparent; /**//*滚动条的基本颜色*/
+		}
+		/* .scrollCSS::-webkit-scrollbar {
+            width: 0 !important;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
+        } */
+
+		.scrollCSS::-webkit-scrollbar {/*滚动条整体样式*/
+			width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+			height: 1px;
+		}
+
+		.scrollCSS::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 5px rgba(6,118,196,1);
+			background: rgba(6,118,196,1);
+		}
+
+		.scrollCSS::-webkit-scrollbar-track {/*滚动条里面轨道*/
+			-webkit-box-shadow: inset 0 0 5px rgba(4,41,119,1);
+			border-radius: 10px;
+			background:rgba(4,41,119,1);
+		}
+
+		.colorunder80{
+			color:#bb3d39
+		}
+		.colorunder90{
+			color:#0ac1fc
+		}
+		.el-tree-node__label {
+			font-size: 1em;
+		}
+		.allmain{
+			width: 100%;
+			height: 100%;
+		}
+		.move-left {
+			justify-content: center;
+			text-align: center;
+			font-size: 13px;
+			margin-top: 0.4em;
+		}
+	</style>
+</head>
+
+<body>
+<div v-cloak class="allmain">
+	<div style="height: 100%;width:100%;display: flex;flex-flow:column;padding: 0px 15px 10px;box-sizing: border-box;">
+		<div style="height: 9%;">
+			<div class="titalcss">
+				<el-row :gutter="20" style="width:100%;height: 100%;">
+					<el-col :span="8" style="align-items: flex-end; height: 80%;display: flex; align-items: flex-end; padding-left: 20px;">
+						<el-button type="primary" class="btncss" @click="clkFull(btnFull)">{{btnFull == 1?"全屏":"退出全屏"}}</el-button>
+					</el-col>
+					<el-col :span="8" style="height: 100%">
+						<div class=" " style="height: 85%;text-align: center;cursor:pointer;">
+									<span class="el-dropdown-link" @click="clkMenu" style="font-size: 1.3em;color:#fff;line-height: 2em;">
+										管道巡检管理系统{{unitName.search("-->") == '-1'?unitName:unitName.substring(unitName.lastIndexOf("-->")+3)}}数据统计  <i :class="isTree?'el-icon-arrow-up el-icon--right':'el-icon-arrow-down el-icon--right'"></i>
+									</span>
+							<div v-show="isTree" style="position: relative;width: 70%;z-index: 999;color: #0ACFFD;background-color: #fff;left: 25%;top: 0%;height: 300px;overflow-y: scroll;">
+								<el-tree :default-expand-all="true" :data="menu" :props="defaultProps" @node-click="handleCommand" style="position: absolute;width: 100%;"></el-tree>
+							</div>
+						</div>
+					</el-col>
+					<el-col :span="8" style="height: 100%;padding-right: 0;">
+						<div style="font-size: 0.8em;color:#fff; height: 100%;box-sizing: border-box;text-align: right;align-items: flex-end;display: flex;flex-direction:row-reverse;">
+									<span id="pageTime" style="padding-left: 0.6em;">
+										{{nowDate.split(" ")[1]}}
+									</span>
+							<span id="pagedate" >
+										{{nowDate.split(" ")[0]}}
+									</span>
+						</div>
+					</el-col>
+				</el-row>
+			</div>
+			<div class = "move-left" style="color: #d4e2f2;">{{ move_real_data }}</div>
+		</div>
+		<div style="display: flex;flex-flow:row;height: 91%;width: 100%;justify-content:space-around;padding-top: 1.3em;    box-sizing: border-box;">
+			<!-- 左 -->
+			<div style="width: 23%;display: flex;flex-flow:column;justify-content:space-around;">
+				<div class="boxshadow1" style="height:80%;display: flex;flex-flow:column;padding: 25px 15px 0 15px;box-sizing: border-box;">
+					<div class="borderdiv bor1"></div>
+					<div class="borderdiv bor2"></div>
+					<div class="borderdiv bor3"></div>
+					<div class="borderdiv bor4"></div>
+					<div style="text-align: center;width: 100%;height:16%;display: flex;flex-flow:row;justify-content:space-around;">
+						<div style="width: 45%;    height: 100%;position: relative;display: flex;flex-flow:column;justify-content:space-around;">
+							<div class="leftborbox">
+								计划覆盖率
+							</div>
+							<div class="leftnumbox">
+								<span v-if="user.unitId && user.unitId == '5ab981e0-9598-11e1-b20e-e61f13e462af'">--</span>
+								<span v-else>
+											<span v-if="covercount.planCover == 0">0</span>
+											<span v-else>{{covercount.planCover}}%</span>
+										</span>
+							</div>
+						</div>
+						<div style="width: 45%;    height: 100%;position: relative;display: flex;flex-flow:column;justify-content:space-around;">
+							<div class="leftborbox">
+								任务覆盖率
+							</div>
+							<div class="leftnumbox">
+								<span v-if="user.unitId && user.unitId == '5ab981e0-9598-11e1-b20e-e61f13e462af'">--</span>
+								<span v-else>
+											<span v-if="covercount.taskCover == 0">0</span>
+											<span v-else>{{covercount.taskCover}}%</span>
+										</span>
+							</div>
+						</div>
+					</div>
+					<div style="text-align: center;width: 100%;height:25%;padding-top:3%;display: flex;flex-flow:column;justify-content:space-around;">
+						<div style="  width: 100%;position: relative;display: flex;flex-flow:row;justify-content:space-around;">
+							<div style=" padding: 5px;box-sizing:border-box;height: 100%;display: flex;flex-flow:column;">
+								<div class="leftgradient">
+									巡检范围
+								</div>
+								<div class=" gradientcolor">
+									<span>{{covercount.linelistLength}}</span><span style="font-size:0.66em; ">KM</span>
+								</div>
+							</div>
+							<div style=" padding: 5px;box-sizing:border-box;height: 100%;display: flex;flex-flow:column;">
+								<div class="leftgradient">
+									不巡检范围
+								</div>
+								<div class=" gradientcolor">
+									<span>{{covercount.unsubinlistLength}}</span><span style="font-size:0.66em;">KM</span>
+								</div>
+							</div>
+							<div style=" padding: 5px;box-sizing:border-box;height: 100%;display: flex;flex-flow:column;">
+								<div class="leftgradient">
+									计划范围
+								</div>
+								<div class=" gradientcolor">
+									<span>{{covercount.planlistLength}}</span><span style="font-size:0.66em; ">KM</span>
+								</div>
+							</div>
+						</div>
+						<div style="  width: 100%;position: relative;display: flex;flex-flow:row;justify-content:space-around;">
+							<div style=" padding: 5px;box-sizing:border-box;height: 100%;display: flex;flex-flow:column;">
+								<div class="leftgradient">
+									任务长度
+								</div>
+								<div class=" gradientcolor">
+									<span>{{covercount.tasklistLength}}</span><span style="font-size:0.66em; ">KM</span>
+								</div>
+							</div>
+							<div style=" padding: 5px;box-sizing:border-box;height: 100%;display: flex;flex-flow:column;">
+								<div class="leftgradient">
+									任务关键点
+								</div>
+								<div class=" gradientcolor">
+									<span>{{covercount.pointAll}}</span><span style="font-size:0.66em;">个</span>
+								</div>
+							</div>
+							<div style=" padding: 5px;box-sizing:border-box;height: 100%;display: flex;flex-flow:column;">
+								<div class="leftgradient">
+									临时关键点
+								</div>
+								<div class=" gradientcolor">
+									<span>{{covercount.tempPointAll}}</span><span style="font-size:0.66em; ">个</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;text-align: center;padding-bottom:3%;width: 100%;height:23%;display: flex;flex-flow:column;justify-content:space-around;font-size: 0.8em;">
+						<div class="leftpersonbox">
+							<div class="leftpersonboxleft">
+								段长/区长 {{inspectorcount.inspipeonline + inspectorcount.inspipeoffline}}
+							</div>
+							<div class="" style="color: #0DEFCE;display: flex; justify-content:center;align-items: center;">
+								在线 {{inspectorcount.inspipeonline}}
+							</div>
+							<span style="display: flex; justify-content:center;align-items: center;color: #0663a7">|</span>
+							<div class="" style="display: flex; justify-content:center;align-items: center;color:#22acfc">
+								离线 {{inspectorcount.inspipeoffline}}
+							</div>
+						</div>
+						<div class="leftpersonbox">
+							<div class="leftpersonboxleft">
+								巡线工 {{inspectorcount.insonline + inspectorcount.insoffline}}
+							</div>
+							<div class="" style="color: #0DEFCE;display: flex; justify-content:center;align-items: center;">
+								在线 {{inspectorcount.insonline}}
+							</div>
+							<span style="display: flex; justify-content:center;align-items: center;color: #0663a7">|</span>
+							<div class="" style="display: flex; justify-content:center;align-items: center;color:#22acfc">
+								离线 {{inspectorcount.insoffline}}
+							</div>
+						</div>
+					</div>
+					<div class="lefttaskbox">
+						<div style="color:#d4e2f2;font-size: 0.85em; height: 18%;margin-bottom: 2%;background: url(./images/left_textboxc.png) no-repeat left top;
+				                display: flex; justify-content: center; align-items: center;background-size: 60% 100%;padding-right:40%; box-sizing: border-box;">
+							当日巡线任务 <span style="color:#fbc60f;font-size: 1.2em;padding:0 1px">{{taskstatistics.taskCount}}</span> 条
+						</div>
+						<div style="height: 40%;display: flex; flex-flow: column; justify-content: space-evenly;font-size: 0.75em;">
+							<div style=" display: flex; justify-content: space-between; align-items: center; padding: 0 20% 0 10px;">
+								<span style="color:#0CC1FD">已巡关键点 <span class="gradientcolor">{{taskstatistics.pointCompCount}}</span> 个</span>
+								<span style="color: #3371C0">/{{taskstatistics.pointCount}}</span>
+							</div>
+							<div style="height: 1.25em; display: flex;flex-flow: row;justify-content: flex-start; align-items: center;    padding: 0 0px 0 10px;">
+								<div style="height: 1.25em; display: flex;flex-flow: row;width: 80%;justify-content: space-around;">
+									<div v-for="item in taskstatistics.pointComp" style="width: 1.0625em;height: 1.25em; position: relative;">
+										<div style="position: absolute;top:0;left: 0;width:100%;height:100%;background: url('./images/point_100.png') no-repeat top left;background-size: cover;">
+										</div>
+										<div style="width:100%;height:100%;background: url('./images/point_0.png') no-repeat top right;background-size: cover;">
+										</div>
+									</div>
+									<div v-show="taskstatistics.point1" style="width: 1.0625em;height: 1.25em; position: relative;">
+										<div :style="{width:taskstatistics.point1}" style="position: absolute;top:0;left: 0;height:100%;background: url(./images/point_100.png) no-repeat top left;background-size: cover;">
+										</div>
+										<div style="width:100%;height:100%;background: url('./images/point_0.png') no-repeat top right;background-size: cover;">
+										</div>
+									</div>
+									<div v-for="item in taskstatistics.pointUnComp" style="width: 1.0625em;height: 1.25em; position: relative;">
+										<div style="position: absolute;top:0;left: 0;width: 0%;height:100%;background: url('./images/point_100.png') no-repeat top left;background-size: cover;">
+										</div>
+										<div style="width:100%;height:100%;background: url('./images/point_0.png') no-repeat top right;background-size: cover;">
+										</div>
+									</div>
+								</div>
+								<span style="line-height: 30px;color: #fff;padding-left: 3px;">{{taskstatistics.point}}</span>
+							</div>
+						</div>
+						<div style="height: 40%;display: flex; flex-flow: column;justify-content: space-evenly;font-size: 0.75em;">
+							<div style=" display: flex; justify-content: space-between; align-items: center; padding: 0 20% 0 10px;">
+								<span style="color:#0CC1FD">巡护人员 <span class="gradientcolor">{{taskstatistics.inspCompCount}}</span> 人</span>
+								<span style="color: #3371C0">/{{taskstatistics.inspCount}}</span>
+							</div>
+							<div style="height: 1.25em; display: flex;flex-flow: row;justify-content: flex-start; align-items: center;    padding: 0 0px 0 10px;">
+								<div style="height: 1.25em; display: flex;flex-flow: row;width: 80%;justify-content: space-around;">
+									<div v-for="item in taskstatistics.inspComp" style="width: 1.0625em;height: 1.25em; position: relative;">
+										<div style="position: absolute;top:0;left: 0;width:100%;height:100%;background: url('./images/person_100.png') no-repeat top left;background-size: cover;">
+										</div>
+										<div style="width:100%;height:100%;background: url('./images/person_0.png') no-repeat top right;background-size: cover;">
+										</div>
+									</div>
+									<div v-show="taskstatistics.insp1" style="width: 1.0625em;height: 1.25em; position: relative;">
+										<div :style="{width:taskstatistics.insp1}" style="position: absolute;top:0;left: 0;height:100%;background: url(./images/person_100.png) no-repeat top left;background-size: cover;">
+										</div>
+										<div style="width:100%;height:100%;background: url('./images/person_0.png') no-repeat top right;background-size: cover;">
+										</div>
+									</div>
+									<div v-for="item in taskstatistics.inspUnComp" style="width: 1.0625em;height: 1.25em; position: relative;">
+										<div style="position: absolute;top:0;left: 0;width:0%;height:100%;background: url('./images/person_100.png') no-repeat top left;background-size: cover;">
+										</div>
+										<div style="width:100%;height:100%;background: url('./images/person_0.png') no-repeat top right;background-size: cover;">
+										</div>
+									</div>
+								</div>
+								<span style="line-height: 30px;color: #fff;padding-left: 3px;">{{taskstatistics.insp}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="boxshadow1" style="height:18%;display: flex;flex-flow:row">
+					<div class="borderdiv bor1"></div>
+					<div class="borderdiv bor2"></div>
+					<div class="borderdiv bor3"></div>
+					<div class="borderdiv bor4"></div>
+					<div id="equipchart" style="height: 100%;width:55%"></div>
+					<div style="display: flex;flex-flow: column;align-items: center;justify-content: center;height: 100%;width: 45%; ">
+								<span style="color:#22acfc;font-size: 0.75em;">
+									巡线工设备
+								</span>
+						<span class="gradientcolor" style="margin-top: 6%">
+									<span style="font-size: 1.6em;">{{devicestatistics.patrodev}}</span>个
+								</span>
+					</div>
+				</div>
+			</div>
+			<!-- 右 -->
+			<div style="width: 76%;display: flex;flex-flow:column;justify-content:space-around;">
+				<div style="height:65%;display: flex;flex-flow:row;justify-content:space-between;">
+					<div class="boxshadow1" style="width:48%;display: flex;flex-flow:column;height: 100%;">
+						<div class="borderdiv bor1"></div>
+						<div class="borderdiv bor2"></div>
+						<div class="borderdiv bor3"></div>
+						<div class="borderdiv bor4"></div>
+						<div class="itemtitlecss">
+							截止到当前时间巡线统计表
+						</div>
+						<el-row style="text-align: center;background-color: rgba(32, 74, 137,0.3); margin: 10px; line-height: 2.5em; color: #55c9ff;  font-size: 0.75em;">
+							<el-col :span="2"> &nbsp;</el-col>
+							<el-col :span="3"> 巡检人员</el-col>
+							<el-col :span="6"> 关键点（应巡/实巡）</el-col>
+							<el-col :span="3"> 里程</el-col>
+							<el-col :span="3"> 匹配度</el-col>
+							<el-col :span="3"> 完成率</el-col>
+							<el-col :span="3"> 考核分数</el-col>
+						</el-row>
+						<div class="scrollCSS" style="width:100%;display: flex;flex-flow:column;height: auto;overflow-y: scroll;">
+							<div v-if="getTaskComplete.length > 0">
+								<el-row v-for="(item,index) in getTaskComplete" :key="index" style="text-align: center; margin:0 10px; padding: 0.5em 0; line-height: 1.75em; color: #d4e2f2;  font-size: 0.75em;" :style="{color:((item.assessscore < 90 && item.assessscore > 80) ?'#0ac1fc':((item.assessscore < 80 || item.assessscore == 80)?'#bb3d39':''))}">
+									<el-col :span="2" style="color:#d4e2f2;">{{index + 1}}</el-col>
+									<el-col :span="3" style="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;"> {{item.inspectorName}}</el-col>
+									<el-col :span="6"> {{item.ykeypointnum}} / {{item.skeypointnum}}</el-col>
+									<el-col :span="3"> {{item.linelength}} KM</el-col>
+									<el-col :span="3"> {{item.pathlinerate?item.pathlinerate:"--"}}</el-col>
+									<el-col :span="3">
+										{{item.completionrate}}%</el-col>
+									<el-col :span="3">
+										{{item.assessscore}}</el-col>
+								</el-row>
+								<div v-show="menu2" @click="isMore()" style="cursor:pointer;text-align: center;font-size: 0.85em;color: #FDFEFF;padding-bottom: 1em;">
+									查看更多 >>
+								</div>
+							</div>
+							<div v-else style="text-align: center;color: #d4e2f2;">
+								暂无数据！
+							</div>
+						</div>
+					</div>
+					<div class="boxshadow1" style="width:30%;display: flex;flex-flow:column">
+						<div class="borderdiv bor1"></div>
+						<div class="borderdiv bor2"></div>
+						<div class="borderdiv bor3"></div>
+						<div class="borderdiv bor4"></div>
+						<div class="itemtitlecss">
+							部门周巡检成绩
+						</div>
+						<div id="unitweek" style="width:100%;height:45%"> </div>
+						<div class="itemtitlecss">
+							部门巡线工昨日分数分布
+						</div>
+						<div id="unityestday" style="width:100%;height:45%"> </div>
+					</div>
+					<div style="width:20%;display: flex;flex-flow:column;justify-content:space-between;height: 100%;">
+						<div class="boxshadow1" style="height:49%;display: flex;flex-flow:column;justify-content:space-between;padding-bottom: 2%;">
+							<div class="borderdiv bor1"></div>
+							<div class="borderdiv bor2"></div>
+							<div class="borderdiv bor3"></div>
+							<div class="borderdiv bor4"></div>
+							<div class="itemtitlecss">
+								巡线工近七日考核前五名
+							</div>
+							<div style="display: flex;flex-flow:column;justify-content: space-around;height:80%;padding: 2% 0;box-sizing: 100%;">
+
+								<el-row v-for="(item,i) in weektotal" :key="i" style="text-align: center; margin:0 10px; color: #d4e2f2;  font-size: 0.75em;">
+									<el-col :span="5">
+										<img :src="item.image" style="height:1.2em;width: 1.2em;margin: 0 auto;">
+									</el-col>
+									<el-col :span="13" style="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;text-align: left;"> {{item.insname}}</el-col>
+									<el-col :span="6" :style="{color:(i == 0 ? '#d86b26': (i==1?'#fbc60f':(i== 2?'#34cb4c':'#8dd7fb'))) }">
+										{{item.grossscore}}</el-col>
+								</el-row>
+
+								<div style="text-align: center;color:#d4e2f2;" v-if="weektotal.length == 0">
+									暂无数据！
+								</div>
+							</div>
+						</div>
+						<div class="boxshadow1" style="height:49%;display: flex;flex-flow:column;margin-top: 10px;">
+							<div class="borderdiv bor1"></div>
+							<div class="borderdiv bor2"></div>
+							<div class="borderdiv bor3"></div>
+							<div class="borderdiv bor4"></div>
+							<div class="itemtitlecss" style="padding-left: 15px">
+								巡线工近七日考核后五名
+							</div>
+							<div style="display: flex;flex-flow:column;justify-content: space-around;height:80%;padding: 2% 0;box-sizing: 100%;">
+								<el-row v-for="(item,i) in latertotal" :key="i" style="text-align: center; margin:0 10px; color: #d4e2f2;  font-size: 0.75em;">
+									<el-col :span="5">
+										<div style="height:1.2em;width: 1.2em;margin: 0 auto;background: url(./images/later.png) no-repeat 100% 100%;">
+											{{i+1}}
+										</div>
+									</el-col>
+									<el-col :span="13" style="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;text-align: left;"> {{item.insname}}</el-col>
+									<el-col :span="6" :style="{color:(i == 0 ? '#d86b26': (i==1?'#fbc60f':(i== 2?'#34cb4c':'#8dd7fb'))) }">
+										{{item.grossscore}}</el-col>
+								</el-row>
+								<div v-if="pipeproject.length == 0" style="text-align: center;color: #d4e2f2;">暂无数据！</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="height:33%;display: flex;flex-flow:row;justify-content:space-between;">
+				
+					<div class="boxshadow1" style="width:79%;height:100%;display: flex;flex-flow:row;align-items: center;">
+						<div class="borderdiv bor1"></div>
+						<div class="borderdiv bor2"></div>
+						<div class="borderdiv bor3"></div>
+						<div class="borderdiv bor4"></div>
+						<div style="width:49%;height:100%;display: flex;flex-flow:column;justify-content: space-between;padding-bottom: 10px;box-sizing: border-box;">
+							<div class="itemtitlecss">
+								第三方施工统计
+							</div>
+							<div style="width:100%;height:80%;display: flex;flex-flow:row;justify-content: space-around;padding: 0 10px;box-sizing: border-box;">
+								<div style="width:35%;height:100%;font-size: 0.75em; display: flex;flex-flow:column;color:#389cee;border-right: 1px solid rgba(153,202,226,0.3);">
+									<div class="borderbottomCSS" @click="selectConstruction(0)" style="height: 33.33%;width: 100%;display: flex;justify-content: space-between;padding: 0 10px;box-sizing: border-box;
+													align-items: center;"
+										 :class=" construction == 0 ? 'activeCSS' : ''">
+										<span>未关闭施工</span>
+										<div class="gradientcolor" style="font-size: unset;">
+											<span style="font-size:1.5em;">{{constructiontotal.close}}</span><span style="font-size:1em;padding-left: 2px;">个</span>
+										</div>
+									</div>
+									<div class="borderbottomCSS" @click="selectConstruction(1)" style="height:33.33%;width: 100%;display: flex;justify-content: space-between;padding: 0 10px;box-sizing: border-box;
+													align-items: center;"
+										 :class=" construction == 1 ? 'activeCSS' : ''">
+										<span>今日新增</span>
+										<div class="gradientcolor" style="font-size: unset;">
+											<span style="font-size:1.5em;">{{constructiontotal.insert}}</span><span style="font-size:1em;padding-left: 2px;">个</span>
+										</div>
+									</div>
+									<div class="borderbottomCSS" @click="selectConstruction(2)" style="height: 33.33%;width: 100%;display: flex;justify-content: space-between;padding: 0 10px;box-sizing: border-box;
+													align-items: center;"
+										 :class=" construction == 2 ? 'activeCSS' : ''">
+										<span>今年关闭施工</span>
+										<div class="gradientcolor" style="font-size: unset;">
+											<span style="font-size:1.5em;">{{constructiontotal.update}}</span><span style="font-size:1em;padding-left: 2px;">个</span>
+										</div>
+									</div>
+									
+								</div>
+								<div id="thirdchart" style="width:65%;height:100%; ">
+
+								</div>
+							</div>
+						</div>
+						<div style="width:0;height:90%;border-left:solid #09407d 1px "></div>
+						<div style="width:49%;height:100%;display: flex;flex-flow:column;justify-content: space-between;padding-bottom: 10px;box-sizing: border-box;">
+							<div class="itemtitlecss">
+								巡检事件统计
+							</div>
+							<div style="width:100%;height:80%;display: flex;flex-flow:row;justify-content: space-around;padding: 0 10px;box-sizing: border-box;">
+								<div style="width:35%;height:100%; display: flex;flex-flow:column;color:#389cee;border-right: 1px solid rgba(153,202,226,0.3);">
+									<div @click="selectEvent(0)" class="borderbottomCSS" style="height: 33.33%;width: 100%;display: flex;
+													justify-content: space-between;padding: 0 10px;box-sizing: border-box;font-size: 0.75em;
+													align-items: center;"
+										 :class=" event == 0 ? 'activeCSS' : ''">
+										<span>未关闭事件</span>
+										<div class="gradientcolor" style="font-size: unset;">
+											<span style="font-size:1.5em;">{{constructiontotal.toClose}}</span><span style="font-size:1em;padding-left: 2px;">个</span>
+										</div>
+									</div>
+									<div @click="selectEvent(1)" class="borderbottomCSS" style="height: 33.33%;width: 100%;display: flex;
+													justify-content: space-between;padding: 0 10px;box-sizing: border-box;font-size: 0.75em;
+													align-items: center;"
+										 :class=" event == 1 ? 'activeCSS' : ''">
+										<span>今日新增</span>
+										<div class="gradientcolor" style="font-size: unset;">
+											<span style="font-size:1.5em;">{{constructiontotal.todayInsert}}</span><span style="font-size:1em;padding-left: 2px;">个</span>
+										</div>
+									</div>
+									<div @click="selectEvent(2)" class="borderbottomCSS" style="height: 33.33%;width: 100%;display: flex;
+													justify-content: space-between;padding: 0 10px;box-sizing: border-box;font-size: 0.75em;
+													align-items: center;"
+										 :class=" event == 2 ? 'activeCSS' : ''">
+										<span>今年关闭事件</span>
+										<div class="gradientcolor" style="font-size: unset;">
+											<span style="font-size:1.5em;">{{constructiontotal.todayInsert}}</span><span style="font-size:1em;padding-left: 2px;">个</span>
+										</div>
+									</div>
+								</div>
+								<div id="eventchart" style="width:65%;height:100%; ">
+
+								</div>
+							</div>
+						</div>
+					</div>
+			
+					<div class="boxshadow1" style="width:20%;display: flex;flex-flow:column;">
+						<div class="borderdiv bor1"></div>
+						<div class="borderdiv bor2"></div>
+						<div class="borderdiv bor3"></div>
+						<div class="borderdiv bor4"></div>
+						<div class="itemtitlecss" style="padding-left: 15px">
+							管道保护
+						</div>
+						<div class="scrollCSS" style="display: flex;flex-flow:column;height:80%;padding: 2% 0;box-sizing: 100%;">
+							<el-row v-for="item in pipeproject" style=" padding : 0 5px 0 15px ; line-height: 2em; color: #d4e2f2;  font-size: 0.75em;">
+								<el-col :span="10" style="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">[{{item.type}}]</el-col>
+								<el-col :span="14" style="white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{item.title}}</el-col>
+							</el-row>
+							<div v-if="pipeproject.length == 0" style="text-align: center;color: #d4e2f2;">暂无数据！</div>
+						</div>
+					</div>
+			
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</body>
+<script src="js/jquery-2.2.4.min.js"></script>
+<!-- 引入组件库 -->
+<script src="js/vue.js"></script>
+<script src="js/element.js"></script>
+<!-- 缓存 -->
+<script src="js/vue-cookies.js"></script>
+<script src="./js/projectionscreen.js"></script>
+
+<script src="./js/echarts1.min.js"></script>
+<script src="./js/charts.js" charset="utf-8"></script>
+<script>
+    var indexvue = new Vue({
+        el: ".allmain",
+        data: function() {
+            return {
+                move_real_data:'',
+                move_real_temp_data:1,
+                unitName: '',
+                defaultProps: {
+                    children: 'children',
+                    label: 'text'
+                },
+                menu: [],
+                menu2: [],
+                isTree: false,
+                index: 0,
+                token: "",
+                nowDate: format("yyyy年MM月dd日 hh:mm:ss", new Date()),
+                statisticsDate: format("yyyy-MM-dd", new Date()),
+                beginDate: format("yyyy-MM-dd", new Date(new Date().getTime() - 24 * 60 * 60 * 1000 * 7)), //前七天
+                endDate: format("yyyy-MM-dd", new Date(new Date().getTime() - 24 * 60 * 60 * 1000)), //昨天
+                user: {},
+                covercount: "", //覆盖率+部门巡检长度
+                inspectorcount: "", //部门人数
+                taskstatistics: "", //巡检任务情况
+                devicestatistics: "", //设备
+                weektotal: "", //周成绩前五
+				latertotal:"",//周成绩后五
+                pipeproject: "", //管道保护
+
+                getTaskComplete: [], //巡线工巡检情况
+                constructiontotal: {
+                    close: null,
+                    insert: null,
+                    toClose: null,
+                    todayClose: null,
+                    todayInsert: null,
+                    update: null,
+                },
+                construction: 0, //控制第三方施工列表切换数据加载
+                event: 0, //控制第三方施工列表切换数据加载
+                timer: '',
+                dataTimer: "",
+                btnFull:1,
+                btnClk:false
+            };
+        },
+		computed: {
+          move_data: {
+              get(){
+                  /* 在这里加一个滚动 */
+                  return (this.unitName==undefined?'':(this.unitName.search("-->") == '-1'?this.unitName:this.unitName.substring(this.unitName.lastIndexOf("-->")+3)))+'巡检范围'+(this.covercount.linelistLength==undefined?'':this.covercount.linelistLength)+'公里,共'+(this.covercount.pointAll==undefined?'':this.covercount.pointAll)+'个关键点，截止目前，已巡关键点'+(this.taskstatistics.pointCompCount==undefined?'':this.taskstatistics.pointCompCount)+'个，完成率'+(this.taskstatistics.point==undefined?'':this.taskstatistics.point)+'，今日新增巡检事件'+(this.constructiontotal.insert==undefined?'':this.constructiontotal.insert)+'个、今日新增第三方施工'+(this.constructiontotal.todayInsert==undefined?'':this.constructiontotal.todayInsert)+'个。'
+              },
+              set(value){
+                  this.value = value
+              }
+		   }
+		},
+        watch: {
+            construction: function() {
+                var _this = this;
+                var construction = _this.construction;
+                if (construction == 0) {
+                    _this.toCloseConstruction();
+                } else if (construction == 1) {
+                    _this.todayInsertConstruction();
+                } else if (construction == 2) {
+                    _this.todayUpdateConstruction();
+                } else if (construction == 3) {
+                    _this.todayCloseConstruction();
+                }
+            },
+            event: function() {
+                var _this = this;
+                var event = _this.event;
+                if (event == 0) {
+                    _this.toCloseEvent();
+                } else if (event == 1) {
+                    _this.todayInsertEvent();
+                }
+            },
+        },
+        created: function() {
+            var _this = this;
+           // _this.kaishi();
+            this.move();
+        },
+        destroyed: function() {
+            clearInterval(this.timer);
+            clearInterval(this.dataTimer);
+        },
+        mounted: function() {
+            var _this = this;
+            _this.token = localStorage.getItem("token");
+            _this.user =JSON.parse(localStorage.getItem("user"));
+            _this.unitName = _this.user.unitName;
+            _this.getUnit();
+
+            _this.gettimer(); // 时间定时器
+            _this.getdataTimer(); // 页面刷新定时器,30分钟刷一次
+        },
+        methods: {
+            move() {
+                // 箭头函数解决 this 指向问题
+                var move_timer = setInterval(() => {
+                    var start = this.move_data.slice(0, this.move_real_temp_data);
+                    var end = this.move_data.slice(this.move_real_temp_data);
+                    this.move_real_data = end + start;
+                    if(this.move_real_temp_data == this.move_data.length-1) {
+                        this.move_real_temp_data = 1;
+					}else {
+                        this.move_real_temp_data ++;
+					}
+                }, 400)
+            },
+            clkFull(val){
+                var _this = this;
+                _this.btnFull = val;
+                if(val == 1){
+                    _this.btnFull = 2;
+                    _this.kaishi();
+                }else if(val == 2){
+                    _this.btnFull = 1;
+                    _this.guanbi();
+                }
+            },
+            kaishi() { //开始全屏
+                var docElm = document.documentElement;
+                //W3C
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                //FireFox
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                //Chrome等
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+                //IE11
+                else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            },
+            guanbi() { //退出全屏
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            },
+            gettimer() {
+                var _this = this;
+                if (_this.timer) {
+                    clearInterval(_this.timer);
+                } else {
+                    _this.timer = setInterval(() => {
+                        _this.nowDate = format("yyyy年MM月dd日 hh:mm:ss", new Date());
+                    }, 1000)
+                }
+            },
+            getdataTimer() {
+                var _this = this;
+                if (_this.dataTimer) {
+                    clearInterval(_this.dataTimer);
+                } else {
+                    _this.dataTimer = setInterval(() => {
+                        _this.getTaskComplete = [];
+                        _this.getUnit();
+                    }, 1800000)
+                }
+            },
+
+            clkMenu() { //tree显示 隐藏
+                var _this = this;
+                var btn =  _this.btnClk;
+                if(!btn){
+                    _this.$message({
+                        message: '数据还未加载完！',
+                        type: 'warning',
+                        duration:1500
+                    });
+                    return false;
+                }
+                _this.isTree = !_this.isTree;
+            },
+            handleCommand(command) { //点击tree的内容
+                var _this = this;
+                _this.user.unitId = command.id;
+                _this.user.unitName = command.text;
+                _this.unitName = command.text;
+                console.log(JSON.stringify(command))
+                _this.isTree = false;
+                _this.btnClk = false;
+                _this.getTaskComplete = [];
+                _this.getData();
+                _this.getUnit2();
+            },
+            getUnit2() {
+                var _this = this;
+                $.post(
+                    getUnit + "?unitId=" + _this.user.unitId + "&token=" + _this.token + "&unitName=" + _this.user.unitName +
+                    "&loginUserName=" + _this.user.loginUserName, null,
+                    res => {
+                        var _data = res.data;
+                        if (_data) {
+                            var menu = _data;
+                            _this.index = 0;
+                            _this.menu2 = menu;
+                        }
+                    }
+                );
+            },
+            getData() {
+                var _this = this;
+                _this.getTaskCompletion();
+                _this.getlengthcount();
+                _this.getInspectorCount();
+                _this.getTaskStatistics();
+                _this.getdevicestatistics();
+                _this.weektotalscore();
+				_this.latertotalscore();
+                _this.getStationScore();
+                _this.pipeprojection();
+                _this.scoredistribution();
+                _this.toCloseConstruction();
+                _this.todayInsertConstruction();
+                _this.todayUpdateConstruction();
+                _this.todayCloseConstruction();
+                _this.toCloseEvent();
+                _this.todayInsertEvent();
+            },
+            getUnit() {
+                var _this = this;
+                $.post(
+                    getUnit + "?unitId=" + _this.user.unitId + "&token=" + _this.token + "&unitName=" + _this.user.unitName +
+                    "&loginUserName=" + _this.user.loginUserName, null,
+                    res => {
+                        var _data = res.data;
+                        if (_data) {
+
+                            var menu = _data;
+                            _this.menu = menu;
+                            _this.menu2 = menu;
+                            _this.getData();
+                        }
+                    }
+                );
+            },
+            getlengthcount() { //任务覆盖率-计划覆盖率 + 部门巡检长度
+                var _this = this;
+                var url = _public + urls.getlengthcount;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        for (var i in _data) {
+                            if (i == "pointAll" || i == "tempPointAll") {
+
+                            } else if (i == "planCover" || i == "taskCover") {
+                                _data[i] = saveTwo(_data[i]);
+                            } else {
+                                _data[i] = saveTwo(_data[i] / 1000);
+                            }
+                        }
+                        _this.covercount = _data;
+                    }
+                );
+            },
+            getInspectorCount() { // 统计部门人数
+                var _this = this;
+                var url = _public + urls.getInspectorCountByUnitid;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token, null,
+                    res => {
+                        var _data = res.data;
+                        _this.inspectorcount = _data;
+                    }
+                );
+            },
+            getTaskStatistics() { //统计任务完成情况
+                var _this = this;
+                var url = _public + urls.getTaskStatisticsByUnitid;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        if (_data.pointCount > 0) { //如果总量大于0
+                            _data.pointComp = parseInt(_data.pointCompCount / _data.pointCount * 10); //已巡
+                            _data.pointUnComp = parseInt(_data.pointUnCount / _data.pointCount * 10); //未巡
+                            _data.point = parseInt(_data.pointCompCount / _data.pointCount * 100) + "%"; //已巡占比
+                            //_data.point1 = ((_data.pointCount%_data.pointCompCount) == 0 ? 0 : (parseInt(_data.pointCompCount/_data.pointCount*100)) )+ "%";//中间占比
+                            _data.point1 = (_data.pointCount % _data.pointCompCount) == 0 ? 0 : (parseInt((_data.pointCompCount / _data.pointCount *
+                                10 - _data.pointComp) * 100)) + "%"; //中间占比
+                            console.log(_data.point1)
+                        } else {
+                            _data.pointComp = 0;
+                            _data.pointUnComp = 10;
+                            _data.point1 = 0;
+                            _data.point = 0 + "%";
+                        }
+                        if (_data.inspCount > 0) {
+                            _data.inspComp = parseInt(_data.inspCompCount / _data.inspCount * 10);
+                            _data.inspUnComp = parseInt(_data.inspUnCount / _data.inspCount * 10);
+                            _data.insp = parseInt(_data.inspCompCount / _data.inspCount * 100) + "%";
+                            _data.insp1 = (_data.inspCount % _data.inspCompCount) == 0 ? 0 : (parseInt((_data.inspCompCount / _data.inspCount *
+                                10 - _data.inspComp) * 100)) + "%";
+                            console.log(_data.insp1)
+                            //console.log(_data.inspComp + "---" + _data.inspUnComp + "***" + _data.insp)
+                        } else {
+                            _data.inspComp = 0;
+                            _data.inspUnComp = 10;
+                            _data.insp1 = 0;
+                            _data.insp = 0 + "%";
+                        }
+                        //console.log(_data)
+                        _this.taskstatistics = _data;
+                    }
+                );
+            },
+            getdevicestatistics() { //设备
+                var _this = this;
+                var url = _public + urls.getdevicestatistics;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token, null,
+                    res => {
+                        var _data = res.data;
+                        _this.devicestatistics = _data;
+                        initcharts1(_data); //equipchart  设备
+                    }
+                );
+            },
+            weektotalscore() { //巡线工近七日总分前五
+                var _this = this;
+                var url = _public + urls.weektotalscore;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&beginDate=" + _this.beginDate + "&endDate=" +
+                    _this.endDate+"&sort=desc ", null,
+                    res => {
+                        var _data = res.data;
+                        for (var i = 0; i < _data.length; i++) {
+                            _data[i].image = "./images/line_" + i + ".png";
+                            _data[i].grossscore = saveTwo(_data[i].grossscore * 100);
+                        }
+                        _this.weektotal = _data;
+                    }
+                );
+            },
+			latertotalscore() { //巡线工近七日总分后五
+                var _this = this;
+                var url = _public + urls.weektotalscore;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&beginDate=" + _this.beginDate + "&endDate=" +
+                    _this.endDate+"&sort=asc ", null,
+                    res => {
+                        var _data = res.data;
+						for (var i = 0; i < _data.length; i++) {
+						    _data[i].grossscore = saveTwo(_data[i].grossscore * 100);
+						}
+                        _this.latertotal = _data;
+                    }
+                );
+            },
+            pipeprojection() { //管道保护
+                var _this = this;
+                var url = _public + urls.pipeprojection;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token, null,
+                    res => {
+                        var _data = res.data;
+                        _this.pipeproject = _data;
+                    }
+                );
+            },
+            getStationScore() { //部门周巡检成绩
+                var _this = this;
+                var url = _public + urls.getStationScore;
+                $.post(
+                    url + "?type=station&unitid=" + _this.user.unitId + "&token=" + _this.token + "&beginDate=" + _this.beginDate +
+                    "&endDate=" + _this.endDate, null,
+                    res => {
+                        var _data = res.data;
+                        initcharts2(_data); //unitweek  部门周巡检成绩
+                    }
+                );
+            },
+            scoredistribution() { //部门巡线工分数分布
+                var _this = this;
+                var url = _public + urls.scoredistribution;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&date=" + _this.endDate, null,
+                    res => {
+                        var _data = res.data;
+                        initcharts3(_data); //unityestday 巡线工昨日分数分布
+                    }
+                );
+            },
+
+            getTaskCompletion() { //巡线工巡检情况
+                var _this = this;
+                var unitid = _this.user.unitId;
+                _this.getTask(unitid);
+            },
+
+            isMore() { //巡线工巡检情况查看更多
+                var _this = this;
+                var menu = _this.menu2;
+                var i = _this.index;
+                if (i == menu.length) {
+                    _this.$message({
+                        message: '暂无更多数据！',
+                        type: 'warning',
+                        duration:1500
+                    });
+                    return false;
+                }
+                console.log(i + "--菜单--" + JSON.stringify(menu))
+                var unitid = menu[i].id;
+                console.log("部门id：" + unitid)
+
+                _this.getTask(unitid);
+            },
+            getTask(unitid) {
+                var _this = this;
+                var url = _public + urls.getTaskCompletion;
+                $.post(
+                    url + "?unitid=" + unitid + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate, null,
+                    res => {
+                        var _data = res.data;
+                        _this.btnClk = true;
+                        var flag = true;
+                        if (_data.length > 0) {
+                            for (var i = 0; i < _data.length; i++) {
+                                _data[i].linelength = saveTwo(_data[i].linelength / 1000);
+                                _data[i].completionrate = saveTwo(_data[i].completionrate * 100);
+                                _data[i].assessscore = saveTwo(_data[i].assessscore * 100);
+                            }
+                            _this.getTaskComplete = _this.getTaskComplete.concat(_data);
+                        } else {
+                            var menu = _this.menu2;
+                            var i = _this.index;
+                            if (menu) {
+                                unitid = menu[i].id;
+                                if (flag) {
+                                    _this.getTask(unitid);
+                                    flag = false;
+                                }
+                            }
+                        }
+                        _this.index = _this.index + 1;
+
+                       }
+                );
+            },
+            toCloseConstruction() { //第三方施工统计0
+                var _this = this;
+                var url = _public + urls.toCloseConstruction;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        _this.constructiontotal.close = _data.total;
+                        if (_this.construction == 0) {
+                            initcharts4(_data); //thirdchart  第三方施工统计
+                        }
+                    }
+                );
+            },
+            todayInsertConstruction() { //第三方施工统计1
+                var _this = this;
+                var url = _public + urls.todayInsertConstruction;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        _this.constructiontotal.insert = _data.total;
+                        if (_this.construction == 1) {
+                            initcharts4(_data); //thirdchart  第三方施工统计
+                        }
+                    }
+                );
+            },
+            todayUpdateConstruction() { //第三方施工统计2
+                var _this = this;
+                var url = _public + urls.todayUpdateConstruction;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        _this.constructiontotal.update = _data.total;
+                        if (_this.construction == 2) { //thirdchart  第三方施工统计
+                            initcharts4(_data);
+                        }
+                    }
+                );
+            },
+            todayCloseConstruction() { //第三方施工统计3
+                var _this = this;
+                var url = _public + urls.todayCloseConstruction;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        _this.constructiontotal.todayClose = _data.total;
+                        if (_this.construction == 3) { //thirdchart  第三方施工统计
+                            initcharts4(_data);
+                        }
+                    }
+                );
+            },
+            toCloseEvent() { //事件上报0
+                var _this = this;
+                var url = _public + urls.toCloseEvent;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        _this.constructiontotal.toClose = _data.total;
+                        if (_this.event == 0) {
+                            initcharts5(_data.countRiskrating[0]); //eventchart  巡检事件统计
+                        }
+                    }
+                );
+            },
+            todayInsertEvent() { //事件上报1
+                var _this = this;
+                var url = _public + urls.todayInsertEvent;
+                $.post(
+                    url + "?unitid=" + _this.user.unitId + "&token=" + _this.token + "&statisticsDate=" + _this.statisticsDate,
+                    null,
+                    res => {
+                        var _data = res.data;
+                        _this.constructiontotal.todayInsert = _data.total;
+                        if (_this.event == 1) {
+                            initcharts5(_data.countRiskrating[0]); //eventchart  巡检事件统计
+                        }
+                    }
+                );
+            },
+
+            selectConstruction(val) {
+                var _this = this;
+                _this.construction = val;
+            },
+            selectEvent(val) {
+                var _this = this;
+                _this.event = val;
+            },
+        }
+    });
+</script>
+</html>

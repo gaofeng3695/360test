@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/thirdparty/jquery/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../common/thirdparty/jquery/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/queryStyle.css">
+	<script type="text/javascript" src="../../common/thirdparty/jquery/jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../../common/thirdparty/jquery/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../login/js/BaseJasDatagrid.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script>
+	var dagrid = new $.BaseJasDatagrid();
+	var columns =[[
+			        {title:'Base Information',colspan:3},
+					{field:'opt',title:'Operation',width:100,align:'center', rowspan:2,
+						formatter:function(value,rec){
+							return '<span style="color:red">Edit Delete</span>';
+						}
+					}
+				],[
+					{field:'name',title:'Name',width:120},
+					{field:'addr',title:'Address',width:220,rowspan:2,sortable:true,
+						sorter:function(a,b){
+							return (a>b?1:-1);
+						}
+					},
+					{field:'col4',title:'Col41',width:150,rowspan:2}
+				]];
+	var toolbar =[{
+					id:'btnadd',
+					text:'新增',
+					iconCls:'icon-add',
+					handler:function(){
+						$('#btnsave').linkbutton('enable');
+						alert('add');
+					}
+				},{
+					id:'btncut',
+					text:'删除',
+					iconCls:'icon-remove',
+					handler:function(){
+						deleteHandler("tt","eventid","xx.do");
+					}
+				},'-',{
+					id:'btnsave',
+					text:'查看',
+					disabled:true,
+					iconCls:'icon-save',
+					handler:function(){
+						$('#btnsave').linkbutton('disable');
+						alert('save');
+					}
+				}];
+		
+		/**
+	 * 方法描述：删除记录
+	 * param target DOM
+	 * param datagridid datagridid
+	 * param idField 主键字段
+	 * param url 删除方法请求路径
+	 */
+	function deleteHandler(datagridid,idField,url) {
+		// 找到所有被选中行
+		var rows = $('#' + datagridid).datagrid('getSelections');
+		// 是否已经选中记录
+		if (rows.length > 0) {
+			var ids = "";
+			// 遍历取得所有被选中记录的id
+			for ( var i = 0; i < rows.length; i++) {
+				ids += ",'" + eval('('+'rows[i]\.'+idField+')')+"'";
+			}
+			if (ids.length > 0)
+				ids = ids.substring(1);
+			$.messager.confirm('删除', '您确定要删除这些信息吗？\n\t', function(r) {
+				if (r) {
+					$.ajax({
+						url : url,// 如：'../deleteAction.do'
+						data : "IdField="+IdField+ "&eventid=" + ids,
+						type : 'POST',
+						success : function(data) {
+							if (data) {
+								top.showAlert('提示', '删除成功', 'info');
+								$('#' + datagridid).datagrid('reload'); // reload
+								$('#' + datagridid).datagrid(
+										'clearSelections'); // clear selected
+															// options
+							} else {
+								top.showAlert('提示', '删除失败', 'error');
+							}
+						}
+					});
+				}
+			});
+
+		} else {
+			top.showAlert('提示', '未选择记录', 'info');
+		}
+	}
+	$(function(){
+		dagrid.loadDatagrid(toolbar,'datagrid_data.json','tt',columns);
+	}); 
+	</script>
+</head>
+<body>
+	<!-- 实例一-->
+	<div id="queryDiv" class="easyui-panel" collapsible="true" collapsed="true" title="查询条件">
+		<table class="querytable" align="center">
+		   	<tr>
+		   		<td><span>条件：</span></td>
+		   		<td><input class="input_bg"/></td>
+		   	</tr>
+		</table>
+	</div>
+	<table id="tt" title="列表"></table>
+</body>
+</html>

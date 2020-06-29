@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="utf-8" xml:lang="utf-8">
+    <head>
+        <title>MapViewerDemo</title>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+        <script language="javascript" src="../js/jquery-1.7.1.min.js"></script> 
+        <script language="javascript" src="../js/GeoQuery.js"></script>
+        <script language="javascript" src="../js/json2.js"></script>
+        <script type="text/javascript"> 			
+             
+             /******************以下为空间数据增删改代码块***********************/
+             var objectid=64;
+             var geomery;
+             
+             //添加点开始,从地图取点             
+             function btnAddGeo()
+             {
+             	top.drawGraphic("graphic1","mappoint",getXYCallBack);			    
+             }            
+             
+            //取点回调函数，获取点坐标后执行空间数据插入
+            function getXYCallBack(obj)
+            {
+            	var url=top.getGisRestUrl("Meter");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/addFeatures";	
+            	var geo=eval("("+obj+")")		    
+			    var features=[
+				{
+					"geometry" : geo,
+					"attributes" :{
+					"METERNAME" : "NameDemo1",
+					"REMARKS" : "RemarksDemo1"}
+				}
+				];			
+				addFeatures(url,features,addCallbackFunction);
+            }
+            
+            //执行空间数据插入点动作后回调函数
+             function addCallbackFunction(responseJson)
+	         {      
+	        	var retjson=responseJson;
+	        	var arr=retjson.addResults;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		objectid=arr[i].objectId;
+	        		result=arr[i].success;
+	        		if(result)
+		        	{
+		        		alert("添加成功");
+		        	}
+		        	else
+		        	{
+		        		alert("添加失败---"+arr[i].error.description);
+		        	}
+	        	}
+	        	alert(JSONUtil.encode(retjson));
+	         }
+             
+             //开始编辑空间点要素,已知点要素的Objectid
+             function btnUpdateGeo()
+             {
+             	var url=top.getGisRestUrl("Meter");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/updateFeatures";
+				
+             	var features=[
+					{					
+						"geometry" : {"x" : 454973, "y" : 2514287},
+						"attributes" :{
+						"objectid":objectid,
+						"METERNAME" : "NameDemo1_modi",
+						"REMARKS" : "RemarksDemo1__modi"}
+					}
+				];			
+	  			updateFeatures(url,features,updateCallbackFunction);
+             } 
+             
+             //更新点回调函数
+             function updateCallbackFunction(responseJson)
+	         {      
+	        	var retjson=responseJson;
+	        	var arr=retjson.updateResults;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		result=arr[i].success;
+	        		if(result)
+		        	{
+		        		alert("修改成功");
+		        	}
+		        	else
+		        	{
+		        		alert("修改失败---"+arr[i].error.description);
+		        	}
+	        	}	        	
+	        	alert(JSONUtil.encode(retjson));
+	         }  
+             
+             //删除点开始执行函数
+             function btndeleteGeo()
+             {
+             	var url=top.getGisRestUrl("Meter");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/deleteFeatures";
+             	deleteFeaturesByIds(url,""+objectid,deleteCallbackFunction);
+             }
+             
+             //删除点回调函数
+             function deleteCallbackFunction(responseJson)
+	         {      
+	        	var retjson=responseJson;
+	        	var arr=retjson.deleteResults;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		result=arr[i].success;
+	        		if(result)
+		        	{
+		        		alert("删除成功");
+		        	}
+		        	else
+		        	{
+		        		alert("删除失败---"+arr[i].error.description);
+		        	}
+	        	}	        	
+	        	
+	        	alert(JSONUtil.encode(retjson));
+	         }
+             
+             //查询点要素的坐标
+             function bntQueryGeo()
+             {
+             	var url=top.getGisRestUrl("Meter");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/query";
+             	getGeometryByIds(url,""+objectid,"esriGeometryPoint",queryGeometryCallback);
+             }    
+	         
+	         //查询点要素坐标回调函数
+	         function queryGeometryCallback(responseJson)
+	         {
+	         	var retjson=responseJson;
+	         	alert(JSONUtil.encode(retjson));
+	        	var arr=retjson.features;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		result=arr[i].geometry;
+	        		alert(JSONUtil.encode(result));
+	        	}
+	         }
+	         
+	         //面查询，开始取查询范围
+	         function btnPolygonQuery()
+	         {
+	         	//查询Coating表
+	         	top.drawGraphic("polyline2","polygon",drawGraphicCallback); 	         	
+	         }
+	         
+	         //查询范围回调，执行查询
+	         function drawGraphicCallback(obj)
+             {            	
+            	var poloygon=obj;
+            	var url=top.getGisRestUrl("Coating");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/query";
+            	var whereFilter="COATINGMETHOD='3PE加强'";
+	         	query(url,poloygon,whereFilter,"*",queryCallbackFunction,"HttpClient");
+             }
+             
+             //查询回调
+             function queryCallbackFunction(responseJson)
+             {
+             	var retjson=responseJson;
+             	alert(JSONUtil.encode(retjson));
+	        	var arr=retjson.features;
+	        	alert("共查到"+arr.length+"条记录");         	
+             }
+             
+             //查询要素ObjectId集合，开始取查询范围
+             function btnPolygonQueryIds()
+             {
+             	top.drawGraphic("polyline2","polygon",drawGraphicCallback2); 
+             }
+             
+             //查询范围回调函数
+             function drawGraphicCallback2(obj)
+             {            	
+            	var poloygon=obj;
+            	var url=top.getGisRestUrl("Coating");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/query";
+            	var whereFilter="COATINGMETHOD='3PE加强'";            	
+	         	getObjectIds(url,poloygon,whereFilter,queryObjectIdsCallbackFunction,"HttpClient");
+             }
+             
+             //查询结果回调函数
+             function queryObjectIdsCallbackFunction(responseJson)
+             {
+             	var retjson=responseJson;
+             	alert(JSONUtil.encode(retjson));
+	        	var arr=retjson.objectIds;
+	        	alert("共查到"+arr.length+"条记录");         	
+             }
+             
+             //面插入，开始地图取面
+             function btnAddPolygon()
+             {
+             	top.drawGraphic("graphic1","polygon",drawPolygonCallBack);             	
+             }
+             
+             //取面回调，开始插入记录
+             function drawPolygonCallBack(obj)
+             {
+             	var url=top.getFeatureRestUrl("GPS_SubsectionsBuffer");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/addFeatures";
+             	var geo=eval("("+obj+")");		    
+			    var features=[
+				{
+					"geometry" : geo,
+					"attributes" :{					
+					"REMARK":"备注Demo"
+					}
+				}
+				];			
+				addFeatures(url,features,addPolygonCallbackFunction);
+             }
+             
+             //插入面记录回调函数
+             function addPolygonCallbackFunction(responseJson)
+	         {      
+	        	var retjson=responseJson;
+	        	alert(JSONUtil.encode(retjson));
+	        	var arr=retjson.addResults;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		objectid=arr[i].objectId;
+	        		result=arr[i].success;
+	        		if(result)
+		        	{
+		        		alert("添加成功");
+		        	}
+		        	else
+		        	{
+		        		alert("添加失败---"+arr[i].error.description);
+		        	}
+	        	}	        	
+	         }
+	         
+	         //对刚插入的面要素进行查询，为修改面做准备
+	         function bntQueryPolygon()
+             {
+             	var url=top.getFeatureRestUrl("GPS_SubsectionsBuffer");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/query";
+             	getGeometryByIds(url,""+objectid,"esriGeometryPolygon",queryPolygonCallback);
+             }
+             
+             //查询面坐标回调函数,存入变量geometry中
+             function queryPolygonCallback(responseJson)
+	         {
+	         	var retjson=responseJson;
+	         	alert(JSONUtil.encode(retjson));
+	        	var arr=retjson.features;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		result=arr[i].geometry;
+	        		geomery=result;
+	        		alert(JSONUtil.encode(result));
+	        	}
+	         }
+	         
+	         //开始在地图绘图，供修改其形状
+	         function btnUpdatePolygon()
+             {
+             	if(geomery!=null)
+             	{
+             		top.editPolygon("ploygon1",geomery);
+             	}
+             	else
+             	{
+             		alert("未有面状图形，请先执行查询面坐标");
+             	}             	
+             }
+             
+             //开始地图查询保存修改后的面要素
+             function btnSavePolygon()
+             {
+             	top.getEidtGraphic("ploygon1",editPolygonCallBack);             	             	
+             }
+             
+             //地图取回面要素回调，并更新记录
+             function editPolygonCallBack(obj)
+             {
+             	var url=top.getFeatureRestUrl("GPS_SubsectionsBuffer");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/updateFeatures";
+             	var geometryTemp=eval("("+obj+")");	
+             	var features=[
+					{					
+						"geometry" : geometryTemp,
+						"attributes" :{	
+						"ObjectId":objectid,
+						"REMARK":"备注ByEditor"
+						}
+					}
+				];			
+	  			updateFeatures(url,features,updatePolygonCallbackFunction);
+             }
+             
+             //更新面记录回调函数
+             function updatePolygonCallbackFunction(responseJson)
+	         {      
+	        	var retjson=responseJson;
+	        	alert(JSONUtil.encode(retjson));
+	        	var arr=retjson.updateResults;
+	        	var result=false;
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		result=arr[i].success;
+	        		if(result)
+		        	{
+		        		alert("修改成功");
+		        	}
+		        	else
+		        	{
+		        		alert("修改失败---"+arr[i].error.description);
+		        	}
+	        	}	  	
+	        	
+	         }
+	         
+	         //删除面
+	         function btndeletePolygon()
+             {
+             	var url=top.getFeatureRestUrl("GPS_SubsectionsBuffer");
+				if(url=="")
+				{
+					alert("未取得图层服务名");
+				}
+				url=url+"/deleteFeatures";
+             	deleteFeaturesByIds(url,""+objectid,deletePolygonCallbackFunction);
+             }
+             
+             //删除面回调
+             function deletePolygonCallbackFunction(responseJson)
+	         {      
+	        	var retjson=responseJson;
+	        	var arr=retjson.deleteResults;
+	        	var result=false;
+	        	alert(JSONUtil.encode(retjson));
+	        	for(i=0;i<arr.length;i++)
+	        	{
+	        		result=arr[i].success;
+	        		if(result)
+		        	{
+		        		alert("删除成功");
+		        		geomery=null;
+		        		objectid="";
+		        	}
+		        	else
+		        	{
+		        		alert("删除失败---"+arr[i].error.description);
+		        	}
+	        	}       	
+	        	
+	         }
+             
+              
+        </script>
+    </head>
+    <body scroll="no" style="background:transparent;">
+       <div>
+        	<input type="button" id="btnAddGeo" onclick="btnAddGeo()" value="Geo添加点" />
+        	<input type="button" id="btnUpdateGeo" onclick="btnUpdateGeo()" value="Geo修改点" />
+        	<input type="button" id="btndeleteGeo" onclick="btndeleteGeo()" value="Geo删除点" /> 
+        	<input type="button" id="bntQueryGeo" onclick="bntQueryGeo()" value="Geo查询点坐标" /> 
+        	<input type="button" id="btnPolygonQuery" onclick="btnPolygonQuery()" value="Geo面查询" /> 
+        	<input type="button" id="btnPolygonQueryIds" onclick="btnPolygonQueryIds()" value="Geo面查询Ids" />
+        	
+        	<input type="button" id="btnAddPolygon" onclick="btnAddPolygon()" value="Geo添加面" />
+        	<input type="button" id="bntQueryPolygon" onclick="bntQueryPolygon()" value="Geo查询面坐标" /> 
+        	<input type="button" id="btnUpdatePolygon" onclick="btnUpdatePolygon()" value="Geo修改面" />
+        	<input type="button" id="btnSavePolygon" onclick="btnSavePolygon()" value="Geo修改后保存面" />
+        	<input type="button" id="btndeletePolygon" onclick="btndeletePolygon()" value="Geo删除面" />         	       		
+        </div>        
+   </body>
+</html>

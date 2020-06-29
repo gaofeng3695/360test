@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" href="../../../jasframework/common/css/query.css" type="text/css"></link>
+	<link rel="stylesheet" href="../../common/css/icon.css" type="text/css"></link>
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>	
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript"  src="js/docClassify.js"></script>
+	<script type="text/javascript" src="js/queryClassify.js"></script>	
+</head>
+<body  oncontextmenu="return true" >
+	<input type="hidden" id="id" value=""/>
+	<input type="hidden" id="foldertype" value=""/>
+	<div id="layout" class="easyui-layout" fit="true" style="border:1px solid #ccc;">
+    	<div region="west" title='文档分类列表' style="width:20%;" data-options="split:true,collapsible:true">  
+     		<ul id="docClassifyEventId">
+			</ul>
+        </div>
+	    <div region='center' id="center"  style="border:1px solid #ccc;">
+			<div class="easyui-panel" key="chaxun" id="docquery"  collapsible="true" collapsed="true" title="查询条件" style="padding:1px">
+				<form method="post" id="approvalQueryForm">
+					<table align="center" class="querytable" id="queryDiv">
+						<tr>
+							<td width="15%"><span key="filename" class="paltform-i18n">文档名称：</span></td>
+							<td width="35%"><input type="text" id="filename" name="filename" class="easyui-validatebox input_bg"/></td>
+							<td width="15%"><span key="filetype" class="paltform-i18n">文档格式：</span></td>
+						    <td width="35%"><input type="text" id="filetype" name="filetype" class="easyui-validatebox input_bg"/></td>
+						</tr>
+						<tr>
+							<td width="15%"><span key="uploadtime_start" class="paltform-i18n">上传开始时间：</span></td>
+							<td width="35%">
+								<input type="text" id="uploadtime_start"	name="uploadtime_start" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" />
+							</td>
+							<td width="15%"><span key="uploadtime_end" class="paltform-i18n">上传结束时间：</span></td>
+							<td width="35%">
+								<input type="text" id="uploadtime_end" name="uploadtime_end" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" />
+							</td>
+						</tr>
+						<tr>
+							<td width="15%"><span key="fileno" class="paltform-i18n">文档编号：</span></td>
+						    <td width="35%"><input type="text" id="fileno" name="fileno" class="easyui-validatebox input_bg"/></td>
+							<td width="15%"><span key="keyword" class="paltform-i18n">关&nbsp;键&nbsp;词：</span></td>
+							<td width="35%"><input type="text" id="keyword" name="keyword" class="easyui-validatebox input_bg"/></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryDocByConditions()"><label><span key="query" class="paltform-i18n">查询</span></label></a>
+								<a href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryConditions()"><label><span key="clear" class="paltform-i18n">清空</span></label></a>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<table id="dg"></table>
+		</div>   
+	</div>
+	<div id="toolbar">
+		<a id="addfavorite" name ="-1" style="display: " href="#" class="easyui-linkbutton" iconCls="icon-favorite" plain="true" onclick="addToFavorite()"><span key="file.addfavorte" class="paltform-i18n">添加到收藏夹</span></a>
+		<a style="display: none;" id="" name="" href="#"  class="easyui-linkbutton" iconCls="icon-update"  plain="true" onclick="updateFileClassifyInfo()"><span key="file.createFolder" class="paltform-i18ni">修改文档分类</span></a>
+		<a style="display: none;" id="50" name="50" href="#"  class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteDocFromClassify()"><span key="file.dele" class="paltform-i18n">删除</span></a>
+	</div>
+	<div id="dlg_user" class="easyui-dialog" style="width:440px;height:400px;padding:10px" closed="true"  buttons="#dlg-buttons-role">
+		<div>
+			<select name="a" id="viewUserSel" size="18" style="width: 100%;"></select>
+		</div>
+	</div>
+	<div id="dlg-buttons-role">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_user').dialog('close')">取消</a>
+	</div>
+<!-- 	<div id="managerdiv" class="easyui-menu" style="width:115px;"> -->
+<!--         <div id="10" data-options="iconCls:'icon-tip',name:'001'">查看</div> -->
+<!--         <div id="20" data-options="iconCls:'icon-preview',name:'002'" >预览</div> -->
+<!--         <div id="30" data-options="iconCls:'icon-download',name:'003'" >下载</div> -->
+<!--         <div id="39" data-options="iconCls:'icon-update',name:'004'" >修改</div> -->
+<!--         <div id="1000" data-options="iconCls:'icon-share',name:'005'" >共享</div> -->
+<!--     </div> -->
+    <div id="DocClassify" class="easyui-menu" style="width:115px;">
+        <div  data-options="iconCls:'icon-add',name:'create'">创建文档分类</div>
+        <div  data-options="iconCls:'icon-edit',name:'update'" >重命名分类</div>
+        <div  data-options="iconCls:'icon-remove',name:'delete'" >删除分类</div>
+    </div> 
+     <div id="DocClassify1" class="easyui-menu" style="width:115px;">
+        <div  data-options="iconCls:'icon-add',name:'create'">创建文档分类</div>
+    </div> 
+</body>
+</html>

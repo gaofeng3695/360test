@@ -1,0 +1,148 @@
+@charset "utf-8";
+/** 
+ * @file
+ * @author  yanght
+ * @desc  border-radius的ie兼容性处理
+ * @date 2017-08-15
+ * @last modified by lizz
+ * @last modified time  2017-08-15
+ */
+ 
+.calendar-title span{
+	 behavior:url(/jasframework/common/js/PIE.htc);
+}
+.calendar-prevmonth,.calendar-nextmonth,.calendar-prevyear,.calendar-nextyear{
+	 behavior:url(/jasframework/common/js/PIE.htc);
+}
+.calendar-day{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.calendar-menu-month{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.menu-active{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.menu-shadow{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.progressbar{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.progressbar-value{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.slider-inner{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.slider-handle{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+a:hover.l-btn-plain{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+a.m-btn-plain-active{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+a.s-btn-plain-active{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.tabs li{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.tabs li a.tabs-inner{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.searchbox a.l-btn-plain:hover{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.searchbox a.m-btn-plain-active{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+.window{
+	 behavior:url(/jasframework/common/js/PIE.htc);
+}
+.window-body{
+	 behavior:url(/jasframework/common/js/PIE.htc);
+} 
+
+/**************新增********************/
+
+.panel, .panel-header, .panel-body{
+	behavior:url(/jasframework/common/js/PIE.htc);
+}
+
+/* 弹窗 及 弹窗按钮*/
+.messager-window  .messager-body{
+   behavior:url(/jasframework/common/js/PIE.htc);
+}
+.dialog-button,
+.messager-button{
+    behavior:url(/jasframework/common/js/PIE.htc);
+}
+
+/* 按钮 */
+.cancel.l-btn,
+.submit.l-btn,
+.more.l-btn{
+   	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+
+/* 表单元素 */
+input,select,textarea{
+    behavior: url(/jasframework/commom/js/PIE.htc);
+}
+
+/* 查询条件区域 */
+.query-conditions{
+ 	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+
+/* 更多搜索   条件搜索 */
+ .more-query-table,
+ .more-query-table td>a,
+ .more-query-table .more-conditions .selected{
+ 	behavior: url(/jasframework/commom/js/PIE.htc);
+ }
+ 
+/* table toobar */
+ .datagrid,
+ .datagrid .datagrid-view,
+ .datagrid .datagrid-toolbar a{
+ 	behavior: url(/jasframework/commom/js/PIE.htc);
+ }
+ 
+/* 表格复选框选中样式 */
+.datagrid-row-checked .datagrid-header-check input,
+.datagrid-row-selected .datagrid-cell-check input{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+/* 表格任务状态栏样式 */
+.datagrid .processing,
+.datagrid .checking,
+.datagrid .end{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+
+
+/* 图片预览 */
+.viewWindow .viewLeft,
+.viewWindow .viewRight,
+.viewWindow .viewClose{
+	behavior: url(/jasframework/commom/js/PIE.htc);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    behavior: url(/jasframework/commom/js/PIE.htc);
+ }
+::-webkit-scrollbar-thumb {
+   	behavior: url(/jasframework/commom/js/PIE.htc);
+ }
+ 
+ /* 弹出页面  */
+ .content-area,
+ .button-area,
+ .detail-table{
+ 	behavior: url(/jasframework/commom/js/PIE.htc);
+ }

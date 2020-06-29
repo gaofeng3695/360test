@@ -1,0 +1,136 @@
+@charset "utf-8";
+/** 
+ * @file
+ * @author  xxx
+ * @desc  图片预览封装
+ * @date  2017-08-15
+ * @last modified by xxx
+ * @last modified time  2017-08-15
+ */
+*{
+    padding:0;
+    margin: 0;
+}
+ul,li{
+    list-style: none
+}
+img{
+    border: 0;
+}
+
+.pic-list{
+    display:inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 0;
+}
+
+.pic-list .list-items{
+    transition: all .3s;
+    display: inline-block;
+   /*  width: 22%; */
+    width:135px;
+    height: 140px;
+    margin: 10px 1%;
+     /* width: 100px;padding:5px 0;
+    margin: 10px 9px 8px 7px; */
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+.pic-list .list-items:hover{
+    border-color: #399bff;
+    opacity:0.9;
+    filter: Alpha(opacity=90);
+    cursor:pointer 
+}
+.pic-list .list-items input{
+	position:absolute;
+	left:0;
+	top:0px;
+	width:20px;
+	height:20px;
+	display:none;
+}
+.pic-list .list-items .items-img{
+    width: 100%;
+    height: 100%;
+}
+.pic-list .list-items .list-info{
+    position: absolute;
+    bottom: -45px;
+    width: 100%;
+    padding: 5px 1px;
+    text-align: center;
+    background: rgba(0,0,0,0.3);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C8f2f2f2,endColorstr=#C8f2f2f2);
+    color: #fff;
+    font-size: 12px;
+    display: none;
+}
+.pic-list .list-items-desc{
+	height:160px;
+}
+
+.pic-list .list-items-desc .items-img{
+    width: 100%;
+    height: 120px;
+}
+.pic-list .list-items-desc .list-info{
+	height:60px;
+}
+.pic-list .list-items-view .items-img{
+    width: 100%;
+    height: 120px;
+}
+.pic-list .list-items-view .list-info{
+	height:40px;
+}
+.pic-list .list-items .pic-description-input{
+	position: absolute;
+    bottom: 0;
+    left:1%;
+    width: 96%;
+    height:35px;
+}
+.pic-list .list-items .list-operate{
+	position: absolute;
+	right:0px;
+	top:0;
+}
+.pic-list .list-items .list-operate span{
+	display:inline-block;
+	width:20px;
+	height:20px;
+}
+.pic-list .list-items .list-operate .delete,
+.pic-list .list-items .list-operate .remove{
+	 background:url("../../image/webuploader/delete.png") no-repeat center center;
+}
+.pic-list .list-items .list-operate .download{
+	 background:url("../../image/webuploader/download.png") no-repeat center center;
+}
+.pic-list .list-info .pic-name{
+    font-size: 14px;
+    line-height: 20px;
+    color:#333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.pic-list .list-items .pic-name-input{
+	position:relative;
+	bottom:0;
+	width:96%;
+	margin-left:1%;
+	height:20px;
+	display:block;
+}
+.pic-list .list-info .pic-desc{
+	font-size: 12px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+

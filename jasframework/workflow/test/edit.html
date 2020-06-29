@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>流程测试主页面</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../js/workflow.js"></script>
+	<script>
+		$(function(){
+			var pkfield = getParamter("pkfield");
+			$("#resultDIV").html(pkfield);
+		});
+		
+	</script>
+</head>
+<body style="overflow:auto">
+<!-- 	流程业务变量，class=workflowVar -->
+	<input class="workflowVar" id="customVariable1" value="业务流程变量1"/>
+	<input class="workflowVar" id="customVariable2" value="业务流程变量2"/>
+	
+	<h1>流程审批业务编辑页面</h1>
+	<div id="showResultDIV" style="margin-top:20px;">
+		<span style="color:red;">业务数据ID：</span>
+		<div  id="resultDIV" style="padding-left:20px;">-</div>
+	</div>
+</body>
+</html>

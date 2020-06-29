@@ -1,0 +1,5 @@
+<configuration>
+    <content>Hello World !</content>
+	<width>300</width>
+	<showLayerTree>false</showLayerTree>
+</configuration> 

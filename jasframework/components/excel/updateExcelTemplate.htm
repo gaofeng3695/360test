@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/css/add.css"/>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="js/excel.js"></script>
+	<script type="text/javascript" src="js/updateExcelTemplate.js"></script>
+	<title>修改Excel模板基本信息</title>
+</head>
+<body>
+	<div id="tt" style="height:500px;">
+		<div title="模板基本信息" >
+			<form id="updateExcelTempInfo" method="post">
+				<input id="eventid" name="eventid" type="hidden">
+				<!-- 表单区域 -->
+				<table class="edit-table">
+					<tr>
+						<td width="20%"><span>模板名称：</span></td>
+						<td width="30%"><input id="templateName" name="templateName" class="easyui-validatebox input_bg" required="true" maxlength="120"/></td>
+						<td width="20%"><span>模板类型：</span></td>
+						<td width="30%"><input id="templateType" name="templateType" class="easyui-combobox" required="true" style="width:100%" /></td>
+					</tr>
+					<tr>
+						<!-- 添加 功能名称 -->
+						<td width="20%"><span>功能名称：</span></td>
+						<td width="30%"><input id="functionName" name="functionName" class="easyui-validatebox input_bg" required="true" /></td>
+																
+						<td><span>数据源：</span></td>
+						<td><input id="datasourceName" name="datasourceName" class="easyui-combobox" required="true" style="width:100%" /></td>
+					</tr>
+					<tr>
+						<td><span>项目中模板路径：</span></td>
+						<td colspan="3"><input name="templatePath" id="templatePath" class="easyui-validatebox input_bg"></input></td>
+					</tr>					
+					<tr>
+						<td><span>备注：</span></td>
+						<td colspan="3"><textarea name="remark" cols="25" rows="5" id="remark" class="easyui-validatebox" validType="maxLength[300]"></textarea></td>
+					</tr>
+				</table>
+				<!-- 按钮区域 -->
+				<div class="button-area">
+					<table width="100%">
+						<tr>
+			 				<td>
+			 					<a id="updateExcelTempInfoButton" href="#" class="easyui-linkbutton save-btn"  onclick="updateExcelTemplateInfo()">修改</a>
+								<a id="updateExcelTempInfoButton" href="#" class="easyui-linkbutton cancel-btn"  onclick="top.closeDlg('templateupdate')">取消</a>
+			 				</td>
+			  			</tr>
+			  		</table>	
+		  		</div> 
+			</form>
+	    </div>
+	    <div title="表配置信息" >
+	        <iframe id="tableInfoConfig" src="" frameborder="0" style="width:100%;height:99%;"></iframe>
+	    </div>
+	</div>
+</body>
+</html>

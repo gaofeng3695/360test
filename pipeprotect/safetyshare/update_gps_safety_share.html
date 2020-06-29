@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">		
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../..//jasframework/common/css/webuploader/view_photo.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/webuploader/initialize_webuploader.css">
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script><script type="text/javascript" src="../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_images.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_file.js"></script>
+
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/update_gps_safety_share.js"></script> 	
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 	上传文件扩展名 -->
+		<input type="hidden" id="exts" name="exts" value="rar,zip,doc,docx,txt,jpg,png,xls,xlsx,pdf" ></input>
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsSafetyShareForm" class="content-area-main" method="post">
+			<input id="oid" name="oid" type="hidden" value="" />
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>部门名称：</span></td>
+					<td width="30%">
+						<select id="unitid" name="unitid"  class="easyui-validatebox select"></select>
+					</td>
+					<td width="20%"><span>标题：</span></td>
+					<td width="30%">
+						<input id="title" name="title" class="easyui-validatebox input_bg"  required="true"  validType="" maxlength="100"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>事件发生时间：</span></td>
+					<td width="30%">
+						<input id="occurrencetime" name="occurrencetime"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+					</td>
+					<td></td></tr><tr>
+					<td width="20%"><span>经过简述：</span></td>
+					<td width="80%" colspan="3">
+						<textarea id="describe" name="describe"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>原因分析：</span></td>
+					<td width="80%" colspan="3">
+						<textarea id="cause" name="cause"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>事件结果：</span></td>
+					<td width="80%" colspan="3">
+						<textarea id="result" name="result"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>经验及教训：</span></td>
+					<td width="80%" colspan="3">
+						<textarea id="experience" name="experience"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+					</td>
+				</tr>
+			</table>					
+			<!--<div id="uploadanddownloadDIV" align="right"></div>-->
+			<!-- 存放图片的容器  不带描述-->
+			<div class="table-content">
+				<h6 class="table-title">图片信息</h6>
+				<div id="viewPicContainer"></div>
+			</div> 
+					<!-- 存放附件的容器   带描述-->
+			<div class="table-content">
+				<h6 class="table-title">附件信息</h6>
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%">添加附件：</td>
+						<td width="80%" align="left"  class="add-attachment again-add-btn">
+							<div id="addFile" class="save-btn"></div>
+							<div id="againSaveFileBtn"  class="again-save-btn"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="viewFileContainer"></td>
+					</tr>
+				</table>	
+			</div>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsSafetyShare()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>委托管理</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/delegate.js"></script>
+</head>
+<body>
+	<!-- 权限编码-->
+	<input type="hidden" id="menuid" value="P-WF-0120"/>
+	<!-- 查询条件 -->
+	<div id="queryDiv" class="query-conditions">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="11%" class="text-right"><span>委托开始时间：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input type="text" id="startTimeBegin" name="startTimeBegin" class="Wdate input_bg" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'startTimeEnd\')}',dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
+								<td width="10%" class="text-center">-</td>
+								<td width="45%" style="padding-right:0em"><input type="text" id="startTimeEnd" name="startTimeEnd" class="Wdate input_bg" onclick="WdatePicker({minDate:'#F{$dp.$D(\'startTimeBegin\')}',dateFmt:'yyyy-MM-dd HH:mm'})"/</td>
+							</tr>
+						</table>
+					</td>
+					<td width="11%" class="text-right"><span>委托结束时间：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em">
+									<input type="text" id="endTimeBegin" name="endTimeBegin" class="Wdate input_bg" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'endTimeEnd\')}',dateFmt:'yyyy-MM-dd HH:mm'})" />
+								</td>
+								<td width="10%" class="text-center">-</td>
+								<td width="45%" style="padding-right:0em">
+									<input type="text" id="endTimeEnd" name="endTimeEnd" class="Wdate input_bg" onclick="WdatePicker({minDate:'#F{$dp.$D(\'endTimeBegin\')}',dateFmt:'yyyy-MM-dd HH:mm'})"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryData()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,'consDcsBoxculvertdatagrid')"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				 <tr>
+					<td width="11%" class="text-right"><span>记录创建时间：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input type="text" id="createTimeBegin" name="createTimeBegin" class="Wdate input_bg" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'createTimeEnd\')}',dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
+								<td width="10%" class="text-center">-</td>
+								<td width="45%" style="padding-right:0em"><input type="text" id="createTimeEnd" name="createTimeEnd" class="Wdate input_bg" onclick="WdatePicker({minDate:'#F{$dp.$D(\'createTimeBegin\')}',dateFmt:'yyyy-MM-dd HH:mm'})"/</td>
+							</tr>
+						</table>
+					</td>
+				 
+					<td></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- datagrid查询列表 -->
+	<table id="1011080201" toolbar="#toolbar" key="delegate.queryListTitle">
+	</table>
+	<!-- datagrid功能按钮 -->
+	<div id="toolbar">
+		<a href="#" id="101108020101" class="easyui-linkbutton fa fa-eye" plain="true" onclick="showViewPage()">
+			<span key="view" class="paltform-i18n">查看</span>
+		</a>
+		<a href="#" id="101108020102" class="easyui-linkbutton fa fa-plus" plain="true" onclick="showAddPage()">
+			<span key="add" class="paltform-i18n">新增</span>
+		</a>
+		<a href="#" id="101108020103" class="easyui-linkbutton fa fa-edit" plain="true" onclick="showUpdatePage()">
+			<span key="edit" class="paltform-i18n">修改</span>
+		</a>
+		<a href="#" id="101108020104" class="easyui-linkbutton fa fa-minus" plain="true" onclick="cancelDelegate()">
+			<span key="cancel" class="paltform-i18n">取消</span>
+		</a>
+	</div>
+</body>
+</html>

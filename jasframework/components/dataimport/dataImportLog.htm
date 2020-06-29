@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"  ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+<link rel="stylesheet" href="../../common/css/query.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../i18n/i18n.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/dataImportLog.js"></script>
+</head>
+<body onload="">
+	<input type="hidden" id="menuid" value="102102"/>
+<!-- 	查询面板 -->
+	<!-- <div class="easyui-panel" key="importlog_query" id="queryDiv" title="导入记录查询" collapsed="true" collapsible="true"> -->
+		<div class="query-conditions" key="importlog_query" id="queryDiv">
+		<form method="post" id="approvalQueryForm">
+			<table class="query-table" align="center" >
+				<tr>
+					<td width="20%"><span key="role.rolename" class="paltform-i18n">导入表：</span></td>
+					<td width="30%"><input type="text" id="importtable" class="easyui-validatebox input_bg" /></td>
+					<td width="20%"><span key="role.roleunit" class="paltform-i18n">导入时间：</span></td>
+					<td width="30%"><input type="text" id="importtime" name="importtime" class="Wdate input_bg" 
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" /></td>
+				</tr>
+				<tr>
+					<td align="right" colspan="4">
+						<a href="#" id='query' class="easyui-linkbutton submit" onclick="queryAll()"><span key="query" class="paltform-i18n">查询</span></a>
+						<a href="#" id='clear' class="easyui-linkbutton cancel" onclick="clearQuery()">清空</a>
+					</td>
+				</tr>
+			</table>
+			</form>
+	</div>
+<!-- 	datagrid列表  -->
+	<table id="importlogList" toolbar="#toolbar" key="imp_importlogList" >
+	</table>
+<!-- 	datagrid工具栏 -->
+	<div id="toolbar">
+		<a href="#" id="10100207" class="easyui-linkbutton fa fa-exchange" plain="true" onclick="cancleImport()">撤销导入</a>
+	</div>
+</body>
+</html>

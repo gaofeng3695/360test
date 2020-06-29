@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>流程部署管理</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/deploy.js"></script>
+</head>
+<body>
+	<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-WF-0180"/>
+	<!-- 查询条件 -->
+	<div id="queryDiv" class="query-conditions">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="13%"><span key="workflow.processName" class="paltform-i18n">流程名称：</span></td>
+					<td width="20%"><select id="processKey" name="processKey" class="easyui-combobox"></select></td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryInfo()"><span key="query" class="paltform-i18n">查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true)"><span key="clear" class="paltform-i18n">清空</span></a>
+					</td>
+				 </tr>
+			</table>
+		</form>
+	</div>
+	<!-- datagrid数据列表 -->
+	<table id="1011050201" toolbar="#toolbar" key="deploy.queryListTitle"></table>
+	<!-- datagrid功能按钮 -->
+	<div id="toolbar">
+		<a href="#" id="" class="easyui-linkbutton fa fa-stethoscope " plain="true" onclick="showWorkFlowChart()">
+			<span key="workflow.workflowChart" class="paltform-i18n">流程图</span>
+		</a>
+		<a href="#" id="" class="easyui-linkbutton fa fa-share-alt" plain="true" onclick="showDeployPage()">
+			<span key="workflow.deploy" class="paltform-i18n">部署</span>
+		</a>
+	</div>
+</body>
+</html>
+

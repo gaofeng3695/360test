@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+	
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css">
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="js/excel.js"></script>
+	<script type="text/javascript" src="js/tableInfoConfiguration.js"></script>
+	<title></title>
+</head>
+
+<body>  
+	<!--数据列表 -->
+	<table id="tableInfoData"></table>
+	
+	<div id="toolbars">  
+	    <a href="#" id="addTable" class="easyui-linkbutton fa fa-plus"  plain="true" onclick="addTable();"><span class="paltform-i18n">新增</span></a>  
+	    <a href="#" id="updateTable" class="easyui-linkbutton fa fa-edit"  plain="true" onclick="updateTable();"><span class="paltform-i18n">修改</span></a>  
+	    <a href="#" id="deleteTable" class="easyui-linkbutton fa fa-minus"  plain="true" onclick="deleteTable();"><span class="paltform-i18n">删除</span></a>   
+	    <a href="#" id="fieldInfoConfig" class="easyui-linkbutton fa fa-venus-double"  plain="true" onclick="fieldInfoConfig();"><span class="paltform-i18n">字段信息匹配</span></a>  
+	</div>  
+	
+</body>
+</html>

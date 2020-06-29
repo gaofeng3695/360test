@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<link rel="stylesheet" type="text/css"
+	href="../../jasframework/common/thirdparty/jquery/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jasframework/common/thirdparty/jquery/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jasframework/common/css/addAndUpdateStyle.css">
+<script type="text/javascript"
+	src="../../jasframework/common/thirdparty/jquery/jquery-1.6.min.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/common/thirdparty/jquery/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/common/thirdparty/jquery/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/jsonUtil.js"></script>
+<script type="text/javascript" src="js/addServiceInfo.js"></script>
+</head>
+<body>
+<div id="main_area">
+<!-- 表单区域，每行四列 -->
+<form id="serviceInfoForm" method="post">
+	<table align="center" class="detail-table" style="margin-top:20px;width:98%;">
+		<tr>
+			<td width="20%"><span >服务名称：</span></td>
+			<td width="80%"><input type="text" id="serviceName" name="serviceName"   validtype="maxLength[50]" required="true" class="easyui-validatebox input_bg"></td>
+		</tr>
+		<tr>
+			<td width="20%"><span >服务地址：</span></td>
+			<td width="80%"><input type="text" id="serviceUrl" name="serviceUrl"   validtype="maxLength[100]" required="true" class="easyui-validatebox input_bg"></td>
+		</tr>
+		<tr>
+			<td width="20%"><span >服务描述：</span></td>
+			<td width="80%"><textarea id="description"  name="description" style="height:80px;" ></textarea>
+			</td>
+			
+		</tr>
+	</table>
+		<div class="button_area_absolute">
+			<table width="100%">
+				<tr>
+					<td  align="center">
+						<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveServiceInfo()"> <span key="save" >保存</span></a>
+						<a href="#" class="easyui-linkbutton"iconCls="icon-cancel" onclick="closePanel()"> <span key="cancel" >取消</span></a>
+					</td>
+				</tr>
+			</table>
+		</div>
+</form>
+</div>
+</body>
+</html>

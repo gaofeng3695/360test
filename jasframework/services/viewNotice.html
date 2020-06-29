@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0"><title></title>
+<link rel="stylesheet" type="text/css" href="../jasframework/common/css/detailStyle.css">		
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css"
+	href="../jasframework/common/thirdparty/jquery/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../jasframework/common/thirdparty/jquery/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="../jasframework/common/css/addAndUpdateStyle.css">
+<script type="text/javascript"
+	src="../jasframework/common/thirdparty/jquery/jquery-1.6.min.js"></script>
+<script type="text/javascript"
+	src="../jasframework/common/thirdparty/jquery/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../jasframework/common/thirdparty/jquery/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript"
+	src="../jasframework/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../jasframework/common/js/jsonUtil.js"></script>
+<script type="text/javascript" src="js/viewNotice.js"></script>  
+</head>
+<body>
+<div id="main_area">
+<!-- 表单区域，每行四列 -->
+	<table align="center" class="detail-table"  style="margin-top: 20px;width:90%;">
+		<tr>
+			<th width="25%"><span >标&nbsp;&nbsp;&nbsp;&nbsp;题：</span></th>
+			<td width="75%"><span id="title"></span></td>
+		</tr>
+		<tr>
+			<th width="25%"><span >发布时间：</span></th>
+			<td width="75%"><span id="datetime"></span></td>
+		</tr>
+		<tr>
+			<th width="25%"><span >内&nbsp;&nbsp;&nbsp;&nbsp;容：</span></th>
+			<td width="75%"><span id="content"></span></td>
+		</tr>
+	</table>
+		<div class="button_area_absolute">
+			<table width="100%">
+				<tr>
+					<td  align="center">
+						<a href="#" class="easyui-linkbutton"iconCls="icon-cancel" onclick="closePanel()"> <span key="cancel" >取消</span></a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0"><title></title>
+<link rel="stylesheet" type="text/css"
+	href="../../jasframework/common/thirdparty/jquery/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jasframework/common/thirdparty/jquery/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jasframework/common/css/addAndUpdateStyle.css">
+<script type="text/javascript"
+	src="../../jasframework/common/thirdparty/jquery/jquery-1.6.min.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/common/thirdparty/jquery/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/common/thirdparty/jquery/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript"
+	src="../../jasframework/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/jsonUtil.js"></script>
+<script type="text/javascript" src="js/queryServiceInfo.js"></script>  
+</head> 
+<body>
+	<!-- 	查询面板 -->
+	<div class="easyui-panel"  id="queryDiv" title="服务查询" collapsed="true" collapsible="true" >
+		<form method="post" id="serviceInfoQueryForm">
+			<table class="querytable" align="center" style="width:90%;" >
+				<tr>
+					<td width="15%" align="right"><span  >服务名称：</span></td>
+					<td width="35%"><input type="text" id="serviceName" name="serviceName" class="input_bg" /></td>
+					<td align="right" width="50%" colspan="2">
+						<a href="#" id='nohiddenbutton' class="easyui-linkbutton" iconCls="icon-search" onclick="queryServiceInfo()"><span key="query" >查询</span></a>
+						<a href="#" id='nohiddenbutton' class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryForm('serviceInfoQueryForm',true,true,true,true)"><span  key="clean" >清空</span></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<!-- 	datagrid列表  -->
+	<table id="serviceInfoDatagrid" toolbar="#toolbar"  title="服务列表" >
+	</table>
+	<!-- 	datagrid工具栏 -->
+	<div id="toolbar">
+		<a href="#" id="viewserviceInfo" class="easyui-linkbutton" iconCls="icon-view" plain="true" onclick="viewServiceInfo()"><span key="view" >查看</span></a>
+		<a href="#" id="addserviceInfo" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addServiceInfo()"><span key="add" >新增</span></a>
+		<a href="#" id="updateserviceInfo" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="updateServiceInfo()"><span key="edit" >修改</span></a>
+		<a href="#" id="deleteserviceInfo" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteServiceInfo()"><span key="delete" >删除</span></a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"  ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+<link rel="stylesheet" href="../../common/css/query.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/queryBusinessConfig.js"></script> 
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+</head>
+<body onload="">
+<!--查询面板 -->
+<input type="hidden" id="menuid" value="102201"/>
+<!-- <div class="easyui-panel" key="searchRole" id="queryDiv" title="业务表配置查询" collapsed="true" collapsible="true"> -->
+	  <div class="query-conditions" key="searchRole" id="queryDiv" > 
+	  <form method="post" id="approvalQueryForm">
+	 <!--  <input type="hidden" id="businessName" value="销售">
+	       <div id="queryConfigMethod"></div>  -->
+           <table class="query-table" align="center" > 
+             <tr> 
+				<td width="20%"><span key="business.businessname" class="paltform-i18n">业务名称：</span></td> 
+				<td width="30%"><input type="text" id="businessName" class="easyui-validatebox input_bg"/></td> 			
+				<td width="20%"><span key="business.businesstablename" class="paltform-i18n">业务表名：</span></td> 
+		        <td width="30%"><input type="text" id="businessTableName" class="easyui-validatebox input_bg" /></td> 
+			 </tr> 
+ 			 <tr> 
+				<td ><span key="business.explanation" class="paltform-i18n">描&nbsp;&nbsp;&nbsp;&nbsp;述：</span></td> 
+				<td ><input type="text" id="explanation" class="easyui-validatebox input_bg" /></td>
+			    <td align="right" colspan="2"> 
+					<a href="#" id='query' class="easyui-linkbutton submit"  onclick="queryBusiness()"><span key="query" class="paltform-i18n">查询</span></a> 
+					<a href="#" id='clear' class="easyui-linkbutton cancel"  onclick="clearQueryForm('approvalQueryForm',true,true,true,true)"><span  key="clean" class="paltform-i18n">清空</span></a> 
+				</td>  
+ 				</tr> 
+ 			</table>  
+	   </form> 
+</div>
+<!--datagrid列表  -->
+<div style="height: 250px">
+      <table id="dg"  toolbar="#toolbar" key="business_businessList" title="业务表配置列表" width="98%">
+        <thead>
+		   <tr>
+			<th field="ck" title="全选" checkbox=true></th>
+			<th field="eventid" width="250">EVENTID</th>
+			<th field="businessname" width="200" sortable="true">业务名称</th>
+			<th field="businesstablename"  width="150" sortable="true">业务表名</th>
+			<th field="explanation"  width="450" sortable="true">描述</th>
+		  </tr>
+           </thead>
+       </table>
+</div>
+<!--datagrid工具栏 toolbar-->
+<div id="toolbar">
+	<a href="#" id="10100207" class="easyui-linkbutton fa fa-eye"  plain="true" onclick="showInfo()"><span key="view" class="paltform-i18n">查看</span></a>
+	<a href="#" id="10100205" class="easyui-linkbutton fa fa-plus"  plain="true" onclick="newBusiness()"><span key="add" class="paltform-i18n">新增</span></a>
+	<a href="#" id="10100206" class="easyui-linkbutton fa fa-edit"  plain="true" onclick="editBusiness()"><span key="edit" class="paltform-i18n">修改</span></a>
+	<a href="#" id="10100210" class="easyui-linkbutton fa fa-minus"  plain="true" onclick="removeBusiness()"><span key="delete" class="paltform-i18n">删除</span></a>
+</div>
+<!--以上为业务部分****************************************************************************************************************************************************************************************************************  -->
+<div class="easyui-tabs-container">	
+<div class="easyui-tabs" style="height: 300px" id="queryConfig_dataGrid">
+    <div title="查询条件配置">
+        <table id="dg1" class="easyui-datagrid"  style="height: 269px" toolbar="#toolbar1"  key="business_businessList" width="98%">
+		   <thead>
+			  <tr>
+            	<th field="ck" title="全选" checkbox=true id="ck1" ></th>
+            	<th field="queryname"   width="100">查询条件名</th>
+		        <th field="fieldname"   width="150">字段名</th>				
+				<th field="fieldtypeName"  width="100">UI类型</th>
+				<th field="ordernumber"  width="100" >排序编号</th>				
+				<th field="dataurl"  width="200">数据来源</th>
+				<th field="valuefield"  width="150" >值字段</th>
+				<th field="textfield"  width="150" >文本字段</th>
+				<th field="display"   width="100">是否启用</th>
+			 </tr>
+		   </thead>
+         </table>
+         <div id="toolbar1">
+				<a href="#" id="id1" class="easyui-linkbutton fa fa-eye" plain="true" onclick="showQuery()"><span key="view" class="paltform-i18n">查看</span></a>
+				<a href="#" id="id2" class="easyui-linkbutton fa fa-plus"  plain="true" onclick="newQuery()"><span key="add" class="paltform-i18n">新增</span></a>
+				<a href="#" id="id3" class="easyui-linkbutton fa fa-edit"  plain="true" onclick="editQuery()"><span key="edit" class="paltform-i18n">修改</span></a>
+				<a href="#" id="id4" class="easyui-linkbutton fa fa-minus"  plain="true" onclick="removeQuery()"><span key="delete" class="paltform-i18n">删除</span></a>
+	      </div>
+    </div>
+    <div title="数据列配置">
+        <table id="dg2"  class="easyui-datagrid" style="height: 269px" toolbar="#toolbar2"  key="business_businessList" width="98%">
+		    <thead>
+			   <tr>
+					<th field="ck" title="全选" checkbox=true id="ck2"></th>
+					<th field="columnname"  width="150">字段名</th>
+					<th field="tablefieldname"   width="150">表字段名</th>
+					<th field="columnwidth"  width="200" >列宽</th>
+					<th field="sortable"  width="150" >是否允许排序</th>					
+		            <th field="display"   width="150">是否显示</th>
+		            <th field="columnorder"  width="150">数据列排序</th>
+              </tr>
+            </thead>
+        </table>
+        <div id="toolbar2">
+				<a href="#" id="id5" class="easyui-linkbutton fa fa-eye" plain="true" onclick="showDataColumn()"><span key="view" class="paltform-i18n">查看</span></a>
+				<a href="#" id="id6" class="easyui-linkbutton fa fa-plus" plain="true" onclick="newDataColumn()"><span key="add" class="paltform-i18n">新增</span></a>
+				<a href="#" id="id7" class="easyui-linkbutton fa fa-edit"  plain="true" onclick="editDataColumn()"><span key="edit" class="paltform-i18n">修改</span></a>
+				<a href="#" id="id8" class="easyui-linkbutton fa fa-minus"  plain="true" onclick="removeDataColumn()"><span key="delete" class="paltform-i18n">删除</span></a>
+	     </div>
+    </div>
+		
+	</div>	
+</div>
+     
+ </div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  </body>
+</html>

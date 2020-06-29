@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>西南管道消息界面</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    </meta>
+    <meta charset="utf-8" />
+    <link rel="icon" href="../common/images/favicon.ico" type="image/x-icon">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- 引入组件库 -->
+    <link href="css/viewer.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+            padding: 0;
+            margin: 0;
+        }
+        [v-cloak]{
+            display: none !important;
+        }
+        i {
+            font-size: 12px;
+        }
+
+        .el-scrollbar__wrap {
+            overflow-x: hidden;
+        }
+
+        .flowrow {
+            display: flex;
+            flex-flow: row;
+        }
+
+        .flowcolumn {
+            display: flex;
+            flex-flow: column;
+        }
+
+        .vcenter {
+            display: flex;
+            align-items: center;
+        }
+
+        .ccenter {
+            display: flex;
+            justify-content: center;
+        }
+        .allmain{
+            height: 100%;justify-content: space-around;padding:10px 20px;box-sizing: border-box;
+        }
+        .topcss{
+            height: 8%;border-radius: 5px;background-color: #fff;width: 100%;
+        }
+        .listleftcss{
+            height: 90%;width: 100%;justify-content: space-between;
+        }
+        .leftscrollcs{
+            width:28%;height:100%;border-radius: 5px;background-color: #fff;
+        }
+        .readedcolor {
+            color: #7c7c7c
+        }
+
+        .noreadcolor {
+            color: #3589df
+        }
+        .onlinetypebox{
+            height:32px;width:32px;border-radius: 50%;margin-right: 10px;
+        }
+        .onlinebg {
+            background-color: #3589df;
+        }
+
+        .offlinebg {
+            background-color: #7c7c7c;
+        }
+        .listrightcss{
+            width:71%;height:100%;border-radius: 5px;background-color: #fff;padding: 10px 5px;box-sizing: border-box;
+        }
+        .listrighttitle{
+            justify-content:flex-start;padding: 10px 20px;border-bottom: 1px solid #ddd;box-sizing: border-box;max-height: 10%;
+        }
+        .lrighttext{
+            color: #7c7c7c;padding-left:15px;font-size: 12px;
+        }
+        .scrollmsg{
+            height: 90%;box-sizing: border-box;padding-top: 5px;
+        }
+        .nomsgtext{
+            text-align: center;padding:130px 0;font-size: 20px;color:#aaa;
+        }
+        .msgitemtip{
+            padding:20px 25px 5px;color:#828282;font-size: 12px;
+        }
+        .msgboxcs{
+            padding:3px 25px 15px;box-sizing: border-box;justify-content: space-between;align-items: flex-end;
+        }
+        .msgvboxcs{
+            border:solid 1px #ddd;position: relative;border-radius:5px;width: 200px;justify-content: flex-start;padding-left: 5px;
+        }
+        .yuyin_img {
+            width: 34px;
+            height: 34px;
+            /* background: url('./images/5.png') center center no-repeat; */
+            /* background-size: 100% 100%; */
+            /* animation-play-state: paused; */
+        }
+
+        .readedbg {
+            /* animation-play-state: paused; */
+            background: url('./images/1.png') top left no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .readingbg {
+            animation-play-state: running;
+            animation: bofang 1s steps(1) infinite;
+            -moz-animation: bofang 1s steps(1) infinite;
+            -webkit-animation: bofang 1s steps(1) infinite;
+            -o-animation: bofang 1s steps(1) infinite;
+            background: url('./images/5.png') top left no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .noreadbg {
+            /* animation-play-state: paused; */
+            background: url('./images/5.png') top left no-repeat;
+            background-size: 100% 100%;
+        }
+
+        @keyframes bofang {
+            0% {
+                background: url('./images/5.png') top left no-repeat;
+                background-size: 100% 100%;
+            }
+
+            25% {
+                background: url('./images/2.png') top left no-repeat;
+                background-size: 100% 100%;
+            }
+
+            50% {
+                background: url('./images/3.png') top left no-repeat;
+                background-size: 100% 100%;
+            }
+
+            75% {
+                background: url('./images/4.png') top left no-repeat;
+                background-size: 100% 100%;
+            }
+
+            100% {
+                background: url('./images/5.png') top left no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        .redpoint {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ff3838;
+            right: -15px;
+        }
+
+        .actbgcolor {
+            background-color: #ebf6ff
+        }
+
+        .hoverbg:hover {
+            background-color: #ebf6ff
+        }
+
+        .hoverbg .btnevent {
+            display: flex;align-items: center;
+            visibility: hidden;
+        }
+
+        .hoverbg:hover .btnevent {
+            visibility: visible;
+        }
+
+        .bluecolor {
+            color: #3589df;
+        }
+        .imgdbclickCSS{
+            width:unset !important;
+            max-width: 80%;
+        }
+        .loadmorebox{
+            display: flex;justify-content: center;font-size: 14px;color:#3589df;margin-top:5px;
+        }
+        .loadmorebtn{
+            cursor: pointer;
+            position: relative;border-radius:5px;background-color: #fff;color:#3589df; justify-content: flex-start;padding:0 15px 0;line-height: 26px;border:1px solid #eee;
+        }
+        .eventbtncss{
+            position: relative;border-radius:5px;background-color: #3589df;;color:#fff; justify-content: flex-start;padding:0 15px 0;line-height: 34px;
+        }
+        .personitem{
+            padding: 15px 15px 15px 15px;font-size: 16px;line-height: 25px;justify-content: space-between;height: 75px;box-sizing: border-box;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div v-cloak class="allmain flowcolumn" >
+        <div class="topcss vcenter"  >
+            <el-row :gutter="20" style="width: 100%;">
+                <el-col :span="7" class="ccenter">
+                    <div class="demo-input-suffix">
+                        <el-input :disabled="true" placeholder="" v-model="value">
+                            <template slot="prepend">部门：</template>
+                        </el-input>
+                    </div>
+                </el-col>
+                <el-col :span="17" class="ccenter">
+                    <div class="demo-input-suffix">
+                        时间:
+                        <el-date-picker v-model="valuedateroom" type="daterange" range-separator="至"
+                            start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+        <div class="flowrow listleftcss" >
+            <el-scrollbar class="leftscrollcs" >
+                <div @click=" selectinspIndex  = index" :class=" selectinspIndex == index ? 'actbgcolor' : ''"
+                    v-for="(item,index) in personlist" class="flowrow vcenter personitem" >
+                    <div class="flowrow vcenter" style="justify-content:flex-start;">
+                        <div :class=" item.onlinetype == 'online' ? 'onlinebg' : 'offlinebg'" class="onlinetypebox" ></div>
+                        <div class="flowcolumn">
+                            <div>{{item.insname}} {{item.phone}}</div>
+                            <div style="color: #7c7c7c" v-show="item.messageType && item.messageType != ''" v-text="item.messageType == 'pic' ? '[图片]' :'[语音]'"></div>
+                        </div>
+                    </div>
+                    <div class="flowcolumn" style="text-align:right">
+                        <div v-show="item.messageType  && item.messageType != ''" style="color: #7c7c7c;white-space: nowrap;" >{{ item.sendTime | msgtime(nowTimenum)}}</div>
+                        <div v-show="item.messageType  && item.messageType != ''" :class="item.unread > 0 ? 'noreadcolor' :'readedcolor'"
+                            v-text=" item.unread > 0  ? '未读' : '已读'"> </div>
+                    </div>
+                </div>
+            </el-scrollbar>
+            <div class="listrightcss">
+                <div v-if=" selectinspIndex >= 0 && personlist.length > 0" class="flowrow vcenter listrighttitle" >
+                    <div :class=" personlist[selectinspIndex].onlinetype == 'online' ? 'onlinebg' : 'offlinebg'"  class="onlinetypebox"></div>
+                    <div>{{personlist[selectinspIndex].insname}} {{personlist[selectinspIndex].phone}}</div>
+                    <div class="lrighttext">{{execunitidname}}</div>
+                    <!-- <el-button @click.native="connectSocket">连接</el-button>
+                    <el-button @click.native="sendwebsocket">发消息</el-button> -->
+                </div>
+                <div  v-if=" selectinspIndex >= 0 && personlist.length > 0"   class="loadmorebox">
+                    <div @click="loadmore()"
+                        class="loadmorebtn" >
+                        加载更多
+                    </div>
+                </div>
+                <el-scrollbar  style="height:90%">
+                <div class="scrollmsg" >
+                    <div v-show="filearr.length == 0"  class="nomsgtext">
+                        主动一点,世界会更大
+                    </div>
+                    <div v-viewer class="images clearfix">
+                    <div class="hoverbg" v-for="(item,index) in filearr">
+                        <div class="flowrow msgitemtip">
+                            <div> {{item.sendeTime}}</div>
+                            <div style="padding-left:8px;">{{item.addressText}}</div>
+                        </div>
+                        <div>
+                            <div class="flowrow msgboxcs" >
+                                <div @click="aplay(index)" v-if="item.messageType == 'voice'" class="flowrow vcenter msgvboxcs" >
+                                    <div class="yuyin_img" :class=" item.voicePlayStatus == '1' ? 'readingbg' : ( item.voicePlayStatus == '0' ? 'noreadbg' : 'readedbg')">
+
+                                    </div>
+                                    <div style="color:#747474;">
+                                        {{item.voiceSecond+'″'}}
+                                    </div>
+                                    <span v-show="item.voicePlayStatus == '0'" class="redpoint"></span>
+                                    <audio :id="'audio'+index" :src="rootpath+'attachment/download.do?oid='+item.filePath+'&token='+token">
+                                        <source>
+                                        您的浏览器不支持 audio 元素。
+                                    </audio>
+                                </div>
+                                <div style="width: 80%" v-else>
+                                    <img v-on:dblclick="dbfunc($event)" :src="rootpath+'attachment/download.do?token='+token+'&oid='+item.filePath" style="width:200px;border-radius: 5px;" class="imghover" />
+                                </div>
+                                <div class="btnevent" style="display: flex;align-items: center;">
+                                    <a  :href="rootpath+'attachment/download.do?oid='+item.filePath+'&token='+token" style="text-decoration: none;"
+                                        class="eventbtncss">
+                                        下载附件
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </el-scrollbar>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/vue.js"></script>
+
+<script src="js/viewer.js"></script>
+<script src="js/v-viewer.js"></script>
+
+<script src="js/index.js"></script>
+
+<script>
+    //时间格式化
+    Date.prototype.Format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1, //月份 
+            "d+": this.getDate(), //日 
+            "H+": this.getHours(), //小时 
+            "m+": this.getMinutes(), //分 
+            "s+": this.getSeconds(), //秒 
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+            "S": this.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    Vue.use(VueViewer.default);
+    //全局过滤器
+    Vue.filter('msgtime', function(time,nowtime){
+        //巡线线工列表时间显示;
+        if(time){
+            var timenum = new Date(time).getTime();
+            var second = parseInt((nowtime - timenum)/1000);
+            //console.log(nowtime +"%%%"+timenum +"second"+second)
+            if(second < 300){ //五分钟内
+                return '刚刚';
+            }else if(second < 3600){ //一小时内
+                return parseInt(second/60)+'分前'
+            }else if(second < 18000){ //12小时内
+                return parseInt(second/3600)+'小时前'
+            }else if(second >= 18000){
+                return new Date(time).Format("yyyy-MM-dd")
+            }
+        }else{
+            return ''
+        }
+    })
+    var indexvue = new Vue({
+        el: ".allmain",
+        data: function () {
+            return {
+                token:'',
+                websocket: null,
+                rootpath:'',
+                // msgIp:'1.119.155.134:10043',
+                msgIp:'210.12.193.132:10003',
+                //msgIp:'127.0.0.1:9008',
+                value: "",
+                valuedateroom: null,
+                loginTime:'',
+                selectinspIndex: '0',
+                nowTimenum:0,
+                execunitidname: '',
+                audioindex:'', //播放的index;
+                pageNo:1,
+                msgfilearr:[],
+                filearr: [],
+                personlist: [],
+                socketTimer:null,
+            };
+        },
+        watch: {
+            selectinspIndex: function () {  //监听选择对话的巡线工的变化,及处理;
+                var _this = this;
+                _this.pageNo = 1;
+                if(_this.msgfilearr[_this.personlist[_this.selectinspIndex].insoid].length > 0){
+                    //console.log(_this.personlist[_this.selectinspIndex].insoid)
+                    _this.filearr = JSON.parse(JSON.stringify(_this.msgfilearr[_this.personlist[_this.selectinspIndex].insoid]));
+                    if(_this.filearr.length > 0){
+                        var statusArr = [];
+                        for (var i = 0; i < _this.filearr.length; i++) {
+                            //语音播放状态;
+                            if (_this.filearr[i].status == 0) {
+                                _this.filearr[i].voicePlayStatus = 0;
+                                statusArr.push({
+                                    "businessId": _this.filearr[i].businessId,
+                                    "recoreoid": _this.filearr[i].oid,
+                                })
+                                _this.filearr[i].status = 1;
+                                _this.msgfilearr[_this.personlist[_this.selectinspIndex].insoid][i].status = 1;
+                            } else {
+                                _this.filearr[i].voicePlayStatus = 2;
+                            }
+                        }
+                        if(statusArr.length > 0){
+                            //将信息内容都设置为已读;
+                            var webstrobj = {
+                                type: "status",
+                                data:statusArr,
+                            }
+                            _this.sendwebsocket(webstrobj);
+                        }                        
+                        _this.personlist[_this.selectinspIndex].unread = 0;
+                    }else{
+                        console.log("没有更多!");
+                    }
+                }else{
+                    _this.filearr = [];
+                    if(_this.personlist[_this.selectinspIndex].unread > 0){
+                        _this.getfiledatalist()
+                    }
+                }
+                //this.getfiledatalist();
+            },
+            valuedateroom:function(){ //选择时间变化,
+                var _this = this;
+                _this.pageNo = 1;
+                //this.filearr = [];
+                if(_this.msgfilearr[_this.personlist[_this.selectinspIndex].insoid].length > 0){
+                    _this.filearr = JSON.parse(JSON.stringify(_this.msgfilearr[_this.personlist[_this.selectinspIndex].insoid]));
+                }else{
+                    _this.filearr = [];
+                }
+                //this.filearr = JSON.parse(JSON.stringify(this.msgfilearr[this.personlist[this.selectinspIndex].insoid]));
+                _this.getfiledatalist()
+            }
+        },
+        created: function () {
+            var _this = this;
+        },
+        mounted: function () {
+            var _this = this;
+            _this.rootpath = _this.getRootPath();
+
+           // var jsonData = JSON.parse(config);
+            //console.log(jsonData);
+            _this.nowTimenum = new Date().getTime()
+            setInterval(function(){
+                _this.nowTimenum = new Date().getTime()
+            },1000);
+            //1562742211479%1562742270116
+
+            _this.login();
+        },
+        methods: {
+            dbfunc:function(evt){
+                //console.log(evt)
+                $(evt.target).toggleClass('imgdbclickCSS')
+            },
+            login: function () { //登陆
+                /*var _this = this;
+                var formData = {
+                    "abc": "234243434134",
+                    "appId": "402894a152681ba30152681e8b320003",
+                    "i18n": "zh_CN",
+                    "logintype": "0",
+                    "loginNum": "zyax_liusijia",
+                    "pass": "111111",
+                    "serverType": "prt"
+                };
+                $.ajax({
+                    type: 'post',
+                    url: '/xnpatrol//jasframework/login/login.do',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    //数据格式是json串
+                    data: JSON.stringify(formData),
+                    success: function (data) {   //测试能不能返回数据
+                        //console.log(JSON.stringify(data));
+                        _this.token = data.token;
+                        _this.execunitidname = data.user.unitName;
+                        _this.loginUserName = data.user.loginName;
+                        _this.useroid = data.user.oid;
+                        var index = data.user.unitName.lastIndexOf('>');
+                        if(index > -1){
+                            _this.unitName = data.user.unitName.substring(index+1);
+                        }else{
+                            _this.unitName = data.user.unitName;
+                        }
+                        _this.value = _this.unitName;
+                        if( data.user.ext_field1 ){
+                            _this.receiverOid = data.user.ext_field1
+                        }else{
+                            alert("不是管道工")
+                        }
+                        _this.getinsplist()
+                    }
+                });*/
+                var _this = this;
+                let user = JSON.parse(localStorage.getItem("user"));
+                _this.token = localStorage.getItem("token");
+                _this.execunitidname = user.unitName;
+                _this.loginUserName = user.loginName;
+                _this.useroid = user.oid;
+                var index = user.unitName.lastIndexOf('>');
+                if(index > -1){
+                    _this.unitName = user.unitName.substring(index+1);
+                }else{
+                    _this.unitName = user.unitName;
+                }
+                _this.value = _this.unitName;
+                if( user.ext_field1 ){
+                    _this.receiverOid = user.ext_field1
+                }else{
+                    this.$notify.info({
+                        title: '消息',
+                        message: '您好，暂只有管道工有消息权限。'
+                    });
+                    // alert("不是管道工")
+                }
+                _this.getinsplist();
+
+            },
+            getinsplist: function () { //获取巡线工列表;
+                var _this = this;
+                var formData = {};
+                //console.log('/xnpatrol/app/information/getunreadnum.do?receiverOid=' + _this.receiverOid + '&token=' + _this.token + '&pageNo=1&pageSize=2000')
+                $.ajax({
+                    type: 'post',
+                    url: '/xnpatrol/app/information/getunreadnum.do?receiverOid=' + _this.receiverOid + '&token=' + _this.token + '&pageNo=1&pageSize=2000',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    //数据格式是json串
+                    data: JSON.stringify(formData),
+                    success: function (data) {   //测试能不能返回数据
+                        //console.log(JSON.stringify(data));
+                        try {
+                            var obj = {};
+                            for (var i = 0; i < data.rows.length; i++) {
+                                //在线状态;
+                                data.rows[i].onlinetype = "offline";
+                                obj[data.rows[i].insoid] = [];
+                            }
+                            _this.msgfilearr = obj;
+                            _this.personlist = data.rows;
+
+                            //上线时间
+                            _this.loginTime = new Date().Format("yyyy-MM-dd HH:mm:ss"); 
+                            //获取在线状态
+                            _this.connectSocket();
+
+
+                            //_this.getfiledatalist();
+                            //开启定时器,更新最近接收的消息时间;
+                            //setInterval
+                        } catch (err) { //
+                            //
+                        }
+                    }
+                });
+            },
+            /**
+             * @desc 获取系统根路径
+             */
+            getRootPath : function() {
+                // 获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+                var curWwwPath = window.document.location.href;
+                // 获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+                var pathName = window.document.location.pathname;
+                var pos = curWwwPath.indexOf(pathName);
+                // 获取主机地址，如： http://localhost:8083
+                var localhostPaht = curWwwPath.substring(0, pos);
+                // 获取带"/"的项目名，如：/uimcardprj
+                var projectName = pathName.substring(0, pathName.substring(1).indexOf('/') + 1);
+                return (localhostPaht + projectName + "/");
+            },
+            getfiledatalist: function () { //获取消息列表
+                var _this = this;
+                var formData = {};
+                if (  _this.audioindex != '' ) { //有语音播放,关闭语音;
+                    _this.audio.pause();
+                    _this.audioindex = ''
+                }
+                if(_this.valuedateroom && _this.valuedateroom.length > 0){
+                    var beginDate  =_this.valuedateroom [0]+' 00:00:00';
+                    var endDate  =_this.valuedateroom [1]+' 23:59:59';
+                }else{
+                    var beginDate = '';
+                    var endDate  = _this.loginTime;
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '/xnpatrol/app/information/getinsinformation.do?beginDate='+beginDate+'&endDate='+endDate+'&senderOid=' +  _this.personlist[_this.selectinspIndex].insoid + '&receiverOid='+_this.receiverOid+'&token=' + _this.token + '&pageNo='+_this.pageNo+'&pageSize=20',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    //数据格式是json串
+                    data: JSON.stringify(formData),
+                    success: function (data) {   //测试能不能返回数据
+                        console.log(JSON.stringify(data));
+                        try {
+                            if(data.rows.length > 0){
+                                var statusArr = [];
+                                for (var i = 0; i < data.rows.length; i++) {
+                                    //语音播放状态;
+                                    if (data.rows[i].status == 0) {
+                                        data.rows[i].voicePlayStatus = 0;
+                                        statusArr.push({
+                                            "businessId": data.rows[i].oid,
+                                            "recoreoid": data.rows[i].businessId,
+                                        })
+                                    } else {
+                                        data.rows[i].voicePlayStatus = 2;
+                                    }
+                                    _this.filearr.unshift(data.rows[i]);
+                                    _this.msgfilearr[_this.personlist[_this.selectinspIndex].insoid].unshift(data.rows[i]);
+                                }
+                                if(statusArr.length > 0){
+                                    //将信息内容都设置为已读;
+                                    var webstrobj = {
+                                        type: "status",
+                                        data:statusArr,
+                                    }
+                                    _this.sendwebsocket(webstrobj);
+                                }
+                                _this.personlist[_this.selectinspIndex].unread = 0;
+                            }else{
+                                _this.pageNo =  _this.pageNo -1;
+                                _this.$notify({
+                                    title: '成功',
+                                    message: '暂无更多消息哦!',
+                                    type: 'success'
+                                });
+                            }
+                        } catch (err) { //
+                        }
+                    }
+                });
+            },
+            loadmore:function(){ //加载更多;
+                var _this = this;
+                if(_this.filearr.length > 0){
+                    _this.pageNo ++;
+                }else{
+                    _this.pageNo = 1;
+                }
+
+                _this.getfiledatalist();
+            },
+            sendwebsocket: function (webstrobj) {
+                var _this = this;
+                //
+                console.log("send--" +JSON.stringify(webstrobj));
+                if (_this.websocket == undefined) {
+                    console.log("请建立连接!");
+                    _this.connectSocket(function () {
+                        _this.sendwebsocket(webstrobj)
+                    })
+                } else if (_this.websocket.readyState == 0) {
+                    console.log("连接尚未建立，请先建立连接！");
+                    _this.connectSocket(function () {
+                        _this.sendwebsocket(webstrobj)
+                    })
+                } else if (_this.websocket.readyState == 3) {
+                    console.log("连接已关闭！");
+                    _this.connectSocket(function () {
+                        _this.sendwebsocket(webstrobj)
+                    })
+                } else {
+                    _this.websocket.send(JSON.stringify(webstrobj));
+                }
+            },
+            connectSocket: function (callback) {
+                // websocket.close();
+                var _this = this;
+                var token = encodeURI('[[${name}]]');
+                var sign = '[[${sign}]]';       // 类型 1 单播， 2 组播（需要指定组ID） 3 广播
+                var groupId = '[[${groupId}]]';     // 只存在组播中 ,1,2,3
+
+                //var wsUri = getRootUri() + "/webSocket?token="+token+"&sign="+sign+"&groupId="+groupId;
+                var wsUri = "ws://"+_this.msgIp+ "/webSocket?token="+_this.receiverOid //&sign=1&groupId=1";
+                //声明一个websocket对象
+                _this.websocket = new WebSocket(wsUri);
+                _this.websocket.onopen = function (evt) {
+                    console.log('连接成功');
+                    _this.socketTimer = setInterval(function(){
+                        if(_this.websocket == undefined){
+                            clearInterval(_this.socketTimer)
+                        }else if(_this.websocket.readyState == 0){
+                            clearInterval(_this.socketTimer)
+                        }else if(_this.websocket.readyState == 3){
+                            clearInterval(_this.socketTimer)
+                        }else{ //连接正常直接发送
+                            var webstr = {
+                                type:'heartbeat',
+                                data:{}
+                            }
+
+                            _this.websocket.send(JSON.stringify(webstr));
+                        }
+                    },8000)
+
+
+                    if (callback && $.isFunction(callback) ){
+                        callback()
+                    }
+                };
+                //消息反馈,处理
+                _this.websocket.onmessage = function (evt) {
+                    //console.log(evt.data)
+                    try {
+                        var data1 = JSON.parse(evt.data)
+                        if (data1.type == 'allStatus') { //获取所有人在线状态
+                            var onlinetypearr = data1.data;
+                            for (var i = 0; i < onlinetypearr.length; i++) {
+                                for (var m = 0; m < _this.personlist.length; m++) {
+                                    if (_this.personlist[m].insoid == onlinetypearr[i].oid) {
+                                        _this.personlist[m].onlinetype =  onlinetypearr[i].status == '1' ? 'online' : 'offline';
+                                    }
+                                }
+                            }
+                        }else if (data1.type == 'loginon' || data1.type == 'loginoff') { //巡线工 上线/下线
+                            var loginarr = data1.data;
+                            for (var m = 0; m < _this.personlist.length; m++) {
+                                if (_this.personlist[m].insoid == loginarr.message.oid) {
+                                    if (data1.type == 'loginon') {
+                                        _this.personlist[m].onlinetype = 'online';
+                                    } else {
+                                        _this.personlist[m].onlinetype = 'offline';
+                                    }
+                                }
+                            }
+                        } else if (data1.type == 'fileaccept') {
+                            data1.data.messageType = data1.data.fileType;
+                            data1.data.voicePlayStatus = '0';
+                            
+                           // console.log(_this.personlist[_this.selectinspIndex].insoid + data1.data.sender)
+                            if ( _this.selectinspIndex >= 0 && _this.personlist[_this.selectinspIndex].insoid && _this.personlist[_this.selectinspIndex].insoid == data1.data.sender) {
+                                //是当前对话人;
+                                _this.filearr.push(data1.data);
+                                //立即将消息设置为已读
+                                var webstrobj = {
+                                    type: "status",
+                                    data: [{
+                                        "businessId": data1.data.businessId, //['565',"as65"] ,
+                                        "recoreoid": data1.data.oid,
+                                    }],
+                                }
+                               // console.log(webstrobj);
+                                _this.personlist[_this.selectinspIndex].sendTime = data1.data.sendeTime;
+                                _this.personlist[_this.selectinspIndex].sendeTime = data1.data.sendeTime;
+                                _this.personlist[_this.selectinspIndex].messageType = data1.data.fileType;
+                                _this.sendwebsocket(webstrobj);
+                                data1.data.status = '1';
+                                _this.msgfilearr[data1.data.sender].push(data1.data);
+                            } else {
+                                //更新人员列表;
+                                _this.msgfilearr[data1.data.sender].push(data1.data);
+                                var  updateindex = '';
+                                for (var m = 0; m < _this.personlist.length; m++) {
+                                    if (_this.personlist[m].insoid == data1.data.sender) {
+                                        updateindex = m;
+                                    }
+                                }
+                                _this.personlist[updateindex].sendTime = data1.data.sendeTime;
+                                _this.personlist[updateindex].sendeTime = data1.data.sendeTime;
+                                _this.personlist[updateindex].messageType = data1.data.fileType;
+                                _this.personlist[updateindex].unread = _this.personlist[updateindex].unread + 1;
+                            }
+                        } else if (data1.type == '03') {
+                            _this.$notify({
+                                title: '警告',
+                                message: '您的账号在另一设备登陆!',
+                                type: 'warning'
+                            });
+                            clearInterval(_this.socketTimer)
+                            // alert("您的账号在另一设备登陆!")
+                            _this.websocket.close();
+                        }
+                    } catch (err) {
+                        alert(err)
+                    }
+
+                };
+                //消息出错
+                _this.websocket.onerror = function (evt) {
+                    //onError(evt)
+                    console.log(evt.data)
+                };
+                _this.websocket.onclose = function () {
+                    clearInterval(_this.socketTimer);
+                    console.log('连接断开')
+                    //writeToScreen('<span style="color: red;">连接断开。</span> ');
+                };
+            },
+            aplay: function (index) { //语音播放,对应处理
+                var _this = this;
+                if (  _this.audioindex != '' && _this.audioindex != index ) { //播放不是同一首,关闭上一首;
+                    _this.audio.pause();
+                    _this.filearr[_this.audioindex].voicePlayStatus = '2';
+                    _this.audio = document.getElementById('audio' + index);
+                }else{
+                    _this.audio = document.getElementById('audio' + index);
+                }
+                _this.audioindex = index;
+
+                if (_this.filearr[index].voicePlayStatus == '0') { //未播放过
+                    _this.audio.play();
+                    _this.filearr[index].voicePlayStatus = '1';
+                } else if (_this.filearr[index].voicePlayStatus == '1') { //播放中
+                    _this.audio.pause();
+                    _this.filearr[index].voicePlayStatus = '2';
+                } else if (_this.filearr[index].voicePlayStatus == '2') { //播放过,完成
+                    _this.audio.currentTime = 0;
+                    _this.audio.play();
+                    _this.filearr[index].voicePlayStatus = '1';
+                }
+                _this.audio.addEventListener('ended', function () {
+                    _this.filearr[index].voicePlayStatus = '2';
+                    // alert('over');
+                }, false);
+            },
+        }
+    });
+
+</script>
+
+</html>

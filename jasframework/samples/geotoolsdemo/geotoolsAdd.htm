@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加要素</title>
+<meta http-equiv="pragma" content="no-cache" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" href="../../common/css/querystyle_easyuicombo.css"
+	type="text/css"></link>
+<script type="text/javascript"
+	src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/date/My97DatePicker/zh-cn_WdatePicker.js"></script>
+	
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript"
+	src="../../components/attachment/js/uploadanddownload.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/geotoolsAdd.js"></script>
+
+</head>
+
+<body onload="loadData();">
+	<input type="hidden" id="exts" name="exts"
+		value="rar,jar,doc,docx,txt,jpg,png"></input>
+	<table align="center" class="querytable">
+		<form id="savePcUser" method="post">
+			<input type="hidden" id="objectid" name="objectid">
+				<tr>
+					<td width="15%"><span>名称</span></td>
+					<td width="35%"><input id="nameID" type="text" name='name'
+						required="true" class="easyui-validatebox input_bg"
+						missingmessage="不能为空" validType="general" maxlength="50">
+					</td>
+					<td width="15%"><span>类型</span></td>
+					<td width="35%"><input id="typeID" type="text" name='type'
+						required="true" class="easyui-validatebox input_bg"
+						missingmessage="不能为空" validType="general" maxlength="50">
+					</td>
+				</tr>
+				<tr>
+					<td width="15%"><span>创建时间</span></td>
+					<td width="35%"><input id="createdateID" type="text"
+						name='createdate' class="easyui-validatebox input_bg"
+						maxlength="36" validType="dateFormat">
+					</td>
+					<td width="15%"><span>序列号</span></td>
+					<td width="35%"><input id="ordinalID" type="text"
+						name='ordinal' required="true" class="easyui-validatebox input_bg"
+						validType="integer">
+					</td>
+				</tr>
+				<tr>
+					<td width="15%"><span>x坐标</span></td>
+					<td width="35%"><input id="xcoordinateID" type="text"
+						name='xcoordinate' required="true"
+						class="easyui-validatebox input_bg" 
+						validType="doubleNumber">
+							<td width="15%"><span>y坐标</span></td>
+							<td width="35%"><input id="ycoordinateID" type="text"
+								name='ycoordinate' required="true"
+								class="easyui-validatebox input_bg"
+								validType="doubleNumber">
+						</td>
+					</td>
+				</tr> 
+				<tr>
+					<td height="33" colspan="4" class="button_area" align="center">
+						<table width="200px" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><a id="10060106" href="#" class="easyui-linkbutton"
+									iconCls="icon-ok" onclick="save()">保存</a> <a id="10060107"
+									href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+									onclick="closAdd();">取消</a></td>
+							</tr>
+						</table></td>
+				</tr>
+		</form>
+	</table>
+</body>
+</html>

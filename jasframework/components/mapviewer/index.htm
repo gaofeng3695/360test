@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>MapViewerDemo</title>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />       
+        <style>
+*{ margin:0;padding:0}
+html,body{ width:100%; height:100%;}
+body{ font-size:12px;}
+#frmtop{ height:15%; background:#9999CC}
+#frmmiddle{height:5%; background:#999876}
+#frmbottom{height:80%; background:#FFFFFF;}
+</style>
+	<script type="text/javascript" src="js/jquery-1.8.min.js"></script>
+	<script type="text/javascript" src="js/MapViewerAPI.js"></script>
+	<script type="text/javascript">
+		var mapViewer;
+		var inLinkage=false;
+		var isLinkage=true;
+			
+		//ArcGIS Server Rest Service Url 
+		var arcgisRestUrl="http://192.168.1.12/ArcGIS/rest/services";
+		
+		//跨域Post请求Servlet配置
+		var crossDomainUrl="/platform/platform/post.do";
+		
+		var arcGisLayer=null;
+		var arcFeatureLayer=null;
+	
+		function getMapIFrame()
+		{
+			var iframe=top.document.frames("frmMapViewer");
+			if(iframe)
+			{			
+				return iframe;
+			}
+			else
+			{
+				return null;	
+			}	
+		}
+		
+		function getMapObject()
+		{
+			if(top.mapViewer==null)
+			{		
+				var iframe=top.document.frames("frmMapViewer");
+				if(iframe)
+				{		
+					var mapObj=iframe.window.getFlexApp("index");
+					top.mapViewer=mapObj;
+					return mapObj;
+				}
+				else
+				{
+					return null;	
+				}
+			}
+			else
+			{
+				return top.mapViewer;
+			}
+		}
+		
+		/**
+		 * 调用ArcGIS Rest服务
+		 * @param {Object} serviceUrl
+		 * @param {Object} requestData
+		 * @param {Object} callback
+		 */
+		function postRestService(serviceUrl,requestData,callback)
+		{
+			try
+			{
+				var strUrl=top.document.location+"";
+		    	var iIndex=strUrl.indexOf("/",7);
+		    	strUrl=strUrl.substring(0,iIndex);  
+		    	strUrl=strUrl+top.crossDomainUrl;
+		    	requestData["destination"]=serviceUrl;
+		    	requestData["f"]="json";
+		    	$.post(strUrl,requestData,function(data){var retjson=eval("("+data+")"); callback(retjson);},"json");
+		    }
+			catch(e)
+			{
+				alert(e);
+			}
+		}
+		
+		function getLayerMap()
+		{
+			try
+			{		
+				var url=top.arcgisRestUrl+"/platformfeature/FeatureServer";
+				var strName;
+				var strIndex;
+				var arrName;
+				var arr;
+				postRestService(url,{},function(data){
+						if(data!=null)
+						{							
+							arr=data.layers;
+							if(arr.length>0)
+							{
+								top.arcFeatureLayer={};
+								
+								for(i=0;i<arr.length;i++)
+								{
+									strName=arr[i].name;
+									arrName=strName.split(".");
+									strName=arrName[1];
+									strName=strName.toUpperCase();									
+									strIndex=arr[i].id.toString();									
+									top.arcFeatureLayer[strName]=strIndex;
+								}
+							}
+						}
+						
+					},"json");
+					
+				url=top.arcgisRestUrl+"/gisdata/FeatureServer";
+				postRestService(url,{},function(data){
+						if(data!=null)
+						{							
+							arr=data.layers;
+							if(arr.length>0)
+							{
+								top.arcGisLayer={};
+								
+								for(i=0;i<arr.length;i++)
+								{
+									strName=arr[i].name;
+									arrName=strName.split(".");
+									strName=arrName[1];
+									strName=strName.toUpperCase();
+									//alert(strName);									
+									strIndex=arr[i].id.toString();									
+									top.arcGisLayer[strName]=strIndex;
+								}
+							}
+						}
+						
+					},"json");
+				
+			}
+			catch(e)
+			{
+				top.arcGisLayer=null;
+				top.arcFeatureLayer=null;
+				alert("获取FeatureService有误");
+			}
+		}
+		
+		function getGisRestUrl(layerName)
+		{
+			if(top.arcGisLayer!=null)
+			{
+				layerName=layerName.toUpperCase();
+				var strIndex=top.arcGisLayer[layerName];
+				if(strIndex!=null&&strIndex!="")
+				{
+					var strReturn=top.arcgisRestUrl+"/gisdata/FeatureServer/"+strIndex;
+					return strReturn;
+				}
+				else
+				{
+					return "";
+				}			
+			}
+			else
+			{
+				return "";
+			}
+		}
+		
+		function getFeatureRestUrl(layerName)
+		{	
+			if(top.arcFeatureLayer!=null)
+			{
+				layerName=layerName.toUpperCase();
+				var strIndex=top.arcFeatureLayer[layerName];
+				if(strIndex!=null&&strIndex!="")
+				{
+					var strReturn=top.arcgisRestUrl+"/platformfeature/FeatureServer/"+strIndex;
+					return strReturn;
+				}
+				else
+				{
+					return "";
+				}
+			}
+			else
+			{
+				return "";
+			}
+		}
+		
+		getLayerMap();
+		
+		top.verifiedLayer="layerSetBasemaps,layerDlg,layerDom1,layerDom2,layerSiteLocation";
+	</script>
+          
+    </head>
+    <body scroll="no" bgcolor="#FF0000" style="margin:0px; padding:0px;height:100%;">    
+       <div id="frmtop" style="overflow-x:hidden">        	       	
+       		<iframe id="frmDemo" src="Demo.html" frameborder="0" style="height:100%; width: 100%;margin:0px; padding:0px;"></iframe>  
+       </div>
+       <div id="frmmiddle" style="overflow-x:hidden">        	       	
+       		<iframe id="frmGeoDemo" src="demo/GeoDemo.html" frameborder="0" style="height:100%; width: 100%;margin:0px; padding:0px;"></iframe>  
+       </div>
+       <div id="frmbottom" style="overflow-y:hidden;z-index:5">
+        	<iframe id="frmMapViewer" src="map.html" frameborder="0" scrolling="no" style="height:100%; width: 100%;margin:0px; padding:0px"></iframe>        	
+       </div>        
+   </body>
+</html>

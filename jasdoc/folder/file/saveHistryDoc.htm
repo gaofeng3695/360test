@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<!-- <script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script> -->
+<!-- <script type="text/javascript" src="../js/updateFile.js"></script> -->
+<script type="text/javascript">
+function saveHistryFilesPreviewFile(){
+	showLoadingMessage("正在生成预览文件，请稍后！");
+	$.ajax({ 
+		url : "../doccenter/saveHistryFilesPreviewFile.do",
+		success : function(result) {
+			hiddenLoadingMessage();
+			var result = eval('(' + result + ')');
+			$.messager.alert("提示", "耗时："+result.time, "info");
+		}
+	});
+}
+function saveHistryFilesMessage(){
+	showLoadingMessage("正在生成摘要属性，请稍后！");
+	$.ajax({ 
+		url : "../doccenter/saveHistryFilesMessage.do",
+		success : function(result) {
+			hiddenLoadingMessage();
+			var result = eval('(' + result + ')');
+			$.messager.alert("提示", "耗时："+result.time, "info");
+		}
+	});
+}
+function saveHistryFiles(){
+	showLoadingMessage("正在操作，请稍后！");
+	$('#saveHistory').form('submit', {
+		url : "../doccenter/saveHistryFiles.do?token="+localStorage.getItem("token"),
+		onSubmit : function() {
+			return $(this).form('validate');
+		},
+		dataType : "json",
+		success : function(result) {
+			hiddenLoadingMessage();
+			var result = eval('(' + result + ')');
+			$.messager.alert("提示", "耗时："+result.time, "info");
+		}
+	});
+}
+function setFileName(){
+	showLoadingMessage("正在操作，请稍后！");
+	$('#saveHistory').form('submit', {
+		url : "../doccenter/setFileName.do?token="+localStorage.getItem("token"),
+		dataType : "json",
+		success : function(result) {
+			hiddenLoadingMessage();
+			var result = eval('(' + result + ')');
+			$.messager.alert("提示", "耗时："+result.time, "info");
+		}
+	});
+}
+
+</script>
+</head>
+<body>
+	<div id="dlg" class="easyui-panel" buttons="#dlg-buttons">
+		<form id="saveHistory" method="post">
+			<table  class="edit-table" >	
+				<tr>
+					<td width="15%"><span key="file.filename"  required="true" class="paltform-i18n">文件路径：</span></td>
+					<td width="65%">
+						<input type="text" id="path" name='path' class="easyui-validatebox input_bg">
+					</td>
+				</tr>
+				<tr>
+					<td width="15%"><span key="file.filename"  class="paltform-i18n">文档中心文件夹id：</span></td>
+					<td width="65%">
+						<input type="text" id="folderid" name='folderid' class="easyui-validatebox input_bg">
+					</td>
+				</tr>
+				<tr>
+					<td width="15%"><span key="file.fileno" class="paltform-i18n">上传人id：</span></td>
+					<td width="35%">
+						<input type="text" id="userid" name='userid'  class="easyui-validatebox input_bg"	>
+					</td>
+				</tr>
+			</table>
+		    <div class="button_area_absolute">
+		   <table width="100%">
+		 		  <tr>
+		      			<td align="center">
+         					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="setFileName()"><span key="unit.save" class="paltform-i18n">修改文件名称</span></a>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveHistryFiles()"><span key="unit.save" class="paltform-i18n">保存文件夹和文件到数据库</span></a>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveHistryFilesMessage()"><span key="unit.save" class="paltform-i18n">生成摘要属性等</span></a>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveHistryFilesPreviewFile()"><span key="unit.save" class="paltform-i18n">生成预览</span></a>
+         				</td>
+         		 </tr>
+         	</table>	 
+		    </div>
+			</form>
+			
+	</div>
+</body>
+</html>
+	

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title>查看用户</title>
+
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/font-awesome.css" ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css" ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/detail.css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+
+<script type="text/javascript" src="js/viewUser.js"></script>
+</head>
+<body scroll="no">
+
+	<input type="hidden" id="menuid" value="P-PRI-0100"/>
+	
+<!-- 内容展示区域 -->
+	<div id="contentArea" class="content-area">
+		<form class="content-area-main">
+			<!-- 表单区域，每行四列 -->
+	        <div class="table-content">
+				<h6 class="table-title"><span key="user.basicInfo" class="paltform-i18n">基本信息</span></h6>
+				<table align="center" class="detail-table" >
+					<tr>
+						<th><span key="user.loginname" class="paltform-i18n">用户名</span></th>
+						<td><span id="loginName"></span></td>
+						<th><span key="user.username" class="paltform-i18n">姓名</span></th>
+						<td><span id="userName"></span></td>
+					</tr>
+					<tr>
+						<th><span key="user.phone" class="paltform-i18n">电话</span></th>
+						<td><span id="phone"></span></td>
+						<th><span key="user.email" class="paltform-i18n">Email</span></th>
+						<td><span id="email"></span></td>
+					</tr>
+					<tr>
+						<th>CNPC登录名</th>
+						<td><span id="cnpcADUser"></span></td>
+						<th>PTR登录名</th>
+						<td><span id="ptrADUser"></span></td>
+					</tr>
+					<tr>
+						<th>是否PIS用户</th>
+						<td><span id="isPis"></span></td>
+						<th>同步时间</th>
+						<td><span id="syncDate"></span></td>
+					</tr>
+					<tr>
+					    <th><span key="user.passwordexpireddate" class="paltform-i18n">密码过期时间</span></th>
+						<td ><span id="passwordExpiredDate"></span></td>
+						<th>用户岗位</th>
+						<td><span id="userPost"></span></td>
+					</tr>
+					<tr>
+					    <th><span key="user.description" class="paltform-i18n">描述</span></th>
+					    <td colspan="3" style="height: 60px;"><span id="description"></span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="table-content">
+				<h6 class="table-title"><span key="user.historyRecord" class="paltform-i18n">历史记录</span></h6>
+				<div id="histroryRecordContainer"></div>
+			</div>
+		</form>
+		
+			<!-- 详情展示表格 -->
+			<table class="detail-table">
+				<tr>
+					<th><span key="user.loginname" class="paltform-i18n">用户名</span></th>
+					<td><span id="loginName"></span></td>
+					<th><span key="user.userame" class="paltform-i18n">姓名</span></th>
+					<td><span id="userName"></span></td>
+				</tr>
+				<tr>
+					<th><span key="user.phone" class="paltform-i18n">电话</span></th>
+					<td><span id="phone"></span></td>
+					<th><span key="user.email" class="paltform-i18n">Email</span></th>
+					<td><span id="email"></span></td>
+				</tr>
+				<tr>
+				     <th><span key="user.passwordexpireddate" class="paltform-i18n">密码过期时间</span></th>
+					<td colspan="3"><span id="passwordExpiredDate"></span></td>
+				</tr>
+				<tr>
+				    <th><span key="user.description" class="paltform-i18n">描述</span></th>
+				    <td colspan="3" style="height: 60px;"><span id="description"></span></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+<!-- 按钮区域 -->
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td>
+				<a href="#" class="easyui-linkbutton close-btn"  onclick="closeUser();">
+					<span key="close" class="paltform-i18n">关闭</span>
+				</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

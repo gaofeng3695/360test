@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>配置权限</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link type="text/css" rel="stylesheet" href="../style/blue/pageCommon.css" />
+<link rel="stylesheet" href="../style/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<!-- <script language="javascript" src="../../common/js/AppConfig.js"></script> -->
+<script language="javascript" src="../../common/js/common.js"></script>
+<script language="javascript" src="js/setPrivilege.js"></script>
+<script language="javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../privilege/js/privilege.js"></script>
+</head>
+<body>
+	<input type="hidden" id="menuid" value="P-PRI-0340	"/>
+	<!--显示表单内容-->
+	<div id=MainArea>
+		<form id="configForm">
+		<!-- 表单内容显示 -->
+		<div class="ItemBlockBorder">
+			<div class="ItemBlock">
+				<table cellpadding="0" cellspacing="0" class="mainForm">
+				<!--表头-->
+					<thead>
+						<tr align="LEFT" valign="MIDDLE" id="TableTitle">
+							<td style="padding-left: 7px;">
+								<!-- 如果把全选元素的id指定为selectAll，并且有函数selectAll()，就会有错。因为有一种用法：可以直接用id引用元素 -->
+								<label for="cbSelectAll">
+									<span key="setprivilege.role" class="paltform-i18n">角色：</span>
+									<select name="roleId" id="roleId">
+									</select>
+								</label>
+								<label>
+									<span key="setprivilege.appId" class="paltform-i18n">应用系统：</span>
+									<select name="appId" id="appId">
+									</select>
+								</label>
+							</td>
+						</tr>
+					</thead>
+					<!--显示数据列表-->
+					<tbody id="TableData">
+						<tr class="TableDetail1">
+							<!-- 显示权限树 -->
+							<td>
+								<div class="zTreeDemoBackground left">
+									<ul id="privilegeId" class="ztree">
+									
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- 表单操作 -->
+		<div id="InputDetailBar">
+			<a href="#" id="P-PRI-0340" onclick="saveConfig()" class="easyui-linkbutton"
+				iconCls='icon-save'><span key="save" class="paltform-i18n">保存</span></a>
+		</div>
+	</form>
+	</div>
+	<div class="Description">
+	</div>
+</body>
+</html>
+

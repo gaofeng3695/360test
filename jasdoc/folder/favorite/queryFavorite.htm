@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" href="../../common/css/icon.css" type="text/css"></link>
+	<link rel="stylesheet" href="../../../jasframework/common/css/query.css" type="text/css"></link>
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>	
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript"  src="js/favorite.js"></script>	
+	<script type="text/javascript" src="js/queryFavorite.js"></script>
+<style type="text/css">
+	#user{
+		margin:0;
+		padding:10px 30px;
+	}
+	.ftitle{
+		font-size:14px;
+		font-weight:bold;
+		color:#666;
+		padding:5px 0;
+		margin-bottom:10px;
+		border-bottom:1px solid #ccc;
+	}
+	.fitem{
+		margin-bottom:5px;
+	}
+	.fitem label{
+		display:inline-block;
+		width:80px;
+	}
+</style>
+</head>
+<body  oncontextmenu="return true" >
+
+	<div  id="searchpanel" >
+	</div>
+	<table id="dg"></table>
+		<div id="toolbar">
+			<a id="80" name="80" href="#"  class="easyui-linkbutton" iconCls="icon-createfolder"  plain="true" onclick="createFolder()"><span key="file.createFolder" class="paltform-i18ni">创建收藏夹</span></a>
+			<a id="50" name="50" href="#"  class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteDoc()"><span key="file.dele" class="paltform-i18n">文档删除</span></a>
+			<a id="60" name="60"  href="#" class="easyui-linkbutton" iconCls="icon-move" plain="true" onclick="moveFile()"><span key="file.shift" class="paltform-i18n">文档移动</span></a>
+		</div>
+			<!-- 文件夹右键功能功能 -->
+		<div id="folderManager"  class="easyui-menu" style="width:115px;">
+			 <div id="13" data-options="iconCls:'icon-view',name:'viewSingleFolder'">查看</div>
+			 <div id="14" data-options="iconCls:'icon-open',name:'openSingleFolder'">打开</div>
+			 <div id="85" data-options="iconCls:'icon-update',name:'updateSingleFolder'">修改</div>
+			 <div id="84" data-options="iconCls:'icon-remove',name:'deleteSingleFolder'">删除</div>
+			 <div id="83" data-options="iconCls:'icon-delete',name:'shiftDeleteSingleFolder'">彻底删除</div>
+		</div>
+	
+		 <div id="fileManager" class="easyui-menu" style="width:115px;">
+	        <div id="18" data-options="iconCls:'icon-tip',name:'001'">查看</div>
+	        <div id="17" data-options="iconCls:'icon-preview',name:'002'" >预览</div>
+	        <div id="28" data-options="iconCls:'icon-download',name:'003'" >下载</div>
+	        <div id="39" data-options="iconCls:'icon-update',name:'004'" >修改</div>
+	        <div id="38" data-options="iconCls:'icon-remove',name:'005'" >删除</div>
+	      </div> 
+</body>
+</html>

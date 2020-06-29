@@ -1,0 +1,38 @@
+.easyui-tabs .panel-body{
+	overflow:hidden !important; 
+}
+
+.right{
+	overflow:hidden; 
+}
+
+.easyui-tabs{
+	overflow:hidden;
+}
+
+.toolbar{
+	height: 30px;
+    margin: 8px 0px 5px 10px;
+}
+
+.toolbar a {
+	display: inline-block;
+	margin: 3px 2px;
+    padding: 6px 3px;
+    border: 1px solid #59b6fc;
+    color: #1b9af7;
+    background: #fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#ffffff,GradientType=0);
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -ms-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.toolbar .fa::before {
+    position: relative;
+    top: 0px;
+    margin-right:4px;
+}

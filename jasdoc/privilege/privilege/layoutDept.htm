@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>配置权限</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/ztree/css/zTreeStyle/zTreeStyle.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/jsonUtil.js"></script>
+	
+	<!-- ztree begin-->
+	<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.core-3.5.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.exedit-3.5.js"></script>
+	
+	<script language="javascript" src="../../folder/js/layoutDept.js"></script>
+	<!-- ztree end -->
+	<style type="text/css">
+		html { overflow-x: hidden; overflow-y: hidden; }
+	</style>
+	
+</head>
+<!-- <body style="overflow:hidden" oncontextmenu="return false" onselectstart="return false"> -->
+<body oncontextmenu="return true" >
+	<div class="easyui-panel"  data-options="iconCls:'icon-ok',fit:true" >  
+           <div class="easyui-layout" fit="true" >  
+               <div region="west" border="false" title='部门列表' style="width:250px;height:100px;" data-options="split:true,collapsible:false">  
+          			<ul id="deptprivilegeEventId" class="easyui-tree">
+				</ul>
+               </div>  
+               <div region="center" border="false" style="border:1px solid #ccc;" >  
+                   <div class="easyui-layout" fit="true" border="false">
+                       <div region="center" border="false" title='部门可分配文件夹列表' style="border:1px solid #ccc;">
+                       	<div class="easyui-layout" fit="true" border="false">
+                       		<div region='north' border="true" style="padding: 2px;">
+                       			<a href="#" id="expandAll" onclick="expandAll()" class="easyui-linkbutton" plain="true" iconCls="icon-treeexpandAll">全部展开</a>
+                        		<a href="#" id="collapseAll" onclick="collapseAll()" class="easyui-linkbutton" plain="true" iconCls="icon-treecollapseAll">全部折叠</a>
+                        		<a href="#" id="setlevel" class="easyui-linkbutton" plain="true" iconCls="icon-level">菜单展开级别</a>
+								<div id="levelDiv" style="position: absolute;display:none;z-index: 1000;background-color: #FFF;">
+									级别：<input id="level" class="easyui-searchbox" data-options="prompt:'级别',searcher:setLevel" />
+        							</div><br>
+                        		<a href="#" id="expand" onclick="expand()" class="easyui-linkbutton" plain="true" iconCls="icon-treeexpand">展开</a>
+                        		<a href="#" id="collapse" onclick="collapse()" class="easyui-linkbutton" plain="true" iconCls="icon-treecollapse">折叠</a>
+                        		<a href="#" id="expandPrivilege" onclick="expandPrivilege()" class="easyui-linkbutton" plain="true" iconCls="icon-treeexpand1">展开所有授权菜单</a>
+                     			</div>
+                       		<div region="center" border="false" style="margin-top: 5px;">
+<!--                         			<ul id="privilegeFolderEventId" class="ztree"> -->
+                       			<ul id="privilegeFolderEventId" class="ztree">
+								</ul>
+                       		</div>
+                       	</div>
+                       </div>
+                       <div border="false" region="south" style="text-align: center;margin-bottom: 10px;margin-top: 10px;">
+                       	<a href="#" id="savebutton" onclick="saveConfig()" class="easyui-linkbutton" iconCls='icon-save'>保存</a>
+                       	<a href="#" id="cancelbutton" onclick="cancel()" class="easyui-linkbutton" iconCls="icon-cancel">取消</a>
+                   	</div>
+                   </div> 
+               </div>  
+           </div>  
+	</div>
+	<div id="rightMenu" class="easyui-menu">
+		<div id="expandMenu"  data-options="iconCls:'icon-treeexpand',name:'treeexpand'">展开</div>
+			<div id="collapseMenu"  data-options="iconCls:'icon-treecollapse',name:'treecollapse'" >折叠</div>
+        </div>
+</body>
+</html>

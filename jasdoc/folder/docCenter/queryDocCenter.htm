@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="-1">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css" ></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css"></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>	
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="js/docCenter.js"></script>
+	<script type="text/javascript" src="js/queryDocCenter.js"></script>
+	<script type="text/javascript" src="../../folder/js/search.js"></script>
+</head>
+<body  oncontextmenu="return true" >
+	<input type="hidden" id="id" value=""/>
+	<input type="hidden" id="foldertype" value=""/>
+<!-- 	<div class="easyui-panel" key="chaxun" id="userquery"  collapsible="true" collapsed="true" title="查询条件" style="padding:1px"> -->
+<!-- 		<form method="post" id="approvalQueryForm"> -->
+<!-- 			<table align="center" class="querytable" id="queryDiv"> -->
+<!-- 				<tr> -->
+<!-- 					<td width="15%"><span key="filename" class="paltform-i18n">文档名称：</span></td> -->
+<!-- 					<td width="35%"><input type="text" id="filename" name="filename" class="easyui-validatebox input_bg"/></td> -->
+<!-- 					<td width="15%"><span key="filetype" class="paltform-i18n">文档格式：</span></td> -->
+<!-- 				    <td width="35%"><input type="text" id="filetype" name="filetype" class="easyui-validatebox input_bg"/></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td width="15%"><span key="uploadtime_start" class="paltform-i18n">上传开始时间：</span></td> -->
+<!-- 					<td width="35%"> -->
+<!-- 						<input type="text" id="uploadtime_start"	name="uploadtime_start" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" /> -->
+<!-- 					</td> -->
+<!-- 					<td width="15%"><span key="uploadtime_end" class="paltform-i18n">上传结束时间：</span></td> -->
+<!-- 					<td width="35%"> -->
+<!-- 						<input type="text" id="uploadtime_end" name="uploadtime_end" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" /> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td width="15%"><span key="fileno" class="paltform-i18n">文档编号：</span></td> -->
+<!-- 				    <td width="35%"><input type="text" id="fileno" name="fileno" class="easyui-validatebox input_bg"/></td> -->
+<!-- 					<td width="15%"><span key="keyword" class="paltform-i18n">关&nbsp;键&nbsp;词：</span></td> -->
+<!-- 					<td width="35%"><input type="text" id="keyword" name="keyword" class="easyui-validatebox input_bg"/></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td colspan="4"> -->
+<!-- 						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryDocByConditions()"><label><span key="query" class="paltform-i18n">查询</span></label></a> -->
+<!-- 						<a href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryConditions()"><label><span key="clear" class="paltform-i18n">清空</span></label></a> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 			</table> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+		<!-- 按文档属性查询文档 -->
+		<div id="searchbox" class="easyui-panel" style="position:absolute;left:-1000px;top:-1000px;z-index:1000;height:300px;background-color:#99CCFF;" >
+			<form id="searchfile" method="post">
+				<input  id="fileclass" name="fileclass" type='hidden' value=''/>
+				<input  id="userId" name="userId" type='hidden' value=''/>
+				<input  id="language" name="language" type='hidden' value=''/>
+				<table align="center" class="querytable" >	
+					<tr>
+						<td width="35%"><span class="paltform-i18n">文档名称：</span></td>
+						<td width="65%">
+							<input type="text" id="filename" name="filename" validType="filename" class="easyui-validatebox  input_bg"  maxlength="25"/>
+						</td>
+					</tr>
+<!-- 					<tr> -->
+<!-- 						<td width="35%"><span class="paltform-i18n">文档位置：</span></td> -->
+<!-- 						<td width="65%"> -->
+<!-- 							<input type="text" id="filepath" name="filepath" class="easyui-validatebox  input_bg" /> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">文档编号：</span></td>
+						<td width="65%">
+						 	<input type="text" id="fileno" name="fileno" validType="fileno"  class="easyui-validatebox  input_bg" maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">关键词：</span></td>
+						<td width="65%">
+							<input type="text" id="keyword" name="keyword"  class="easyui-validatebox  input_bg"  maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">摘要：</span></td>
+						<td width="65%">
+							<input type="text" id="summary" name="summary"  class="easyui-validatebox input_bg"  maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">上传时间：</span></td>
+						<td width="65%"><input id="uploadtimeStart" name="uploadtimeStart" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">到：</span></td>
+						<td width="65%"><input id="uploadtimeEnd" name="uploadtimeEnd"onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					</tr> 
+					 <tr>
+						<td width="35%"><span class="paltform-i18n">文档分类：</span></td>
+						<td width="65%">
+							<input type="text" id="fileclassify" name="fileclassify"  style="width: 200px" class="easyui-combotree" multiple="true"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">备注：</span></td>
+						<td width="65%">
+							<input type="text" id="remark" name="remark" class="easyui-validatebox input_bg" maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+				        <td height="33" colspan="2" class="button_area" align="center">
+				            <table  border="0" cellspacing="0" cellpadding="0">
+		        				<tr>
+		         					 <td style="width: 60px">
+		         					    <a href="#"  class="easyui-linkbutton" plain="true"  iconCls="icon-search" onclick="searchFile()"><span class="paltform-i18n">搜索</span></a>
+		         					 </td>
+		         					 <td style="width: 60px">
+										<a href="#"   class="easyui-linkbutton"    plain="true"  iconCls="icon-clear" onclick="clean()"><span  class="paltform-i18n">清空</span></a>
+		         					 </td>
+		         				</tr>
+		         			</table>	 
+				        </td>
+				    </tr>		
+			    </table>		
+			</form>
+		</div>
+
+		<table id="dg"></table>
+		<div id="toolbar">
+			<a id="44" name="44" href="#" style="display: none" class="easyui-linkbutton" iconCls="icon-upload" plain="true" onclick="uploadDoc()"><span key="file.up" class="paltform-i18ni">上传</span></a>
+			
+			<a id="80" name="80" style="display: none" href="#"  class="easyui-linkbutton" iconCls="icon-createfolder"  plain="true" onclick="createFolder()">
+				<span key="file.createFolder" class="paltform-i18ni">创建文件夹</span></a>
+		
+			<a id="30" name ="30" style="display: none" href="#" class="easyui-linkbutton" iconCls="icon-download" plain="true" onclick="downloadDocs()"><span key="" class="paltform-i18n">下载</span></a>
+			<a id="15" name ="15" style="display: none" href="#" class="easyui-linkbutton" iconCls="icon-preview" plain="true" onclick="previewDoc()"><span key="" class="paltform-i18n">预览</span></a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-alloronly" plain="true" onclick="showAllFile()"><span key="" class="paltform-i18n">显示所有文档</span></a>
+			<a id="operation" name="operation" href="#" iconCls="icon-operation" plain="true">
+				<span key="file.operation" class="paltform-i18ni">操作</span></a>
+				
+			<a id="10185201" name ="-1"  href="#" class="easyui-linkbutton" iconCls="icon-history" plain="true" onclick="documentImport()"><span key="file.classify" class="paltform-i18n">文档导入</span></a>
+			<!-- 文档查询输入框 -->
+			<div id="platformlocalcon" style="margin:0px;padding:0px;width: 34%;float: right;" >
+				<table style="width: 100%">
+					<tr>
+						<td style="width: 81%">
+							<input style="height:15px" id="searchstring" name='searchstring' class="easyui-validatebox input_bg"   maxlength="50"  validtype="filename"/>
+						</td>
+						<td style="width: 5%" id="dddd">
+							<img id="imgid"  onclick ="showProvince()" src='../../common/images/minus.gif' style="cursor:hand" />
+						</td>
+						<td style="width: 5%">
+							<img src="../../common/images/searchbox_button.png" style="cursor:hand" onclick="searchFileBycontent()"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- 多个文件、文件夹操作功能 -->
+		<div id="multFileAndFolderMenu"  class="easyui-menu" style="width:120px;">
+			<div id="29"  data-options="iconCls:'icon-download',name:'001'">批量下载</div>
+			<div id="55"  data-options="iconCls:'icon-remove',name:'002'">批量删除</div>
+			<div id="54"  data-options="iconCls:'icon-delete',name:'003'">批量彻底删除</div>
+			<div id="53"  data-options="iconCls:'icon-move',name:'004'">批量移动</div>
+			<div id=""  data-options="iconCls:'icon-favorite',name:'005'">收藏</div>
+		</div>
+	 <!-- 文件右键功能功能 -->
+		<div id="fileContentMenuManager" class="easyui-menu" style="width:115px;">
+	        <div id="20"  data-options="iconCls:'icon-tip',name:'001'">查看</div>
+	        <div id="18"  data-options="iconCls:'icon-preview',name:'002'" >预览</div>
+	        <div id="28"  data-options="iconCls:'icon-download',name:'003'" >下载</div>
+	        <div id="60"  data-options="iconCls:'icon-update',name:'004'" >修改</div>
+	        <div id="59"  data-options="iconCls:'icon-remove',name:'005'" >删除</div>
+	        <div id="58"  data-options="iconCls:'icon-delete',name:'006'">彻底删除</div>
+       	 	<div id="57"  data-options="iconCls:'icon-move',name:'007'">移动</div>
+	        <div id=""  data-options="iconCls:'icon-favorite',name:'008'" >收藏</div>
+	    </div>
+	<!-- 文档操作工具栏 -->
+	    <div id="fileManager" class="easyui-menu" style="width:115px;">
+	        <div id="20"  data-options="iconCls:'icon-tip',name:'001'">查看</div>
+	        <div id="18"  data-options="iconCls:'icon-preview',name:'002'" >预览</div>
+	        <div id="28"  data-options="iconCls:'icon-download',name:'003'" >下载</div>
+	        <div id="60"  data-options="iconCls:'icon-update',name:'004'" >修改</div>
+	        <div id="59"  data-options="iconCls:'icon-remove',name:'005'" >删除</div>
+	        <div id="58"  data-options="iconCls:'icon-delete',name:'006'">彻底删除</div>
+       	 	<div id="57"  data-options="iconCls:'icon-move',name:'007'">移动</div>
+	        <div id=""  data-options="iconCls:'icon-favorite',name:'008'" >收藏</div>
+	    </div>
+		<!-- 文件夹右键功能功能 -->
+		<div id="folderManager"  class="easyui-menu" style="width:115px;">
+			 <div id="17"  data-options="iconCls:'icon-open',name:'001'">打开</div>
+			 <div id="16"  data-options="iconCls:'icon-view',name:'002'">查看</div>
+			 <div id="26"  data-options="iconCls:'icon-download',name:'003'">下载</div>
+			 <div id="90"  data-options="iconCls:'icon-update',name:'004'">修改</div>
+			 <div id="89"  data-options="iconCls:'icon-remove',name:'005'">删除</div>
+			 <div id="88"  data-options="iconCls:'icon-delete',name:'006'">彻底删除</div>
+			 <div id="87"  data-options="iconCls:'icon-privilegerole',name:'007'">文档授权</div>
+		</div>
+		<!-- 文件夹操作工具栏功能 -->
+		<div id="folderContentMenuManager"  class="easyui-menu" style="width:115px;">
+			 <div id="17"  data-options="iconCls:'icon-open',name:'001'">打开</div>
+			 <div id="16"  data-options="iconCls:'icon-view',name:'002'">查看</div>
+			 <div id="26"  data-options="iconCls:'icon-download',name:'003'">下载</div>
+			 <div id="90"  data-options="iconCls:'icon-update',name:'004'">修改</div>
+			 <div id="89"  data-options="iconCls:'icon-remove',name:'005'">删除</div>
+			 <div id="88"  data-options="iconCls:'icon-delete',name:'006'">彻底删除</div>
+			 <div id="87"  data-options="iconCls:'icon-privilegerole',name:'007'">文档授权</div>
+		</div>
+</body>
+</html>

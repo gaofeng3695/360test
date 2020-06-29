@@ -1,0 +1,408 @@
+dl,dt,dd{
+	list-style:none;
+}
+
+/* 图片上传样式 */
+/*����ͼƬ����*/
+.pic-list-container{
+    text-align: left;
+   /* padding: 15px; */
+   /* border:1px solid green;  */
+}
+.pic-list-container .pic-list,
+.pic-list-container .pic-btn{
+    display: inline-block;
+    vertical-align: middle
+}
+/*����ͼƬ�б�*/
+.pic-list-container .pic-list .list-items{
+    display: inline-block;
+    width:120px;
+    height: 120px;
+    position: relative;
+    margin-right: 10px;
+}
+.pic-list-container .pic-list .list-items-content{
+	 display: block;
+	 width:100%;
+	 height:100%;
+	 position: relative;
+}
+.pic-list-container .pic-list .pic-operate{
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+.pic-list-container .pic-list .pic-operate span{
+    width: 15px;
+    height: 15px;
+    display: inline;
+    float: right;
+    overflow: hidden;
+    margin: 0 1px;
+    cursor: pointer;
+}
+.pic-list-container .pic-list .pic-operate .success{
+    background: url("../image/webuploader/success.png") no-repeat center center;
+    background-size: 100% 100%;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/webuploader/success.png',sizingMethod='scale');
+
+}
+.pic-list-container .pic-list .pic-operate .error{
+    background: url("../image/webuploader/error.png") no-repeat center center;
+    background-size: 100% 100%;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../image/webuploader/error.png',sizingMethod='scale');
+   
+}
+.pic-list-container .pic-list .pic-operate .delete{
+    background: url("../image/webuploader/delete.png") no-repeat center center;
+    background-size: 100% 100%;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../image/webuploader/delete.png',sizingMethod='scale');
+}
+
+.pic-list-container .pic-list .list-items img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+/* 进度条 */
+.pic-list .list-items .pic-progress{
+	display:none;
+}
+.pic-list .list-items .progress-bar,
+.pic-list .list-items .progress-value{
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height:8px;
+    width:100%;
+    border-radius: 3px;
+    background: #eee;
+}
+
+.pic-list .list-items .progress-value{
+    width:0%;
+    background: #81c548;
+}
+
+
+
+/*����ͼƬ��ť*/
+.pic-list-container .pic-btn{
+    width: 120px;
+    height:120px;
+    line-height: 130px;
+    text-align: center;
+    color: #666;
+    background: url("../image/webuploader/add_btn.png") no-repeat center 30px;
+    border: 1px solid #ddd;
+    position: relative;
+}
+.pic-list-container .pic-btn>div{
+    width: 100%;
+    height: 100%;
+}
+.pic-list-container .pic-btn input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    filter:Alpha(opacity=0); 
+}
+
+.pic-list .list-items .pic-info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, .5);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+}
+
+
+
+/* 文件上传样式 */
+
+.file-table-container{
+	width:100%;
+	height:100%;
+	border-collapse: collapse; 
+	text-align:center;
+	table-layout: fixed;
+
+}
+
+.file-table-container tr,
+.file-table-container th,
+.file-table-container td{
+	height:35px;
+	line-height:35px;
+}
+
+.add-attachment .save-btn{
+	width:80px;
+	height:35px;
+	line-height:35px;
+	border-radius:4px;
+	color:#fff;
+	text-align:center;
+	position:relative;
+}
+
+.file-table-container .file-select{
+	width:90%;
+	height:30px;
+	line-height:30px;
+	background:#efefef;
+	border:1px solid #ddd;
+}
+
+.file-table-container .file-Info{
+	text-align:left;
+}
+.file-table-container  .file-size{
+	text-align:center;
+}
+
+.file-table-container .file-Info,
+.file-table-container  .file-size{
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.file-table-container .file-desc{
+	border:1px solid #b4b5bd;
+	height: 30px;
+    line-height: 30px;
+}
+.file-table-container .file-progress{
+	position:relative;
+}
+.file-table-container .file-progress .file-progress-bar,
+.file-table-container .file-progress .file-progress-value{
+	position:absolute;
+/* 	top:15px; */
+	width:100%;
+	height:8px;
+	border-radius:4px;
+	background:#eee;
+}
+.file-table-container .file-progress .file-progress-value{
+	background:#81c548;
+	width:0%;
+}
+.file-table-container .file-upload-status{
+	display:none;
+}
+
+.file-table-container .file-upload-status .file-success,
+.file-table-container .file-upload-status .file-fail{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	padding-bottom:4px;
+}
+.file-table-container .file-upload-status span{
+	line-height:25px;
+	vertical-align:center
+}
+.file-table-container .file-upload-status .file-success{
+	background:url("../image/webuploader/success.png") no-repeat center 10px
+}
+.file-table-container .file-upload-status .file-fail{
+	background:url("../image/webuploader/error.png") no-repeat center 10px
+}
+.file-table-container .file-operate span{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin-top:10px;
+}
+.file-table-container .file-operate .add{
+	background:url("../image/webuploader/add.png") no-repeat center center;
+}
+.file-table-container .file-operate .delete{
+	background:url("../image/webuploader/delete.png") no-repeat center center;
+}
+
+
+/* 文件列表展示信息 */
+.file-detail-table{
+	width:100%;
+	height:100%;
+	border-collapse: collapse; 
+	table-layout: fixed;
+	border: 1px solid #cad9ea;
+	
+}
+.file-detail-table tr,
+.file-detail-table th,
+.file-detail-table td{
+	height:35px;
+	line-height:35px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:center;
+}
+.file-detail-table th{
+	background:#f3f8fc;
+	
+}
+
+.file-operate .download{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin-top:10px;
+	background:url("../image/webuploader/download.png") no-repeat center center;
+}
+
+.file-operate .delete{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	background:url("../image/webuploader/delete.png") no-repeat center center;
+}
+.update-file-table th{
+	background:#fff;
+}
+.update-file-table input{
+	width:100%;
+	height:30px;
+	border:1px solid #c3c5cd
+}
+
+
+/* 带附件的图片上传 样式*/
+.pic-desc-items{
+	width:100%;
+	height:125px;
+	padding-bottom:10px;
+	overflow:hidden;
+}
+.pic-desc-items dt{
+	width:120px;
+	height:120px;
+	float:left;
+	position:relative;
+}
+.pic-desc-items dt img{
+	width:100%;
+	height:100%;
+}
+
+.pic-desc-items dt .file-name{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:120px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	color:#fff;
+	font-size:12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, .5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+}
+
+.pic-desc-items dd{
+	margin-left: 140px;
+	text-align:left;
+}
+.pic-desc-items .file-other{
+	height:30px;
+}
+.pic-desc-items .file-operate{
+	float:left;
+	height:30px;
+}
+.pic-desc-items .file-operate-btn{
+	display:inline-block;
+	padding: 3px 5px;
+    border: 1px solid #59b6fc;
+    border-radius:4px;
+    color: #1b9af7;
+    background: #fff;
+}
+
+.pic-desc-items .file-operate-btn:hover{
+	background: #d2e9fc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2e9fc,endColorstr=#d2e9fc,GradientType=0);
+}
+
+.pic-desc-items .file-upload-status{
+	float:right;
+	height:30px;
+	display:none;
+}
+
+.pic-desc-items .file-success,
+.pic-desc-items .file-fail{
+	display:inline-block;
+	width:20px;
+	height:20px;
+}
+
+.pic-desc-items  .file-upload-status .file-success{
+	background:url("../image/webuploader/success.png") no-repeat center 5px;
+}
+.pic-desc-items  .file-upload-status .file-fail{
+	background:url("../image/webuploader/error.png") no-repeat center 5px;
+}
+
+.pic-desc-items .file-progress{
+	float:right;
+	width:150px;
+	height:30px;
+	line-height:20px;
+	position:relative;
+	display:none
+}
+.pic-desc-items .file-progress .file-progress-bar,
+.pic-desc-items .file-progress .file-progress-value{
+	position:absolute;
+	top:8px;
+	width:100%;
+	height:8px;
+	border-radius:4px;
+	background:#eee;
+}
+.pic-desc-items .file-progress .file-progress-value{
+	background:#81c548;
+	width:0%;
+}
+.pic-desc-items .file-description{
+	position:relative;
+	height:90px;
+}
+
+.pic-desc-items .file-description textarea{
+	display:inline-block;
+	height:85px;
+	width:100%;
+	border: 1px solid #c3c5cd;
+	margin-left:-2px;
+}
+.pic-desc-items .file-description .word-count{
+	position:absolute;
+	right:5px;
+	bottom:5px;
+}
+

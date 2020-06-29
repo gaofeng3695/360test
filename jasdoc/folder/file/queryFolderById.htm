@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css" ></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>	
+	<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../js/queryFolderById.js" ></script>
+	<script type="text/javascript" src="../js/commonMethod.js"></script>
+	<style type="text/css">
+	html { overflow-x: hidden; overflow-y: hidden; }
+	</style>
+</head>
+<body style="overflow:hidden">
+<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="100601"/>
+		<div id="cc" class="easyui-layout" fit="true">
+			<div  id="left" region="west" scroll="no" class="easyui-panel"  key="user_bumenjiegou" split="true"  title="文档结构" onresize="resizeLayout()"
+				style="width: 200px; height: 90%;">
+				<div >
+				<!-- 文档树 -->
+					<ul id="tt" class="easyui-tree" animate="false">
+					</ul>
+				</div>
+			</div>
+		
+			<div id="right" scroll="no" region="center" style="padding: 1px; margin-right: 1px; background: #ffffff; overflow: hidden">
+				<div class="easyui-panel" key="user_yonghuchaxun" id="userquery"  collapsible="true" collapsed="true" title="查询条件" style="padding:1px">
+				<form method="post" id="approvalQueryForm">
+					<table align="center" class="querytable" id="queryDiv">
+						<tr>
+							<td width="15%"><span key="filename" class="paltform-i18n">文档名称：</span></td>
+							<td width="35%"><input type="text" id="filename" name="filename" class="easyui-validatebox input_bg"/></td>
+							<td width="15%"><span key="filetype" class="paltform-i18n">文档格式：</span></td>
+						    <td width="35%"><input type="text" id="filetype" name="filetype" class="easyui-validatebox input_bg"/></td>
+						</tr>
+						<tr>
+							<td width="15%"><span key="uploadtime_start" class="paltform-i18n">上传开始时间：</span></td>
+							<td width="35%">
+								<input type="text" id="uploadtime_start"	name="uploadtime_start" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" />
+							</td>
+							<td width="15%"><span key="uploadtime_end" class="paltform-i18n">上传结束时间：</span></td>
+							<td width="35%">
+								<input type="text" id="uploadtime_end" name="uploadtime_end" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" />
+							</td>
+						</tr>
+						<tr>
+							<td width="15%"><span key="fileno" class="paltform-i18n">文档编号：</span></td>
+						    <td width="35%"><input type="text" id="fileno" name="fileno" class="easyui-validatebox input_bg"/></td>
+							<td width="15%"><span key="keyword" class="paltform-i18n">关&nbsp;键&nbsp;词：</span></td>
+							<td width="35%"><input type="text" id="keyword" name="keyword" class="easyui-validatebox input_bg"/></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryDocByConditions()"><label><span key="query" class="paltform-i18n">查询</span></label></a>
+								<a href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryConditions()"><label><span key="clear" class="paltform-i18n">清空</span></label></a>
+							</td>
+						</tr>
+					</table>
+					</form>
+				</div>
+<!-- 	datagrid数据列表		 -->
+	<table id="10060201" toolbar="#toolbar" width="98%" idField="eventid" key="user_userlist"></table>
+<!-- 	datagrid工具栏 -->
+	<div id="toolbar">
+		<a id="29" name ="29"  href="#" class="easyui-linkbutton" iconCls="icon-download" plain="true" onclick="zipDownloadDocByFolderId()"><span key="file.addfavorte" class="paltform-i18n">文档打包下载</span></a>
+		<a id="allOrOnlyDocFilediv" name ="-1"  href="#" class="easyui-linkbutton"  plain="true"    ><input  type="checkbox" id="checked" class="tree-checkbox"  onclick="getAllDocFileDataByFolderId()"  > <span key="file.allOrOnlyDocFile" class="paltform-i18n" id="allOrOnlyDocInfo" onclick="getAllDocFileByFolderId()" >显示所有子文件夹中文档</span> </a>
+	</div>
+</div>
+</div>
+</body>
+
+</html>

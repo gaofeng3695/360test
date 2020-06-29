@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	    <title>选人控件</title>
+		
+	    <meta http-equiv="keywords" content="选人">
+	    <meta http-equiv="description" content="选人控件">
+	    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	    <META http-equiv="pragma" content="no-cache"> 
+		<META http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+		<META http-equiv="expires" content="-1">
+	    
+	   	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/query.css" ></link>
+		<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../common/js/common.js"></script>
+		<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+		<script type="text/javascript" src="js/person.js"></script>
+		<script>
+		$(function(){
+			//初始化组织机构树
+			var isFirstLoad = 0;//是否是第一次加载树
+			var oidList =[];//根节点
+			var params = {"treeViewCode":"unitTreeUserListView"};
+			var user = JSON.parse(localStorage.getItem("user"));
+			if(user!=null){
+				if(user.projectOid=="platform"){
+					params = {"treeViewCode":"platformOffice"};
+				}else{
+					var params = {"treeViewCode":"projectOffice"};
+				}
+			}
+			$('#unittree').tree({
+				  	url:rootPath+'treeView/getRootData.do',
+				    queryParams:params,
+				    onBeforeExpand:function(node,param){
+				    	//重置请求参数
+			            $('#unittree').tree('options').queryParams = {
+			            	"parentTreeNodeId":node.attributes.treeNodeId,
+			            	"parentOid":node.id
+			            }
+				    	//重置请求地址
+			            $('#unittree').tree('options').url = rootPath+'treeView/getChildData.do';
+			            return true;
+				    },
+				    onLoadSuccess:function(node,data){
+				    	if(isFirstLoad == 0){
+				    		//动态修改左侧树的title
+				    		$('#main').layout('panel', 'west').panel({ title: data[0].attributes.treeNodeName});
+				    		//加载成功后默认选中第一个节点
+					    	$('#unittree').tree('select', $('#unittree').tree('getRoots')[0].target);
+					    	isFirstLoad++;
+				    	}
+				    	if(isReload == true){
+				    		$('#unittree').tree('select', $('#unittree').tree('getRoots')[0].target);
+				    		isReload = false;
+				    	}
+				    	//$('#dataTree').tree('expandAll');
+				    },
+	//			    onSelect:function(node){
+	//			    	currentSelectNode = node.id;
+	//			    	loadJsList(node.attributes.treeNodeId);
+	//			    	loadButtons(node.attributes.treeNodeId);
+	//			    	loadTabs(node.attributes.treeNodeId,node.id);
+	//			    },
+				    onClick:function(node){
+						$("#10060201").datagrid('clearSelections');
+						queryUser();
+					},
+					onDblClick:function(e,node){
+						$(this).tree('toggle', node.target);
+					},
+				    loader:function(param,success,error){
+				    	var opts = $('#unittree').tree('options');
+				    	$.ajax({  
+			                type : opts.method,  
+			                url : opts.url,  
+			                dataType : 'json',  
+			                contentType : 'application/json;charset=utf-8', // 设置请求头信息  
+			                data : JSON.stringify(param),  
+			                success : function(data) { 
+			                    success(data.rows);                  
+			                }  
+			            });  
+				    }
+				});
+			
+			//初始化用户列表
+			$('#10060201').datagrid({
+				title:"用户列表",
+				idField:"eventid",
+				nowrap : true,
+				striped : true,
+				pagination:true,
+				rownumbers:true,
+				autoRowHeight: false,
+				fitColumns:true,
+				toolbar:"#toolbar",
+				columns:[[ 
+					{field:"ck",title:"全选",checkbox:true},
+					{field:"loginName",title:"用户名",width:100},
+					{field:"name",title:"姓名",width:100},
+					{field:'roleList',title:'角色',resizable:true,align:"center",width:300}
+				]]
+			});
+			
+			//初始化用户列表、用户查询条件等面板的宽度和高度
+			initDatagrigHeight("10060201", "queryDiv", 0, "centerDiv");
+			$('#userrange').combobox({
+				width :  $('#centerDiv').width() * 0.35
+			});
+			
+			//给layout的center区域添加onResize监听函数，用来处理该区域大小发生变化时重新计算用户列表、用户查询条件等面板的宽度和高度
+			$('body').layout('panel','center').panel({
+				onResize : function(){
+					try{
+						$('#queryDiv').panel('resize',{width:$('#centerDiv').width()}); 
+						$('#10060201').datagrid('resize',{width:$('#centerDiv').width(),height:$('#centerDiv').height()-$('#queryDiv').panel('panel').height()});
+						$('#userrange').combobox({
+							width :  $('#centerDiv').width() * 0.35
+						});
+					}catch(e){
+					}
+				}
+			});
+		});
+		
+		/**
+		* 页面上【选择】按钮的响应函数，设置所选择的用户（将所选择的的用户的姓名、id等信息赋值给对应页面元素）
+		*/
+		function getUser() {
+			var rows = $('#10060201').datagrid('getSelections');
+			if (rows.length > 0){
+				var userIds= new Array;
+				var userNames = new Array();
+				for(var i=0;i<rows.length;i++){
+					userIds.push(rows[i].eventid);
+					userNames.push(rows[i].name)
+				}
+				//通过页面的url来获取调用选人控件的页面，并在该页面展示所选择的用户
+				var pagelocation = getParamter("pagelocation",window.document.location.href);
+				var iframes= top.frames;
+				for(var i=0; i<iframes.length;i++) {
+					try{
+						if(iframes[i].location.href.indexOf(pagelocation) != -1) {
+							iframes[i].personchoose.setUser(userNames, userIds);
+							break;
+						}
+					}catch(e){
+						
+					}
+				}
+				return true;
+			}else{
+				top.showAlert('提示','请选中一条记录','info');
+				return false;
+			}
+		}
+		
+		/**
+		* 页面上【选择并关闭】按钮的响应函数，设置所选择的用户（将所选择的的用户的姓名、id等信息赋值给对应页面元素），并关闭窗口
+		*/
+		function getUserAndClose() {
+			var hasChosenUser = getUser();
+			if(hasChosenUser == true){
+				top.closeDlg('personChooseWindow');
+			}
+		}
+		
+		/**
+		* 查询用户信息列表
+		*/
+		function queryUser(){
+			$("#10060201").datagrid('clearSelections'); // clear
+			var loginName = $("#loginName").val();		
+			var name = $("#name").val();
+			var userrange = $('#userrange').combobox("getValue");
+			
+			var query={"loginname":loginName,"name":name,"userrange":userrange};;
+			var row = $('#unittree').tree('getSelected');
+			var url;
+			if (row != null ){
+				if(userrange=="1"){
+					
+			 		var unitidList = getChildren();
+					url = "../../privilege/user/getAllUserByUnitid.do?unitidList=" + unitidList;
+				}else{
+					var user = JSON.parse(localStorage.getItem("user"));
+					if(user.projectOid=="platform"){
+						url = "../../jasframework/privilege/user/getAllUserByUnitidAndRoleNames.do?unitEventid=" + row.id+"&roleNames=122,111,111";
+					}else{
+						url = "../../jasframework/privilege/user/getProjectAllUserByUnitidAndRoleNames.do?unitEventid=" + row.id+"&roleNames=122,111,111";
+					}
+				}	
+				$("#10060201").datagrid("options").url = url;
+				$("#10060201").datagrid('options').queryParams=query;
+				$("#10060201").datagrid('load');	
+				$("#10060201").datagrid('options').queryParams=null;
+				
+			 }else{
+				top.showAlert('提示','请选中一个部门','info');
+				return;
+			}
+		}
+		
+		/**
+		* 获取所选择的部门的子部门id
+		*/
+		function getChildren(){
+		      var node = $('#unittree').tree('getSelected');
+		      if (node) {
+		          var children = $('#unittree').tree('getChildren', node.target);
+		      }
+		      else {
+		          var children = $('#unittree').tree('getChildren');
+		      }
+		      var s = "'";
+		      for (var i = 0; i < children.length; i++) {
+		          s += children[i].id + "','";
+		      }
+		      s+=node.id + "'";
+		      return s;
+		}
+		
+		function clearQueryForm(){
+			$("#loginName").val("");
+			$("#name").val("");
+		}
+	</script>
+  	</head>
+	<body  class="easyui-layout">
+			<div id="west" region="west" split="true" title="部门" style="width:200px;" onResize=javascript:alert()>
+				<ul id="unittree" class="easyui-tree" ></ul>
+			</div>
+			<div region="center" id="centerDiv" title="" style="background:#eee;overflow: hidden;">
+				<div class="easyui-panel" id="queryDiv" title="查询" collapsed="true" collapsible="true">
+					<form method="post" id="approvalQueryForm">
+					<table align="center" class="query-table" id="queryDiv">
+						<tr>
+							<td width="15%"><span key="user.loginname" class="paltform-i18n">用户名：</span></td>
+							<td width="35%"><input type="text" id="loginName" name="loginName" class="easyui-validatebox input_bg"/></td>
+							<td width="15%"><span key="user.name" class="paltform-i18n">姓     名：</span></td>
+						    <td width="35%"><input type="text" id="name" class="easyui-validatebox input_bg"/></td>
+						</tr>
+						<tr>
+							<td width="15%"><span key="user.yonghufanwei" class="paltform-i18n">显示用户范围：</span></td>
+							<td width="35%"><select id="userrange" name="userrange" class="easyui-combobox">
+													<option value ="0" selected>只显示本部门用户</option>
+													<option value="1">显示所有子部门用户</option>
+											</select>
+							</td>
+							<td colspan="2">
+								<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryUser()"><label><span key="query" class="paltform-i18n">查询</span></label></a>
+								<a href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryForm()"><label><span key="clear" class="paltform-i18n">清空</span></label></a>
+							</td>
+						</tr>
+					</table>
+					</form>
+				</div>
+				<table id="10060201" ></table>
+				<div id="toolbar">
+					<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="getUser()">选择</a>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="getUserAndClose()">选择并关闭</a>
+				</div>
+			</div>
+	</body>
+</html>

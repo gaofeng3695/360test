@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title>配置表信息页面</title>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	
+		
+	<link rel="stylesheet" href="../common/css/font-awesome.css" type="text/css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css">
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="js/createTable.js"></script>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+	<form id="createTableForm" method="post">
+		<input type="hidden" id="columnList" name="columnList"/>
+		<table align="center" class="edit-table" >
+			<tr>
+<!-- 				<td width="10%"><span  class="paltform-i18n">数据库表：</span></td> -->
+<!-- 			    <td width="15%"><input id="entityName" name="entityName" class="easyui-validatebox input_bg"  required="true"/></td> -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">数据源：</span></td> -->
+<!-- 				<td width="15%"><input id="dataSourceName" name="dataSourceName"  class="easyui-validatebox easyui-combobox"/></td>	 -->
+			    <td width="10%"><span  class="paltform-i18n">表名：</span></td>
+				<td width="15%"><input id="tableName" name="tableName" class="easyui-validatebox input_bg " validType="tablename" required="true"/></td>
+				<td width="2%"></td>
+				<td colspan="5" align="left"><font style="color: red;">系统默认添加字段：OID、CREATE_USER_ID、CREATE_USER_NAME、CREATE_TIME、MODIFY_USER_ID、MODIFY_USER_NAME、MODIFY_TIME、ACTIVE</font></td>
+			</tr>		
+<!-- 			<tr> -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">主键字段：</span></td> -->
+<!-- 				<td width="15%"><input id="primaryColumn" name="primaryColumn"  class="easyui-validatebox input_bg" validType="general"/></td> -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">字段类型：</span></td> -->
+<!-- 				<td width="15%"><input id="primaryColumnType" name="primaryColumnType" class="easyui-validatebox easyui-combobox"/></td>	 -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">字段长度：</span></td> -->
+<!-- 				<td width="15%"><input id="primaryLength" name="primaryLength" validType="number" class="easyui-validatebox input_bg"/></td> -->
+<!-- 				<td colspan="2"><font style="color: red;">【可选配置项：默认主键为EVENTID】</font></td> -->
+<!-- 			</tr>		 -->
+<!-- 			<tr > -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">主键字段：</span></td> -->
+<!-- 			    <td width="15%"><input id="primaryColumn" name="primaryColumn" class="easyui-validatebox input_bg" required="true"/></td> -->
+<!-- 			    <td width="10%"><span  class="paltform-i18n">列名：</span></td> -->
+<!-- 				<td width="15%"><input id="primaryTableColumn" name="primaryTableColumn"  class="easyui-validatebox input_bg" required="true"/></td> -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">字段类型：</span></td> -->
+<!-- 				<td width="15%"><input id="primaryColumnType" name="primaryColumnType" class="easyui-validatebox easyui-combobox"/></td>	 -->
+<!-- 				<td width="10%"><span  class="paltform-i18n">字段长度：</span></td> -->
+<!-- 				<td width="15%"><input id="primaryLength" name="primaryLength"  class="easyui-validatebox input_bg"/></td> -->
+<!-- 				<td width="10%">&nbsp;</td> -->
+<!-- 				<td width="15%">&nbsp;</td> -->
+<!-- 			</tr> -->
+		</table>
+	</form>
+	
+	<div id="columnDiv" style="width:100%;"> 
+    	<table id="columnDatagrid"></table>
+     </div>
+</div>
+	<div class="button-area">
+       <table width="100%">
+			<tr>
+				 <td >
+				    <a id="saveButton" href="#" class="easyui-linkbutton submit"  onclick="createTable()"><span  class="paltform-i18n">创建表</span></a>
+					<a id="" href="#" class="easyui-linkbutton cancel" onclick="closeIframe()"><span  class="paltform-i18n">取消</span></a>
+				 </td>
+			</tr>
+		</table>	 
+	</div>
+	
+
+	<div id="toolbars">
+		<a href="#" id="addColumnRow" class="easyui-linkbutton fa fa-plus" plain="true" onclick="addColumnRow()"><span key="add" >添加</span></a>
+		<a href="#" id="editColumnRow" class="easyui-linkbutton fa fa-edit" plain="true" onclick="editColumnRow()"><span key="edit" >修改</span></a>
+		<a href="#" id="deleteColumnRow" class="easyui-linkbutton fa fa-minus" plain="true" onclick="deleteColumnRow()"><span key="delete" >删除</span></a>
+	
+	</div>		
+
+</body>
+</html>

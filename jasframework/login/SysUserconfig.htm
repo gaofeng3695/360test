@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 
+            个性化设置页面
+ -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="../common/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="../common/css/query.css" />
+		<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css" />
+		<script language="javascript" src="../common/lib/jquery.min.js"></script>
+		<script language="javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../common/js/validate_class.js"></script>
+		<script type="text/javascript" src="../common/js/common.js"></script>
+		<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+		<script type="text/javascript" src="js/userpreference.js"></script>
+	</head>
+	<body>
+		<input type="hidden" id="menuid" value="sysuserconfig" />
+		<div class="easyui-layout" style="width: 100%; height: 100%;">
+			<div id="left" region="west" style="width: 200px; overflow: auto" class="paltform-i18n_div" key="sysuserconfig_allmenu" title="所有菜单">
+				<ul id="allFuntionMenuTree"></ul>
+			</div>
+			<div region="center" style="overflow: auto; background: #F5FCFF;" class="paltform-i18n_div" key="sysuserconfig_mymenu" title="我的菜单">
+				<ul id="myConfigFunctionMenuTree"></ul>
+			</div>
+			<div region="east" class="easyui-layout" style="width: 460px; height: 100%; overflow: hidden; background: #F5FCFF;">
+				<div region="north" style="height: 100px; width: 100%; background: #F5FCFF;" class="paltform-i18n_div" key="sysuserconfig_directorysettings" title="目录设置">
+					<form id="SysUserfunctionconfigForm" method="post">
+						<table align="center" class="query-table"style="border: 0px solid #d6d9e2;">
+							<tr style="height: 35px">
+								<td width="30%"><span key="sysuserconfig_menuname" class="paltform-i18n">目录(菜单)名称：</span></td>
+								<td width="70%"><input type="hidden" id="functionid" name="functionid" class="easyui-validatebox" /> 
+								  	<input type="text" id="functionname" name="functionname" class="easyui-validatebox input_bg" />
+								</td>
+							</tr>
+							<tr style="height: 35px">
+								<td colspan="2" class="" align="center">
+									<a id="addButton" href="#" class="easyui-linkbutton" iconCls='icon-add' onclick="addForder()"><span key="add" class="paltform-i18n">新增</span></a> 
+									<a id="updateButton" href="#" class="easyui-linkbutton" iconCls='icon-edit' onclick="updateForder()"><span key="update" class="paltform-i18n">修改</span></a> 
+									<a id="deleteButton" href="#" class="easyui-linkbutton" iconCls='icon-cancel' onclick="deleteForder()"><span key="delete" class="paltform-i18n">删除</span></a> 
+									<a id="defaltButton" href="#" class="easyui-linkbutton" iconCls='icon-ok' onclick="defaltPage('0')"><span key="sysuserconfig_default" class="paltform-i18n">指定默认</span></a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div region="center" style="width: 100%; background: #F5FCFF;"
+					class="paltform-i18n_div" key="sysuserconfig_homesettings"
+					title="首页设置">
+					<form id="SysUserviewconfigForm" method="post">
+						<table align="center" class="query-table" style="border: 0px solid #d6d9e2;">
+							<tr >
+								<td width="20%">
+									<span key="sysuserconfig_currenthome" class="paltform-i18n">当前首页：</span>
+								</td>
+								<td width="58%" style="text-align: left;">
+									<input id="homefunctionname" type="text" name="homefunctionname" readonly="true" class="easyui-validatebox input_bg"> 
+									<input id="homefunctionid" type="hidden" name="homefunctionid">
+								</td>
+								<td width="22%">
+									<a id="clearDefortButton" href="#" class="easyui-linkbutton" iconCls='icon-cancel' onclick="clearDefortPage()"><span key="clear" class="paltform-i18n">清空</span></a>
+								</td>
+							</tr>
+							<tr >
+								<td width="20%">
+									<span key="sysuserconfig_mapview" class="paltform-i18n">地图显示：</span>
+								</td>
+								<td colspan="2" width="80%" style="text-align: left;">
+									<input id="show2d" type="checkbox" name="show2d"> <span key="sysuserconfig_map" class="paltform-i18n">地图</span> 
+									<input id="show3d" type="checkbox" name="show3d"> <span key="sysuserconfig_3D" class="paltform-i18n">三维</span>
+								</td>
+							</tr>
+							<tr >
+								<td width="20%">
+									<span key="sysuserconfig_pagelayout" class="paltform-i18n">页面布局：</span>
+								</td>
+								<td colspan="2" style="text-align: left;">
+									<input type="radio" name="pagelayout" value="1" checked="true" onclick="check(this)"><span key="sysuserconfig_layout1" class="paltform-i18n">上下</span>
+									<input type="radio" name="pagelayout" value="2" onclick="check(this)"><span key="sysuserconfig_layout2" class="paltform-i18n">左右</span>
+								</td>
+							</tr>
+							<tr >
+								<td colspan="3" class="" style="text-align: center; height: 35px">
+									<a href="#" class="easyui-linkbutton" iconCls='icon-save' onclick="saveUserFunctionConfig()"><span key="sysuserconfig_savamenu" class="paltform-i18n">保存菜单设置</span></a>
+									<a href="#" class="easyui-linkbutton" iconCls='icon-save' onclick="saveUserViewConfig()"><span key="sysuserconfig_savahome" class="paltform-i18n">保存首页设置</span></a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="menu" class="easyui-menu" style="width: 120px;">
+			<div onclick="addToMyConfigFunction()">
+				<span key="sysuserconfig_addtomymenu" class="paltform-i18n">添加到我的菜单</span>
+			</div>
+			<div onclick="defaltPage('1')">
+				<span key="sysuserconfig_setdefaulthome" class="paltform-i18n">设置为默认首页</span>
+			</div>
+		</div>
+		<div id="menu2" class="easyui-menu" style="width: 120px;">
+			<div onclick="deleteForder()">
+				<span key="sysuserconfig_deletemenu" class="paltform-i18n">删除菜单</span>
+			</div>
+			<div onclick="defaltPage('2')">
+				<span key="sysuserconfig_setdefaulthome" class="paltform-i18n">设置为默认首页</span>
+			</div>
+		</div>
+		<div id="menu3" class="easyui-menu" style="width: 120px;">
+			<div onclick="addForder(1)">
+				<span key="sysuserconfig_addcatalog" class="paltform-i18n">添加目录</span>
+			</div>
+			<div onclick="updateForder(1)">
+				<span key="sysuserconfig_editcatalog" class="paltform-i18n">编辑目录</span>
+			</div>
+			<div onclick="deleteForder()">
+				<span key="sysuserconfig_deletecatalog" class="paltform-i18n">删除目录</span>
+			</div>
+		</div>
+	</body>
+</html>

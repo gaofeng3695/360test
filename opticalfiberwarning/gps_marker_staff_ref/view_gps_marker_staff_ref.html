@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/view_gps_marker_staff_ref.js"></script> 	 
+</head>
+<body>
+    <div id="contentArea" class="content-area">
+    	<form class="content-area-main">
+	<!-- 表单区域，每行四列 -->
+			<div>
+				<table align="center" class="detail-table" >
+					<h6 class="table-title">光纤预警系统基础信息</h6>
+					<tr>
+						<th width="15%"><span>光纤系统名称</span></th>
+						<td width="35%"><span id="fiberSystemId"></span></td>
+						<th width="15%"><span></span></th>
+						<td width="35%"><span></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>光纤系统管线</span></th>
+						<td width="35%"><span id="opticalFiberLineloop"></span></td>
+						<th width="15%"><span>光纤系统所属站</span></th>
+						<td width="35%"><span id="opticalFiberStation"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>起始桩</span></th>
+						<td width="35%"><span id="startMarkeroid"></span></td>
+						<th width="15%"><span>终止桩</span></th>
+						<td width="35%"><span id="endMarkeroid"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>起始里程(m)</span></th>
+						<td width="35%"><span id="startMileage"></span></td>
+						<th width="15%"><span>终止里程(m)</span></th>
+						<td width="35%"><span id="endMileage"></span></td>
+					</tr>
+				</table>
+			</div>
+			<br />
+			<div>
+				<table align="center" class="detail-table" >
+					<h6 class="table-title">巡检系统基础数据</h6>
+					<tr>
+						<th width="15%"><span>部门名称</span></th>
+						<td width="35%"><span id="unitid"></span></td>
+						<th width="15%"><span>管线名称</span></th>
+						<td width="35%"><span id="lineloopoid"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>站长/区长</span></th>
+						<td width="35%"><span id="stationMaster"></span></td>
+						<th width="15%"><span>站长/区长电话</span></th>
+						<td width="35%"><span id="stationMasterTel"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>区间技术负责人</span></th>
+						<td width="35%"><span id="sectionLeader"></span></td>
+						<th width="15%"><span>区间技术负责人电话</span></th>
+						<td width="35%"><span id="sectionLeaderTel"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>段长</span></th>
+						<td width="35%"><span id="segment"></span></td>
+						<th width="15%"><span>段长电话</span></th>
+						<td width="35%"><span id="segmentTel"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>巡线工</span></th>
+						<td width="35%"><span id="inspector"></span></td>
+						<th width="15%"><span>巡线工电话</span></th>
+						<td width="35%"><span id="inspectorTel"></span></td>
+					</tr>
+					<tr>
+						<th width="15%"><span>备注</span></th>
+						<td width="35%" style="height: 100px;" colspan="3"><span id="remarks"></span></td>
+					</tr>
+				</table>
+			</div>
+
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td  align="center">
+					<a href="#" class="easyui-linkbutton close-btn" onclick="closePanel()"> <span>关闭</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

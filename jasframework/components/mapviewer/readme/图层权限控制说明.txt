@@ -1,0 +1,8 @@
+图层权限控制说明：
+1、设计说明：地图加载时，地图主动通过js脚本获取变量top.verifiedLayer值（js变量）以达到控制图层目的。
+	如top.verifiedLayer="layerSetBasemaps,layerDlg,layerDom1,layerDom2",即代表当前用户具有图层id为layerSetBasemaps,layerDlg,layerDom1,layerDom2四个图层访问权限
+
+2、需要控制地图图层权限时，应先将配置文件中的图层id与权限系统的权限定义同步起来（即在权限定义模块中，为每个图层设置一个权限，图层id与权限id一致，即config.xml中layer节点的id值与权限系统的权限编号一致）。
+	应用平台使用地图组件时，应首先根据当前登录用户获取当前用户权限图层并赋值给变量top.verifiedLayer.
+	
+3、权限图层控制生效开关配置：config.xml中mapsettings节点下的key="verifyUser"，设置其value，即true代表需要权限控制，false为不需要权限控制。

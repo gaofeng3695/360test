@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<title>查看数据源</title>
+
+<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+
+<link rel="stylesheet" href="../common/css/common.css" type="text/css"></link>
+ 
+<link rel="stylesheet" type="text/css" href="../common/css/detail.css"></link>
+
+<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../common/js/common.js"></script>
+<script  type="text/javascript" src="../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/jasdocLogView.js"></script>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<table class="detail-table">
+			<tr>
+				<th style="width: 30%"><span key="iselog_sysname" class="paltform-i18n">业务模块：</span></th>
+				<td style="width: 70%"><span id="businessName"></span></td>
+			</tr>
+			<tr>
+				<th><span key="iselog_way" class="paltform-i18n">操作类型：</span></th>
+				<td><span id="operateType"></span></td>
+			</tr>
+			<tr>
+				<th><span key="iselog_recorddetail" class="paltform-i18n">记录详情：</span></th>
+				<td><span id="detail"></span></td>
+			</tr>
+		</table>
+	</div>
+	<!-- 按钮区域 -->
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center"><a class="easyui-linkbutton cancel" onclick="closeViewLogWindow()"><span key="query">关闭</span></a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

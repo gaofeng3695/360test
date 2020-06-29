@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/viewDataColumnConfig.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+</head>
+<body>
+  <div id="contentArea" class="content-area">
+   <table  class="detail-table" >
+			<tr>
+				<th><span key="datacolumn.columnname" class="paltform-i18n">字段名：</span></th>
+				<td><span  id='columnName'></span></td>
+				
+				<th><span key="datacolumn.tablefieldname" class="paltform-i18n">表字段名：</span></th>
+                <td ><span  id='tableFieldName'></span></td>
+			</tr>
+			<tr>
+				<th><span key="datacolumn.columnwidth" class="paltform-i18n">列宽：</span></th>
+				<td><span  id='columnWidth'></span></td>
+				<th><span key="datacolumn.sortable" class="paltform-i18n">是否允许排序：</span></th>
+				<td><span  id='sortable'></span></td>
+			</tr>
+			<!-- <tr>
+				<th><span key="datacolumn.display" class="paltform-i18n">是否显示：</span></th>
+				<td><span><input type="radio" class="ra" name="display" value="是" disabled="disabled"/>是  <input type="radio" class="raa" name="display" value="否" disabled="disabled"/>否</span></td>
+			</tr> -->	
+			<tr>
+				<th><span key="datacolumn.display" class="paltform-i18n">是否显示：</span></th>
+				<td><span  id='display'></span></td>
+				<th><span key="datacolumn.columnorder" class="paltform-i18n">数据列排序：</span></th>
+				<td><span  id='columnOrder'></span></td>
+			</tr>
+			</tr>		
+   </table>
+	<div class="button-area">
+				<table width="100%">
+					<tr>
+						<td>
+							<a href="#" class="easyui-linkbutton cancel" onclick="closeDataColumn()">
+								<span key="close" class="paltform-i18n">关闭</span>
+							</a>
+						</td>
+					</tr>
+				</table>
+	</div>
+  </div>
+</body>
+</html>

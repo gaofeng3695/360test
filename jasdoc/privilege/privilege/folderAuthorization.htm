@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>单个文件夹配置权限</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+	<link rel="stylesheet" href="../../../jasframework/common/css/detail.css" type="text/css"></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script>
+</head>
+<body style="overflow:hidden;">
+	<div id="authorizationDiv" class="easyui-tabs" style="background: #f5fcff;">
+		<div title="部门授权">
+			<iframe id="deptFolder" src="" width="100%" height="98%" scrolling="no" frameborder="0"></iframe>
+		</div>
+		<div title="角色授权">
+			<iframe id="roleFolder" src="" width="100%" height="98%" scrolling="no" frameborder="0"></iframe>
+		</div>
+		<div title="用户授权">
+			<iframe id="userFolder" src="" width="100%" height="98%" scrolling="no" frameborder="0"></iframe>
+		</div>
+	</div>
+</body>
+	<script type="text/javascript">
+	var folderId = getParamter("folderId");
+	$("#authorizationDiv").tabs({
+		height:$(window).height(),
+		onSelect:function(item){
+			if(item=="部门授权"){
+				if($("#deptFolder").attr("src")==""){
+					$("#deptFolder").attr("src","folderLayoutDept.htm?folderId="+folderId);
+				}
+			}else if(item=="角色授权"){
+				if($("#roleFolder").attr("src")==""){
+					$("#roleFolder").attr("src","folderLayoutRole.htm?folderId="+folderId);
+				}
+				
+			}else if(item=="用户授权"){
+				if($("#userFolder").attr("src")==""){
+					$("#userFolder").attr("src","folderLayoutUser.htm?folderId="+folderId);
+				}
+			}else{
+				
+			}
+		}
+	});
+
+	</script>	
+</html>

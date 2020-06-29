@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web"/>
+	<meta name="description" content=""/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/add.css"/>
+	<!-- 文件上传插件css -->
+	<link rel="stylesheet" type="text/css" href="../../common/lib/webuploader/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/webuploader/initialize_webuploader.css">
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<!-- 文件上传插件js -->
+	<script src="../../common/lib/webuploader/webuploader.js"></script>
+	<script type="text/javascript" src="js/uploadTemplate.js"></script>
+	<title>上传模板</title>
+</head>
+<body>
+	<!-- 表单区域 -->
+	<div id="contentArea" class="content-area">
+		<form class="content-area-main" id="fileTempleteAddForm" enctype="multipart/form-data" method="post">
+			<div class="table-content" style="padding-top:5px;padding-left:2px;padding-right:2px;">
+				<table id="addTempleteInfo" align="center" class="edit-table">
+					<tr>
+						<td width="16%"><input id='templeteFileCellID' name='file' type='text' readonly class='file input_bg' /></td>
+						<td width="8%"><div id="addFile" class="easyui-linkbutton submit">选择excel文件</div></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+			<!-- 按钮区域 -->
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+ 				<td  align="center">
+ 					<a id="saveExcelTempInfoButton" href="#" class="easyui-linkbutton save-btn" onclick="uploadTemplate()">保存</a>
+					<a id="closeExcelTempInfoButton" href="#" class="easyui-linkbutton cancel-btn"  onclick="closeSave()">取消</a>
+ 				</td>
+  			</tr>
+  		</table>	
+	</div>
+
+</body>
+</html>

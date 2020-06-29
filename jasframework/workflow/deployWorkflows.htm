@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>流程部署管理</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet"  type="text/css" href="../common/css/font-awesome.css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/detail.css"></link>
+
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/deploy.js"></script>
+	<script>
+	//文件输入框个数
+	var index = 0;
+	$(document).ready(function() {
+	 	addFileInput();
+	});
+	/**
+	 * 描述：添加文件输入框
+	 */
+	function addFileInput(){
+		index++;
+		//输入框html
+		var inputHtml = "<tr>"
+							+"<td colspan='1'></td>" 
+							+"<td colspan='1'>"
+								+"<input id='file"+ index +"' class='input_bg' type='file' name='file" + index + "' style='' onChange='chkType(this," + index + ")' onKeyDown='return false'/>"
+							+"</td>"
+							+"<td colspan='1' align='center'>"
+								+"<a href='#' class='easyui-linkbutton' onclick='deleteTR(this);'>"
+								+"<span key='cancael' class='paltform-i18n'>删除</span>"
+								+"</a>"
+							+"</td>"
+						+"<tr>";
+		//获取table的tr
+		var trObj = $(".edit-table");
+		$.parser.parse($(".edit-table"));
+		var trSize = trObj.size();
+		$(trObj).append(inputHtml);
+		$('.edit-table').each(function(i, item) {
+			$.parser.parse($(item));
+		});
+	}
+	function deleteTR(obj) {
+		$(obj).parents("tr").remove();
+	}
+	/**
+	 * 描述：检查文件上传类型是否正确
+	 * @param obj 上传文件扩展名html元素
+	 * @param index 文件输入框排序值
+	 */
+	function chkType (obj,index) {
+		var ext = $(obj).val();
+		var ss = ext.split('.');
+		var exts= $("#exts").val();
+		if (exts.indexOf(ss[ss.length - 1].toLowerCase()) == -1) {
+			top.showAlert(getLanguageValue("tip"), getLanguageValue("workflow.uploadFileTypeUnexpected"), 'info');
+			var inputHtml= "<input id='file" + index + "' class='input_bg' type='file' name='file" + index + "' style='' onChange='chkType(this," + index + ")' onKeyDown='return false'/>";
+			$(obj).parent().html(inputHtml);
+		}
+	}
+	/**
+	 * 描述：上传并部署流程定义文件，并展示部署结果。
+	 */
+	function deployWorkflows(){
+		var inputObj = $("input[name^='file']");
+		if(inputObj.size()==1 ){
+			if( inputObj.val() == ""){
+				showAlert(getLanguageValue("tip"), getLanguageValue("workflow.selectFile"), "info");
+				return;
+			}
+		}else{
+			var flag = false;
+			inputObj.each(function(){
+				if($(this).val()!=""){
+					flag = true;
+				};
+			});
+			if( !flag ){
+				showAlert(getLanguageValue("tip"), getLanguageValue("workflow.selectFile"), "info");
+				return;
+			}
+		}
+		var url = addTokenForUrl(workflow.URL.deploy.deploy);
+		$('#uploadForm').form('submit',{
+			url: url,
+			success: function(result){
+				result = eval('('+result+')');
+				if (result.status==-1){
+					showAlert(getLanguageValue("error"), result.msg, "info");
+					return;
+				}
+				var data = result.data;
+				var deployResult = data.allFileDeployResult;
+				var deployResultLength = deployResult.length;
+				var deploySize = data.deploySize||0;
+				var unDeploySize = data.unDeploySize||0;
+				var uploadFileSize = data.uploadFileSize;
+				
+				$(".edit-table").hide("fast",function(){
+					$("#uploadFileSize").html(uploadFileSize);  //显示上传文件数量
+					if(deployResultLength>0){
+						var deployHtml = "<table class='detail-table'>";
+						var unDeployHtml = "<table class='detail-table'>";
+						for(var i=0;i<deployResultLength;i++){
+							var oneFileDeployResult = deployResult[i];
+							if(oneFileDeployResult.status==1){
+								deployHtml+="<tr>"
+									+"<td style='width:25%'><span key=\"\" >"+oneFileDeployResult.fileName+"</span></td>"
+									+"<td style='width:75%'><span id=\"\">"+oneFileDeployResult.filePath+"</span></td>"
+									+"</tr>";
+							}else{
+								unDeployHtml+="<tr>"
+									+"<td style='width:25%'><span key=\"\" class=\"paltform-i18n\">"+oneFileDeployResult.fileName+"</span></td>"
+									+"<td style='width:75%'><span id=\"\">"+oneFileDeployResult.msg+"</span></td>"
+									+"</tr>";
+							}
+						}
+						deployHtml+="</table>";
+						unDeployHtml+="</table>";
+						if(deploySize>0){
+							$("#deploySize").html(deployHtml);
+						}
+						if(unDeploySize>0){
+							$("#unDeploySize").html(unDeployHtml);;
+						}
+					}
+					
+					$("#deployResult").fadeIn("slow",function(){
+						$("#upbutton").hide();
+						$("#fileTip").hide();
+						$(".buttontable").show();
+						$("#filebutton").show();
+						reloadData('deploy.htm','1011050201');
+					});
+				});
+			}
+		});
+	}
+	</script>
+	
+</head>
+<body>
+	<div id="contentArea" class="content-area" style="overflow:scoll;">
+		<!-- 权限编码 -->
+		<input type="hidden" id="menuid" value="P-WF-0180"/>
+		<!--上传文件扩展名 -->
+		<input type="hidden" id="exts" name="exts" value="zip bar bpmn bpmn20.xml" ></input>
+		<form id="uploadForm" method="post" encType="multipart/form-data">
+			<table align="center" class="edit-table">
+				<tr>
+					<td style="width: 15%"><span key="workflow.deployWorkflowFile" class="paltform-i18n">流程文件：</span></td>
+					<td style="width: 65%" align="left"><span key="Tmaxsize">上传文件总大小不允许大于3M</span></td>
+					<td style="width: 20%" align="center">
+						<a href="#" class="easyui-linkbutton submit" onclick="addFileInput()">
+							<span key="addFile" class="paltform-i18n" >添加附件</span>
+						</a>
+					</td>
+				</tr>
+			</table>
+			<div id="fileTip" style="width:90%;margin-top:10px;align:center;text-align:center;"><font style="color: red;">支持文件格式：zip、bar、bpmn、bpmn20.xml</font></div>
+			<div class="button-area" id="upbutton">
+				<table width='100%' align="center">
+					<tr >
+						<td style="text-align:center">
+							<a href="#" class="easyui-linkbutton submit"  onclick="deployWorkflows()">
+								<span key="save" class="paltform-i18n">保存</span>
+							</a>
+							<a href="#" class="easyui-linkbutton cancel"  onclick="parent.closeDlg('deployWorkflowsIframe');">
+								<span key="cancel" class="paltform-i18n">取消</span>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+		<table id="deployResult" class="detail-table" style="display: none;">
+			<tr>
+				<th style="width: 20%"><span key="workflow.uploadFileSize" class="paltform-i18n">上传文件数量：</span></th>
+				<td style="width: 80%"><span id="uploadFileSize"></span></td>
+			</tr>
+			<tr>
+				<th colspan="1"><span key="workflow.deploySize" class="paltform-i18n">成功部署文件：</span></th>
+				<td colspan="1"><span id="deploySize"></span></td>
+			</tr>
+			<tr>
+				<th colspan="1"><span key="workflow.unDeploySize" class="paltform-i18n">未部署文件：</span></th>
+				<td colspan="1"><span id="unDeploySize"></span></td>
+			</tr>
+		</table>
+		
+		<div class="button-area" id="filebutton" style="display: none;">
+			<table width="100%" align="center">
+				<tr>
+					<td>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="parent.closeDlg('deployWorkflowsIframe');">
+							<span key="close" class="paltform-i18n">关闭</span>
+						</a>
+					</td>
+				</tr>
+			</table>
+	 	</div>
+	</div>
+</body>
+</html>

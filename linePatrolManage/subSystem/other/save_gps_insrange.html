@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta name="keywords" content="gis,web">
+    <meta name="description" content="">
+    <title></title>
+    <!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+    <!-- css引用，注意引用顺序 -->
+    <link rel="stylesheet" type="text/css" href="../../../common/css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/font-awesome.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/common.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/querySpanCommon.css"></link>
+    <link rel="stylesheet" type="text/css" href="../highManage/css/style.css"></link>
+    <link rel="stylesheet" type="text/css" href="../highManage/css/normalize.css"></link>
+
+    <!-- js引用， 注意引用顺序 -->
+    <!--<script type="text/javascript" src="../../../common/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../common/js/jquery.easyui.min.js"></script>-->
+    <script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+    <script type="text/javascript" src="../../../common/js/querySpanCommon.js"></script>
+    <script type="text/javascript" src="js/save_gps_insrange.js"></script>
+
+    <style>
+        .button-area {
+            height: 54px;
+        }
+
+        .block-point, .textbox-label {
+            cursor: pointer;
+        }
+
+        #previous {
+            border: 1px solid #ddd;
+            min-width: 100%;
+            min-height: 100px;
+            word-break: break-all;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 5px 5px;
+            padding-bottom: 16px;
+        }
+
+        #description {
+            word-break: break-all;
+            line-height: 25px;
+        }
+
+        #description p {
+            letter-spacing: 4px;
+        }
+        .block-point {
+            display: inline-block;
+            width: 189px;
+            height: 21px;
+            margin: 16px 29px;
+        }
+
+        .tgl-btn {
+            display: inline-block !important;
+            margin-left: 29px;
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 28px 53px !important;
+        }
+
+        #person-detail input {
+            /*width: 245px !important;*/
+        }
+
+        .panel-body.panel-body-noheader.panel-body-noborder {
+            /*overflow-y: hidden;*/
+            /*width: 760px !important;*/
+        }
+
+        label {
+            display: block;
+        }
+
+        #description input{
+            height:20px;
+            margin:0;
+            padding:0 2px;
+            box-sizing:content-box;
+            border-bottom: 1px solid #000000;
+            width: 60px ;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        #description input{
+            border-radius: 0px !important;
+        }
+
+        #description .Wdate_focus,
+        #description .input_bg_focus {
+            outline:0;
+            border-bottom: 1px solid #000000 !important;
+            border-top: 0px !important;
+            border-left: 0px !important;
+            border-right: 0px !important;
+            box-shadow:0px 0px 0px 0 white !important;
+        }
+        #description .Wdate.Wdate_focus,
+        #description textarea.input_bg_focus,
+        #description .textbox-focused.textbox.combo,
+        #description .input_bg.input_bg_focus{
+            border-bottom: 1px solid !important;
+            box-shadow:0px 0px 0px 0 white !important;
+        }
+
+        #province, #city, #area {
+            width: 17.1%;
+        }
+    </style>
+</head>
+<body>
+<div class="easyui-tabs-container">
+    <div id="tabContainer" class="easyui-tabs" style="height: 600px;">
+        <div title="其他巡检人员区段信息">
+            <div id="contentArea" class="content-area" style="overflow-y: auto !important;overflow-x: hidden">
+                <!-- 表单区域，每行四列 -->
+                <form id="gpsInsrangeForm" method="post">
+                    <h6 class="table-title">基础数据</h6>
+                    <input id="inspectorType" name="inspectorType" type="hidden" value="03"/>
+                    <input type="hidden" name="taskTime" id="taskTime"/>			<!-- 默认一周一巡 -->
+                    <table align="center" class="edit-table" id="person-detail">
+                        <tr>
+                            <td width="20%"><span>部门名称：</span></td>
+                            <td width="30%">
+                                <select id="unitid" name="unitid" class="easyui-validatebox select"
+                                        required="true"></select>
+                            </td>
+                            <td width="20%"><span>管线名称：</span></td>
+                            <td width="30%">
+                                <select id="lineloopoid" name="lineloopoid" class="easyui-validatebox select"
+                                        required="true"></select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%"><span>人员名称：</span></td>
+                            <td width="30%">
+                                <input id="inspectorid" required="true" name="inspectorid"  value="" validType="comboxExists['inspectorid']" />
+                            </td>
+                            <td width="20%"><span>巡检角色：</span></td>
+                            <td width="30%">
+                                <input id="patrolRole" required="true" name="patrolRole"  value="" validType="comboxExists['patrolRole']" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%"><span>起始位置：</span></td>
+                            <td width="30%">
+                                <input id="beginlocation" name="beginlocation" class="easyui-validatebox input_bg"
+                                       required="true" validType="" maxlength="100"/>
+                                <input id="beginstation" name="beginstation" type="hidden" value=""/>
+                            </td>
+                            <td width="20%"><span>终止位置：</span></td>
+                            <td width="30%">
+                                <input id="endlocation" name="endlocation" class="easyui-validatebox input_bg"
+                                       required="true" validType="" maxlength="100"/>
+                                <input id="endstation" name="endstation" type="hidden" value=""/>
+                            </td>
+                        </tr>
+
+                        <tr id="workTime">
+                            <td width="20%"><span>任务开始日期：</span></td>
+                            <td width="30%">
+                                <input id="insbdate" name="insbdate" required = "required" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  />
+                            </td>
+                            <td width="20%"><span>任务结束日期：</span></td>
+                            <td width="30%">
+                                <input id="insedate" name="insedate" required = "required" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                            </td>
+                        </tr>
+                        <tr id='taskTimeNode'>
+                            <td width="20%"><span>巡检频次：</span></td>
+                            <td width="30%">
+                                <select id="insfreq" name="insfreq" class="easyui-validatebox select" required="true" ></select>
+                            </td>
+                            <td width="20%"><span>巡线类型 ：</span></td>
+                            <td width="30%">
+                                <select id="instype" name="instype" required="true"  class="easyui-validatebox select"></select>
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+                <br/>
+                <br/>
+                <h6 class="table-title">关键点（蓝色表示选中，红色表示未选中。）</h6>
+                <!-- 拖拽区 -->
+                <div id="previous">
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="button-area" class="button-area">
+    <table width="100%">
+        <tr>
+            <td align="center">
+                <a href="#" id="saveButton" class="easyui-linkbutton save-btn"
+                   onclick="saveGpsInsrange()"><span>保存</span></a>
+                <a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<!-- 计算位置div -->
+<div id="calculationMileage" class="table-content" style="display:none;">
+</div>
+</body>
+</html>

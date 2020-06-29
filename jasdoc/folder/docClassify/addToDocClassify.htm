@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="keywords" content="gis,web">
+		<meta name="description" content="">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+		<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+		
+		<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+		<script type="text/javascript" src="../js/addtoDocClassify.js"></script>
+	</head>
+<body>
+<div id="main_area">
+<!-- 	<div id="dlg" class="easyui-panel"> -->
+		<form id="editfilefrom" method="post">
+			<input type="hidden" name="sid" id="sid"/>
+			<br>
+			<table align="center" class=edit-table >
+				<tr>
+					<td width="20%"><span key="file.filename" class="paltform-i18n">文档分类：</span></td>
+					<td width="75%">
+						<input type="text" id="fileclassify" name="fileclassify" required="true" missingmessage="不能为空"  style="width: 430px"  multiple="true" panelHeight="80px"/>
+					</td>
+				</tr>
+				<tr>
+				    <td><span key="file.remark" class="paltform-i18n">待分类文档：</span></td>
+				    <td colspan="3">
+				    	<textarea id="fordername" class="easyui-validatebox textarea" name="fordername" style="height: 60px;" disabled="disabled"></textarea>
+				    </td>
+				</tr>
+			     </table>
+			     
+			       
+		   	
+		</form>
+	</div>
+<!-- 	</div> -->
+	 <div class="button_area_absolute">
+           <table width="100%">
+     				<tr>
+      				 <td  class="button_area" align="center">
+       					    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeUnit()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+       				</td>
+      				</tr>
+      			</table>	 
+       </div>
+	<script type="text/javascript">
+	var eventids = "";
+	var filenames = "";
+	var foldertype = "1";
+	var oldfolderid = "";
+	var url = "../classify/updateDocClassify.do";
+	var param = this.location.search;
+	if (param != null && "" != param) {
+		var p = param.substr(1).split("&");
+		$.each(p,function(i,item){
+			var d = item.split("=");
+			if(d[0]=='eventids'){
+				 eventids=d[1];
+			}
+			if(d[0]=='filenames'){
+				filenames=d[1];
+				$("#fordername").text(filenames);
+			}
+			if(d[0]=='foldertype'){
+				foldertype=d[1];
+			}
+			if(d[0]=='folderid'){
+				oldfolderid=d[1];
+			}
+		});
+	}
+	</script>
+	</body>
+</html>
+

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/webuploader/initialize_webuploader.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_photo.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_images.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_file.js"></script>	
+<script type="text/javascript" src="../../jasframework/workflow/js/workflow.js"></script>	
+
+<script type="text/javascript" src="js/view_gps_construction.js"></script> 	 
+</head>
+<body class="master-table">
+	<div class="easyui-tabs-container">
+	   	<div id="tabContainer" class="easyui-tabs" style="height: 300px;">
+	   	<div title="详细信息">
+	   		<div id="contentArea" class="content-area">
+	   			<div class="content-area-main">
+	   				<div class="table-content">
+					<h6 class="table-title">基础信息</h6>
+						<!-- 表单区域，每行四列 -->
+						<table align="center" class="detail-table" >
+							<tr>
+								<th width="15%"><span>部门名称</span></th>
+								<td width="35%"><span id="unitidname"></span></td>
+								<th width="15%"><span>管线名称</span></th>
+								<td width="35%"><span id="lineloopoidname"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>施工项目名称</span></th>
+								<td width="35%"><span id="projectname"></span></td>
+								<th width="15%"><span>施工原因</span></th>
+								<td width="35%"><span id="constructreason"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>位置经度</span></th>
+								<td width="35%"><span id="lon"></span></td>
+								<th width="15%"><span>位置纬度</span></th>
+								<td width="35%"><span id="lat"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>是否为《管道保护法》禁止施工项目</span></th>
+								<td width="35%"><span id="isProhibitedItems"></span></td>
+								<th width="15%"><span>施工开始日期</span></th>
+								<td width="35%"><span id="happenbegindate"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>桩号</span></th>
+								<td width="35%"><span id="stakenumname"></span></td>
+								<th width="15%"><span>桩偏移量</span></th>
+								<td width="35%"><span id="offset"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>施工地点里程值</span></th>
+								<td width="35%"><span id="pointstation"></span></td>
+								<th width="15%"><span>施工地点</span></th>
+								<td width="35%"><span id="location"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>距离管线长度</span></th>
+								<td width="35%"><span id="distanceline"></span></td>
+								<th width="15%"><span>风险等级</span></th>
+								<td width="35%"><span id="riskratingCodeName"></span></td>
+							</tr>
+							<!-- 变更-->
+							<tr>
+								<th width="15%"><span>工程进展</span></th>
+								<td width="35%"><span id="progressidCodeName"></span></td>
+								<th width="15%"><span>临时关键点</span></th>
+								<td width="35%"><span id="temporarykeypointoidname"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>建设（施工）单位名称</span></th>
+								<td width="35%"><span id="constructunit"></span></td>
+								<th width="15%"><span>现场监护巡线工</span></th>
+								<td width="35%"><span id="inspectoroidname"></span></td>
+
+							</tr>
+							<tr>
+								<th width="15%"><span>建设（施工）单位联系人</span></th>
+								<td width="35%"><span id="companyContacts"></span></td>
+								<th width="15%"><span>建设（施工）单位联系方式</span></th>
+								<td width="35%"><span id="companyContactsPhone"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>输油站现场负责人</span></th>
+								<td width="35%"><span id="stationLeading"></span></td>
+								<th width="15%"><span>输油站现场负责人电话</span></th>
+								<td width="35%"><span id="stationLeadingPhone"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>施工业主单位名称</span></th>
+								<td width="35%"><span id="ownerUnitName"></span></td>
+								<th width="15%"><span>施工业主单位联系人</span></th>
+								<td width="35%"><span id="ownerContacts"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>施工业主单位联系电话</span></th>
+								<td width="35%"><span id="ownerContactsPhone"></span></td>
+								<th width="15%"><span>预计结束日期</span></th>
+								<td width="35%"><span id="estimateEndDate"></span></td>
+							</tr>
+							<!-- 变更-->
+							<tr>
+								<th width="15%"><span>现场巡线工电话</span></th>
+								<td width="35%"><span id="inspectorphone"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>采取措施（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="measures"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>工程简要描述（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="constructdescr"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>风险点描述（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="riskdescr"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>备注（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="descr"></span></td>
+							</tr>
+						</table>
+					</div>
+					<!-- <div id="downloadDIV"></div> -->
+					<!-- 存放图片的容器   带描述 不带描述都是这个-->
+					<div class="table-content">
+						<h6 class="table-title">图片信息</h6>
+						<div id="viewPicContainer"></div>
+					</div>
+						<!-- 存放附件的容器   带描述-->
+					<div class="table-content">
+						<h6 class="table-title">附件信息</h6>
+						<div id="viewFileContainer" ></div>
+					</div>
+	   			</div>
+	   		</div>
+	   	</div>
+	 	<div title="审批记录" icon="icon-reload" style="overflow: hidden;">
+				<table id="dg"></table>
+		</div>
+	</div>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td  align="center">
+					<a href="#" class="easyui-linkbutton close-btn" onclick="closePanel()"> <span>关闭</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

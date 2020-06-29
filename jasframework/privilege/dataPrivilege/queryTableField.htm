@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+<link rel="stylesheet" href="../../common/css/add.css" type="text/css"></link>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/queryTableField.js"></script>
+</head>
+<body>
+	<div id="main"  style=" width:100%; height: 100%;border: 0px;" >
+		<div id="right" style="padding: 1px; margin-right: 1px;overflow: auto; border: 0px;width:100%; height: 100%;">
+			<div id="system" style="padding-left: 5px;border: 0px;">
+				<span>应用系统：<select id="appnumber" name="appnumber"  editable="false" panelHeight="auto" ></select></span>
+			</div>
+			<table id="treegrid" style="width: 100%;border: 0px; height: 100%"></table>
+			<div id="InputDetailBar" style="text-align: center;border: 0px;">
+				<a href="#" id="savebutton" onclick="save()"  class="easyui-linkbutton" iconCls='icon-save'><span key="save" class="paltform-i18n">保存</span></a>
+			</div>
+		</div>
+	</div>
+</html>

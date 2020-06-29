@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" ?>
+<!-- //////////////////////////////////////////////////////////////////////////////// 
+	// // Read more about ArcGIS Viewer for Flex - http://links.esri.com/flexviewer 
+	// //////////////////////////////////////////////////////////////////////////////// -->
+	
+<!--          二维地图config.xml文件配置说明   申杰  2016-2-23       -->
+<!-- 总结描述：
+	config.xml文件是二维地图组件最重要的配置文件，通过读取config.xml文件的配置信息，从而实现图层渲染、组件加载等功能。
+	config.xml文件配置项主要包括五大部分：基本配置、组件配置、Map节点配置、自定义按钮配置及其他自定义项配置。
+		其中，基本配置主要包括标题、样式等配置项；组件配置包括布局组件（导航条、坐标等单个组件）配置和容器组件（分组管理widget）配置；
+			Map节点配置包括地图范围、显示级别等地图基本配置和图层配置；
+			自定义按钮配置包括自定义菜单按钮配置及自定义标绘按钮配置；
+			其他自定义项配置包括变量设置及方法定义等key-value形式的配置信息。-->
+
+	
+<configuration>
+<!--*****************基本配置项  开始********************-->
+	
+	
+	<!--头控制器的标题文字（需引入HeaderController组件：widgets/HeaderController/HeaderControllerWidget.swf）-->
+	<title>MapViewer2.0</title>
+	<!--头控制器的子标题文字（需引入HeaderController组件：widgets/HeaderController/HeaderControllerWidget.swf）-->
+	<subtitle></subtitle>
+	<!--头控制器的logo图片，48 × 48像素的图片，否则将被调整到该大小，支持PNG和GIF（需引入HeaderController组件：widgets/HeaderController/HeaderControllerWidget.swf）-->
+	<logo>assets/images/cn.png</logo>
+	
+	<!--应用程序的醒目页面：程序初始化弹出的窗口-->
+	<splashpage url="widgets/Splash/SplashWidget.swf" config="widgets/Splash/SplashWidget.xml"></splashpage>
+	<!--布局方式：ltr从左到右，rtl从右到左-->
+	<layoutdirection>rtl</layoutdirection>
+	
+	<style>
+		<!--颜色集定义了浏览器的外观。这个标签有六个配置项，它们代表（从左至右）：文字颜色，组件背景颜色，鼠标滑过组件背景色，组件选中背景色，标题文字的颜色（HeaderController组件）、应用程序的背景色。颜色值是基于RGB十六进制格式。-->
+		<colors>0xFFFFFF,0x4989C8,0x101010,0x000000,0xFFD700,0xffffff</colors>
+		<!--浏览器UI组件的透明程度。值的范围从0.0（透明）到1.0（不透明）-->
+		<alpha>1</alpha>
+		<!--应用程序全局字体及字号-->
+		<font size="14" name="Arial" />
+		<!--头控制器（HeaderController组件）用于标题的字体及字号-->
+		<titlefont name="Arial" size="14"/>
+		<!--头控制器（HeaderController组件）用于子标题的字体及字号-->
+		<subTitlefont name="Arial" size="10"/>
+	</style>
+	
+	<!--代理服务器地址-->
+	<httpproxy></httpproxy>
+	<bing key=""></bing>
+	
+	<!-- 几何服务地址配置  
+		url：几何服务地址
+		token：访问Arcgis Service 服务安全使用
+		useproxy：是否使用代理，默认为false
+	-->
+	<geometryservice
+		url="http://192.168.30.25:6080/ArcGIS/rest/services/Geometry/GeometryServer" token="" useproxy="false"/>
+		
+<!--*****************基本配置项  结束********************-->		
+
+<!--*****************组件配置  开始********************-->
+	<!--组件配置：
+	<widget left="" right="" top="" bottom=""  config="" url="" icon="" label="" horizontalcenter="" verticalcenter=""  visible=""/>
+		left、right、top、bottom：组件显示位置
+		config:组件加载的配置文件（xml文件）
+		url:组件地址（swf文件）
+		icon:组件图标
+		label:组件文本
+		horizontalcenter：组件在父容器中的水平位置，0表示水平居中
+		verticalcenter：组件在父容器的垂直位置，0表示垂直居中
+		visible：是否可见
+	-->
+	<!--************常用组件介绍**************-->
+	<!-- 地图导航工具条 -->
+	<widget left="10" top="72" 
+		config="widgets/Navigation/NavigationWidget.xml" url="widgets/Navigation/NavigationWidget.swf" />
+	<!-- 图层控制树 -->
+	<widget right="2" top="0" bottom="0"
+		config="widgets/Layer/LayerTreeWidget.xml" url="widgets/Layer/LayerTreeWidget.swf" />
+	<!-- 工具栏 -->
+<!-- 	<widget left="0" top="0" horizontalcenter="0" -->
+<!-- 		config="widgets/MenuController/MenuControllerWidget.xml" url="widgets/MenuController/MenuControllerWidget.swf"/> -->
+	<!-- 移动工具栏，图标放大 -->
+	<widget left="0" top="0" horizontalcenter="0"
+		config="widgets/MenuController/MenuControllerWidget_MoveAndZoom.xml" url="widgets/MenuController/MenuControllerWidget_MoveAndZoom.swf"/>
+	<!-- 显示地图坐标 -->
+	<widget bottom="12"  horizontalcenter="0"
+		config="widgets/Coordinate/CoordinateWidget.xml" url="widgets/Coordinate/CoordinateWidget.swf" />
+	<!-- js与as通信交互，必须引入 -->
+	<widget left="0" top="0" config="widgets/JSConnector/JSConnectorWidget.xml"
+		url="widgets/JSConnector/JSConnectorWidget.swf" />
+	<!-- 扩展类，点线面鼠标点绘等 -->
+	<widget left="0" top="0" config="widgets/Extension/ExtensionWidget.xml"
+		url="widgets/Extension/ExtensionWidget.swf" />
+	<!-- 标绘菜单 -->
+	<widget left="0" right="0" top="0" bottom="0"
+		config="widgets/Plot/PlotWidget.xml" url="widgets/Plot/PlotWidget.swf" />
+		
+	<!-- 更新时间标签，需配置mapsettings中的time -->
+	<widget  right="250"  bottom="12"
+		config="widgets/TimeLabel/TimeLabelWidget.xml" url="widgets/TimeLabel/TimeLabelWidget.swf" />
+	<!-- 解决方案标签 -->		
+	<widget right="0" top="5" 
+		config="widgets/SchemeName/SchemeNameWidget.xml" url="widgets/SchemeName/SchemeNameWidget.swf" />
+	<!-- 绘制路由线 -->			
+	<widget left="0" right="0" top="0" bottom="0"
+		config="widgets/RoutingDesigner/RoutingDesignerWidget.xml" url="widgets/RoutingDesigner/RoutingDesignerWidget.swf" />
+	<!-- 地名标签 -->			
+	<widget left="100" top="5" 
+		config="widgets/PlaceName/PlaceNameWidget.xml" url="widgets/PlaceName/PlaceNameWidget.swf" />	
+	
+
+<!-- 分组管理widget，可显示在（HeaderControllerWidget、MenuControllerWidget、MenuControllerWidget_MoveAndZoom组件中）
+		layout：组件布局，horizontal(default)|float|vertical|fix（位置固定，每个widget中设置的组件的显示位置）
+		left：
+		right:
+		top:
+		bottom:
+	-->
+	<widgetcontainer layout="float">
+		<widget id="menuBookmark" left="95" top="30" label="地图书签" icon="assets/images/i_bookmark.png" 
+		config="widgets/Bookmark/BookmarkWidget.xml" url="widgets/Bookmark/BookmarkWidget.swf"/>
+		<widgetgroup label="分组管理" icon="assets/images/i_folder.png">
+			<widget id="printSubmitLabel" left="95" top="30" label="打印" icon="assets/images/i_print.png" 
+				config="widgets/Print/PrintWidget.xml" url="widgets/Print/PrintWidget.swf"/> 
+			<widget id="menuExcel" label="Excel加载" icon="assets/dock/Excel.png" 
+				config="widgets/Excel/XlsWidget.xml" url="widgets/Excel/XlsWidget.swf" /> 
+		</widgetgroup>
+	</widgetcontainer>
+<!--*****************组件配置  结束********************-->
+
+<!--*****************地图相关项配置  开始********************-->
+
+	<!--**************Map节点属性配置：
+		initialextent：初始化地图范围：[xmin ymin xmax ymax]
+		fullextent：最大地图范围：[xmin ymin xmax ymax]即左下角与右上角的坐标。如319461.5836 2450432.5244 783749.9461 2702361.9051
+		center：地图的初始中心点，如果同时设置了地图初始范围，则center优先，一般不进行设置，如需设置，请确保值在地图范围内。格式为center="x y"，如center="100 50"
+		level：地图初始显示级别，从0开始，如果同时指定scale，则level优先
+		scale：地图初始显示比例，如果同时指定level，则level优先，如scale= "500000"
+		left：默认为0像素
+		right：默认为0像素
+		top：默认为0像素
+		bottom：默认为0像素
+		wkid：空间参考坐标系的ID号，如果同时指定wkt和wkid，则wkid将被使用
+			  常见的wkid值及对应的坐标系如下：
+				  4326	GCS_WGS_1984
+				  4610	GCS_Xian_1980
+				  wkid及对应坐标系参考：http://blog.sina.com.cn/s/blog_a753682e0101e8br.html 
+		wkt：
+		zoomslidervisible：是否显示系统默认的缩放滑块，默认为false，一般设置为false，使用导航条替代
+		scalebarvisible：是否显示比例尺，默认为true，一般设置为true，在地图左下角显示比例尺
+		esrilogovisible：应用是否显示ESRI的标志，默认为true，一般设置为false
+		openhandcursorvisible：鼠标形状是否为手指针，默认为false
+		wraparound180：是否启用连续跨越日界线平移，默认为false，一般设置为true
+		rotation：
+		paneasingfactor：
+	-->	
+	<map initialextent="47.1 31.503620 47.702613 31.8" fullextent="47.1 31.503620 47.702613 31.8" level="5"
+		wraparound180="true" top="0" wkid="4326"
+		 esrilogovisible="false"
+		scalebarvisible="true">
+		<!-- **************比例尺级别配置：
+			scale及resolution的值来自于发布服务时，采取地图缓存时定义的级别。该值可以从C:\arcgisserver\arcgisoutput中对应的xml文件中获取
+		-->
+		<lods>
+			<lod resolution="0.00118973050291514" scale="500000" />
+			<lod resolution="0.00059486525145757" scale="250000" />
+			<lod resolution="0.000297432625728785" scale="125000" />
+			<lod resolution="0.00023794610058302802" scale="100000" />
+			<lod resolution="0.00011897305029151401" scale="50000" />
+			<lod resolution="0.000059486525145757005" scale="25000" />
+			<lod resolution="0.000023794610058302804" scale="10000" />
+			<lod resolution="0.000011897305029151402" scale="5000" />
+			<lod resolution="0.00000475892201166056" scale="2000" />
+			<lod resolution="0.00000237946100583028" scale="1000" />
+			<lod resolution="0.00000118973050291514E" scale="500" />
+			<lod resolution="0.000000356919150874542" scale="150" />
+		</lods>
+		<!--************** 图层配置********************-->
+		<!-- 
+			注：配置的底图和业务图层会以树的结构在图层控制树中显示其图层名，而隐藏图层不会。
+			图层控制树可以控制底图及业务图层的显示与隐藏，但不可以控制隐藏图层。
+			如果业务需求中要求某一个图层不受图层树的控制，建议配置成隐藏图层。
+			图层配置参考说明：http://resources.arcgis.com/en/help/flex-viewer/concepts/#/Layer_tag_overview/01m30000000p000000/
+			
+			<layer id="" lable="" type=""  visible="" url="" visible="" alpha="" index="" wkid=""  displayLevels="" url="" labelUrl="" labelType="" symbolUrl=""
+				 	visblelayers=""   maxfeatures="" shapeField=""  version=""  skipgetcapabilities=""  renderParameter=""/> 	
+				id：图层ID，图层的唯一标识
+				label：图层名称
+				type：图层类型
+						antutiled：通过IIS发布的底图（使用安图工具切图）；
+						feature：通过ArcGIS Server发布的FeatureServer服务；
+						wms：通过geoserver发布的地图瓦片服务；
+						wfs：图层是通过geoserver发布的要素服务；
+						titled：ArcGIS Services Directory中MapServer服务
+						dynamic：ArcGIS Services Directory中MapServer服务
+						esrititled：IIS发布的底图（使用ArcGIS Server的松散切片发布至IIS下）
+					/**************************以下为不常用图层类型********************************/
+						bing
+						image
+						arcims
+						osm
+						kml
+						google
+
+				visible：确定应用程序首次打开时，该图层是否可见。布尔值，默认为false。
+				alpha：调整图层的透明度/不透明度。值的范围从0.0（透明的）到1.0（不透明的）。默认值是1.0
+				index：图层显示顺序
+				displayLevels：指定图层显示的比例尺级别。适用于tiled、antutiled、esritiled、bing、wfs
+					应用于tiled、antutiled、esritiled、bing图层，数组，用逗号隔开，如displayLevels=”1,3,5”，则表示地图级别为1,3,5时显示该图层，其余级别不显示
+					应用于wfs服务，一个数字，为图层显示的最小级别，如displayLevels=”3”，表示地图级别大于等于3时，显示该图层，其余级别不显示
+
+				url：地图服务的地址，不适用arcims、bing、osm.
+					IIS中发布的底图，格式为：
+						http://计算机名/Default Web Site下显示的名称。
+					ArcGIS Server中发布的图层，格式为
+						http://计算机名/ArcGIS/rest/services/Service Name(发布名称)/MapServer 
+						http://计算机名/ArcGIS/rest/services/Service Name(发布名称)/ FeatureServer/图层号 
+					geoserver中发布的图层，格式为：
+						http://ip:端口号/geoserver/Workspaces名称(可省略)/wms或wfs 
+				
+				visblelayers：确定当应用程序首次打开时显式的子图层。默认值是服务器上指定的。仅仅应用于dynamic、arcims、wms、wfs。对WMS来说是必须的，否则子图层不会被显示。
+				
+				geoserver发布的图层还需配置：
+					maxfeatures：最多返回要素个数（仅适用于图层类型为wfs）
+					shapeField：shape字段，默认为SHAPE，基于shp文件发布的服务时应为‘the_geom’，基于SDE数据发布的服务应为‘SHAPE’,适用于wfs和wms。
+					version：请求WMS地图是需要使用版本。允许的值是1.0.0、1.1.1或者1.3.0（可选）。
+					wkid：一个wkid对应于一个坐标系。重写发送到WMS服务器的WKID。仅仅当在WMS服务器没有识别出地图的wkdi时需要(在2.3.1版本中新增)。（适用图层类型为wfs、wms）
+					
+				feature、wfs类型的图层还可配置：	
+					labelUrl：文本标注图层的url地址，图层类型为esritiled或dynamic，默认为esritiled（适用于图层类型为feature、wfs）
+					labelType：文本标识图层类型，默认为esritiled(可选项：esritiled、dynamic)（适用于图层类型为feature、wfs）
+					symbolUrl：图层样式服务地址，支持esritiled，解决feature、wfs要素服务无法正确展示复杂样式的问题（适用图层类型为feature、wfs）
+					renderParameter：指定图层的渲染方式及鼠标响应方式，目前支持wfs和feature服务（具体配置参照Feature类型Layer渲染配置V2.0.txt）
+
+		-->
+		<!-- 背景图层 配置：一般配置地图的底图-->
+		<basemaps>
+			<layer id="layerSetBasemaps001" label="背景图层">
+				<!-- 配置示例esritiled：IIS发布的ArcGIS 切图 -->
+				<layer id="ycMap" label="背景图(esritiled)" type="esritiled" visible="true" 
+					alpha="1.0" url="http://localhost/ycMap/" index="1"/>
+				<!-- 配置示例antutiled：IIS发布的安图工具 切图 -->	
+				<layer id="dom" label="影像图(antutiled)" type="antutiled" visible="false" 
+					alpha="1.0" url="http://localhost/dom/"  index="2"/>
+			</layer>
+		</basemaps>
+		<!-- 隐藏图层配置：不在图层树中显示该图层 -->
+		<hiddenlayers>
+			<layer id="layerSetBasemaps001" label="Background Layer">
+				<layer id="dom" label="Satellite Image" type="esritiled" visible="false" 
+				alpha="1.0" url="http://192.168.30.25/halfayaMap/" index="2"/>
+				<layer id="2D" label="2D" type="esritiled" visible="true" 
+				alpha="1" url="http://192.168.30.25/Labelnew/2D1/Layers/_alllayers/" index="2"/>
+			</layer>
+		</hiddenlayers>
+		<!-- 操作图层配置：一般配置业务图层 -->
+		<operationallayers>
+			<layer id="ArcGISLayer" label="ArcGIS服务示例">
+				<!-- 配置示例feature类型：ArcGIS发布的要素图层服务，支持鼠标事件 -->
+				<!--勘探点配置 -->
+				<layer id="gxKcd" label="Boreholes(feature)" type="feature" visible="true" 
+					alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/0" index="3"
+					renderParameter='{ 
+						"initSymbol":{"symbolType":"simple","symbol":{"size":"8","style":"square","alpha":"1","color":"0xFF0000"}},
+						"highlightSymbol":{"symbolType":"polygon","symbol":{"size":"15","style":"square","alpha":"1","color":"0xFF0000","borderColor":"0x0000FF","borderWidth":"5","borderAlpha":"1"}},
+						"hoverResponseHandler":{"responseType":"map_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"BOREHOLE_NUMBER,DESCRIPTION","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+							},
+						
+						"clickResponseHandler":{"responseType":"iframe_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","title":"详细信息"} 
+							},
+						"dbclickResponseHandler":{"responseType":"js_function",
+								"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+						   }		 
+				    }' /> 
+				<!--管线配置 -->
+				<layer id="MOC_Oil_Design" label="MOC(feature)" type="feature" visible="true"  
+					labelUrl="http://192.168.30.25/LabelNew/MOC_Oil/Layers/_alllayers/"
+					alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/6" index="6"
+					renderParameter='{ 
+						"initSymbol":{"symbolType":"simple","symbol":{"width":"3","style":"solid","alpha":"1","color":"0x0000FF"}},
+						"highlightSymbol":{"symbolType":"polygon","symbol":{"width":"5","style":"dash","alpha":"1","color":"0x00FF00","borderColor":"0x0000FF","borderWidth":"2","borderAlpha":"1"}}, 
+						"hoverResponseHandler":{"responseType":"map_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"NO,STARTING","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+							},
+						"clickResponseHandler":{"responseType":"iframe_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"false","returnAttributes":"false","outFields":"NO,STARTING","title":"详细信息"} 
+							},
+						"dbclickResponseHandler":{"responseType":"js_function",
+								"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"NO,STARTING","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+						   }	
+ 					}'/> 
+ 				<!-- 配置示例dynamic类型：ArcGIS发布的地图服务 -->	
+ 				<layer id="layerCoating" label="halfaya((MAP))" type="dynamic" visible="false" index="3"
+					url="http://192.168.30.25:6080/arcgis/rest/services/halfaya/MapServer"/>	
+				<!-- 配置示例tiled类型：ArcGIS发布的地图服务 -->		
+				<layer id="CPFLayer" label="CPF(tiled)" type="tiled" visible="false"  index="4"
+					url="http://192.168.30.25:6080/arcgis/rest/services/CPF/MapServer" />
+ 			</layer>
+ 			<layer id="geoserverLayer" label="Geotools图层配置">
+ 				<!-- 配置示例wfs类型：geoserver发布的要素服务 -->
+ 				<layer id="wellpos" label="井(wfs)" type="wfs" visible="true" visiblelayers="ChinaMap:Wellpos"
+                     skipgetcapabilities="true" wkid="4326"  maxfeatures="200" shapeField = "the_geom"
+					 url="http://192.168.40.54:8081/geoserver/wfs" displayLevels="9" 
+		             renderParameter='{}' />
+				<!-- 配置示例wms类型：geoserver发布的地图服务 -->
+				 <layer id="wellpos_label" label="井(wms)" type="wms" visible="true" visiblelayers="ChinaMap:Wellpos"
+                     skipgetcapabilities="true" wkid="4326"  maxfeatures="200" shapeField = "the_geom"
+					 url="http://192.168.40.54:8081/geoserver/wms"/>
+ 			</layer>
+		</operationallayers>
+	</map>
+<!--******************地图相关项配置  结束 ******************-->
+
+<!--******************自定义按钮配置  开始 ******************-->
+
+	<!--自定义工具栏按钮配置：
+		id：工具栏按钮ID，需在<mapsettings><menuOrder>中添加该ID才能显示
+		label:工具栏按钮显示文本
+		icon:工具栏按钮图标
+		switchIcon：切换图标
+		switchLabel：切换文本		
+		callBackFunction:按钮响应事件
+		grouped: 是否分组
+		groupIcon：分组图标
+		groupLabel：分组文本		
+	-->
+	<menubuttonset>
+		<menubutton id="printMap" label="打印地图" icon="customConfig/customImages/print.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="printEvent"></menubutton>
+		<menubutton id="switchMap" label="Image" icon="customConfig/customImages/三维.jpg" switchIcon="customConfig/customImages/二维.jpg" 
+			switchLabel="Map" grouped="false" groupIcon="" groupLabel="" callBackFunction="switchMap"></menubutton> 	 
+	</menubuttonset>
+	
+	<!--自定义标绘工具栏按钮配置：
+		id：标绘工具栏按钮ID，需在<mapsettings><plotMenuOrder>中添加该ID才能显示
+		label:标绘工具栏按钮显示文本
+		icon:标绘工具栏按钮图标
+		callBackFunction：按钮响应事件
+	-->
+	<plotbuttonset>
+		 <plotbutton id="attachment" label="添加附件" icon="customConfig/customImages/attachment.png"
+		 	 callBackFunction="attachmentEvent"></plotbutton> 
+	</plotbuttonset>
+	
+	<mapsettings>
+	<!-- 基本信息配置 -->
+		<!-- 版本信息，右键菜单中显示-->
+		<add key="version" value="MapViewer2.0.0" />
+		<!-- 是否展开图层树 -->
+		<add key="expandTree" value="true" />
+		<!-- 是否需要验证登录用户(主要用于图层树控制) -->
+		<add key="verifyUser" value="false" />
+		<!-- 坐标系名称 -->
+        <add key="coordinates" value="(西安80)" />
+        <!-- 影像更新时间label -->
+		<add key="time" value="Date of images collection:2014-9-25" />
+		<!--地图加载完成时候的回调， 一般用于地图初始化-->
+        <add key="mapLoadedCallBack" value="mapLoadedHandler" />
+        
+	<!-- 二三维联动配置 -->
+		<!--二三维联动开关 ,方法位于APIFor3D.js中 -->
+		<add key="setIsLinkage" value="setIsLinkage" />
+		<!-- 地图范围变化回调函数，用于处理二三维联动 ,方法位于APIFor3D.js中-->
+		<add key="JsSynchMapExtentChangeFunction" value="mapExtentChangeHanlder" />
+		
+	<!-- 工具栏按钮配置，事件方法位于customConfig/customEvents/CustomButtonEvents.js中 -->
+		<!-- 画面回调函数(一般用于面查询)，对应的按钮id为polygonSearch -->
+		<add key="drawPolygonCallBack" value="drawPolygonHandler" />
+		<!-- 画圆回调函数(一般用于圆查询)，对应的按钮id为pointSearch -->
+		<add key="drawCircleCallBack" value="drawCircleHandler" />
+		<!--添加【属性】按钮事件监听，对应的按钮id为identity	-->
+		<add key="identifyClickEvent" value="identifyClickHandler" />
+		<!-- 定义菜单按钮显示顺序，包括自定义菜单按钮。格式如：id1,id2,系统默认提供的按钮如下：
+			pan:平移，zoomin:放大，zoomout:缩小，zoomfull:全显，rule:测距，area:测面，clearMap：清空标记，
+			print:打印地图，polygonSearch:圆查询(回调函数key值为drawPolygonCallBack)，
+			pointSearch:圆查询(回调函数key值为drawCircleCallBack)，
+			linkage:二三维联动，plot：标绘，identify：获取点坐标（回调函数key值为identifyClickEvent）
+		 -->
+		<add key="menuOrder" value="pan,zoomin,zoomout,rule,area,clearMap,print,printMap,plot,linkage,switchMap"/>
+		
+	<!-- 标绘工具栏按钮配置 -->
+		<!-- 定义标绘按钮显示顺序，包括自定义菜单按钮。格式如：id1,id2,系统默认提供的按钮如下：
+			delete:删除标记，point:绘制点，polyline：绘制线，polygon：绘制多边形,rectangle：绘制矩形
+			circle：绘制圆，ellipse：绘制椭圆，bitmap：添加图标,text：绘制文本，PicPolyLine：绘制节点线
+			mail：发送邮件（邮件地址对应key值为sendMailService）
+			load：从文件中加载或调用自定义方法（对应数据格式见readme/标绘导入示例.plt，对应按钮事件key值为addLoadPlotEventListener）
+			save：保存标绘数据至文件或调用自定义方法（对应按钮事件key值为saveCallbackPlotToolbar）
+		 -->
+		<add key="plotMenuOrder" value="delete,point,drawPoint,polyline,drawLine,polygon,rectangle,drawPolygon,circle,ellipse,drawCircle,bitmap,text"/>
+		<!-- 标绘发送邮件服务地址 -->
+		<add key="sendMailService" value="http://192.168.8.105:8181/platform/platform/sendmail.do" />
+		<!-- 标绘工具条中加载按钮响应事件，如果为空，则默认加载文件，文件后缀为.plt	-->
+		<add key="addLoadPlotEventListener" value="addLoadPlotHandler" />
+		<!-- 标绘工具条中保存按钮事件处理，如果为空，则将数据保存至本地文件中plot.plt-->
+		<add key="saveCallbackPlotToolbar" value="savePlotGraphicHandler" />
+		
+	<!-- 专题配置 （部分项目需求）-->	
+        <!-- ApdmSOE服务地址，附近场站 -->
+		<add key="ApdmSOEService"
+			value="http://192.168.8.196/ArcGIS/rest/services/apdm/MapServer/exts/apdm" />
+		<!-- 停气分析地址  -->
+		<add key="traceUrl"
+			value="http://192.168.8.196/ArcGIS/rest/services/soe/MapServer/exts/GeometricNetwork/traceDownstream" />
+		<!-- 停气分析拾取点容差  -->
+		<add key="traceTolerance" value="100" />
+		<!-- 停气分析之影响点Tip IFrame地址 -->
+		<add key="trace.iframe.url" value="http://192.168.8.105:8080/platform/crms/repairManager/tips/tipinfo.html" />
+		<!-- 停气分析之影响点Tip IFrame宽度  -->
+		<add key="trace.iframe.width" value="210" />
+		<!-- 停气分析之影响点Tip IFrame高度  -->
+		<add key="trace.iframe.height" value="130" />
+		<!--停气分析之闪烁后需要显示的点图层集合 -->
+ 		<add key="trace.layer.needLocateLayer"
+ 			value="DgStation_dagongye,DgStation_feizhilian,DgStation_zhilian" />
+ 		<!--停气分析之闪烁后气体流向图层服务 -->
+ 		<add key="trace.layer.flowDirectionService"
+ 			value="http://192.168.8.196/ArcGIS/rest/services/arrow_new/MapServer" />
+	</mapsettings>
+</configuration>
+
+<!--********************************常见问题及注意事项********************************-->
+<!-- 
+	1.如何指定图层的显示级别
+		进行图层配置时，设置displayLevels属性:
+		如果图层类型为tiled、antutiled、esritiled、bing，填写时用逗号隔开，如displayLevels=”1,3,5”，则表示地图级别为1,3,5时显示该图层，其余级别不显示。
+		如果图层类型为wfs，只填写一个数字，表示图层显示的最小级别，如displayLevels=”3”，表示地图级别大于等于3时，显示该图层，其余级别不显示。
+
+	2.配置wfs和wms图层注意要点
+		在图层配置时，如果是Geoserver基于SHP文件发布的图层，应设置shapeField值为“the_geom”
+		在图层配置时，如果是Geoserver基于SDE发布的图层，应设置shapeField值为“SHAPE”
+
+	3.图层配置中的type属性
+		type代表图层类型，值一般为以下几种类型，一般与ArcGIS Services Directory页面中的rest服务关联起来。
+		
+		【tiled】：ArcGIS Services Directory中MapServer服务，对应的URL一般为http://127.0.0.1/ArcGIS/rest/services/gisdata/MapServer
+		【feature】： ArcGIS Services Directory中FeatureServer服务。当为feature类型时，对应的ULR一般对应于某个具体的要素类，即后面带个数字的，如:http://127.0.0.1/ArcGIS/rest/services/gisdata/MapServer/12
+		【dynamic】：ArcGIS Services Directory中MapServer服务。当为dynamic类型时，对应的ULR一般对应于某个具体的服务，即后面没有数字，且以”/MapServer”结尾。如:http://127.0.0.1/ArcGIS/rest/services/gisdata/MapServer
+		【antutiled】：安图切片IIS服务，对应的url如http://localhost/map/geo
+		【esritiled】：支持能直接访问arcgis server松散切片，即无需要在服务器上安装部署arcgisever，只需要将由arcgis server缓存功能生成的松散png图片拷贝发布到web容器中（IIS或tomcat等）
+
+-->

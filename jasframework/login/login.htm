@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>西南管道公司巡检管理系统</title>
+	<meta http-equiv="pragma" content="no-cache" />
+
+	<link rel="icon" href="../../common/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"/>
+	      
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css"/>
+	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+    
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script><!-- jquery js类库 -->
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<!-- ie9- 不支持placeholder -->
+	<script type="text/javascript" src="js/jquery.placeholder.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	
+	<script language="javascript" type="text/javascript">
+	</script>
+
+	<style>
+
+		#verify{
+			display: block;
+			width: 406px;
+			height: 53px;
+		}
+		#verify img{
+			display: inline-block;
+			width: 86px;
+			height: 37px;
+			margin-left: 65px;
+			margin-top: 15px;
+		}
+
+		.login-code {
+			height: 40px;
+			display: inline-block;
+			position: relative;
+			left: 13px;
+			bottom: 15px;
+			width: 186px;
+		}
+	</style>
+</head>
+<body onresize="initPageSize()">
+	<select id="language" name="language" onchange="changelanguage()" style="display:none;">
+		<option value="zh_CN" selected="selected">&nbsp;中&nbsp;&nbsp;文&nbsp;</option>
+		<option value="en" >&nbsp;English&nbsp;</option>
+	</select>
+	<div id="dl_main"> 
+		<div class="login-area">
+<!-- 			<div class="login-logo"> -->
+<!-- 			</div> -->
+			<div class="login-info">
+				<div class="xnlogo">
+				</div>
+				<input class="login-input username" type="text" value=""  name="loginNum"  id="loginNum" placeholder="账号">
+				<input class="login-input pwd" type="password" value=""  name="pass" id="pass" placeholder="密码" >
+				<div id = "verify">
+					<img alt="点击刷新" title="点击刷新" style="cursor: pointer" src="">
+					<input class="login-code" type="text" value=""  name="description"  id="description" placeholder="请输入验证码,有效时长5分钟">
+				</div>
+				<!--<span  class="login-tip login-nav">
+					<span><input type="radio" class="home-page" name="usertype" checked value="ptr" id="ptr"><label for="ptr"> PTR</label></span>
+					<span><input type="radio" class="home-page" name="usertype" value="cnpc" id="cnpc"><label for="cnpc"> CNPC</label></span>
+				</span>-->
+				
+				<span  class="login-tip login-nav" style="display:none;">
+					<span><input type="radio" class="home-page" name="homePage" value=0 id="home"><label for="home">主页</label></span>
+					<span><input type="radio" class="home-page" name="homePage" value=1 checked id="work"><label for="work">工作桌面</label></span>
+				</span>
+				<button class="login-btn" id="login" onclick="login()">登  录</button>
+			</div>
+		</div>
+	</div>
+	<div id="findPassword" style="display:none;background:#fff">
+	     <div>
+	     <form id="forgotPassword" method="post">
+			<table class="edit-table" >
+				<tr align="center">
+				    <td width="10%"><span>用户名:</span></td>
+					<td width="40%"><input id="username" style="width:80%" type="text"  name='username' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空"  validType="general" maxlength="25" /></td>
+				</tr>
+				<tr align="center">
+				    <td width="10%"><span>邮&nbsp;&nbsp;箱:</span></td>
+					<td width="40%"><input id="mail" style="width:80%" type="text"  name='mail' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空" validType="email" maxlength="40"/></td>
+				</tr>
+			</table>
+		</form>
+		</div>
+		<br />
+		<div class="button-area">
+			<table width="100%">
+				<tr align="center">
+	 				<td>
+	 					<a id="10060106" href="#" class="easyui-linkbutton submit" onclick="confirmSubmit()">确定</a>
+						<a id="10060107" href="#" class="easyui-linkbutton cancel" onclick="closeWindow();">取消</a>
+	 				</td>
+	  			</tr>
+		    </table>
+		</div>
+	 </div>     
+</body>
+</html>

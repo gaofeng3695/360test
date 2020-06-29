@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title></title>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"></link>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"  ></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css" ></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css" ></link>
+	<link rel="stylesheet"  type="text/css" href="../../../common/css/querySpanCommon.css"></link>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/queryUser.js" ></script>
+<script type="text/javascript" src="../../privilege/js/privilege.js"></script>
+	<style>
+    	input[name='userrange']:checked + span{
+			color:red;
+			font-weight:bold;
+		}
+		.tooltip{
+			background-color:#000000;
+			color:#ffffff;
+		}
+    </style>
+</head>
+<body>
+
+<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-PRI-0100"/>
+	
+<!-- 页面主体布局 -->
+	<div id="cc" class="easyui-layout" fit="true">
+		<!-- 左侧树 -->
+		<div  id="left" class="left"  data-options="region:'west',title:'组织机构',split:true" scroll="no"
+			style="width: 200px; height:100%;">
+			<!-- 部门树 -->
+			<ul id="tt"  animate="false">
+			</ul>
+		</div>
+		
+		<!-- 右侧数据展示区域 -->
+		<div id="right" class="right" scroll="no" data-options="region:'center',onResize:function(){resizeLayout()}">
+			<!-- 查询条件区域 -->
+			<div class="query-conditions"  id="userQuery"  > 
+				<form method="post" id="approvalQueryForm" >
+					<!-- 简单查询区域 -->
+					<table class="query-table" id="queryDiv">
+						<tr>
+							<td width="8%"> <span key="user.loginName" class="paltform-i18n">用户名：</span></td>
+							<td width="25%"><input type="text" id="loginName" name="loginName" class="easyui-validatebox input_bg"/></td>
+							<td width="8%"><span key="user.userName" class="paltform-i18n">用户名：</span></td>
+						    <td width="25%"><input type="text" id="userName" class="easyui-validatebox input_bg"/></td>
+						    <td align="right" width="34%">
+								<a href="#" class="easyui-linkbutton query-btn" onclick="queryUser()"><span key="query" class="paltform-i18n">查询</span></a>
+								<a href="#" class="easyui-linkbutton clear-btn" onclick="clearselectform()"><span key="clear" class="paltform-i18n">清空</span></a>
+								<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span key="moreQuery" class="paltform-i18n">高级搜索</span></a>
+							</td>
+						</tr>
+					</table>
+					
+					<!-- 高级查询区域 -->
+					<table class="more-query-table" id="moreTable">
+						<tr class="table-arrow"><td><img src="../../common/image/triangle.png" /></td></tr>
+						<tr>
+							<td width="15%"><span key="user.displayRange" class="paltform-i18n">显示用户范围：</span></td>
+							<td colspan="6" >
+								<input type="radio" name="userrange" value="0" checked="checked">&nbsp;<span key="user.OnlyDisplayOwnUnitUser" class="paltform-i18n">只显示本部门用户</span>&nbsp;
+								<input type="radio" name="userrange" value="1" >&nbsp;<span key="user.displayAllSubunitUser" class="paltform-i18n">显示所有子部门用户</span>&nbsp;
+							</td>
+<!-- 							<td colspan="3"><input id="userrange" editable=false name="userrange" /></td> -->
+						</tr>
+					</table>	
+				</form>
+			</div>
+			
+			<!-- datagrid数据列表-->
+			<table id="10060201" width="98%" idField="eventid" key="user_userlist"></table>
+			
+			<!-- 	datagrid工具栏 -->
+			<div id="toolbar">
+				<a href="#" id="P-PRI-0103" class="easyui-linkbutton fa fa-eye" plain="true" onclick="viewUserRow()"><label><span key="view" class="paltform-i18n">查看</span></label></a>
+				<a href="#" id="P-PRI-0102" class="easyui-linkbutton fa fa-plus" plain="true" onclick="addUser()"><span key="add" class="paltform-i18n">新增</span></a>
+				<a href="#" id="P-PRI-0104" class="easyui-linkbutton fa fa-edit" plain="true" onclick="editUserRow()"><span key="edit" class="paltform-i18n">修改</span></a>
+				<a href="#" id="P-PRI-0101" class="easyui-linkbutton fa fa-minus" plain="true" onclick="removeUserRow()"><span key="delete" class="paltform-i18n">删除</span></a>
+				<a href="#" id="P-PRI-0120" class="easyui-linkbutton fa fa-cog" plain="true" onclick="setRoleRow()"><span key="user.jiaoseshezhi" class="paltform-i18n">角色设置</span></a>
+				<a href="#" id="P-PRI-0140" class="easyui-linkbutton fa fa-eraser" plain="true" onclick="resetUserPwd()"><span key="user.mimachongzhi" class="paltform-i18n">密码重置</span></a>
+				<!--<a href="#" id="P-PRI-0130" class="easyui-linkbutton" data-options="iconCls:'fa icon-sync'" plain="true" onclick="syncUser()">同步</a>-->
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css">
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="js/query_excel_template.js"></script>
+	<title></title>
+</head>
+
+<body>  
+	<!-- 查询面板 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryform">
+			<table class="query-table" align="center" >
+				<tr>
+				<td width="20%"><span>模板名称：</span></td>
+				<td width="30%"><input id="templateName" name="templateName" class="input_bg"/></td>
+				<td colspan="2" align="right" >
+					<a href="#" id='queryButton' class="easyui-linkbutton submit" onclick="queryConfig()"><span key="query" class="paltform-i18n">查询</span></a>
+					<a href="#" id='clearButton' class="easyui-linkbutton cancel" onclick="clearQueryForm('queryform',true,true,true,true)"><span  key="clean" class="paltform-i18n">清空</span></a>
+				</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!--数据列表 -->
+	<table id="excelTemplateTable">
+	</table>
+	
+	<div id="toolbars">  
+	    <a href="#" id="downloadNativeTemp" class="easyui-linkbutton fa fa-download"  plain="true" onclick="downloadNative();"><span class="paltform-i18n">下载模板</span></a>  
+	    <!-- <a href="#" id="importDataTemp" class="easyui-linkbutton fa fa-pinterest-p"  plain="true" onclick="importData();"><span class="paltform-i18n">导入数据</span></a>  --> 
+	</div>  
+</body>
+</html>

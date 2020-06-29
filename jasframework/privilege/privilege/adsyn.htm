@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>配置权限</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link type="text/css" rel="stylesheet" href="../style/blue/pageCommon.css" />
+<link rel="stylesheet" href="../style/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script language="javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript">
+	function sync() {
+		var syncValue;
+		if (document.getElementById('syncUser').checked) {
+			document.getElementById('syncUser').value = "2"
+		} else {
+			document.getElementById('syncUser').value = "0"
+		}
+		if (document.getElementById('syncUnit').checked) {
+			document.getElementById('syncUnit').value = "1"
+		} else {
+			document.getElementById('syncUnit').value = "0"
+		}
+		syncValue = parseInt($("#syncUser").val()) + parseInt($("#syncUnit").val());
+		if(syncValue==0){
+			alert("请选择要同步的类型");
+			return;
+		}
+		$.getJSON(rootPath + "/jasframework/advalidate/syncoperation.do", {
+			"syncValue" : syncValue
+		}, function(jso) {			
+			if (jso.success==1) {
+				alert("同步成功");
+			} 
+			else{
+				alert("同步不成功");
+			}
+		});
+
+	}
+</script>
+</head>
+<body>
+	<form action="">
+		<input id="syncUser" type="checkbox" name="syncUser" /> 同步用户 
+		<input id="syncUnit" type="checkbox" name="syncUnit" /> 同步部门<br> 
+		<a	href="#" id="savebutton" class="easyui-linkbutton" iconCls="icon-ok" onclick="sync()">同步</a>
+	</form>
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+﻿@charset "utf-8";
+
+/** 
+ * @file
+ * @author  xxx
+ * @desc  新增修改文件样式
+ * @date  2017-08-15
+ * @last modified by xxx
+ * @last modified time  2017-08-15
+ */
+* {
+	padding: 0;
+	margin: 0;
+	border: none;
+	font-size: 12px;
+	font-family:"MicrosoftYaHei";
+}
+body{
+	position:relative;
+}
+body body div:nth-child(1){
+	padding:10px;
+	background:#fff;
+	-webkit-border-radius:4px 4px 0 0;
+    -moz-border-radius:4px 4px 0 0;
+    -ms-border-radius:4px 4px 0 0;
+    border-radius:4px 4px 0 0;
+}
+
+.edit-table {
+	width: 100%;
+	margin: 0;
+	border: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: right;
+	vertical-align: top;
+	table-layout:fixed;
+}
+
+.edit-table td{
+	height: 35px;
+	padding:3px;
+}
+
+.input_bg {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background: #fff;
+	margin: 1px 0px ;
+	border: 1px solid #b4b5bd;
+}
+
+.input[type=text] {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	padding-top: 1px;
+	margin: 0px;
+	border: 1px solid #c3c5cd;
+}
+
+.select {
+	border: 1px solid #c3c5cd;
+	margin: 1px 0px ;
+	width: 100%;
+	height: 30px;
+	line-height:30px;
+}
+
+textarea{
+	width:100%;
+	padding-top: 1px;
+	margin: 1px 0;
+	border: 1px solid #c3c5cd;
+	word-wrap:break-word; 
+	word-break:break-all;
+}
+
+.inputselect {
+	width:100%;
+	height:22px;
+	border:1px solid #c3c5cd;
+	margin:4px 0;
+	padding-top:3px;
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
+/* 标题的样式   分组 */
+
+.table-content{
+	/* padding: 0 0 15px 0; */
+	padding: 0 10px 15px 10px;
+}
+.table-title{
+	height:25px;
+	line-height:25px;
+	font-size:13px;
+	font-weight:bold;
+	color:#399bff;
+	border-bottom:1px solid #eee;
+	padding-bottom: 5px;
+	margin-bottom:10px;
+	position:relative;
+}
+.table-title::before{
+	content:"";
+	position:absolute;
+	bottom:0;
+	left:0;
+	display:inline-block;
+	width:60px;
+	height:0px;
+	border-bottom:1px solid #399bff;
+}
+
+
+
+/* 角色分配页面的按钮 */
+
+.content-area .edit td .easyui-linkbutton .l-btn-text{
+	width:20px;
+	height:20px;
+	line-height:20px;
+}
+.content-area .edit td .submit{
+	padding:2px 3px;
+}
+
+/* 设置下拉树的边框 */
+.combo-p{
+	border:1px solid #eee !important;
+}
+
+.button_area{
+	position:absolute; 
+	left:0;
+	width:100%;
+	background: #fff;
+	text-align:center;
+	padding-top:5px;
+	border-top:1px solid #eee;
+	
+	-webkit-border-radius:0 0 4px 4px;
+    -moz-border-radius:0 0 4px 4px;
+    -ms-border-radius:0 0 4px 4px;
+    border-radius:0 0 4px 4px;
+}

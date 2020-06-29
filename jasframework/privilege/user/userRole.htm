@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="-1"> 		
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css" ></link>
+       
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/userRole.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    //移到右边
+    $('#add').click(function() {
+    //获取选中的选项，删除并追加给对方
+        $('#noHasRole option:selected').appendTo('#hasRole');
+    });
+    //移到左边
+    $('#remove').click(function() {
+        $('#hasRole option:selected').appendTo('#noHasRole');
+    });
+    //全部移到右边
+    $('#add_all').click(function() {
+        //获取全部的选项,删除并追加给对方
+        $('#noHasRole option').appendTo('#hasRole');
+    });
+    //全部移到左边
+    $('#remove_all').click(function() {
+        $('#hasRole option').appendTo('#noHasRole');
+    });
+    //双击选项
+    $('#noHasRole').dblclick(function(){ //绑定双击事件
+        //获取全部的选项,删除并追加给对方
+        $("option:selected",this).appendTo('#hasRole'); //追加给对方
+    });
+    //双击选项
+    $('#hasRole').dblclick(function(){
+       $("option:selected",this).appendTo('#noHasRole');
+    });
+});
+</script>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+	<input type="hidden" id="menuid" value="P-PRI-0100"/>
+		<table width="100%" style="padding-left: 10px;padding-top: 10px;" border="0">
+			<tr class="edit1">
+				<td nowrap align="left" width="40%">
+					<span key="user.notHaveRole" class="paltform-i18n">没有的角色</span>
+				</td>
+				<td nowrap align="center" width="20%">
+					<span key="user.operate" class="paltform-i18n">操作</span>
+				</td>
+				<td nowrap  width="40%"> 
+					<span key="user.haveRole" class="paltform-i18n">已有的角色</span>
+				</td>
+			</tr>
+			<tr class='edit'>
+				<td align="left" >
+					<div style="float:left"> 
+						<span style=" display:block;height:300px;width:200px;float:left;">
+							<div style="overflow:hidden;display:inline;position:absolute;height:280px; border:1px #A0A0A4 solid;float:left;">
+								<select name="b" id="noHasRole" multiple="multiple" size="18" style="width:200px;height:300px; float:left; border:0px #A0A0A4 solid; padding-top:5px;padding-left:2px;margin:-2px; ">
+								</select>
+							</div>
+						</span>
+					</div>
+				</td>
+				<td align="center" >
+				   		<span></span><br/>
+						<a id="add" href="#" class="easyui-linkbutton submit">></a>
+						<br /> <br />
+						<a id="add_all" href="#" class="easyui-linkbutton submit">>></a>
+						<br /> <br />
+						<a id="remove" href="#" class="easyui-linkbutton submit"><</a>
+						<br /> <br />
+						<a id="remove_all" href="#" class="easyui-linkbutton submit"><<</a>
+				</td>
+				<td>
+					<div>
+						<span style=" display:block;height:300px;width:200px;float:left;">
+							<div style="overflow:hidden;display:inline;position:absolute;height:280px; border:1px #A0A0A4 solid;float:left;">
+							<select name="a" id="hasRole" multiple="multiple" size="18" style="width: 200px;height:300px; float:lfet;border:1px #ccc solid; padding-top:5px; padding-left:2px; margin:-2px;"></select>
+							</div>
+						</span>
+        			</div>
+				</td>
+			</tr>
+		</table>	
+	</div>
+	
+	<div class="button-area">
+       <table width="100%">
+			<tr>
+				 <td >
+				    <a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="saveUserOfRole()">
+						<span  key="save" class="paltform-i18n">保存</span>
+					</a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()">
+						<span key="cancel" class="paltform-i18n">取消</span>
+					</a>
+				 </td>
+			</tr>
+		</table>	 
+	</div>
+	</body>
+</html>

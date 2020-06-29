@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../common/css/querySpanCommon.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../common/css/navigation.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="../../../common/js/navigation.js"></script>
+<!--<script type="text/javascript" src="../../../jasframework/privilege/js/privilege.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>-->
+<script type="text/javascript" src="js/query_gps_cover_warnrecord.js"></script> 		
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value="140302"/>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>部门名称：</span></td>
+					<td width="15%"><select id="unitId" name="unitId" class="input_bg"></select></td>
+					<td width="10%" class="text-right"><span>查询日期：</span></td>
+					<td width="15%"><input id="warndate" name="warndate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+					
+					<td align="right" colspan="2">
+						<a href="#" id = "queryCoverage" class="easyui-linkbutton query-btn" onclick="query()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearLocalQuery()"><span>清空</span></a>
+					</td>
+				 </tr>
+			</table>
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="gpscoverwarnrecorddatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="1" href="#" class="easyui-linkbutton fa fa-download" plain="true" onclick="exportQuery()"><label><span>导出</span></label></a>
+		<!--<a id="14030201"  href="#" class="easyui-menubutton fa fa-download" plain="true" onclick="exportQuery()"><label><span>导出</span></label></a>-->
+		<img class = 'home' src="../../../common/images/home.jpg" /><span class = 'localHost' id ="localHost"></span>
+	</div>
+	<!--<div id="exportBars" style="width:100px;">
+    	<div class="easyui-linkbutton fa fa-download" onclick="exportQuery()">导出查询</div>  
+	</div>-->
+
+	
+	<!-- 	定义导出弹出窗 -->
+	<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+</body>
+</html>

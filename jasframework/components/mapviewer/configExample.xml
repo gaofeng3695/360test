@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" ?>
+<!-- //////////////////////////////////////////////////////////////////////////////// 
+	// // Read more about ArcGIS Viewer for Flex - http://links.esri.com/flexviewer 
+	// //////////////////////////////////////////////////////////////////////////////// -->
+<configuration>
+	<title>MapViewer2.0</title>
+	<subtitle></subtitle>
+	<logo>assets/images/cn.png</logo>
+	<style>
+		<colors>0xFFFFFF,0x4989C8,0x101010,0x000000,0xFFD700</colors>
+		<alpha>0.8</alpha>
+		<font size="14" name="微软雅黑" />
+		<titlefont name="微软雅黑" />
+	</style>
+	<!-- replace the following url with your own geometryservice -->
+	<geometryservice
+		url="http://192.168.20.93/ArcGIS/rest/services/Geometry/GeometryServer" />
+
+	<!-- UI elements -->
+<!-- 地图导航工具条 -->
+	<widget left="10" top="0" config="widgets/Navigation/NavigationWidget.xml"
+		url="widgets/Navigation/NavigationWidget.swf" />
+<!-- 图层控制树 -->
+	<widget right="2" top="0" bottom="0"
+		config="widgets/Layer/LayerTreeWidget.xml" url="widgets/Layer/LayerTreeWidget.swf" />
+<!-- 工具栏 -->
+	<widget left="0" top="0" horizontalcenter="0"
+		config="widgets/MenuController/MenuControllerWidget.xml" url="widgets/MenuController/MenuControllerWidget.swf"/>
+<!-- 移动工具栏，图标放大 -->
+<!-- 	<widget left="0" top="0" horizontalcenter="0" -->
+<!-- 		config="widgets/MenuController/MenuControllerWidget_MoveAndZoom.xml" url="widgets/MenuController/MenuControllerWidget_MoveAndZoom.swf"/> -->
+<!-- 显示地图坐标 -->
+	<widget bottom="12"  horizontalcenter="0"
+		config="widgets/Coordinate/CoordinateWidget.xml" url="widgets/Coordinate/CoordinateWidget.swf" />
+<!-- js与as通信交互，必须引入 -->
+	<widget left="0" top="0" config="widgets/JSConnector/JSConnectorWidget.xml"
+		url="widgets/JSConnector/JSConnectorWidget.swf" />
+<!-- 扩展类，点线面鼠标点绘等 -->
+	<widget left="0" top="0" config="widgets/Extension/ExtensionWidget.xml"
+		url="widgets/Extension/ExtensionWidget.swf" />
+<!-- 标绘菜单 -->
+	<widget left="0" right="0" top="0" bottom="0"
+		config="widgets/Plot/PlotWidget.xml" url="widgets/Plot/PlotWidget.swf" />
+<!-- 时间标签 -->
+	<widget  right="100"  bottom="12"
+		config="widgets/Time/TimeWidget.xml" url="widgets/Time/TimeWidget.swf" />
+	
+ <!--地图、图层配置 -->
+	<map wraparound180="true" top="0" initialextent="73.399371229102144 3.4084773063659668 135.08583068847656 53.557926177978516"
+		fullextent="73.399371229102144 3.4084773063659668 135.08583068847656 53.557926177978516" esrilogovisible="false"
+		scalebarvisible="true" wkid="4326">
+	  <lods>
+			<lod resolution="0.059486525145757009" scale="25000000" />
+			<lod resolution="0.014276766034981682" scale="6000000" />
+			<lod resolution="0.0095178440233211203" scale="4000000" />
+			<lod resolution="0.00071383830174908411" scale="300000" />
+			<lod resolution="0.00023794610058302802" scale="100000" />
+			<lod resolution="0.00011897305029151401" scale="50000" />
+			<lod resolution="4.7589220116605608e-005" scale="20000" />
+			<lod resolution="2.3794610058302804e-005" scale="10000" />
+			<lod resolution="1.1897305029151402e-005" scale="5000" />
+			<lod resolution="2.3794610058302801e-006" scale="1000" />
+		</lods>
+		<!-- 背景图层 -->
+		<basemaps>
+			<layer id="layerSetBasemaps001" label="背景图层">
+			<layer id="ycMap" label="背景图" type="esritiled" visible="true" 
+			alpha="1.0" url="http://localhost/ycMap/"/>
+			</layer>
+		</basemaps>
+		<!-- 操作图层 -->
+		<operationallayers>
+			<layer id="ope" label="操作图层">					    
+				<layer id="wellpos" label="井" type="wfs" visible="true" visiblelayers="ChinaMap:Wellpos"
+                     skipgetcapabilities="true" wkid="4326"  maxfeatures="200" shapeField = "the_geom"
+					 url="http://localhost:8080/geoserver/wfs" 
+		             renderParameter='{
+						"iconUrl":"assets/images",
+						"iconPrefix":"arrow_up",
+						"tipMode":"auto",
+						"hoverResponseType":"",
+						"clickResponseType":"iframe_tip",
+						"dbclickResponseType":"",
+						"callback":"",
+						"tipUrl":"demo/IframeTipDemo.htm",
+						"tipWidth":"200",
+						"tipHeight":"200",
+						"returnObjectId":"false",
+						"returnGeometry":"false",
+						"returnAttributes":"false",
+						"outFields":"name,x,y,longtitude,latitude",
+						"displayField":"name,x,y,longtitude,latitude",
+						"defaultFieldTitle":"name,x,y,longtitude,latitude",
+						"title":"Wellpads"
+					    }' />		
+ 			</layer>
+		</operationallayers>
+		<!-- 隐藏图层 -->
+		<hiddenlayers>
+			<layer id="dom" label="影像图" type="antutiled" visible="false" 
+					alpha="1.0" url="http://localhost/dom/"  index="1"/>
+		</hiddenlayers>
+	</map>
+
+	<!-- widgets organized into widget containers that manage close/open etc -->
+	<!-- supported layout property options: horizontal(default)|float|vertical|fix -->
+	<widgetcontainer layout="float">
+<!-- 		<widget id="bookmarksLabel" label="地图书签"  icon="assets/images/i_bookmark.png"  -->
+<!-- 		config="widgets/Bookmark/BookmarkWidget.xml" url="widgets/Bookmark/BookmarkWidget.swf"/> -->
+<!-- 			<widget id="menuExcel" label="Excel加载" icon="assets/dock/Excel.png" -->
+<!-- 			config="widgets/Excel/XlsWidget.xml" url="widgets/Excel/XlsWidget.swf" /> -->
+		 
+	</widgetcontainer>
+<!-- 自定义工具栏按钮 -->
+	<menubuttonset>
+		 <menubutton id="squareSelect" label="矩形选择" icon="customConfig/customImages/squareSelect.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="squareSelectEvent"></menubutton> 
+		 <menubutton id="polygonSelect" label="多边形选择" icon="customConfig/customImages/polygonSelect.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="polygonSelectEvent"></menubutton> 
+		 <menubutton id="workAreaQuery" label="工区查询" icon="customConfig/customImages/workAreaQuery.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="workAreaQueryEvent"></menubutton>
+		 <menubutton id="wellheadCoordinates" label="井口坐标" icon="customConfig/customImages/wellheadCoordinates.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="WellheadCoordinatesEvent"></menubutton>
+	</menubuttonset>
+<!-- 自定义标绘按钮 -->
+	<plotbuttonset>
+		 <plotbutton id="attachment" label="添加附件" icon="customConfig/customImages/attachment.png"
+		 	useHandCursor="true" buttonMode="true" callBackFunction="attachmentEvent"></plotbutton> 
+	</plotbuttonset>
+
+	<mapsettings>
+		<!-- 版本信息 -->
+		<add key="version" value="MapViewer2.0.0" />
+		<!-- 地图范围变化是否回调 -->
+		<add key="JsSynchMapExtentChangeFunction" value="mapExtendChangeHanlder" />
+		<!-- ApdmSOE服务地址 -->
+		<add key="ApdmSOEService"
+			value="http://192.168.8.196/ArcGIS/rest/services/apdm/MapServer/exts/apdm" />
+		<!-- 画面回调函数(一般用于面查询) -->
+		<add key="drawPolygonCallBack" value="drawPolygonHandler" />
+		<!-- 画圆回调函数(一般用于手绘圆查询) -->
+		<add key="drawCircleCallBack" value="geoAreaQueryFlex" />
+		<!--二三维联动开关 -->
+		<add key="setIsLinkage" value="setIsLinkage" />
+		<!--获取坐标默认回调函数 -->
+<!-- 		<add key="getXYDefautFunction" value="defautJSCallback" /> -->
+		<!--停气分析地址 -->
+		<add key="traceUrl"
+			value="http://192.168.8.196/ArcGIS/rest/services/soe/MapServer/exts/GeometricNetwork/traceDownstream" />
+		<!--停气分析拾取点容差 -->
+		<add key="traceTolerance" value="100" />
+		<!--停气分析之影响点Tip IFrame地址 -->
+		<add key="trace.iframe.url" value=":8080/platform/crms/repairManager/tips/tipinfo.html" />
+		<!--停气分析之影响点Tip IFrame宽度 -->
+		<add key="trace.iframe.width" value="210" />
+		<!--停气分析之影响点Tip IFrame高度 -->
+		<add key="trace.iframe.height" value="130" />
+		<!--停气分析之闪烁后需要显示的点图层集合 -->
+		<add key="trace.layer.needLocateLayer"
+			value="DgStation_dagongye,DgStation_feizhilian,DgStation_zhilian" />
+		<!--停气分析之闪烁后气体流向图层服务 -->
+		<add key="trace.layer.flowDirectionService"
+			value="http://192.168.8.196/ArcGIS/rest/services/arrow_new/MapServer" />
+		<!-- 是否展开图层树 -->
+		<add key="expandTree" value="true" />
+		<!-- 默认JS回调函数 -->
+		<add key="defautJSCallback" value="defautJSCallback" />
+		<!-- 标绘发送邮件服务地址 -->
+		<add key="sendMailService" value="http://192.168.8.105:8181/platform/platform/sendmail.do" />
+		<!-- 是否需要验证登录用户(主要用于图层树控制) -->
+		<add key="verifyUser" value="false" />
+		<!-- 隐藏菜单栏地图按钮列表集合,已作废，使用menuOrder代替
+			(pan,zoomin,zoomout,zoomfull,rule,area,clearMap,print,
+			polygonSearch,nearby,linkage,plot,identify,pointSelect) -->
+		<add key="disableMenuItems" value="" />
+		<!-- 定义菜单按钮显示顺序，包括自定义菜单按钮。格式如：id1,1,id2, -->
+		<add key="menuOrder" value=""/>
+		<!-- 隐藏标绘栏地图按钮列表集合
+			(mail,load,save,delete,point,polyline,polygon,
+			rectangle,circle,ellipse,bitmap,text,PicPolyLine) -->
+		<add key="disablePlotItems" value="" />
+		
+		<!--标绘工具条中保存按钮回调函数	 -->
+		<add key="saveCallbackPlotToolbar" value="saveCallbackPlotToolbar" />
+		<!--标绘工具条中加载按钮响应事件	-->
+		<add key="addLoadPlotEventListener" value="addLoadPlotEventListener" />
+		<!--添加【属性】按钮事件监听	-->
+		<add key="identifyClickEvent" value="identifyClickEvent" />
+		<!-- 坐标系名称 -->
+		<add key="coordinates" value="" />
+		<!-- 时间标签显示文本 -->
+		<add key="time" value="2014-10-20" />
+		<!--添加【菜单】事件监听	-->
+		<add key="menuItemClickEvent" value="menuItemClickEvent" />
+		<!--地图加载完成回调函数 -->
+		<add key="mapLoadedCallBack" value="createMenu" />
+	</mapsettings>
+</configuration>

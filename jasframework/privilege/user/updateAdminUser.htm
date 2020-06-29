@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css" ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/updateAdminUser.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<input type="hidden" id="menuid" value="100601"/>
+		<form id="savePcUser"  class="content-area-main" method="post">
+			<table align="center" class="edit-table">
+					<input type="hidden" id="eventid" name="eventid">
+					<input type="hidden" id="unitEventid" name="unitEventid">
+					<tr>
+						<td width="15%"><span>部门：</span></td>
+						<td  colspan="3"><input class="easyui-validatebox input_bg" id="unit" name="unit"  missingMessage="不能为空"
+							 required="true" maxlength="25" readonly="readonly""></td>
+					</tr>
+					<tr>
+						<td width="15%"><span>用户名：</span></td>
+						<td width="35%"><input type="text" class="easyui-validatebox input_bg"  id="loginName" name="loginName" missingMessage="不能为空"
+								validType="username" required="true" maxlength="25" readonly="readonly">
+						</td>
+						<td width="15%"><span>姓名：</span></td>
+						<td width="35%"><input class="easyui-validatebox input_bg" id="name" required="true" name="name"  maxlength="25">
+						</td>
+					</tr>
+					<tr>
+						<td width="15%"><span>电话：</span></td>
+						<td width="35%">
+							<input class="easyui-validatebox input_bg"  id="phone" name="phone" missingMessage="不能为空" validType="mobileAndPhone" maxlength="19">
+						</td>
+						<td width="15%"><span>Email：</span></td>
+						<td width="35%"><input class="easyui-validatebox input_bg" id="email" name="email" validType="email" maxlength="40"></td>
+						</tr>
+					<tr>
+						<td><span>描述：</span></td>
+						<td colspan="3"><textarea class="easyui-validatebox" id="description" name="description" style="height: 60px;"  validType="maxLength[300]"></textarea> </td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="button-area">
+			<table width="100%">
+				<tr>
+					<td>
+						<a href="#" class="easyui-linkbutton save-btn" onclick="updateUser()">
+							<span >保存</span>
+						</a>
+						<a href="#" class="easyui-linkbutton cancel-btn"  onclick="cancelUser()">
+							<span>取消</span>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

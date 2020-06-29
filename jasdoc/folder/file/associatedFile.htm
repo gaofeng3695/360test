@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../js/associatedFile.js"></script>
+<style type="text/css">
+	.filetree {
+		position:relative; 
+		bottom:0px;
+		left:0px;
+/* 		background: #ddf4ff; */
+		width:100%;
+		height:380px;
+		border-top:1px solid #b4b5bd; 
+		border-left:1px solid #c3c5cd;
+		border-bottom:1px solid #c9cdd3;
+		border-right:1px solid #c3c5cd;
+	}
+	.filetreewest {
+		position:relative; 
+		width:30%;
+		height:379px;
+		float: left;
+		border:1px solid #c3c5cd;
+	}
+	.filetreeright {
+		position:relative; 
+		width:69%;
+		height:379px;
+		float: right;
+		border:1px solid #c3c5cd;
+	}
+
+</style>
+</head>
+<body>
+	<div id="dlg" class="easyui-panel" buttons="#dlg-buttons">
+		<form id="fileAssociated" method="post">
+			<input type="hidden" name="eventid" id="eventid"/>
+			<input type="hidden" name="role" id="role"/>
+			<input type="hidden" name="associateduserid" id="associateduserid"/>
+			<input type="hidden" name="selectedfileidAndrole" id="selectedfileidAndrole"/>
+			<div id="" class="filetree">
+				<div class="filetreewest" >
+					<ul id="folderlist" class="easyui-tree" ></ul>
+				</div>
+				<div  class="filetreeright">
+					<table id="filetable"
+							width="98%" style="position: relative;"  
+							  nowrap="false"  collapsible="false"
+							sortName="sid" sortOrder="asc" remoteSort="false" >
+							
+					</table>
+				</div>
+			</div>
+			
+			
+			<table border=0 width=100% align=center>
+				<tr height=5><td colspan=2></td></tr>
+				<tr>
+					<td valign=top width="20%"><span>关联描述：</span><span style='color:red;vertical-align: bottom;'>*</span></td>
+					<td >
+						<textarea id='description' name='description' style='height:50px'></textarea>			
+					</td>
+				</tr>
+<!-- 				<tr height=5><td colspan=2></td></tr> -->
+<!-- 				<tr> -->
+<!-- 					<td valign=top><span>权限类型：</span><span style='color:red;vertical-align: bottom;'>*</span></td> -->
+<!-- 					<td > -->
+<!-- 						<div id="privelegetype" style="height:90px; width:100%;overflow:auto; border-style:inset; border-width:1px; background-color:#ffffff;"> -->
+<!-- 							<div id="10" style='width: 50%;' > -->
+<!-- 								<input type="checkbox" value="10" id="PreviewFile" name="PreviewFile" onclick="clickBox(10)"> -->
+<!-- 								查看 -->
+<!-- 							</div> -->
+<!-- 							<div id="20" style='width: 50%;'> -->
+<!-- 								<input type="checkbox" value="20" id="DownloadFile" name="DownloadFile" onclick="clickBox(20)"> -->
+<!-- 								预览 -->
+<!-- 							</div> -->
+<!-- 							<div id="30" style='width: 50%;'> -->
+<!-- 								<input type="checkbox" value="30" id="ModifyFile" name="ModifyFile" onclick="clickBox(30)"> -->
+<!-- 								下载 -->
+<!-- 							</div> -->
+<!-- <!--							display:none;-->
+<!-- 						</div> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr height=5><td colspan=2></td></tr> -->
+<!-- 				<tr> -->
+<!-- 					<td ><span>过期时间：</span><span style='color:red;vertical-align: bottom;'>*</span></td> -->
+<!-- 					<td > -->
+<!-- 						<input id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg" />			 -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+			</table>
+	
+		    <div class="button_area_absolute">
+		   <table width="100%">
+		 		  <tr>
+		      			<td align="center">
+         					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveAssociated()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closePanol()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+         				</td>
+         		</tr>
+         	</table>	 
+		    </div>
+			</form>
+			
+	</div>
+</body>
+</html>
+	

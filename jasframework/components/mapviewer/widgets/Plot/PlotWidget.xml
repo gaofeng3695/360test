@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<configuration>
+<!--
+	<fields>
+		<alpha>ALPHA</alpha>
+		<style>STYLE</style>
+		<size>SIZE_</size>
+		<color>COLOR</color>
+		<font>FONT</font>
+		<text>TEXT</text>
+		<source>SOURCE</source>
+		<width>WIDTH</width>
+		<outlineAlpha>OUTLINEALPHA</outlineAlpha>
+		<outlineStyle>OUTLINESTYLE</outlineStyle>
+		<outlineWidth>OUTLINEWIDTH</outlineWidth>
+		<outlineColor>OUTLINECOLOR</outlineColor>
+		<isExtent>ISEXTENT</isExtent>
+	</fields>
+	-->
+	<infos>
+		<saveSuccessfullyInfo>保存成功！</saveSuccessfullyInfo>
+		<saveFailedError>保存失败！\n</saveFailedError>
+		<getIconIndexError>不支持的图片源：</getIconIndexError>
+	</infos>
+	<defaultTextSymbolText>文字</defaultTextSymbolText>
+	<icons>
+		<government>assets/plot/government.png</government>
+		<school>assets/plot/school.png</school>
+		<hydrant>assets/plot/hydrant.png</hydrant>
+		<fire>assets/plot/fire.gif</fire>
+		<vehicle>assets/plot/vehicle.gif</vehicle>
+		<redflag>assets/plot/redflag.png</redflag>
+	</icons>
+	<!-- 	线条样式：颜色及宽度 -->
+	<lineStyle>
+		<color>0xFF0000</color>
+		<width>2</width>
+	</lineStyle>
+<!-- 	填充样式：颜色、网格样式、是否显示 -->
+	<fillStyle>
+		<color>0xFF0000</color>
+		<style>diagonalcross</style>   <!-- 可选项：backwarddiagonal cross diagonalcross forwarddiagonal horizontal null solid vertical -->
+		<alpha>1</alpha>
+	</fillStyle>
+<!-- 	点的样式：颜色及半径 -->
+	<pointStyle>
+		<color>0xFF0000</color>  
+		<size>12</size>  
+		<style>circle</style>
+	</pointStyle>
+</configuration>
+
+<!--
+    See Draw widget tag reference at
+    http://links.esri.com/drawwidget
+-->

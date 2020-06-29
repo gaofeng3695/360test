@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/view_gps_alarm_info_record.js"></script>
+</head>
+<body class="master-table">
+<div class="easyui-tabs-container">
+	<div id="tabContainer" class="easyui-tabs" style="height: 600px;">
+		<div title="报警接收信息">
+			<div id="contentArea" class="content-area">
+				<form class="content-area-main">
+					<!-- 表单区域，每行四列 -->
+					<div class="table-content">
+						<table align="center" class="detail-table" >
+							<tr>
+								<th width="15%"><span>报警序号</span></th>
+								<td width="35%"><span id="alarmid" ></span></td>
+								<th width="15%"><span>序号EID</span></th>
+								<td width="35%"><span id="eid"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>部门名称</span></th>
+								<td width="35%"><span id="unitname" ></span></td>
+								<th width="15%"><span>所属管线</span></th>
+								<td width="35%"><span id="lineloopName"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>管理状态</span></th>
+								<td width="35%"><span id="manageStatus" ></span></td>
+								<th width="15%"><span>归属站</span></th>
+								<td width="35%"><span id="belongtoStation"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>行政区域</span></th>
+								<td width="35%"><span id="administrativeDivision" ></span></td>
+								<th width="15%"><span>桩号位置</span></th>
+								<td width="35%"><span id="markerPosition"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>管道里程</span></th>
+								<td width="35%"><span id="mileage" ></span></td>
+								<th width="15%"><span>光缆距离</span></th>
+								<td width="35%"><span id="fiberDistance"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>报警类型</span></th>
+								<td width="35%"><span id="alarmType" ></span></td>
+								<th width="15%"><span>报警级别</span></th>
+								<td width="35%"><span id="alarmLevel"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>开始时刻</span></th>
+								<td width="35%"><span id="startTime" ></span></td>
+								<th width="15%"><span>最新时刻</span></th>
+								<td width="35%"><span id="latestTime"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>确认记录</span></th>
+								<td width="30%" colspan="3" height="80px"><span id="confirmationRecord" style="height: 100px;"></span></td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+			<div class="button-area">
+				<table width="100%">
+					<tr>
+						<td  align="center">
+							<a href="#" class="easyui-linkbutton close-btn" onclick="closePanel()"> <span>关闭</span></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div title="报警通知信息">
+			<iframe id="alarminfo_notification" style="width: 100%; height: 100%"></iframe>
+		</div>
+		<div title="报警处理信息">
+			<iframe id="alarminfo_handle" style="width: 100%; height: 100%"></iframe>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>选择下个任务节点办理人信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	
+
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+    <link rel="stylesheet" type="text/css" href="../common/css/add.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/detail.css"/>
+    
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script> 
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="js/chooseUser.js"></script>
+	<script type="text/javascript" src="../privilege/page/js/person.js"></script>
+	<script type="text/javascript">
+	var fileoCount=4
+	</script>
+	<style type="text/css">
+	.detail-table td {
+		background: #F5FCFF;
+	}
+	</style>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+<!-- 	新增form表单 -->
+	<form id="savePcUser" method="post">
+		<table align="center" class="edit-table" >
+			<tr id="chooseNextTaskUser" style="display:true;">
+					<th>
+						下个节点办理人：
+					</th>
+					<td colspan="4">
+						<table width="100%" >
+							<tr>
+								<td id="nextApproveUserNames" class="" style="text-align: left; width: 85%;border: 0px">
+								</td>
+								<td style="border: 0px;text-align: right;">
+									<input id="nextApproveUserIds" type="hidden" name="nextApproveUserIds" value="" required="true" />
+									<a href="#" class="easyui-linkbutton" onclick="personchoose.showPersonWindow('nextApproveUserNames','nextApproveUserIds');">
+										<span key="role.cancel" class="paltform-i18n">选择</span>
+									</a> 
+									<a href="#" class="easyui-linkbutton" onclick="personchoose.reSetUser('nextApproveUserNames','nextApproveUserIds','nextApproveUserNames','nextApproveUserIds')">
+										<span key="role.cancel" class="paltform-i18n">清空</span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+		</table>
+		
+	</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+ 				<td>
+ 					<a id="10060106" href="#" class="easyui-linkbutton submit" iconCls="icon-ok" onclick="save()">保存</a>
+					<a id="10060107" href="#" class="easyui-linkbutton cancel" iconCls="icon-cancel" onclick="closeWindows()">取消</a>
+ 				</td>
+  			</tr>
+	    </table>
+	</div>
+</body>
+</html>

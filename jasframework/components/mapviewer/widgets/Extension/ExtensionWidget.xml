@@ -1,0 +1,17 @@
+<configuration>
+	<textColor>0xffffff</textColor>
+	<textBackgroundColor>0x4A89C3</textBackgroundColor>
+	<textFont>Arial</textFont>
+	<fontSize>12</fontSize>
+	<!-- 	线条样式：颜色及宽度 -->
+	<lineStyle>
+		<color>0xFF0000</color>
+		<width>2</width>
+	</lineStyle>
+<!-- 	填充样式：颜色、网格样式、是否显示 -->
+	<fillStyle>
+		<color>0xFF0000</color>
+		<style>diagonalcross</style>   <!-- 可选项：backwarddiagonal cross diagonalcross forwarddiagonal horizontal null solid vertical -->
+		<alpha>1</alpha>
+	</fillStyle>
+</configuration>

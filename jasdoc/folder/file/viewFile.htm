@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="-1">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/detail.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<!-- <script type="text/javascript" src="" id="i18nEasyui"></script> -->
+<!-- <script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script> -->
+ <script type="text/javascript" src="js/viewFile.js"></script>
+</head>
+<body>
+<div id="main_area">
+	<table class="detail-table">
+		<tr>
+			<th><span key="file.filename" class="paltform-i18n">文档名称：</span></th>
+			<td><span id="filename"></span></td>
+			<th><span key="file.fileno" class="paltform-i18n">文档编号：</span></th>
+			<td><span id="fileno"></span></td>
+		</tr>
+		<tr>
+			<th><span key="file.filetype" class="paltform-i18n">文档格式：</span></th>
+			<td><span id="filetype"></span></td>
+			<th><span key="file.filelocation" class="paltform-i18n">文档位置：</span></th>
+			<td><span id="filelocation"></span></td>
+		</tr>
+		<tr>
+			<th><span key="file.filesize" class="paltform-i18n">文档大小(kb)：</span></th>
+			<td><span id="filesizeStr"></span></td>
+			<th><span key="file.author" class="paltform-i18n">文档作者：</span></th>
+			<td><span id="author"></span></td>
+		</tr>
+		<tr>
+			<th><span key="file.createtime" class="paltform-i18n">文档创建时间：</span></th>
+			<td><span id="createtime"></span></td>
+			<th><span key="file.updatetime" class="paltform-i18n">文档修改时间：</span></th>
+			<td><span id="updatetime"></span></td>
+		</tr>
+		<tr>
+			<th><span key="file.createusername" class="paltform-i18n">上传人：</span></th>
+			<td ><span id="createusername"></span></td>
+			<th><span key="file.uploadtime" class="paltform-i18n">上传时间：</span></th>
+			<td><span id="uploadtime"></span></td>
+		</tr>
+		<tr>
+			<th><span key="file.keyword" class="paltform-i18n">关键词：</span></th>
+			<td colspan="3"><span id="keyword"></span></td>
+		    <th style="display:none;"><span key="file.filefavorite" class="paltform-i18n">文档分类：</span></th>
+		    <td style="display:none;"><span id="fileclassifyname"></span></td>
+		</tr>
+		<tr>
+		    <th><span key="file.summary" class="paltform-i18n">文档摘要：</span></th>
+		    <td colspan="3"><span id="summary"></span></td>
+		</tr>
+		<tr>
+		    <th><span key="file.remark" class="paltform-i18n">备注：</span></th>
+		    <td colspan="3"><span id="remark"></span></td>
+		</tr>
+	</table>
+	<div class="button_area_absolute">
+		<table style="width:100%;">
+			<tr>
+				<td align="center">
+					<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeFile();">
+								<span key="role.close" class="paltform-i18n">关闭</span>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+	</body>
+</html>

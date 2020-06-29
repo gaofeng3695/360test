@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>MapViewerDemo</title>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+	<script type="text/javascript">
+function getUrlPara(key)
+{
+	var strHref = window.location.href;
+	strHref=decodeURI(strHref); 
+	var tmp=new Object();
+	var intPos = strHref.indexOf("?"); 
+	var strPara = strHref.substr(intPos + 1); 
+	return strHref;
+	
+	/**
+	var arrTmp = strPara.split("&");
+	for(var i=0;i<arrTmp.length;i++)
+	{
+		var arrPara=arrTmp[i].split("=");
+		tmp[arrPara[0]]=arrPara[1];
+		if(arrPara[0]==key)
+		{
+			return arrPara[1];
+		}
+	}
+	
+	return tmp;
+	**/
+}
+
+function load()
+{
+	var str=getUrlPara("graphic");
+	document.getElementById("top").innerText=str;
+	
+}
+
+	</script>
+          
+    </head>
+    <body bgcolor="#FF0000" style="margin:0px; padding:0px;height:100%;" onload="load()">
+       <div id="top">   
+       		等待数据中....      	
+       </div>       
+   </body>
+</html>

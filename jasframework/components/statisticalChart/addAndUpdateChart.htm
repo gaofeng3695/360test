@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>图表</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css" ></link>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/highcharts/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/highcharts/js/highcharts.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/lib/highcharts/js/modules/exporting.src.js"></script>
+	<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/addAndUpdateChart.js"></script>
+	<style type="text/css">
+		.viewchart {
+			position:relative; 
+			bottom:0px;
+			left:0px;
+			width:100%;
+			height:300px;
+			
+			/* border:1px solid #c3c5cd; */ 
+		}
+		.formdiv {
+			position:relative; 
+			width:100%;
+ 			height:350px;
+ 			padding:10px; 
+			border-top:1px solid #c3c5cd;
+			border-radius:0 0 4px 4px ;
+			background:#fff
+		}
+
+	</style>
+</head>
+<body >
+	<div style="background:#fff;border-radius:4px 4px 0 0;padding:10px; ">
+		<div style="z-index:2; position:absolute;">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-back" onclick="goback()"><span key="" class="paltform-i18n">返回</span></a>
+		</div>
+		<div id="viewchart" class="viewchart" style="z-index:1;overflow:scroll;">
+	</div>
+	
+	<div class="formdiv" >
+		<form id="addAndUpdateChart" method="post">
+		<input type="hidden" id="eventid" name="eventid">
+		<input type="hidden" id="mychart" name="mychart">
+		<input type="hidden" id="nextstatisticssize" name="nextstatisticssize">
+		<input type="hidden" id="unitkeyOrDate" name="unitkeyOrDate">
+			<br>
+			<table align="center" style="table-layout:fixed" width="99%">
+				<tr>
+					<td width="12%"><span key="" class="paltform-i18n">统计图名称：</span></td>
+					<td width="30%"><input id="chartname" name="chartname" class="easyui-validatebox input_bg"
+									validType="general" required="true" missingmessage="不能为空" maxlength="25"></td>
+					<td width="12%"></td>
+					<td width="30%"></td>
+				</tr>
+				<tr>
+					<td width="12%"><span key="" class="paltform-i18n">业务表名：</span></td>
+					<td width="30%"><input id="businesstablename" name="businesstablename" required="true" class="easyui-combobox input_bg"/></td>
+					<td width="12%"><span key="" class="paltform-i18n">统计图类型：</span></td>
+					<td width="30%"><input id="charttype" name="charttype" required="true" class="easyui-combobox input_bg"/></td>
+				</tr>
+				<tr>
+					<td width="12%"><span key="" class="paltform-i18n">统计项：</span></td>
+					<td width="30%"><input id="statisticalitem" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="statisticalitem"  class="easyui-combobox input_bg"/></td>
+					<td width="12%"><span key="" class="paltform-i18n">统计方式：</span></td>
+					<td width="30%"><input id="statisticalmethods" name="statisticalmethods" required="true" class="easyui-combobox input_bg"/></td>
+				</tr>
+				<tr>
+					<td width="12%"><span key="" class="paltform-i18n">统计纬度：</span></td>
+					<td width="30%"><input id="classifiedfield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="classifiedfield" required="true" class="easyui-combobox input_bg"/></td>
+					<td width="12%"><span key="" class="paltform-i18n">统计粒度：</span></td>
+					<td width="30%"><input id="statisticssize" name="statisticssize"  class="easyui-combobox input_bg"/></td>
+				</tr> 
+<!-- 				<tr> -->
+<!-- 					<td width="12%"><span key="" class="paltform-i18n">统计项：</span></td> -->
+<!-- 					<td width="30%"><input id="statisticalitem" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="statisticalitem"  class="easyui-combobox input_bg"/></td> -->
+<!-- 					<td width="12%"><span key="" class="paltform-i18n">分组字段：</span></td> -->
+<!-- 					<td width="30%"><input id="groupbyfield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="groupbyfield" required="true" class="easyui-combobox input_bg"/></td> -->
+<!-- 				</tr>  -->
+<!-- 				<tr> -->
+<!-- 				    <td width="12%"><span key="" class="paltform-i18n">X轴名称：</span></td> -->
+<!-- 					<td width="30%"><input id="xtitle" name="xtitle"  class="easyui-validatebox input_bg"/></td> -->
+<!-- 					<td width="12%"><span key="" class="paltform-i18n">X轴单位：</span></td> -->
+<!-- 					<td width="30%"><input id="xunit" name="xunit" class="easyui-validatebox input_bg"/></td> -->
+<!-- 				</tr> -->
+				<tr>
+				    <td width="12%"><span key="" class="paltform-i18n">Y轴名称：</span></td>
+					<td width="30%"><input id="ytitle" name="ytitle"  class="easyui-validatebox input_bg"/></td>
+					<td width="12%"><span key="" class="paltform-i18n">Y轴单位：</span></td>
+					<td width="30%"><input id="yunit" name="yunit" class="easyui-validatebox input_bg"/></td>
+				</tr>
+			</table>
+			<br>
+			<table align="center" width="99%">
+				<tr><th width="12%">统计范围↑：</th><th width="35%"></th><th width="13%"></th><th width="35%"></th></tr>
+				<tr><th width="12%">逻辑操作符：</th><th width="35%">查询字段</th><th width="13%">操作符</th><th width="35%">查询内容</th></tr>
+				<tr>
+					<td></td>
+					<td width="35%"><input id="queryfield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="queryfield" class="easyui-combobox input_bg"/></td>
+					<td width="13%"><select id="querysymbol" name="querysymbol"  class="easyui-combobox input_bg">
+									<option value=""></option>
+									<option value="=">等于</option>
+									<option value=">">大于</option>
+									<option value="<">小于</option>
+									<option value="union">包含</option>
+									</select>
+					</td>
+					<td width="35%"><input id="querycontext" name="querycontext"  class="easyui-validatebox input_bg"/></td>
+				</tr> 
+			</table>
+		
+		</form>
+	</div>
+		<div >
+		   <table width="95%">
+	 		  <tr>
+    				<td align="right">
+     					<a href="#" class="easyui-linkbutton" iconCls="icon-zoom" onclick="previewchart()"><span key="" class="paltform-i18n">预览</span></a>
+     					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savechart()"><span key="" class="paltform-i18n">保存</span></a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closePanol()"><span key="" class="paltform-i18n">取消</span></a>
+     				</td>
+         		</tr>
+         	</table>	 
+		    </div>
+</div>
+</body>
+</html>

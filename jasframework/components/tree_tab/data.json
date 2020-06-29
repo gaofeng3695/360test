@@ -1,0 +1,22 @@
+[{
+    "id": 1,
+    "text": "Node 1",
+    "state": "closed",
+    "iconCls":"fa fa-adjust",
+    "hahahah":{"aaa":"sss"},
+    "kkk":{"aaa":"sss"},
+    "children": [{
+		"id": 11,
+		"text": "Node 11",
+		 "iconCls":"fa fa-bath"
+    },{
+		"id": 12,
+		"text": "Node 12",
+		"iconCls":"fa fa-bath"
+    }]
+},{
+    "id": 2,
+    "text": "Node 2",
+    "state": "closed",
+     "iconCls":"fa fa-adjust"
+}]

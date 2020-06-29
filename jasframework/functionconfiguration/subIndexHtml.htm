@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css">
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.jasfc.jasfcFactory.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script> 
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="js/SubFunctionConfiguration.js"></script>
+<!-- 	<script type="text/javascript" src="js/SubQueryConditionPanel.js"></script> -->
+	<script type="text/javascript" src="js/QueryConditionPanel.js"></script>
+	<script type="text/javascript" src="js/SubCommandPanel.js"></script>
+	<script type="text/javascript" src="js/SubDatagrid.js"></script>
+	<script type="text/javascript" src="js/ExportData.js"></script>
+	<script type="text/javascript" src="js/LocationMap.js"></script>
+	<script type="text/javascript" src="../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="js/commonMethod.js"></script>
+	<title></title>
+</head>
+<body >
+	 <span id="qtable"></span>
+	 <script type="text/javascript">
+	 var functionName =getParamter("functionName");
+	 var subeventid =getParamter("subeventid");	//关联关系中，主表关联字段对应的字段值
+	 var subIdField =getParamter("subIdField");	//关联关系中，子表关联字段
+	 var detailFlag =getParamter("detailFlag");
+	 var APP_NUMBER =top.APP_NUMBER;
+	 var language =top.language;
+	 
+	 var xx =$("#qtable").SubFunctionConfiguration({divid:"#qtable","functionName":functionName,"app_number":APP_NUMBER,"language":language});
+	 xx.SubFunctionConfiguration("loadFunctionConfigByData");
+	 </script>
+</body>
+</html>

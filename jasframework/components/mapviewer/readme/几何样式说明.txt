@@ -1,0 +1,51 @@
+1、点
+1.1 填充点
+var simpleMarkerSymbol=
+{
+"type" : "esriSMS",
+"style" : "esriSMSCircle",//< esriSMSCircle | esriSMSCross | esriSMSDiamond | esriSMSSquare | esriSMSTriangle | esriSMSX >
+"color" : [255,0,0,255],    //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+"size" : 16,
+"angle" : 0,
+"xoffset" : 0,
+"yoffset" : 0
+};
+
+1.2 图片点 
+var pictureMarkerSymbol=
+{
+"type" : "esriPMS",
+"url" : "assets/images/i_police.png",
+"imageData" : "",
+"contentType" : "image/png",
+"width" : 21,
+"height" : 21,
+"angle" : 0,
+"xoffset" : 0,
+"yoffset" : 0
+};
+
+2、线
+var simpleLineSymbol=
+{	
+"type" : "esriSLS",
+"style" : "solid",//"< none | solid | dot | dash | dashdot | dashdotdot >",
+"color" : [255,0,0,255], //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+"width" : 3
+};
+
+3、面
+var simpleFillSymbol=
+{
+"type" : "esriSFS",
+"style" : "solid", //< solid | backwarddiagonal | cross | diagonalcross | forwarddiagonal | horizontal | vertical>
+"color" : [255,145,0,255], //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+"alpha":1,   
+"outline" : //<simpleLineSymbol>if outline has been specified
+{
+     "type": "esriSLS",
+     "style": "dashdotdot",//< none | solid | dot | dash | dashdot | dashdotdot >
+     "color": [255,0,0,255],
+     "width": 4
+}
+};

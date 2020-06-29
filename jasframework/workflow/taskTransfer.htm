@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    
+	<title>待办工作转办</title>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" type="text/css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="../privilege/page/js/person.js"></script>
+	<script type="text/javascript" src="js/taskTransfer.js"></script>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-WF-0000"/>
+	<!-- 委托form-->
+	<form id="taskTransferForm" method="post">
+		<table align="center" class="detail-table" style="width:100%;">
+			<tr>
+				<th style="width: 15%">
+					<span key="workflow.taskTransferTasks">转办工作：</span><SPAN style="COLOR: red; VERTICAL-ALIGN: bottom">*</SPAN>
+				</th>
+				<td id="processNamesAndTaskNamesDiv" style="width: 85%;">
+				</td>
+			</tr>
+			<tr>
+				<th colspan="1"><span key="workflow.taskTransferUsers" class="paltform-i18n">被转办用户：</span><span style='color:red;vertical-align: bottom;'>*</span></td>
+				<!-- 选人控件-->
+					<td colspan="3" style="line-height:28px;">
+						<div id="textDiv" style="text-align: left;width:70%;float:left">
+						</div>
+						<div style="width:30%;float:right;">
+							<input id="hiddenDiv" type="hidden" name="delegateuser" />
+							<a href="#" class="easyui-linkbutton test" onclick="personchoose.showPersonWindow('textDiv','hiddenDiv');">
+								<span key="workflow.select" class="paltform-i18n">选择</span>
+							</a>
+							<a href="#" class="easyui-linkbutton cancel" onclick="personchoose.reSetUser('textDiv','hiddenDiv')">
+								<span key="clear" class="paltform-i18n">清空</span>
+							</a>
+						</div>
+					</td>
+			</tr>
+			<tr>
+				<th  colspan="1"><span key="workflow.remark" class="paltform-i18n">备注：</span></td>
+				<td  colspan="1">
+					<textarea name="remark" cols="25" rows="5" id="remark" class="easyui-validatebox" validType="maxLength[500]" style="width: 100%;height:100%"></textarea>
+				</td>
+			</tr>
+		</table>
+		<div class="button-area" >
+			<table width="100%" align="center">
+				<tr>
+					<td>
+						<a href="#" class="easyui-linkbutton submit" onclick="executeTransfer()">
+							<span key="save" class="paltform-i18n">保存</span>
+						</a>
+						<a href="#" class="easyui-linkbutton cancel" onclick="closeThisPage()">
+							<span key="cancel" class="paltform-i18n">取消</span>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+	</div>
+</body>
+</html>

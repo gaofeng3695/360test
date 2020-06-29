@@ -1,0 +1,115 @@
+1、ArcGIS Server图层配置
+	1.1 feature类型图层
+		<layer id="layerCoating" label="点" type="feature" visible="false" alpha="1.0" index="2"
+					url="http://pcofinakcis/ArcGIS/rest/services/EsriDemo/FeatureServer/2" 
+					labelUrl="" labelType="" symbolUrl=""
+				/>
+		属性说明：
+			labelUrl:文本标注服务地址，支持esritiled和dynamic类型的图层，默认为esritiled
+			labelType：文本标识图层类型，默认为esritiled(可选项：esritiled、dynamic)
+			symbolUrl：图层样式服务地址，支持esritiled，解决feature、wfs要素服务无法正确展示复杂样式的问题
+			
+	1.2 dynamic类型图层
+		<layer id="layerCoating" label="防腐层" type="dynamic" visible="false" index="3"
+					url="http://192.168.10.138/ArcGIS/rest/services/coating/MapServer" />
+
+	1.3 tiled类型图层
+		<layer id="layerCoating" label="防腐层" type="tiled" visible="false"  index="4"
+					url="http://192.168.10.138/ArcGIS/rest/services/coating/MapServer" />
+					
+	1.4、feature图层渲染配置
+	  1.4.1 点要素:
+		 <layer id="gxKcd" label="Geological Boreholes" type="feature" visible="true"  
+				alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/0"
+				index="3"
+				renderParameter='{ 
+					"initSymbol":{"symbolType":"simple","symbol":{"size":"8","style":"square","alpha":"1","color":"0xFF0000"}},
+					"highlightSymbol":{"symbolType":"polygon","symbol":{"size":"15","style":"square","alpha":"1","color":"0xFF0000","borderColor":"0x0000FF","borderWidth":"5","borderAlpha":"1"}},
+					"hoverResponseHandler":{"responseType":"map_tip",
+							"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"BOREHOLE_NUMBER,DESCRIPTION","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+						},
+					"clickResponseHandler":{"responseType":"iframe_tip",
+							"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","title":"详细信息"} 
+						},
+					"dbclickResponseHandler":{"responseType":"js_function",
+							"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+					   }		 
+				    }' />
+				  渲染样式补充：
+				  	复杂样式渲染："initSymbol":{"symbolType":"polygon","symbol":{"size":"10","style":"cicle","alpha":"1","color":"0xFF0000","borderColor":"0x0000FF","borderWidth":"2","borderAlpha":"1"}},
+				  	图片渲染："initSymbol":{"symbolType":"picture","symbol":{"iconUrl":"assets/images/","iconPrefix":"edit_markertool","groupby":""}},
+					高亮复杂样式渲染："highlightSymbol":{"symbolType":"picture","symbol":{"iconUrl":"assets/images/","iconPrefix":"edit_markertool_render","groupby":""}},
+				  	高亮图片渲染："highlightSymbol":{"symbolType":"simple","symbol":{"size":"15","style":"square","alpha":"1","color":"0x0000FF"}},
+			
+		  1.4.2 线要素:
+		  <layer id="MOC_Oil_Design" label="MOC" type="feature" visible="true"  
+					labelUrl="http://192.168.30.25/LabelNew/MOC_Oil/Layers/_alllayers/"
+					alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/6" index="6"
+					renderParameter='{ 
+						"initSymbol":{"symbolType":"simple","symbol":{"width":"3","style":"solid","alpha":"1","color":"0x0000FF"}},
+						"highlightSymbol":{"symbolType":"simple","symbol":{"width":"5","style":"dash","alpha":"1","color":"0x00FF00"}},
+						"hoverResponseHandler":{"responseType":"map_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"NO,STARTING","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+							},
+						"clickResponseHandler":{"responseType":"iframe_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"false","returnAttributes":"false","outFields":"NO,STARTING","title":"详细信息"} 
+							},
+						"dbclickResponseHandler":{"responseType":"js_function",
+								"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"NO,STARTING","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+						   }	
+ 					}'/> 
+ 				渲染样式补充：
+ 					复杂样式渲染："initSymbol":{"symbolType":"polygon","symbol":{"width":"5","style":"dash","alpha":"1","color":"0xFF0000","borderColor":"0x0000FF","borderWidth":"2","borderAlpha":"1"}}
+ 					高亮复杂样式渲染："highlightSymbol":{"symbolType":"polygon","symbol":{"width":"5","style":"dash","alpha":"1","color":"0x00FF00","borderColor":"0x0000FF","borderWidth":"2","borderAlpha":"1"}}
+		  1.4.3 面要素:
+		  <layer id="I_Gas" label="GAS" type="feature" visible="true"  
+					alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/11" index="6"
+					renderParameter='{ 
+						 "initSymbol":{"borderWidth":"2","borderColor":"0xFF0000","borderAlpha":"1","fillColor":"0x00FF00","fillAlpha":"1","fillStyle":"solid"}
+						 "highlightSymbol":{"borderWidth":"4","borderColor":"0x123456","borderAlpha":"0.3","fillColor":"0x345","fillAlpha":"0.3","fillStyle":"diagonalcross"}
+						"hoverResponseHandler":{"responseType":"map_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"NO,NAME","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+							},
+						"clickResponseHandler":{"responseType":"iframe_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"false","returnAttributes":"false","outFields":"NO,NAME","title":"详细信息"} 
+							},
+						"dbclickResponseHandler":{"responseType":"js_function",
+								"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"NO,NAME","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+						   }	
+ 					}'/> 	
+
+
+2、Geotools图层配置
+	2.1 wms配置：
+		<layer id="layerWMS" label="WMS测试" type="wms" visible="false"
+			skipgetcapabilities="true" wkid="2383" format="image/png"
+			visiblelayers="GeoDemo:GISDEMO.CONTROLPOINT" version="1.1.0"
+			url="http://127.0.0.1:8181/geoserver/GeoDemo/wms" />
+	2.2 wfs配置:		
+		<layer id="layerWFSLINE" label="WFS测试线" type="wfs" visible="false"
+			skipgetcapabilities="true" wkid="2383" shapeField = "the_geom"
+			displayLevels="4"
+			visiblelayers="GeoDemo:GISDEMO.HIGHWAY" maxfeatures="2000"
+			url="http://localhost:8181/geoserver/wfs" />
+		<layer id="layerWFSPOLYGON" label="WFS测试面" type="wfs" visible="false"
+			skipgetcapabilities="true" wkid="2383" shapeField = "the_geom"
+			displayLevels="4"
+			visiblelayers="GeoDemo:GISDEMO.POLYGONDEMO" maxfeatures="2000"
+			url="http://localhost:8181/geoserver/GeoDemo/wfs" />
+		属性说明：
+			shapeField：发布服务的数据类型，默认为shape文件（the_geom），SDE数据应为"SHAPE"
+			displayLevels：从第几级开始显示图层			
+	2.3 wfs图层渲染配置
+			<layer id="layerWFSPOLYGON" label="WFS测试面" type="wfs" visible="false"
+			skipgetcapabilities="true" wkid="2383" shapeField = "the_geom"
+			visiblelayers="GeoDemo:GISDEMO.POLYGONDEMO" maxfeatures="2000" displayLevels="4"
+			url="http://localhost:8181/geoserver/GeoDemo/wfs"
+			renderParameter='同feature'/>	
+3.IIS发布的图层配置	
+	3.1 esritiled类型的图层（ArcGIS切图，将切图发布到IIS下面）
+	<layer id="dom" label="Satellite Image" type="esritiled" visible="false" 
+		alpha="1.0" url="http://192.168.30.25/halfayaMap/" index="2"/>
+		
+	3.2 antutiled类型图层（使用安图工具切图，将切图发布到IIS下面）
+	<layer id="layerDlg" label="地形图" type="antutiled" visible="true" index="1"
+				alpha="1.0" wkid="2383" url="http://127.0.0.1/map/dpmap80/geo" />

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/view_gps_inspector_detail.js"></script>
+	<style>
+
+		/* 巡线工是没有这个字段的。 */
+		#taskTimeNode {
+			display: none;
+		}
+		#taskBeginAndEnd {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+    <div id="contentArea" class="content-area">
+    	<form class="content-area-main">
+			<input type="hidden" name="taskTime" id="taskTime" />
+    	<!--<h6 class="table-title">基础数据</h6>-->
+	<!-- 表单区域，每行四列 -->
+			<table align="center" class="detail-table" >
+				<tr>
+					<th width="15%"><span>部门名称</span></th>
+					<td width="35%"><span id="unitname"></span></td>
+					<th width="15%"><span>姓名</span></th>
+					<td width="35%"><span id="insname"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>性别</span></th>
+					<td width="35%"><span id="sexCodeName"></span></td>
+					<th width="15%"><span>联系电话</span></th>
+					<td width="35%"><span id="phone"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>入职时间</span></th>
+					<td width="35%"><span id="adddate"></span></td>
+					<th width="15%"><span>身份证号码</span></th>
+					<td width="35%"><span id="identitycard"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>设备编号</span></th>
+					<td width="85%" colspan="3"><span id="deviceoid"></span></td>
+				</tr>
+				<tr id='taskTimeNode'>
+
+					<th width="15%"><span>巡检对象</span></th>
+					<td  width="85%" colspan="3"><span id="patrolObject"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>家庭地址</span></th>
+					<td width="85%" colspan="3"><span id="homeaddress"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>创建人</span></th>
+					<td width="35%"><span id="createUserName"></span></td>
+					<th width="15%"><span>创建时间</span></th>
+					<td width="35%"><span id="createDatetime"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>修改人</span></th>
+					<td width="35%"><span id="modifyUserName"></span></td>
+					<th width="15%"><span>修改时间</span></th>
+					<td width="35%"><span id="modifyDatetime"></span></td>
+				</tr>
+
+				<tr>
+					<th width="15%"><span>描述</span></th>
+					<td width="85%" colspan="3"><span id="description"></span></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

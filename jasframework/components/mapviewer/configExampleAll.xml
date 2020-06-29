@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" ?>
+<!-- //////////////////////////////////////////////////////////////////////////////// 
+	// // Read more about ArcGIS Viewer for Flex - http://links.esri.com/flexviewer 
+	// //////////////////////////////////////////////////////////////////////////////// -->
+<configuration>
+	<title>MapViewer2.0</title>
+	<subtitle></subtitle>
+	<logo>assets/images/cn.png</logo>
+	<style>
+		<colors>0xFFFFFF,0x4989C8,0x101010,0x000000,0xFFD700</colors>
+		<alpha>1</alpha>
+		<font size="14" name="Arial" />
+		<titlefont name="Arial" />
+	</style>
+	<!-- replace the following url with your own geometryservice -->
+	<geometryservice
+		url="http://192.168.30.25:6080/ArcGIS/rest/services/Geometry/GeometryServer"/>
+<!-- 地图导航工具条 -->
+	<widget left="10" top="72" config="widgets/Navigation/NavigationWidget.xml"
+		url="widgets/Navigation/NavigationWidget.swf" />
+<!-- 图层控制树 -->
+	<widget right="2" top="0" bottom="0"
+		config="widgets/Layer/LayerTreeWidget.xml" url="widgets/Layer/LayerTreeWidget.swf" />
+<!-- 工具栏 -->
+<!-- 	<widget left="0" top="0" horizontalcenter="0" -->
+<!-- 		config="widgets/MenuController/MenuControllerWidget.xml" url="widgets/MenuController/MenuControllerWidget.swf"/> -->
+<!-- 移动工具栏，图标放大 -->
+	<widget left="0" top="0" horizontalcenter="0"
+		config="widgets/MenuController/MenuControllerWidget_MoveAndZoom.xml" url="widgets/MenuController/MenuControllerWidget_MoveAndZoom.swf"/>
+<!-- 显示地图坐标 -->
+	<widget bottom="12"  horizontalcenter="0"
+		config="widgets/Coordinate/CoordinateWidget.xml" url="widgets/Coordinate/CoordinateWidget.swf" />
+<!-- js与as通信交互，必须引入 -->
+	<widget left="0" top="0" config="widgets/JSConnector/JSConnectorWidget.xml"
+		url="widgets/JSConnector/JSConnectorWidget.swf" />
+<!-- 扩展类，点线面鼠标点绘等 -->
+	<widget left="0" top="0" config="widgets/Extension/ExtensionWidget.xml"
+		url="widgets/Extension/ExtensionWidget.swf" />
+<!-- 标绘菜单 -->
+	<widget left="0" right="0" top="0" bottom="0"
+		config="widgets/Plot/PlotWidget.xml" url="widgets/Plot/PlotWidget.swf" />
+		
+<!-- 更新时间标签，需配置mapsettings中的time -->
+	<widget  right="250"  bottom="12"
+		config="widgets/TimeLabel/TimeLabelWidget.xml" url="widgets/TimeLabel/TimeLabelWidget.swf" />
+<!-- 解决方案标签 -->		
+	<widget right="0" top="5" 
+		config="widgets/SchemeName/SchemeNameWidget.xml" url="widgets/SchemeName/SchemeNameWidget.swf" />
+<!-- 绘制路由线 -->			
+	<widget left="0" right="0" top="0" bottom="0"
+		config="widgets/RoutingDesigner/RoutingDesignerWidget.xml" url="widgets/RoutingDesigner/RoutingDesignerWidget.swf" />
+<!-- 地名标签 -->			
+	<widget left="100" top="5" 
+		config="widgets/PlaceName/PlaceNameWidget.xml" url="widgets/PlaceName/PlaceNameWidget.swf" />	
+
+<!--地图、图层配置 -->	
+	<map wraparound180="true" top="0" initialextent="47.1 31.503620 47.702613 31.8"
+		fullextent="47.1 31.503620 47.702613 31.8" esrilogovisible="false"
+		scalebarvisible="true" wkid="4326" level="5">
+		<lods>
+			<lod resolution="0.00118973050291514" scale="500000" />
+			<lod resolution="0.00059486525145757" scale="250000" />
+			<lod resolution="0.000297432625728785" scale="125000" />
+			<lod resolution="0.00023794610058302802" scale="100000" />
+			<lod resolution="0.00011897305029151401" scale="50000" />
+			<lod resolution="0.000059486525145757005" scale="25000" />
+			<lod resolution="0.000023794610058302804" scale="10000" />
+			<lod resolution="0.000011897305029151402" scale="5000" />
+			<lod resolution="0.00000475892201166056" scale="2000" />
+			<lod resolution="0.00000237946100583028" scale="1000" />
+			<lod resolution="0.00000118973050291514E" scale="500" />
+			<lod resolution="0.000000356919150874542" scale="150" />
+		</lods>
+		<!-- 背景图层 配置-->
+		<basemaps>
+			<layer id="layerSetBasemaps001" label="背景图层">
+				<!-- 配置示例esritiled：IIS发布的ArcGIS 切图 -->
+				<layer id="ycMap" label="背景图(esritiled)" type="esritiled" visible="true" 
+					alpha="1.0" url="http://localhost/ycMap/" index="1"/>
+				<!-- 配置示例antutiled：IIS发布的安图工具 切图 -->	
+				<layer id="dom" label="影像图(antutiled)" type="antutiled" visible="false" 
+					alpha="1.0" url="http://localhost/dom/"  index="2"/>
+			</layer>
+		</basemaps>
+		<!-- 隐藏图层配置 -->
+		<hiddenlayers>
+			
+		</hiddenlayers>
+		<!-- 操作图层配置 -->
+		<operationallayers>
+			<layer id="ArcGISLayer" label="ArcGIS服务示例">
+				<!-- 配置示例feature类型：ArcGIS发布的要素图层服务，支持鼠标事件 -->
+				<!--勘探点配置 -->
+				<layer id="gxKcd" label="Boreholes(feature)" type="feature" visible="true" 
+					alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/0" index="3"
+					renderParameter='{ 
+						"initSymbol":{"symbolType":"simple","symbol":{"size":"8","style":"square","alpha":"1","color":"0xFF0000"}},
+						"highlightSymbol":{"symbolType":"polygon","symbol":{"size":"15","style":"square","alpha":"1","color":"0xFF0000","borderColor":"0x0000FF","borderWidth":"5","borderAlpha":"1"}},
+						"hoverResponseHandler":{"responseType":"map_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"BOREHOLE_NUMBER,DESCRIPTION","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+							},
+						
+						"clickResponseHandler":{"responseType":"iframe_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","title":"详细信息"} 
+							},
+						"dbclickResponseHandler":{"responseType":"js_function",
+								"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"BOREHOLE_NUMBER","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+						   }		 
+				    }' /> 
+				<!--管线配置 -->
+				<layer id="MOC_Oil_Design" label="MOC(feature)" type="feature" visible="true"  
+					labelUrl="http://192.168.30.25/LabelNew/MOC_Oil/Layers/_alllayers/"
+					alpha="1.0" url="http://192.168.30.25:6080/arcgis/rest/services/Alpha/FeatureServer/6" index="6"
+					renderParameter='{ 
+						"initSymbol":{"symbolType":"simple","symbol":{"width":"3","style":"solid","alpha":"1","color":"0x0000FF"}},
+						"highlightSymbol":{"symbolType":"polygon","symbol":{"width":"5","style":"dash","alpha":"1","color":"0x00FF00","borderColor":"0x0000FF","borderWidth":"2","borderAlpha":"1"}}, 
+						"hoverResponseHandler":{"responseType":"map_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","displayField":"NO,STARTING","defaultFieldTitle":"编号,描述","title":"详细信息"} 
+							},
+						"clickResponseHandler":{"responseType":"iframe_tip",
+								"attribute":{"tipWidth":"450","tipHeight":"235","tipUrl":"demo/IFrameTipDemo.htm","returnObjectId":"true","returnGeometry":"false","returnAttributes":"false","outFields":"NO,STARTING","title":"详细信息"} 
+							},
+						"dbclickResponseHandler":{"responseType":"js_function",
+								"attribute":{"returnObjectId":"true","returnGeometry":"true","returnAttributes":"true","outFields":"NO,STARTING","para":"eventid=111,name=test","callback":"drawPolygonHandler"} 
+						   }	
+ 					}'/> 
+ 				<!-- 配置示例dynamic类型：ArcGIS发布的地图服务 -->	
+ 				<layer id="layerCoating" label="halfaya((MAP))" type="dynamic" visible="false" index="3"
+					url="http://192.168.30.25:6080/arcgis/rest/services/halfaya/MapServer"/>	
+				<!-- 配置示例tiled类型：ArcGIS发布的地图服务 -->		
+				<layer id="CPFLayer" label="CPF(tiled)" type="tiled" visible="false"  index="4"
+					url="http://192.168.30.25:6080/arcgis/rest/services/CPF/MapServer" />
+ 			</layer>
+ 			<layer id="geoserverLayer" label="Geotools图层配置">
+ 				<!-- 配置示例wfs类型：geoserver发布的要素服务 -->
+ 				<layer id="wellpos" label="井(wfs)" type="wfs" visible="true" visiblelayers="ChinaMap:Wellpos"
+                     skipgetcapabilities="true" wkid="4326"  maxfeatures="200" shapeField = "the_geom"
+					 url="http://192.168.40.54:8081/geoserver/wfs" displayLevels="9" 
+		             renderParameter='{}' />
+				<!-- 配置示例wms类型：geoserver发布的地图服务 -->
+				 <layer id="wellpos_label" label="井(wms)" type="wms" visible="true" visiblelayers="ChinaMap:Wellpos"
+                     skipgetcapabilities="true" wkid="4326"  maxfeatures="200" shapeField = "the_geom"
+					 url="http://192.168.40.54:8081/geoserver/wms"/>
+ 			</layer>
+		</operationallayers>
+	</map>
+
+<!-- 	widgets organized into widget containers that manage close/open etc -->
+<!-- 	supported layout property options: horizontal(default)|float|vertical|fix -->
+	<widgetcontainer layout="float">
+<!-- 		<widget id="menuBookmark" left="95" top="30" label="地图书签" icon="assets/images/i_bookmark.png"  -->
+<!-- 		config="widgets/Bookmark/BookmarkWidget.xml" url="widgets/Bookmark/BookmarkWidget.swf"/> -->
+<!-- 		<widget id="printSubmitLabel" left="95" top="30" label="Print" icon="assets/images/i_print.png"  -->
+<!-- 		config="widgets/Print/PrintWidget.xml" url="widgets/Print/PrintWidget.swf"/>  -->
+<!-- 		<widget id="menuExcel" label="Excel加载" icon="assets/dock/Excel.png"  -->
+<!-- 		config="widgets/Excel/XlsWidget.xml" url="widgets/Excel/XlsWidget.swf" />  -->
+	</widgetcontainer>
+
+	<!--自定义工具栏按钮 -->
+	<menubuttonset>
+		<menubutton id="printMap" label="打印地图" icon="customConfig/customImages/print.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="printEvent"></menubutton>
+		<menubutton id="switchMap" label="Image" icon="customConfig/customImages/三维.jpg" switchIcon="customConfig/customImages/二维.jpg" 
+			switchLabel="Map" grouped="false" groupIcon="" groupLabel="" callBackFunction="switchMap"></menubutton> 	 
+	</menubuttonset>
+	<!--自定义标绘工具栏按钮 -->
+	<plotbuttonset>
+		 <plotbutton id="attachment" label="添加附件" icon="customConfig/customImages/attachment.png"
+		 	useHandCursor="true" buttonMode="true" callBackFunction="attachmentEvent"></plotbutton> 
+	</plotbuttonset>
+	<mapsettings>
+	<!-- 基本信息配置 -->
+		<!-- 版本信息，右键菜单中显示-->
+		<add key="version" value="MapViewer2.0.0" />
+		<!-- 是否展开图层树 -->
+		<add key="expandTree" value="true" />
+		<!-- 是否需要验证登录用户(主要用于图层树控制) -->
+		<add key="verifyUser" value="false" />
+		<!-- 坐标系名称 -->
+        <add key="coordinates" value="(西安80)" />
+        <!-- 影像更新时间label -->
+		<add key="time" value="Date of images collection:2014-9-25" />
+		<!--地图加载完成时候的回调， 一般用于地图初始化-->
+        <add key="mapLoadedCallBack" value="mapLoadedHandler" />
+        
+	<!-- 二三维联动配置 -->
+		<!--二三维联动开关 ,方法位于APIFor3D.js中 -->
+		<add key="setIsLinkage" value="setIsLinkage" />
+		<!-- 地图范围变化回调函数，用于处理二三维联动 ,方法位于APIFor3D.js中-->
+		<add key="JsSynchMapExtentChangeFunction" value="mapExtentChangeHanlder" />
+		
+	<!-- 工具栏按钮配置，事件方法位于customConfig/customEvents/CustomButtonEvents.js中 -->
+		<!-- 画面回调函数(一般用于面查询)，对应的按钮id为polygonSearch -->
+		<add key="drawPolygonCallBack" value="drawPolygonHandler" />
+		<!-- 画圆回调函数(一般用于圆查询)，对应的按钮id为pointSearch -->
+		<add key="drawCircleCallBack" value="drawCircleHandler" />
+		<!--添加【属性】按钮事件监听，对应的按钮id为identity	-->
+		<add key="identifyClickEvent" value="identifyClickHandler" />
+		<!-- 定义菜单按钮显示顺序，包括自定义菜单按钮。格式如：id1,id2,系统默认提供的按钮如下：
+			pan:平移，zoomin:放大，zoomout:缩小，zoomfull:全显，rule:测距，area:测面，clearMap：清空标记，
+			print:打印地图，polygonSearch:圆查询(回调函数key值为drawPolygonCallBack)，
+			pointSearch:圆查询(回调函数key值为drawCircleCallBack)，
+			linkage:二三维联动，plot：标绘，identify：获取点坐标（回调函数key值为identifyClickEvent）
+		 -->
+		<add key="menuOrder" value="pan,zoomin,zoomout,rule,area,clearMap,print,printMap,plot,linkage,switchMap"/>
+		
+	<!-- 标绘工具栏按钮配置 -->
+		<!-- 定义标绘按钮显示顺序，包括自定义菜单按钮。格式如：id1,id2,系统默认提供的按钮如下：
+			delete:删除标记，point:绘制点，polyline：绘制线，polygon：绘制多边形,rectangle：绘制矩形
+			circle：绘制圆，ellipse：绘制椭圆，bitmap：添加图标,text：绘制文本，PicPolyLine：绘制节点线
+			mail：发送邮件（邮件地址对应key值为sendMailService）
+			load：从文件中加载或调用自定义方法（对应数据格式见readme/标绘导入示例.plt，对应按钮事件key值为addLoadPlotEventListener）
+			save：保存标绘数据至文件或调用自定义方法（对应按钮事件key值为saveCallbackPlotToolbar）
+		 -->
+		<add key="plotMenuOrder" value="delete,point,drawPoint,polyline,drawLine,polygon,rectangle,drawPolygon,circle,ellipse,drawCircle,bitmap,text"/>
+		<!-- 标绘发送邮件服务地址 -->
+		<add key="sendMailService" value="http://192.168.8.105:8181/platform/platform/sendmail.do" />
+		<!-- 标绘工具条中加载按钮响应事件，如果为空，则默认加载文件，文件后缀为.plt	-->
+		<add key="addLoadPlotEventListener" value="addLoadPlotHandler" />
+		<!-- 标绘工具条中保存按钮事件处理，如果为空，则将数据保存至本地文件中plot.plt-->
+		<add key="saveCallbackPlotToolbar" value="savePlotGraphicHandler" />
+		
+	<!-- 专题配置 （部分项目需求）-->	
+        <!-- ApdmSOE服务地址，附近场站 -->
+		<add key="ApdmSOEService"
+			value="http://192.168.8.196/ArcGIS/rest/services/apdm/MapServer/exts/apdm" />
+		<!-- 停气分析地址  -->
+		<add key="traceUrl"
+			value="http://192.168.8.196/ArcGIS/rest/services/soe/MapServer/exts/GeometricNetwork/traceDownstream" />
+		<!-- 停气分析拾取点容差  -->
+		<add key="traceTolerance" value="100" />
+		<!-- 停气分析之影响点Tip IFrame地址 -->
+		<add key="trace.iframe.url" value=":8080/platform/crms/repairManager/tips/tipinfo.html" />
+		<!-- 停气分析之影响点Tip IFrame宽度  -->
+		<add key="trace.iframe.width" value="210" />
+		<!-- 停气分析之影响点Tip IFrame高度  -->
+		<add key="trace.iframe.height" value="130" />
+		<!--停气分析之闪烁后需要显示的点图层集合 -->
+ 		<add key="trace.layer.needLocateLayer"
+ 			value="DgStation_dagongye,DgStation_feizhilian,DgStation_zhilian" />
+ 		<!--停气分析之闪烁后气体流向图层服务 -->
+ 		<add key="trace.layer.flowDirectionService"
+ 			value="http://192.168.8.196/ArcGIS/rest/services/arrow_new/MapServer" />
+	</mapsettings>
+</configuration>

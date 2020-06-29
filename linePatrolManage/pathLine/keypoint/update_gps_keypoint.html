@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">		
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/webuploader/view_photo.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/webuploader/initialize_webuploader.css">
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/view_images.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/webuploader/view_file.js"></script>
+
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/update_gps_keypoint.js"></script> 	
+<style>
+	#offset {
+		width: 98%;
+	}
+	#calculationMileage {
+		display: block;
+	    position: absolute;
+	    top: 0em;
+	    left: 0em;
+	    width: 24em;
+	    height: 21em;
+	    background-color: white;
+	    border: 1px solid gainsboro;
+	}
+	
+	.location-image {
+		width: 31px;
+	    height: 31px;
+	    cursor: pointer;
+	    position: relative;
+	    top: 10px;
+	    left: 1px;
+	}
+	
+	.input_bg.lat {
+		width: 82%;
+	}
+</style>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsKeypointForm" class="content-area-main" method="post">
+		<!-- 	上传文件扩展名 -->
+		<input type="hidden" id="exts" name="exts" value="rar,zip,doc,docx,txt,jpg,png,xls,xlsx,pdf" ></input>
+		<input type= "hidden" id="oid" name = "oid" />
+		<div class="table-content">
+			<h6 class="table-title">基础数据</h6>
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>部门名称：</span></td>
+					<td width="30%">
+						<select id="unitid" required = "required" name="unitid" class="easyui-validatebox select"  ></select>
+					</td>
+					<td width="20%"><span>管线名称：</span></td>
+					<td width="30%">
+						<select id="lineloopoid" required = "required" name="lineloopoid" class="easyui-validatebox select"  ></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>位置描述：</span></td>
+					<td width="30%">
+						<input id="pointposition" readonly="readonly" required = "required" name="pointposition" class="easyui-validatebox input_bg"  validType="" maxlength="40"/>
+					</td>
+					<td width="20%"><span>关键点里程值（m）：</span></td>
+					<td width="30%">
+						<input id="pointstation" required = "required" value = "0" readonly="readonly" name="pointstation" class="easyui-validatebox input_bg"  validType="" maxlength="22"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>关键点名称：</span></td>
+					<td width="30%">
+						<input id="pointname" required = "required" name="pointname" class="easyui-validatebox input_bg"  validType="" maxlength="40"/>
+					</td>
+					<td width="20%"><span>缓冲范围（m）：</span></td>
+					<td width="30%">
+						<input id="buffer" name="buffer" class="easyui-validatebox input_bg"  validType="isNumber['']" maxlength="22"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="20%"><span>有效起始日期：</span></td>
+					<td width="30%">
+						<input id="effectivebegindate" required = "required" name="effectivebegindate" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" required="true"/>
+					</td>
+					<td width="20%"><span>有效终止日期：</span></td>
+					<td width="30%">
+						<input id="effectiveenddate" required = "required" name="effectiveenddate" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" required="true"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="20%"><span>经度：</span></td>
+					<td width="30%">
+						<input id="lon"  required = "required" name="lon" class="easyui-validatebox input_bg"  validType="lon" maxlength="22"/>
+					</td>
+					<td width="20%"><span>纬度：</span></td>
+					<td width="30%">
+						<input  id="lat"  required = "required" name="lat" class="easyui-validatebox input_bg lat"  validType="lat" maxlength="22"/>
+						<img id = 'location' class = 'location-image' alt="定位" src="../../../common/images/locate.png">
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="20%"><span>关键点类型：</span></td>
+					<td width="30%">
+						<select id="pointtype" required = "required" name="pointtype" class="easyui-validatebox select"  validType="comboxExists['pointtype']" ></select>
+					</td>
+					<td width="20%"><span>驻留时间(分:秒)：</span></td>
+					<td width="30%">
+						<input id="residentTime" required = "required" name="residentTime" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'mm:ss'})" required="true"/>
+						<input id="markeroid" type="hidden"  name="markeroid"  validType="" maxlength="45"/>
+					</td>
+				</tr>
+				
+			</table>	
+			</div>
+			<div class="table-content">
+				<!-- <h6 class="table-title">其他数据</h6> -->
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%"><span>注意事项：</span></td>
+						<td width="80%"><textarea id="description" name="description"
+								style="height: 100px" class="easyui-validatebox input_bg"
+								validType="maxLength[500]"></textarea></td>
+					</tr>
+					
+					<tr>
+						<td width="20%"><span style="color:red;">注：</span></td>
+						<td width="80%">
+						<span style="float: left; text-align: left; color: red;">1. 表头为红色字体的为必填项；</span ><br>
+						<span style="float: left; text-align: left; color: red;">2. 关键点名称：填写各个点的名称，如测试桩的编号，观察点的观察内容，特殊巡检点的名称，必到点名称或位置名称；</span><br>
+						<span style="float: left; text-align: left; color: red;">3. 坐标X、坐标Y：必填值；只能填写数字；填写在GPS采集中的经纬度坐标，要求精确到小数点后8位。（7位到厘米级，8位到毫米级，这个根据采集设备精度及采集点要求确定位数）；</span> <br>
+						<span style="float: left; text-align: left; color: red;">4. 备注：在其它无法填写并且需要对采集点做特殊说明时填写在备注中，例如在外业采集中的作废点。</span><br>
+						<span style="float: left; text-align: left; color: red;">5. 关键点数必须大于等于区段公里数*2。</span></td>
+					</tr>
+				</table>
+			</div>						
+			<!--<div id="uploadanddownloadDIV" align="right"></div>-->
+			<!-- 存放图片的容器  不带描述-->
+			<div class="table-content">
+				<h6 class="table-title">图片信息</h6>
+				<div id="viewPicContainer"></div>
+			</div> 
+					<!-- 存放附件的容器   带描述-->
+			<div class="table-content">
+				<h6 class="table-title">附件信息</h6>
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%">添加附件：</td>
+						<td width="80%" align="left"  class="add-attachment again-add-btn">
+							<div id="addFile" class="save-btn"></div>
+							<div id="againSaveFileBtn"  class="again-save-btn"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="viewFileContainer"></td>
+					</tr>
+				</table>	
+			</div>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsKeypoint()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+<!-- 计算位置div -->
+	<div id="calculationMileage" class="table-content" style = "display:none; 
+										    padding-right: 3em;">
+			<h6 class="table-title">计算里程</h6>
+			<from id='calculationMileageForm'>
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="25%"><span>管线：</span></td>
+					<td width="75%">
+						<input id="llineloopoid" required = "true"   class="easyui-validatebox input_bg"  />
+					</td>
+				</tr>
+			    <tr>
+					<td width="25%"><span>桩号类型：</span></td>
+					<td width="75%">
+						<select id="lpointtype" required = "true"   class="easyui-validatebox select"  ></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="25%"><span>桩号：</span></td>
+					<td width="75%">
+						<select id="lmarkeroid" required = "true"   class="easyui-validatebox select"  validType="comboxExists['lmarkeroid']" ></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="25%"><span>偏移：</span></td>
+					<td width="75%">
+						<input id="offset" value='0' required = "true"  class="easyui-validatebox input_bg"  validType="isNumber['']" ></select>
+					</td>
+				</tr>
+			</table>
+			<div class="button-area">
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<a href="#" id="lsaveButton"  class="easyui-linkbutton save-btn"><span>确认</span></a>
+							<a href="#" id="clear" onclick='clearPanel()' class="easyui-linkbutton clear-btn"><span>清空</span></a>
+							<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanelWindow()"> <span>取消</span></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			</from>
+	</div>
+</body>
+</html>

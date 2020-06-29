@@ -1,0 +1,17 @@
+$(function(){	
+	$("#operateLogDatagrid").datagrid({
+		url:rootPath+"/jasframework/operateLog/querySystemOperateLogStatisticsInfo.do",
+		idField:"systemId",
+		collapsible:false,
+		rownumbers:true,
+		nowrap:false,
+		striped:true,
+		columns:[[
+		    {field:"systemId",title:"系统编号",width:150},
+		    {field:"systemName",title:"系统名称",width:250},
+		    {field:"businessname",title:"业务模块",width:250},
+		    {field:"operateNumber",title:"使用次数",width:150}
+		]],
+	});
+	initDatagrigHeight('operateLogDatagrid');
+});

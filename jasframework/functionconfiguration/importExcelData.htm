@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="keywords" content="gis,web"/>
+		<meta name="description" content=""/>
+		<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+	
+		<link rel="stylesheet" type="text/css" href="../common/css/add.css"/>
+		
+		<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../common/js/common.js"></script>
+		<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+		<script type="text/javascript" src="../common/js/validate_class.js"></script>
+		<script type="text/javascript" src="../components/attachment/js/uploadanddownload.js"></script>
+		<script type="text/javascript" src="js/importExcelData.js"></script>
+		<title>导入Excel数据</title>
+	</head>
+	<body style="background: #FFF;">
+	    <!-- 表单区域 -->
+	    <div id="contentArea" class="content-area">
+	    	<!-- 文件选择 -->
+	    	<div id="fileChoose">
+	    		<center style="font-size:20px;font-weight:bold;padding-top:5px;">文件上传</center>
+	    		<div style="width:100%;height:60%;text-align:center;">
+	    			<img alt="" src="image/importDataFlowChart.png" >
+	    		</div>
+		        <form id="fileChooseForm" enctype="multipart/form-data" method="post">
+					<table align="center">
+						<tr>
+					        <td ><span>选择excel文件：</span></td>
+					        <td ><input id="file" name="file" class="file input_bg" type="file" style="width:400px;height:25px" /></td>
+				        </tr>
+		            </table>
+		        </form>
+		        <div style="padding-left:200px;padding-top:20px;color:red;">支持excel2003、2007及以上版本</div>
+	        </div>
+	        <!-- 数据检查结果显示区域 -->
+	        <div id="dataCheckResult" style="display:none;line-height:18px;padding-left:10px;">
+	        	<center style="font-size:20px;font-weight:bold;padding-top:5px;">数据检查结果</center>
+	        </div>
+	        <!-- 数据导入结果显示区域 -->
+	        <div id="dataImportResult" style="display:none;line-height:18px;padding-left:10px;">
+	        	<center style="font-size:20px;font-weight:bold;padding-top:5px;">数据导入结果</center>
+	        </div>
+	    </div>
+	    
+	    <!-- 按钮区域 -->
+	    <div class="button-area">
+	    	<div id="fileChooseButton">
+				<table width="100%">
+					<tr>
+						<td colspan="4" align="center">
+							<a id="uploadfile" href="#" class="easyui-linkbutton submit"  onclick="uploadDataFile();">上传</a>
+							<a id="cancelupload" href="#" class="easyui-linkbutton cancel" onclick="closeSave()">取消</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="dataCheckResultButton" style="display:none">
+				<table width="100%">
+					<tr>
+						<td colspan="4" align="center">
+							<a id="importData-initial" href="#" class="easyui-linkbutton" title="只导入数据库中不存在的记录" iconCls="icon-import" onclick="importData('initial');">导入</a>
+<!-- 							<a id="importData-update" href="#" class="easyui-linkbutton" title="如果数据库中已有excel中的数据，则更新" iconCls="icon-import" onclick="importData('update');">更新导入</a> -->
+<!-- 							<a id="importData-overwrite" href="#" class="easyui-linkbutton" title="先删除原有数据，再导入，适用于子表导入" iconCls="icon-import" onclick="importData('overwrite');">覆盖导入</a> -->
+							<a id="cancel" href="#" class="easyui-linkbutton" title="取消导入操作"iconCls="icon-cancel" onclick="closeSave()">取消</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="dataImportResultButton" style="display:none">
+				<table width="100%">
+					<tr>
+						<td colspan="4" align="center">
+							<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeSave()">关闭</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

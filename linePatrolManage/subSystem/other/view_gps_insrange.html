@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" href="../../../jasframework/common/css/detail.css" type="text/css"></link>
+	<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/query.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/view_gps_insrange.js"></script>
+<script type="text/javascript" src="../../../common/print/printThis.js"></script>
+
+	<style>
+		.button-area {
+			height: 50px;
+		}
+
+		.block-point, .textbox-label {
+			cursor: pointer;
+		}
+
+		#previous {
+			border: 1px solid #ddd;
+			min-width: 100%;
+			min-height: 100px;
+			word-break: break-all;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			border-radius: 5px 5px 5px 5px;
+			padding-bottom: 16px;
+		}
+
+		#description {
+			word-break: break-all;
+			line-height: 25px;
+		}
+
+		#description p {
+			letter-spacing: 4px;
+		}
+
+		.block-point {
+			display: inline-block;
+			width: 189px;
+			height: 21px;
+			margin: 16px 29px;
+		}
+
+		.tgl-btn {
+			display: inline-block !important;
+			margin-left: 29px;
+			margin-top: 10px;
+			margin-right: 10px;
+			padding: 28px 53px !important;
+		}
+
+		#person-detail input {
+			/*width: 245px !important;*/
+		}
+
+		.panel-body.panel-body-noheader.panel-body-noborder {
+			/*overflow-y: hidden;*/
+			/*width: 760px !important;*/
+		}
+
+		label {
+			display: block;
+		}
+
+		#description input {
+			height: 20px;
+			margin: 0;
+			padding: 0 2px;
+			box-sizing: content-box;
+			border-bottom: 1px solid white;
+			width: 60px;
+			/*min-width: 60px;*/
+			text-align: center;
+		}1
+
+		#description input {
+			border-radius: 0px !important;
+		}
+
+		#description .Wdate_focus,
+		#description .input_bg_focus {
+			outline: 0;
+			border-bottom: 1px solid white !important;
+			border-top: 0px !important;
+			border-left: 0px !important;
+			border-right: 0px !important;
+			box-shadow: 0px 0px 0px 0 white !important;
+		}
+
+		#description .Wdate.Wdate_focus,
+		#description textarea.input_bg_focus,
+		#description .textbox-focused.textbox.combo,
+		#description .input_bg.input_bg_focus {
+			border-bottom: 1px solid !important;
+			box-shadow: 0px 0px 0px 0 white !important;
+		}
+
+		#printBtn .l-btn-left.l-btn-icon-left{
+			background-color: white !important;
+			border: 1px solid #58585858 !important;
+		}
+	</style>
+
+</head>
+<body>
+<div class="easyui-tabs-container">
+	<div id="tabContainer" class="easyui-tabs" style="height: 600px;">
+		<div title="其他巡检人员区段信息">
+    <div id="contentArea" class="content-area">
+    	<form class="content-area-main">
+			<input type="hidden" name="taskTime" id="taskTime" />
+    	<h6 class="table-title">基础数据</h6>
+	<!-- 表单区域，每行四列 -->
+			<table align="center" class="detail-table" >
+				<tr>
+					<th width="15%"><span>部门名称</span></th>
+					<td width="35%"><span id="unitid"></span></td>
+					<th width="15%"><span>管线名称</span></th>
+					<td width="35%"><span id="lineloopoid"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>人员名称</span></th>
+					<td width="35%"><span id="inspectorid"></span></td>
+					<th width="15%"><span>巡检角色</span></th>
+					<td width="35%"><span id="patrolRole"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>起始位置</span></th>
+					<td width="35%"><span id="beginlocation"></span></td>
+					<th width="15%"><span>终止位置</span></th>
+					<td width="35%"><span id="endlocation"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>起始里程</span></th>
+					<td width="35%"><span id="beginstation"></span></td>
+					<th width="15%"><span>终止里程</span></th>
+					<td width="35%"><span id="endstation"></span></td>
+				</tr>
+				<tr id = "taskBeginAndEnd">
+					<th width="15%"><span>任务开始日期</span></th>
+					<td width="35%"><span id="insbdate"></span></td>
+					<th width="15%"><span>任务结束日期</span></th>
+					<td width="35%"><span id="insedate"></span></td>
+				</tr>
+				<tr id='taskTimeNode'>
+					<th width="15%"><span>巡检频次</span></th>
+					<td width="35%"><span id="insfreqName"></span></td>
+					<th width="15%"><span>巡线类型 </span></th>
+					<td width="35%"><span id="instypeCodeName"></span></td>
+				</tr>
+
+			</table>
+			<h6 class="table-title">关键点信息</h6>
+			<table id="gpsKeypointdatagrid" class="easyui-datagrid"></table>
+		</form>
+	</div>
+
+	</div>
+	</div>
+	</div>
+
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td  align="center">
+					<a href="#" class="easyui-linkbutton close-btn" onclick="closePanel()"> <span>关闭</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

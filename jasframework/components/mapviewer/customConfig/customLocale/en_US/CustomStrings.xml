@@ -1,0 +1,11 @@
+<strings>
+	<string key="identify" value="identify" />
+	<string key="contour" value="contour" />
+	<string key="shape" value="shape"/>
+	<string key="printMap" value="print"/>
+	<string key="attachment" value="attachment" />
+	<string key="squareSelect" value="Square select" />
+	<string key="polygonSelect" value="Polygon select" />
+	<string key="workAreaQuery" value="WorkArea query " />
+	<string key="wellheadCoordinates" value="Wellhead Coordinates" />
+</strings>

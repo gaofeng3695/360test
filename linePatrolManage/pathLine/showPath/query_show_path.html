@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../common/css/querySpanCommon.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/query_show_path.js"></script>
+
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../../jasframework/privilege/js/privilege.js"></script>
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value="1007"/>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>部门名称：</span></td>
+					<td width="15%"><select id="unitid" name="unitid" class="input_bg"></select></td>
+					<td width="10%" class="text-right"><span>管线名称：</span></td>
+					<td width="15%"><select id="lineloopoid" name="lineloopoid" class="input_bg"></select></td>
+					<td width="10%" class="text-right"><span>巡检人员：</span></td>
+					<td width="9%"><input id="inspectorName" name="inspectorName" class="input_bg"/></td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','gpsInsrangedatagrid')"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,true)"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../../jasframework/common/image/triangle.png" /></td></tr>
+				 <tr>
+				 	<td width="11%" class="text-right"><span>起始位置：</span></td>
+					<td width="22%">
+						<input  id="beginlocation" name="beginlocation" readonly="readonly" class="input_bg"/>
+						<input id="beginstation" name="beginstation" type="hidden" value="" />
+					</td>
+					<td width="11%" class="text-right"><span>终止位置：</span></td>
+					<td width="22%">
+						<input id="endlocation" name="endlocation" readonly="readonly" class="input_bg"/>
+						<input id="endstation" name="endstation" type="hidden" value="" />
+					</td>
+					<td width="11%" class="text-right"><span>管理长度(m)</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="linelength" name="linelength"  class="input_bg"/></td>
+								<td width="10%" class = "text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="linelengthquery" name="linelengthquery" class="input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="11%" class="text-right"><span>采集开始时间：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="collectbegintime" name="collectbegintime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="collectbegintimequery" name="collectbegintimequery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11%" class="text-right"><span>采集结束时间：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="collectendtime" name="collectendtime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="collectendtimequery" name="collectendtimequery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="gpsInsrangedatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="100701" href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="view()"><label><span>查看</span></label></a>
+		<a id="100702" href="#" class="easyui-linkbutton" data-options="iconCls:'fa icon-location'" plain="true" onclick="locationLine()"><label><span>定位</span></label></a>
+		<a id="100703" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele()"><label><span>删除</span></label></a>
+		<!--<a id="100701" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="setIns()"><label><span>巡检人员设置</span></label></a>-->
+		<a id="100704" href="#" class="easyui-linkbutton" data-options="iconCls:'fa icon-bufferwidth'" plain="true" onclick="convertPathlinePoint()"><label><span>标准轨迹线转空间数据</span></label></a>
+		<!--<a id="100701" href="#" class="easyui-linkbutton" data-options="iconCls:'fa icon-bufferwidth'" plain="true" onclick="bufferwidth()"><label><span>缓冲带宽度设置</span></label></a>-->
+		<!--<a href="#" class="easyui-linkbutton" data-options="iconCls:'fa icon-sync'" plain="true" onclick="convertPolyline()"><label><span>保存GPS线空间数据测试</span></label></a>-->
+	</div>
+	<div id="exportBars" style="width:100px;">
+		<div class="easyui-linkbutton fa fa-download" onclick="exportSelect()">导出选中</div>  
+    	<div class="easyui-linkbutton fa fa-download" onclick="exportQuery()">导出查询</div>  
+	</div>
+<!-- 	定义导出弹出窗 -->
+	<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+	
+	<!-- 计算位置div -->
+	<div id="calculationMileage" class="table-content" style = "display:none;">
+	</div>
+</body>
+</html>

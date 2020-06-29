@@ -1,0 +1,26 @@
+.datagrid-header-check, .datagrid-cell-check {
+    height: 21px;
+}
+
+ .query-conditions {
+    margin: 5px;
+}
+
+.datagrid {
+    margin: 5px;
+} 
+
+.query-conditions {
+	/* width:calc(100%-10) !important; */
+    padding: 10px 0px;
+    width: initial !important;
+}
+/* .datagrid.panel-htop{
+	width: initial !important;
+} */
+
+.hide{
+	display:none;
+}
+
+.datagrid-view td>div { white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}

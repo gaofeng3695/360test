@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<configuration>
+	<width>200</width>
+	<color>0x0000dd</color>     <!-- 颜色 -->
+ 	<fontFamily></fontFamily>   <!-- 字体 -->
+ 	<fontSize>12</fontSize>         <!-- 字体 大小-->
+ 	<fontWeight>bold</fontWeight>   <!-- 字体 样式-->
+ 	<tip>当前方案：</tip>
+</configuration>
+
+<!--
+    See Draw widget tag reference at
+    http://links.esri.com/drawwidget
+-->

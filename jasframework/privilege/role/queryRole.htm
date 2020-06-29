@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/easyui_icon.css"></link>
+
+<link rel="stylesheet"  type="text/css" href="../../common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/query.css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/lib/other/jquery.inputDefault.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+<script type="text/javascript" src="../../privilege/js/privilege.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/queryRole.js"></script>
+
+</head>
+<body>
+	<input type="hidden" id="menuid" value="P-PRI-0220"/>
+		
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="approvalQueryForm">
+		<!-- 简单查询区域 -->
+			<table align="center" class="query-table">
+				<tr>
+					<td width="8%"><span key="role.roleName" class="paltform-i18n">角色名称：</span></td>
+					<td width="20%"><input type="text" id="roleName" class="easyui-validatebox input_bg" /></td>
+					<td align="right" colspan="2">
+						<a href="#" id='query' class="easyui-linkbutton query-btn" onclick="queryRole()"><span key="query" class="paltform-i18n">查询</span></a>
+						<a href="#" id='clear' class="easyui-linkbutton clear-btn"  onclick="clearQueryForm('approvalQueryForm',true,true,true,true)"><span key="clear" class="paltform-i18n">清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span key="moreQuery" class="paltform-i18n">高级搜索</span></a>
+					</td>
+				</tr>
+			</table>
+
+		<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../common/image/triangle.png" /></td></tr>
+				<!-- <tr>
+					 <td >检测方法：</td>
+					 <td colspan="3" class="more-conditions">
+						<a class="selected">全部</a>
+						<a>M1常规检测</a>
+						<a>M2交流干扰</a>
+						<a>M3直流干扰</a>
+						<a>M4套管检测</a>
+						<a>M5交叉平行</a>
+						<a>M6阴保有效性</a>	
+						<a>M7专项监测</a>
+						<a>M8绝缘检测</a>
+						<a>M9恒电位仪</a>
+						<a>M10地床检测</a>
+					</td>
+				</tr> -->
+				<tr>
+					<td ><span key="role.roleType" class="paltform-i18n">角色类型：</span></td>
+					<td colspan="3"><select class="select easyui-combobox" id="roleType" name="roleType" ><option value="">请选择</option><option value="1">private</option><option value="2">protect</option></select></td>
+					<td ><span key="role.unitName" class="paltform-i18n">所属部门：</span></td>
+					<td colspan="3"><input type="text" editable="false"  class="easyui-combotree select" id="roleUnitid" name="roleId"  /></td>
+				</tr>
+			</table>	
+		</form>
+	</div>
+		
+<!-- 	datagrid列表  -->
+	<table id="dg"></table>
+	
+<!-- 	datagrid工具栏 -->
+	<div id="toolbar">
+		<a href="#" id="P-PRI-0221" class="easyui-linkbutton fa fa-eye"   onclick="showInfo()"><span key="view" class="paltform-i18n">查看</span></a>
+		<a href="#" id="P-PRI-0222" class="easyui-linkbutton fa fa-plus"  onclick="newRole()"><span key="add" class="paltform-i18n">新增</span></a>
+		<a href="#" id="P-PRI-0223" class="easyui-linkbutton fa fa-edit"  onclick="editRole()"><span key="edit" class="paltform-i18n">修改</span></a>
+		<a href="#" id="P-PRI-0224" class="easyui-linkbutton fa fa-minus" onclick="removeRole()"><span key="delete" class="paltform-i18n">删除</span></a>
+	</div>
+
+	<!-- <div id="dlg_user" class="easyui-dialog" style="width:440px;height:400px;padding:10px"
+		 closed="true"  buttons="#dlg-buttons-role">
+		<div>
+			<select name="a" id="viewUserSel" size="18" style="width: 100%;"></select>
+		</div>
+	</div>
+	
+	<div id="dlg-buttons-role">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_user').dialog('close')">取消</a>
+	</div> -->
+</body>
+</html>

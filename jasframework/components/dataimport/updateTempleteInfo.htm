@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="description" content=""/>
+		<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+		<link rel="stylesheet" type="text/css" href="../../common/css/add.css"/>
+		
+		<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../common/js/common.js"></script>
+		<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+		<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+		<script type="text/javascript" src="js/updateTempleteInfo.js"></script>
+		<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+		
+		<title>更新模版信息</title>
+	</head>
+	<body>
+	<input type="hidden" id="menuid" value="102102"></input>
+	    <!-- 表单区域 -->
+	    <div id="contentArea" class="file-box content-area">
+	    	<!-- 文件选择 -->
+	        <form id="fileTempleteUpdateForm" enctype="multipart/form-data" method="post">
+	        	<div style="padding-top:5px;padding-left:2px;padding-right:2px;">
+					<table id="addTempleteInfo"  align="center" class="attmenttable">
+							<tr width="100%">
+						        <td width="20%"><span key="importdata_businessname" class="paltform-i18n" >业务名称：</span></td>
+						        <td width="80%"><input id='businessNameCellID' name='businessNameCellName' class='easyui-validatebox input_bg' required='true' maxlength='100'/></td>
+						    </tr>
+						    <tr>   
+						        <td><span  key="importdata_tablename" class="paltform-i18n" >数据表名：</span></td>
+						        <td><input id='tableNameCellID' name='tableNameCellName' required='true'/></td>
+					        </tr>
+					        <tr>
+								<td><span key="sispatialdata"  class="paltform-i18n" >是否是空间数据表：</span></td>
+								<td>
+									<select id="isspatialdata" name="isspatialdata" class="easyui-combobox  input_bg"  required='true' panelHeight="auto" onchange="IfShowSpatialdatatype();">
+										<option value="0">否</option>
+										<option value="1" >是</option>
+									</select>
+								</td>
+							</tr>
+							<tr id="shape" style="display:none;">
+								<td><span key="spatialdatatype"  class="paltform-i18n" >空间数据类型：</span></td>
+								<td>
+									<select id="spatialdatatype" name="spatialdatatype" class="easyui-combobox input_bg" panelHeight="auto">
+										<option value="1">点</option>
+										<option value="2">线</option>
+										<option value="3">面</option>
+									</select>
+								</td>
+							</tr>
+						<tr>
+							<td><span key="importdata_createdbyfield"  class="paltform-i18n" >创建人字段：</span></td>
+							<td><input id="createdbyfield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name='createdbyfield' class='easyui-combobox input_bg'/></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_creationtime"  class="paltform-i18n" >创建时间：</span></td>
+							<td><input id="createddatefield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="createddatefield"   class='easyui-combobox input_bg'/></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_finallymender"  class="paltform-i18n" >最后修改人：</span></td>
+							<td><input id="modifiedbyfield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name='modifiedbyfield' class='easyui-combobox input_bg' /></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_finallymodificationtime"  class="paltform-i18n" >最后修改时间：</span></td>
+							<td><input id="lastmodifiedfield" valueField="COLUMN_NAME" textField="COLUMN_NAME" name="lastmodifiedfield"   class='easyui-combobox input_bg'  /></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_primarykey"  class="paltform-i18n" >主键：</span></td>
+							<td><input id="pkfield" name="pkfield"  valueField="COLUMN_NAME" textField="COLUMN_NAME"  class='easyui-combobox input_bg'/></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_foreignkey"  class="paltform-i18n" >外键：</span></td>
+							<td><input id="fkfield" name="fkfield" valueField="COLUMN_NAME" textField="COLUMN_NAME"  class='easyui-combobox input_bg'  /></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_repetitionfield"  class="paltform-i18n" >重复性字段验证：</span></td>
+							<td><input id="uniquenessvalidatefield" name="uniquenessvalidatefield" valueField="COLUMN_NAME" textField="COLUMN_NAME"  class='easyui-combobox input_bg' multiple="true" /></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_datavalidationlisteningclass"  class="paltform-i18n" >数据校验监听类：</span></td>
+							<td><input id='datachecklistener' name='datachecklistener' class='easyui-validatebox input_bg' maxlength='500'/></td>
+						</tr>
+						<tr>
+							<td><span key="importdata_dataimportlisteningclass"  class="paltform-i18n" >数据导入监听类：</span></td>
+							<td><input id='datasavelistener' name='datasavelistener' class='easyui-validatebox input_bg' maxlength='500'/></td>
+						</tr>
+		            </table>
+			        <table id="updateTempleteInfo"  align="center" class="attmenttable">
+				        <tr width="100%">
+					        <td width="20%"><span key="importdata_templetefile"  class="paltform-i18n" >模版文件：</span></td>
+					        <td width="60%"><span id="filename"></span></td>
+					        <td width="20%"><a id='deleteCellButton' href='#' iconCls='icon-edit' plain='true' class='easyui-linkbutton' onclick='deleteTempleteFile(this)'><span key="edit"  class="paltform-i18n" >修改</span></a></td>
+				        </tr>
+		            </table>
+	            </div>
+	        </form>
+	    </div>
+	    
+	    <!-- 按钮区域 -->
+	    <div class="button-area">
+	    	<div id="fileChooseButton">
+				<table width="100%">
+					<tr>
+						<td colspan="4" align="center">
+							<a href="#" class="easyui-linkbutton submit" onclick="updateTempleteInfo();"><span key="save"  class="paltform-i18n" >保存</span></a>
+							<a href="#" class="easyui-linkbutton cancel" onclick="closeSave()"><span key="close"  class="paltform-i18n" >取消</span></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

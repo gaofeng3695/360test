@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/querySpanCommon.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/query_gps_device.js"></script>
+
+	<script type="text/javascript" src="../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../jasframework/privilege/js/privilege.js"></script>
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value="110201"/>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>部门名称：</span></td>
+					<td width="15%"><select id="unitid" name="unitid" class="input_bg"></select></td>
+					<td width="10%" class="text-right"><span>设备名称：</span></td>
+					<td width="15%"><input  id="devname" name="devname"  class="input_bg"/></td>
+					<td width="10%" class="text-right"><span>SIM卡号：</span></td>
+					<td width="15%"><input id="sim" name="sim"  class="input_bg"/></td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','gpsDevicedatagrid')"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true)"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../jasframework/common/image/triangle.png" /></td></tr>
+				<tr>
+					<td width="11%" class="text-right"><span>终端状态：</span></td>
+					<td width="22%"><select id="status" name="status" class="input_bg"></select></td>
+					<td width="11%" class="text-right"><span>设备分配情况：</span></td>
+					<td width="22%"><select id="condition" name="condition" class="input_bg"></select></td>
+					<td width="11%" class="text-right"><span>设备类型：</span></td>
+					<td width="22%"><select id="devtype" name="devtype"  class="input_bg"></select></td>
+				</tr>
+				<tr>
+					<td width="11%" class="text-right"><span>设备编号：</span></td>
+					<td width="22%"><input id="devcode" name="devcode"  class="input_bg"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="gpsDevicedatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="11020101" href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="view()"><label><span>查看</span></label></a>
+		<a id="11020102" href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="add()"><label><span>新增</span></label></a>
+		<a id="11020103" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="update()"><label><span>修改</span></label></a>
+		<a id="11020104" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele()"><label><span>删除</span></label></a>
+		<a id="11020105" href="#" class="easyui-linkbutton fa fa-upload" plain="true" onclick="importData()"><label><span>导入</span></label></a>
+		<a id="11020106" href="#" class="easyui-menubutton fa fa-download" onclick="exportSelect()" plain="true" ><label><span>导出</span></label></a>
+		<a id="11020107" href="#" class="easyui-linkbutton fa fa-download" plain="true" onclick="downloadExcel()"><label><span>下载导入模板</span></label></a>
+		<a id="11020108" href="#" class="easyui-linkbutton fa icon-declare" data-options="iconCls:'fa icon-declare'" plain="true" onclick="declare()"><label><span>故障申报</span></label></a>
+		<!-- <a id="1022040108" href="#" class="easyui-linkbutton fa icon-declare" data-options="iconCls:'fa icon-review'" plain="true" onclick="review()"><label><span>故障审核</span></label></a>-->
+		<a id="11020109" href="#" class="easyui-linkbutton fa icon-declare" data-options="iconCls:'fa icon-logout'" plain="true" onclick="logout()"><label><span>故障注销</span></label></a>
+	</div>
+	<div id="exportBars" style="width:100px;">
+		<div class="easyui-linkbutton fa fa-download" onclick="exportSelect()">导出选中</div>  
+    	<div class="easyui-linkbutton fa fa-download" onclick="exportQuery()">导出查询</div>  
+	</div>
+<!-- 	定义导出弹出窗 -->
+	<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿
+<!--**************包括点、线、面、图片等的JSON对象说明****************-->
+
+
+1.点(Point)
+
+	{"x" : <x>, "y" : <y>, "z" : <z>, "m" : <m>, "spatialReference" : {<spatialReference>}}
+	示例：{"x" : -118.15, "y" : 33.80, "spatialReference" : {"wkid" : 4326}}
+
+2.多点(MultiPoint) 
+	{
+	  "hasM" : true | false,
+	  "hasZ" : true | false,
+	  "points" : [[ <x1>, <y1>, <z1>, <m1> ] , [ <x2>, <y2>, <z2>, <m2> ], ... ], 
+	  "spatialReference" : {<spatialReference>}
+	}
+
+	示例：{"points" : [ [-97.06138,32.837], [-97.06133,32.836], [-97.06124,32.834], [-97.06127,32.832] ],"spatialReference" : {<spatialReference>}}
+
+3、线(Polyline)
+	{
+	  "hasZ" : true | false,
+	  "hasM" : true | false,
+	  "paths" : [[[<x11>, <y11>, <z11>, <m11>],...,[<x1N>, <y1N>, <z1N>, <m1N>]],
+				 ,...,[[<xk1>, <yk1>, <zk1>, <mk1>],...,[<xkM>, <ykM>, <zkM>, <mkM>]]],
+	  "spatialReference" : {<spatialReference>}
+	}
+	示例：{
+			"paths" : [ 
+			 [ [-97.06138,32.837], [-97.06133,32.836], [-97.06124,32.834], [-97.06127,32.832] ], 
+			 [ [-97.06326,32.759], [-97.06298,32.755] ]
+			],
+			"spatialReference" : {"wkid" : 4326}
+		  }
+
+4.面(Polygon)
+	{
+	  "hasZ" : true | false,
+	  "hasM" : true | false,
+	  "rings" : [[[<x11>, <y11>, <z11>, <m11>],...,[<x1N>, <y1N>, <z1N>, <m1N>]],
+				 ,...,[[<xk1>, <yk1>, <zk1>, <mk1>],...,[<xkM>, <ykM>, <zkM>, <mkM>]]],
+	  "spatialReference" : {<spatialReference>}
+	}
+	示例：{
+			"rings" : [ 
+			 [ [-97.06138,32.837], [-97.06133,32.836], [-97.06124,32.834], [-97.06127,32.832], [-97.06138,32.837] ], 
+			 [ [-97.06326,32.759], [-97.06298,32.755], [-97.06153,32.749], [-97.06326,32.759] ]
+			],
+			"spatialReference" : {"wkid" : 4326}
+		  }
+	
+4.路由对象(RouteObject,系统自定义)
+	var routeObject = {
+		geometry:PolylineObject,
+		attributes:[
+			{
+				objectId:number,//对象ID,如果为新添加的顶点，为空
+				name:string,//顶点名称，一般为桩号
+				nameUsedBefore:string,//修改之前顶点名称
+				x:number,//横坐标
+				y:number,//纵坐标
+				z:number,//高程
+				m:number,//里程值
+				updatedGeometry:boolean//是否修改了顶点坐标。如果为新添加的，该值为true;
+			},
+			{
+				objectId:number,//对象ID,如果为新添加的顶点，为空
+				name:string,//顶点名称，一般为桩号
+				nameUsedBefore:string,//修改之前顶点名称
+				x:number,//横坐标
+				y:number,//纵坐标
+				z:number,//高程
+				m:number,//里程值
+				updatedGeometry:boolean//是否修改了顶点坐标。如果为新添加的，该值为true;		
+			}
+		]
+	}

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../../jasframework/common/css/query.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="../../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/query_project_progress.js"></script> 		
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value="13010505"/>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<!-- 简单查询区域 -->
+				<table class="query-table" align="center">
+					<tr>
+						<td width="10%" class="text-right"><span>工程进展</span></td>
+						<td width="15"><select class="easyui-validatebox input_bg" id="progressid" name="progressid" class="input_bg"></select></td>
+						<td width="10%" class="text-right"><span>日期：</span></td>
+						<td width="45%">
+							<table width="100%">
+								<tr>
+									<td width="45%" style="padding-left:0em"><input id="modifyDatetime" name="modifyDatetime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+									<td width="10%" class="text-center">到</td>
+									<td width="45%" style="padding-right:0em"><input id="modifyDatetimeQuery" name="modifyDatetimeQuery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								</tr>
+							</table>
+						</td>
+
+						<td align="right" colspan="2">
+							<a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','projectProgressdatagrid')"><span>查询</span></a>
+							<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,true,'projectProgressdatagrid')"><span>清空</span></a>
+						</td>
+					</tr>
+				</table>
+			</table>
+			
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="projectProgressdatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="1301050501" href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="view()"><label><span>查看</span></label></a>
+		<!--<a id="1301050502" href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="add()"><label><span>新增</span></label></a>
+		<a id="1301050503" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="update()"><label><span>修改</span></label></a>
+		<a id="1301050504" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele()"><label><span>删除</span></label></a>-->
+	</div>
+</body>
+</html>

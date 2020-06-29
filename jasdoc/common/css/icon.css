@@ -1,0 +1,112 @@
+.icon-tree-center-node-open{
+	background:url('../images/tree-center-node-open.png') no-repeat;
+}
+.icon-tree-center-node-close{
+	background:url('../images/tree-center-node-close.png') no-repeat;
+}
+.icon-tree-favorite-node-open{
+	background:url('../images/tree-favorite-node-open.png') no-repeat;
+}
+.icon-tree-favorite-node-close{
+	background:url('../images/tree-favorite-node-close.png') no-repeat;
+}
+.icon-tree-classify-node-open{
+	background:url('../images/tree-classify-node-open.png') no-repeat;
+}
+.icon-tree-classify-node-close{
+	background:url('../images/tree-classify-node-close.png') no-repeat;
+}
+.icon-upload{
+	background:url('../images/upload.png') no-repeat;
+}
+.icon-favorite{
+	background:url('../images/favorite.png') no-repeat;
+}
+.icon-defalutfavorite{
+	background:url('../images/defalutfavorite.png') no-repeat;
+}
+.icon-delete{
+	background:url('../images/delete.png') no-repeat;
+}
+.icon-recycle{
+	background:url('../images/recycle.png') no-repeat;
+}
+.icon-classify{
+	background:url('../images/classify.png') no-repeat;
+}
+.icon-move{
+	background:url('../images/move1.png') no-repeat;
+}
+.icon-arrow_redo{
+	background:url('../images/arrow_redo.png') no-repeat;
+}
+.icon-category{
+	background:url('../images/category.png') no-repeat;
+}
+.icon-alloronly{
+	background:url('../images/alloronly.png') no-repeat;
+}
+.icon-recyclebin{
+	background:url('../images/recyclebin.png') no-repeat;
+}
+.icon-operatelog{
+	background:url('../images/operateLog.png') no-repeat;
+}
+.icon-privilegerole{
+	background:url('../images/privilegerole.png') no-repeat;
+}
+.icon-privilegedeparment{
+	background:url('../images/privilegedeparment.png') no-repeat;
+}
+.icon-preview{
+	background:url('../images/preview.png') no-repeat;
+}
+.icon-download{
+	background:url('../images/download.png') no-repeat;
+}
+.icon-tip{
+	background:url('../images/tip.png') no-repeat;
+}
+.icon-update{
+	background:url('../images/pencil.png') no-repeat;
+}
+.icon-share{
+	background:url('../images/share.png') no-repeat;
+}
+.icon-version{
+	background:url('../images/version.png') no-repeat;
+}
+.icon-open{
+	background:url('../images/openfolder.png') no-repeat;
+}
+.icon-createfolder{
+	background:url('../images/createfolder.png') no-repeat;
+}
+.icon-operation{
+	background:url('../images/operation.png') no-repeat;
+}
+.icon-moreoperation{
+	background:url('../images/moreoperation.png') no-repeat;
+}
+.icon-treecollapseAll{
+	background: url("../images/treecollapseAll.png") no-repeat;
+}
+.icon-treeexpandAll{
+	background: url("../images/treeexpandAll.png") no-repeat;
+}
+.icon-treeexpand1{
+	background: url("../images/treeexpand1.png") no-repeat;
+}
+.icon-level{
+	background: url("../images/levels.png") no-repeat;
+}
+.icon-treecollapse{
+	background: url("../images/treecollapse.png") no-repeat;
+}
+.icon-treeexpand{
+	background: url("../images/treeexpand.png") no-repeat;
+}
+.icon-combo{
+	background: url("../images/combo_arrow.png") no-repeat center center;
+	background-color: #E0ECFF;
+}

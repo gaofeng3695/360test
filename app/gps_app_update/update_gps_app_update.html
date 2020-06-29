@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">
+<!-- 加载文件列表  -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/webuploader/initialize_webuploader.css">				
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<!-- 加载文件列表 -->
+<script type="text/javascript" src="../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_file.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/update_gps_app_update.js"></script> 	
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsAppUpdateForm" class="content-area-main" method="post">
+			<input id="oid" name="oid" type="hidden" value="" />
+			<div class="table-content">
+			<h6 class="table-title">基本信息</h6>
+				<table align="center" class="edit-table">
+					<tr>
+						<td width="20%"><span>App名称：</span></td>
+						<td width="30%">
+							<input id="appPackageName" name="appPackageName" class="easyui-validatebox input_bg" required="true" maxlength="38"/>
+						</td>
+						<td width="20%"><span>App类型：</span></td>
+						<td width="30%">
+							<input id="appType" name="appType" class="easyui-validatebox select" required="true"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>App平台：</span></td>
+						<td width="30%">
+							<input id="appPlatform" name="appPlatform" class="easyui-validatebox select" required="true" maxlength="38"/>
+						</td>
+						<td width="20%"><span>App版本号：</span></td>
+						<td width="30%">
+							<input id="versionNumber" name="versionNumber"  class="easyui-validatebox input_bg" required="true" ></input>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>App大小（M）：</span></td>
+						<td width="30%">
+							<input id="appSize" name="appSize" class="easyui-validatebox input_bg" required="true" validType="" maxlength="60"/>
+						</td>
+						<td width="20%"><span>是否必须更新：</span></td>
+						<td width="30%">
+							<input id="isRequired" name="isRequired" class="easyui-validatebox select" required="true"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>更新描述：</span></td>
+						<td width="80%" colspan="3">
+							<textarea id="updateDesc" name="updateDesc" style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%"><span>安装包路径：</span></td>
+						<td width="80%" colspan="3">
+							<textarea id="appDirectory" name="appDirectory" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsAppUpdate()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

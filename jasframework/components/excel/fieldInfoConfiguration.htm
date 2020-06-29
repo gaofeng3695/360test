@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/add.css"/>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="js/excel.js"></script>
+	<script type="text/javascript" src="js/fieldInfoConfiguration.js"></script>
+	<title>字段基本信息配置</title>
+</head>
+<body>
+	<div class="master-table">
+		<table>
+			<tr>
+				<td>
+					<div>
+						<table id="grid_left" style="width:405px;height:190px;"></table>
+					</div>
+				</td>
+				<td>
+					<input type="button" value="&nbsp;>>" onclick="adds()" style="width:40px;"/><br /><br />
+                	<input type="button" value="&nbsp;&lt;&lt;" onclick="removes()" style="width:40px;"/><br />
+				</td>
+				<td>
+					<div>
+						<table id="grid_right" style="width:406px;height:190px;"></table>
+					</div>
+				</td>
+			</tr>
+			<tr><td valign="top"><br></td><td valign="top"><br></td><td valign="top"></tr> 
+		</table>
+		<div id="editForm">
+		<form id="fieldForm">
+			<div class="easyui-tabs" style="width:860px;height:210px">
+				
+				<div title="基本信息">
+					<table class="edit-table">
+						<tr>
+							<td width="10%"><span>字段名称：</span></td>
+							<td width="15%"><input id="fieldName" name="fieldName"  class="easyui-validatebox input_bg" disabled="disabled" required="true" /></td>
+							<td width="10%"><span>字段别名：</span></td>
+							<td width="15%"><input id="fieldAlias" name="fieldAlias"  class="easyui-validatebox input_bg"/></td>
+							<td width="10%"><span>是否外键：</span></td>
+							<td width="15%"><input id="isForeignField" name="isForeignField" class="easyui-combobox" required="true" /></td>
+							<td width="10%"><span>外键字段：</span></td>
+							<td width="15%"><input id="foreignField" name="foreignField" class="easyui-combobox"/></td>
+						</tr>
+						<tr>
+							<td width="10%"><span>其他关联查询字段：</span></td>
+							<td width="25%"><input id="associateField" name="associateField" class="easyui-combobox"/></td>
+							<td><span>对应字段：</span></td>
+							<td colspan="5"><input id="associateValue" name="associateValue"  class="easyui-validatebox input_bg" /></td>
+						</tr>						
+						<tr class="foreign_type">
+							<td><span>输入类型：</span></td>
+							<td><input id="inputType" name="inputType" class="easyui-combobox" /></td>
+							<td><span>数据来源：</span></td>
+							<td colspan="5"><input id="dataSource" name="dataSource"  class="easyui-validatebox input_bg" /></td>
+						</tr>
+						<tr class="input_type">
+							<td><span>所属分组：</span></td>
+							<td><input id="groupName" name="groupName" class="easyui-validatebox input_bg" /></td>
+							<td><span>单元起始行：</span></td>
+							<td><input id="beginRow" name="beginRow"  class="easyui-validatebox input_bg" data-options="validType:'number'" validType="maxLength[5]"/></td>
+							<!-- <td><span>单元终止行：</span></td>
+							<td><input id="endRow" name="endRow"  class="easyui-validatebox input_bg" data-options="validType:'number'" /></td> -->
+							<td><span>单元起始列：</span></td>
+							<td><input id="beginColumn" name="beginColumn"  class="easyui-validatebox input_bg" data-options="validType:'number'" validType="maxLength[3]"/></td>
+							<td><span>单元终止列：</span></td>
+							<td><input id="endColumn" name="endColumn"  class="easyui-validatebox input_bg" data-options="validType:'number'"  validType="maxLength[3]" /></td>
+						</tr>
+						<tr class="input_type">
+							<td rowspan="2"><span>备注：</span></td>
+							<td rowspan="2" colspan="7"><textarea name="remark" cols="25" rows="5" id="remark" class="easyui-validatebox" validType="maxLength[300]"></textarea></td>
+						</tr>
+					</table>
+				</div>
+				<div title="数据有效性">
+					<table class="edit-table input_type">
+						<tr>
+							<td width="10%"><span>验证类型：</span></td>
+							<td width="30%"><input id="validateType" name="validateType" class="easyui-combobox" /></td>
+							<td width="30%"></td>
+	            			<td width="30%"></td>
+						</tr>
+						<tr id="operator">
+							<td><span>运算符：</span></td>
+							<td><input id="excelOperator" name="excelOperator" class="easyui-combobox" /></td>
+						</tr>
+						<tr id="beginNum" class="num">
+							<td class="beginNumClass"><span>最小值：</span></td>
+							<td><input id="validateBeginValue" name="validateBeginValue"  class="easyui-validatebox input_bg" /></td>
+						</tr>
+						<tr id="endNum" class="num">
+							<td class="endNumClass"><span>最大值：</span></td>
+							<td><input id="validateEndValue" name="validateEndValue"  class="easyui-validatebox input_bg" /></td>
+						</tr>
+            		</table>
+            	</div>
+				<div title="输入提示信息">
+					<br />
+					<table class="edit-table input_type">
+	            		<tr>
+	            			<td width="12%"><span>输入提示信息：</span></td>
+							<td width="76%"><textarea id="excelInputMsg" name="excelInputMsg" cols="25" rows="5" class="easyui-validatebox" validType="maxLength[300]"></textarea></td>
+	            			<td width="12%"></td>
+	            		</tr>
+	            	</table>
+				</div>
+				<div title="出错警告">
+					<br />
+					<table class="edit-table input_type">
+	            		<tr>
+	            			<td width="12%"><span>错误模式：</span></td>
+	            			<td width="20%"><input id="excelErrorMode" name="excelErrorMode" class="easyui-combobox" /></td>
+	            			<td width="50%"></td>
+	            			<td width="18%"></td>
+	            		</tr>
+	            		<tr>
+	            			<td><span>错误提示信息：</span></td>
+							<td colspan="2"><textarea id="excelErrorMsg" name="excelErrorMsg" cols="25" rows="5" class="easyui-validatebox" validType="maxLength[300]"></textarea></td>
+	            		</tr>
+	            	</table>
+				</div>
+			</div>
+				</form>
+		</div>
+	</div>
+	<!-- 按钮区域 -->
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+ 				<td>
+ 					<a id="saveExcelFieldInfoButton" href="#" class="easyui-linkbutton save-btn" onclick="saveExcelFieldInfo()">保存</a>
+					<a id="closeExcelFieldInfoButton" href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()">取消</a>
+ 				</td>
+  			</tr>
+  		</table>
+ 	</div> 
+</body>
+</html>

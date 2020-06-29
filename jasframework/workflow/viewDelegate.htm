@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>查看委托信息</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/detail.css" type="text/css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/delegate.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var pkfield = getParamter("pkfield");
+			loadInfoForViewPage(pkfield);
+			//加载数据变更记录
+			addBusinessHistoryRecords(pkfield,"histroryRecordContainer");
+		});
+	</script>
+</head>
+<body>
+	<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-WF-0120"/>
+	<!-- 内容展示区域 -->
+	<div id="contentArea" class="content-area">
+		<form class="content-area-main">
+			<!-- 表单区域，每行四列 -->
+	        <div class="table-content">
+				<h6 class="table-title">基本信息</h6>
+				<table align="center" class="detail-table" >
+					<tr>
+						<th><span key="workflow.delegateToUserName" class="paltform-i18n">被委托用户：</span></th>
+						<td><span id="delegateUserName"></span></td>
+						<th><span key="workflow.delegateStatus" class="paltform-i18n">委托状态：</span></th>
+						<td><span id="status"></span></td>
+					</tr>
+					<tr>
+						<th><span key="workflow.delegateStartTime" class="paltform-i18n">委托开始时间：</span></th>
+						<td><span id="startTime"></span></td>
+						<th><span key="workflow.delegateEndTime" class="paltform-i18n">委托结束时间：</span></th>
+						<td><span id="endTime"></span></td>
+					</tr>
+					<tr>
+					    <th><span key="workflow.remark" class="paltform-i18n">备注：</span></th>
+					    <td colspan="3" style="height: 60px;"><span id="remark"></span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="table-content">
+				<h6 class="table-title">历史记录</h6>
+				<div id="histroryRecordContainer"></div>
+			</div>
+		</form>
+	</div>
+	
+	
+	<div id="contentArea" class="content-area">
+	<!-- 详细信息 -->
+	<table class="detail-table">
+		<tr>
+			<th><span key="workflow.delegateuser" class="paltform-i18n">被委托用户：</span></th>
+			<td><span id="delegateuserName"></span></td>
+			<th><span key="workflow.statusName" class="paltform-i18n">委托状态：</span></th>
+			<td><span id="statusName"></span></td>
+		</tr>
+		<tr>
+			<th><span key="workflow.delegateStarttime" class="paltform-i18n">委托开始时间：</span></th>
+			<td><span id="delegateStarttime"></span></td>
+			<th><span key="workflow.delegateEndtime" class="paltform-i18n">委托结束时间：</span></th>
+			<td><span id="delegateEndtime"></span></td>
+		</tr>
+		<tr>
+		    <th><span key="workflow.remarks" class="paltform-i18n">备注：</span></th>
+		    <td colspan="3" style="height: 60px;"><span id="remarks"></span></td>
+		</tr>
+	</table>
+	<div class="button-area">
+		<table width='100%' align="center">
+			<tr>
+				<td>
+					<a href="#" class="easyui-linkbutton cancel" onclick="closePanel('viewDelegateIframe');">
+						<span key="close" class="paltform-i18n">关闭</span>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+</body>
+</html>

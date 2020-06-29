@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>登录日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	
+
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+    <link rel="stylesheet" type="text/css" href="../common/css/add.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/detail.css"/>
+    
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script> 
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="../components/attachment/js/uploadanddownload.js"></script>
+	<script type="text/javascript" src="js/businessForm.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript">
+	var fileoCount=4
+	</script>
+	<style type="text/css">
+	.detail-table td {
+	background: #F5FCFF;
+}
+	</style>
+</head>
+<body onload="loadData();">
+<div id="contentArea" class="content-area">
+	<!-- 	上传文件扩展名 -->
+	<input type="hidden" id="exts" name="exts" value="exe,rar,jar,doc,docx,txt,jpg,png,pdf,zip,xls,xlsx,dwg" ></input>
+	<!-- <input type="hidden" class="workflowVar" id="area" value="area3" /> -->
+	<!-- 说明：以下由anzhao添加  目的是方便为任务节点书写办理人监听类 -->
+	<input type="hidden" class="workflowVar" id="area1" value="area1" />
+	<input type="hidden" class="workflowVar" id="area2" value="area2" />
+	<input type="hidden" class="workflowVar" id="area3" value="area3" />
+	<input type="hidden" class="workflowVar" id="area4" value="area4" />
+	<input type="hidden" class="workflowVar" id="area5" value="area5" />
+		
+<!-- 	新增form表单 -->
+	<form id="savePcUser" method="post">
+		<input type="hidden" id="eventid" name="eventid"/>
+		<table align="center" class="edit-table" >
+			<tr>
+			    <td width="15%"><span>姓名:</span></td>
+				<td width="35%"><input id="usernameID" type="text"  name='username' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空" validType="general" maxlength="20"/></td>
+				<td width="15%"><span>性别:</span></td>
+				<td width="35%">
+					<select id="sex" class="easyui-combobox" name="sex" style="width:200px;" editable="false" panelHeight="auto" required="true">  
+					   	<option value="男">男</option>
+		 				<option value="女">女</option>
+					</select>
+				</td>
+			</tr>
+<!-- 			<tr>  -->
+<!-- 				<td height="33" colspan="4" align="center"> -->
+<!-- 		        	<div id="uploadanddownloadDIV" align="right"></div> -->
+<!-- 		        </td> -->
+<!-- 		    </tr> -->
+		</table>
+	</form>
+	<div id="uploadanddownloadDIV" align="right"></div>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				 <td >
+				    <a id="10060106" href="#" class="easyui-linkbutton submit" onclick="save()">保存</a>
+					<a id="10060107" href="#" class="easyui-linkbutton cancel"  onclick="closeWindow();">取消</a>
+					<a id="butForWorkflow" href="#" class="easyui-linkbutton submit" onclick="saveForWorkflow()">保存并发起流程</a>
+				 </td>
+  			</tr>
+	    </table>
+	</div>
+</body>
+</html>

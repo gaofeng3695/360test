@@ -1,0 +1,153 @@
+@charset "utf-8";
+/** 
+ * @file
+ * @author  lizz
+ * @desc  文件上传二次封装样式
+ * @date  2017-08-15
+ * @last modified by lizz
+ * @last modified time  2017-08-15
+ */
+
+.fileupload a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.fileupload{
+    width:100%;
+    text-align: center;
+}
+.fileupload .upload-container{
+    width:200px;
+    height: 200px;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    margin: 20px auto;
+    position: relative;
+    
+}
+.fileupload .upload-container b{
+    width: 100%;
+    display: block;
+    background: url(../image/fileupload/upload-icon.png) top center no-repeat;
+    padding: 45px 0 5px 0;
+    text-align: center;
+    font-weight: normal;
+    color: #9a9a9a;
+    margin: 30px 0 0;
+}
+.fileupload .upload-container p{
+     color: #9a9a9a;
+}
+.fileupload .upload-container .upload-button{
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px auto;
+    background-color: #60aa25;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.fileupload  .table-head-title{
+    text-align: left;
+    text-indent: 1em;
+    margin-bottom: 10px;
+}
+
+.fileupload .table-content{
+    width:100%;
+    font-size:14px;
+}
+.fileupload  .drop-show{
+    display: none;
+}
+.fileupload .table-content th{
+    font-weight: normal;
+    height: 30px;
+}
+.fileupload .table-content td{
+    text-align: center !important;
+}
+.fileupload .table-content td:last-of-type a{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 5px;
+}
+/* .fileupload .table-content .upload-file-content{
+    padding-left:15px;
+} */
+.fileupload .table-content input[type="text"]{
+    padding:0px 5px;
+    height: 25px;
+    line-height:25px;
+    border-radius: 4px;
+    border: 1px solid #eee
+}
+.fileupload .table-content .upload-row{
+    background: url(../image/fileupload/upload.png);
+}   
+.fileupload .table-content .add-row{
+    background: url(../image/fileupload/add.png);
+}
+.fileupload .table-content .delete-row{
+    background: url(../image/fileupload/delete.png);
+}
+.fileupload .table-content .cancel-row{
+    background: url(../image/fileupload/cancel.png);
+}
+.fileupload .table-content .error-row{
+    background: url(../image/fileupload/error_no.png);
+} 
+.fileupload .table-content .progress-value{
+    height:8px;
+    border-radius: 3px;
+    background: #eee;
+}
+.fileupload .table-content .progress-bar{
+    height:8px;
+    width:0%;
+    border-radius: 3px;
+    background: #81c548;
+}
+.fileupload .table-content .upload-success,
+.fileupload .table-content .upload-error{
+    display: none;
+}
+.fileupload .table-content .success-icon,
+.fileupload .table-content .error-icon{
+    position: relative;
+}
+.fileupload .table-content .success-icon::before,
+.fileupload .table-content .error-icon::before{
+    position: absolute;
+    left: -14px;
+    top: 2px;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+.fileupload .table-content .success-icon::before{
+    background: url(../image/fileupload/success.png);
+}
+.fileupload .table-content .error-icon::before{
+    background: url(../image/fileupload/error.png);
+}
+
+.fileupload .btn-info{
+   padding: 20px 0px;
+   height:45px;
+   line-height: 45px;
+}
+
+.fileupload .submit-button{
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #59b6fc;
+    border: 1px solid #88BBF9
+}
+.fileupload .submit-button:hover{
+    opacity: 0.9;
+}

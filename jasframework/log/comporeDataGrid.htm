@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>登录日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+    <link rel="stylesheet" type="text/css" href="../common/css/query.css"/>
+    
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/lib/date/My97DatePicker/WdatePicker.js"></script> 
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="js/comporeDataGrid.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+</head>
+<body onload="loadData();">
+<input type="hidden"  id="menuid" value="101301"></input>
+	<table id="loginLogTable" style="height:300px">
+		<thead>
+			<tr>
+	            <th field="columnid" width="100"><span key="operatelog.field" class="paltform-i18n">字段</span></th>
+	            <th field="columnname" width="100"><span key="operatelog.fieldname" class="paltform-i18n">字段名称</span></th>
+	            <th field="newValue" width="100" formatter="formatNewValue"><span key="operatelog.newvalue" class="paltform-i18n">新值</span></th>
+	            <th field="oldValue" width="100"><span key="operatelog.oldvalue" class="paltform-i18n">旧值</span></th>
+	    	</tr>
+	    </thead>
+	</table>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" href="../../jasframework/common/css/query.css" type="text/css"></link>
+	
+	<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<!-- <script type="text/javascript" src="" id="i18nEasyui"></script> -->
+	<!-- <script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script> -->
+	<script type="text/javascript" src="../folder/js/queryNoCreate.js"></script>
+</head>
+<body oncontextmenu="return true" >
+	<div class="easyui-panel" key="chaxun" id="userquery"  collapsible="true" collapsed="true" title="查询条件" style="padding:1px">
+		<form method="post" id="approvalQueryForm">
+			<table align="center" class="querytable" id="queryDiv">
+				<tr>
+					<td width="15%"><span key="" class="paltform-i18n">是否创建索引：</span></td>
+					 <td width="35%"><select id="createIndex" name="createIndex" class="easyui-combobox">
+										<option value="">--请选择--</option>
+										<option value="0">否</option>
+										<option value="1">是</option>
+									</select>
+					</td>	
+					<td width="15%"><span key="" class="paltform-i18n">是否生成预览：</span></td>
+				    <td width="35%"><select id="createSwf" name="createSwf" class="easyui-combobox">
+										<option value="">--请选择--</option>
+										<option value="0">否</option>
+										<option value="1">是</option>
+									</select>
+					</td>	
+				</tr>
+				<tr>
+					<td width="15%"><span key="" class="paltform-i18n">是否添加水印：</span></td>
+					 <td width="35%"><select id="addWaterMark" name="addWaterMark" class="easyui-combobox">
+										<option value="">--请选择--</option>
+										<option value="0">否</option>
+										<option value="1">是</option>
+									</select>
+					</td>	
+					<td></td>
+				    <td></td>	
+				</tr>
+				<tr>
+					<td colspan="4">
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryDocByConditions()"><label><span key="query" class="paltform-i18n">查询</span></label></a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryConditions()"><label><span key="clear" class="paltform-i18n">清空</span></label></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<table id="dg"  toolbar="#toolbar" title="文档列表">
+	</table>
+	<div id="toolbar">
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="createSelectedFileIndex()"><span key="file.up" class="paltform-i18n">添加索引</span></a>
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="createSelectedFileSwf()"><span key="file.up" class="paltform-i18n">生成预览</span></a>
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="createSelectedFileWaterMark()"><span key="file.up" class="paltform-i18n">添加水印</span></a>
+	</div>
+</body>
+</html>

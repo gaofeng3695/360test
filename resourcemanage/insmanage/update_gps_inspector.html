@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">		
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/update_gps_inspector.js"></script> 	
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsInspectorForm" class="content-area-main" method="post">
+		<h6 class="table-title">基础数据</h6>
+			<input id="oid" name="oid" type="hidden" value="" />
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>部门名称：</span></td>
+					<td width="30%">
+						<select id="unitid" name="unitid"  class="easyui-validatebox select" required="true" ></select>
+					</td>
+					<td width="20%"><span>姓名：</span></td>
+					<td width="30%">
+						<input id="insname" name="insname" class="easyui-validatebox input_bg"  required="true"  validType="" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>性别：</span></td>
+					<td width="30%">
+						<select id="sex" name="sex"  class="easyui-validatebox select"></select>
+					</td>
+					<td width="20%"><span>联系电话：</span></td>
+					<td width="30%">
+						<input id="phone" name="phone" class="easyui-validatebox input_bg"  validType="mobile" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>设备编号：</span></td>
+					<td width="30%">
+						<select id="deviceoid" name="deviceoid" required="true" class="easyui-validatebox input_bg"  validType="comboxExists['deviceoid']" maxlength="45"></select>
+					</td>
+					<td width="20%"><span>身份证号码：</span></td>
+					<td width="30%">
+						<input id="identitycard" name="identitycard" class="easyui-validatebox input_bg"  validType="idcard" maxlength="20"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>入职时间：</span></td>
+					<td width="30%">
+						<input id="adddate" name="adddate"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+					</td>
+
+				</tr>
+				<tr>
+					<td width="20%"><span>家庭地址：</span></td>
+					<td width="80%" colspan="3">
+						<textarea id="homeaddress" name="homeaddress"  style="height:80px" class="easyui-validatebox input_bg" validType="maxLength[200]"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>描述：</span></td>
+					<td width="80%" colspan="3">
+						<textarea id="description" name="description"  style="height:80px" class="easyui-validatebox input_bg" validType="maxLength[500]"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span style="color:red;">注：</span></td>
+					<td width="80%" colspan="3">
+					<span style="float: left; text-align: left; color: red;">1. 关键点数必须大于等于区段公里数*2。</span></td>
+				</tr>
+			</table>					
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsInspector()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

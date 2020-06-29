@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>配置权限</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+	<link rel="stylesheet" href="../../../jasframework/common/css/detail.css" type="text/css"></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script>
+	<script language="javascript" src="js/folderLayoutDept.js"></script>
+	<style type="text/css">
+		html { overflow-x: hidden; overflow-y: hidden; }
+	</style>
+	
+</head>
+<body style="overflow:hidden" oncontextmenu="return true" onselectstart="return false" >
+	<input id="folderDeptRefId" type="hidden">
+	<div class="easyui-panel"  data-options="iconCls:'icon-ok',fit:true" >  
+         <div class="easyui-layout" fit="true" >  
+             <div region="west" border="false" title='部门列表' style="width:200px;height:100px;" data-options="split:true,collapsible:false">  
+             	<ul id="deptprivilegeEventId">
+				
+				</ul>
+              </div> 
+         	<div region="center" border="false" title="文件夹信息">  
+       			<table class="detail-table" style="margin-top:-5px;">
+       				<tr>
+						<th width="20%"></th>
+						<th width="20%"></th>
+						<th width="20%"></th>
+						<th width="20%"></th>
+						<th width="20%"></th>
+					</tr>
+					<tr>
+						<th><span key="" class="paltform-i18n">文件夹名称：</span></th>
+						<td colspan="4"><span id="foldername"></span></td>
+					</tr>
+					<tr>
+						<th><span key="" class="paltform-i18n">文件夹路径：</span></th>
+						<td colspan="4"><span id="folderlocation"></span></td>
+					</tr>
+					<tr>
+					  	<th><span key="" class="paltform-i18n">创建人：</span></th>
+						<td><span id="createuser"></span></td>
+						<th><span key="" class="paltform-i18n">创建时间：</span></th>
+						<td colspan="2"><span id="createtime"></span></td>
+					</tr>
+					<tr>
+					    <th><span key="descriptioninfo" class="paltform-i18n">文件夹描述：</span></th>
+					    <td colspan="4"><span id="description"></span></td>
+					</tr>
+				</table>
+	        	<div class="button_area_absolute">
+			 		 <table width="100%">
+					  <tr>
+			     			<td align="center">
+		     					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveFolderDept()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+		     				</td>
+			      		</tr>
+			      	</table>	 
+		   		</div>	
+       		</div>
+			
+        </div>  
+	</div>
+</body>
+</html>

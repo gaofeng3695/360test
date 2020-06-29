@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">		
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script><!-- 文件上传插件js -->
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/select_temporary_point_time.js"></script>	
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<form id="timeForm" class="content-area-main" method="post">
+			<!-- 关键点的里程值 -->
+			<div class="table-content">
+				<h6 class="table-title">执行时间</h6>
+				<table align="center" class="edit-table" id = "time">
+				</table>	
+			</div>	
+			<div class="table-content">
+				<tr>
+						<td width="20%"><span style="color:red;"></span></td>
+						<td width="80%">
+						<span style="float: left; text-align: left; color: red;">临时巡检任务时间不能小于6:00am，不能大于20:00pm；</span ><br>
+					</tr>
+			</div>	
+		</form>	
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn"><span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

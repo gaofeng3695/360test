@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>流程测试主页面</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../js/workflow.js"></script>
+	<style>
+		body{
+			font-size:12px;
+		}
+		a{
+			margin-right:10px;
+		}
+	</style>
+	<script>
+	//测试发起工作流
+	function testStartWorkflow(processKey){
+		$("#funcDIV").html("启动流程: workflow.startWorkflow(businessKey,processKey,subject,autoPassFirstNode,auditContent,callback,flowVars)");
+		var loginUserName = top.loginUser.userName;
+		var businessKey = uuid(36,16);  //业务主键
+		var autoPassFirstNode = true;  //是否自动通过第一个节点
+		var auditContent="请审核";   //自动通过第一个节点时的审核意见
+		var callback=function(result){  //回调函数
+			$("#resultDIV").html(JSON.stringify(result));
+			if(result.status==-1){
+				top.showAlert('error', "发起流程失败:"+result.msg, 'error');
+				return;
+			}
+			top.showAlert('tip', "发起流程成功!", 'info');
+		}
+		var flowVars = {}; //流程变量
+		
+		switch(processKey){
+			case "test_leave":
+				subject=loginUserName+"请假申请-"+uuid(6,10);  //申请人-类型-单号
+				break;
+			case "test_reim":
+				subject=loginUserName+"报销申请-"+uuid(6,10); //申请人-类型-单号
+				autoPassFirstNode = false;
+				var reimSum = Math.round(Math.random()*5000+1);  //设置报销金额
+				flowVars["reimSum"]=reimSum;
+				break;
+			default:
+				return;
+		}
+		//输出请求参数
+		var params = {"[businessKey]业务数据ID":businessKey,"[processKey]流程key":processKey,"[subject]流程主题":subject,
+				"[autoPassFirstNode]是否自动通过第一个节点":autoPassFirstNode,"[auditContent]自动通过第一个节点时的审核意见":auditContent,
+				"[flowVars]流程变量":flowVars};
+		$("#paramsDIV").html(JSON.stringify(params));
+		
+		//发起流程
+		workflow.startWorkflow(businessKey,processKey,subject,autoPassFirstNode,auditContent,callback,flowVars);
+	}
+
+	
+	
+	
+	
+	function uuid(len, radix) {
+	    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+	    var uuid = [], i;
+	    radix = radix || chars.length;
+	 
+	    if (len) {
+	      // Compact form
+	      for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
+	    } else {
+	      // rfc4122, version 4 form
+	      var r;
+	 
+	      // rfc4122 requires these characters
+	      uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+	      uuid[14] = '4';
+	 
+	      // Fill in random data.  At i==19 set the high bits of clock sequence as
+	      // per rfc4122, sec. 4.1.5
+	      for (i = 0; i < 36; i++) {
+	        if (!uuid[i]) {
+	          r = 0 | Math.random()*16;
+	          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+	        }
+	      }
+	    }
+	 
+	    return uuid.join('');
+	}
+	</script>
+</head>
+<body style="overflow:auto">
+	<a href="#" onclick="testStartWorkflow('test_leave')">发起流程(请假)</a>
+	<a href="#" onclick="testStartWorkflow('test_reim')">发起流程(报销)</a>
+	<br/>
+	<div id="showFuncDIV" style="margin-top:20px;">
+		<span style="color:red;">方法：</span>
+		<div id="funcDIV" style="padding-left:20px;">-</div>
+	</div>
+	<div id="showParamsDIV" style="margin-top:20px;">
+		<span style="color:red;">参数：</span>
+		<div id="paramsDIV" style="padding-left:20px;">-</div>
+	</div>
+	
+	<div id="showResultDIV" style="margin-top:20px;">
+		<span style="color:red;">结果：</span>
+		<div  id="resultDIV" style="padding-left:20px;">-</div>
+	</div>
+</body>
+</html>

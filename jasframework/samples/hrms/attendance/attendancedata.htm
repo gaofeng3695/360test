@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">   
+	
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../../common/css/querystyle.css">
+	<script type="text/javascript" src="../../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../common/My97DatePicker/WdatePicker.js"></script>
+   	<script type="text/javascript" src="../../../common/js/common.js"></script>
+   	<script type="text/javascript" src="../../../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="js/attendancedata.js"></script>
+	<script type="text/javascript">
+	//getFileName();
+	$(document).ready(function(){
+		initDatagrigHeight('01010101','queryDiv','105');
+		leaddata();
+	});
+	var businessEventId = 1001-Math.round(Math.random()*10)*Math.round(Math.random()*10)*Math.round(Math.random()*10);
+	
+	//业主主键(此处采用用户所属部门的eventid)
+	//var businessEventId = top.loginuser.unitid+;
+	//发起工作流意见
+	//var workflowName = "attendMS";
+	var workflowName = "unitTest";
+	var comment = "考勤发起工作流意见...";
+	//是否含有发起用户变量
+	//var applyUserFlag = true;
+	//发起工作流
+	function audit(){
+		startWorkflow("", workflowName, comment,-1, callbackFun);
+	}
+	/**
+	 * 流程图
+	 * */
+	function getWorkFlowChart() {
+		//流程图弹出页面，url需要根据页面所在位置作相应的调整
+		top.getDlg('../../../workflow/workflow.htm?businessEventId=' + businessEventId
+				+ "&r=" + new Date().getTime(), '', '流程图', 800, 600);
+	}
+	//回调函数
+	function callbackFun(result){
+		if (result.success){
+			$.messager.alert('正确',result.ok,'ok',function(){
+			});
+		} else {
+			$.messager.alert('错误',result.msg,'error');
+		}
+		
+	}
+	</script>
+</head>
+<body>
+	<input type="hidden" id="menuid" value="1006"/>
+	<div id="queryDiv" class="easyui-panel" key="crms.importantevent.importantevent.queryTitle" title="考勤数据管理查询条件"
+		 collapsible="true" collapsed="true" style="padding:1px">
+			<table align="center" class="querytable" id="q_form">
+				<tr>
+					<td width="15%" style="color: red"><span id="crms.importantevent.importantevent.stattime" class="paltform-i18n">部门名称 ：</span></td>
+					<td width="35%"><select id="unitid" name=unitid class="easyui-combobox"  panelHeight="auto"  style="width: 330px">
+										<option value="">--请选择--</option>
+										<option value="40288ae03957a9d5013957bd82290000">研发中心</option>
+										<option value="4028816037104415013710483c170002">中盈高科</option>
+									</select></td>
+					<td width="15%">用户名称：</td>
+				    <td width="35%"><input type="text" id="username" name="username" class="easyui-validatebox input_bg" /></td>
+				</tr>
+				<tr style="color: red">
+					<td width="15%"><span  id="crms.importantevent.importantevent.stattime" class="paltform-i18n">起始时间 ：</span></td>
+					<td width="35%"><input id="starttime" class="easyui-validatebox input_bg"  onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})"/></td>
+					<td width="15%"><span id="crms.importantevent.importantevent.endtime" class="paltform-i18n">终止日期：</span></td>
+				    <td width="35%"><input id="endtime" class="easyui-validatebox input_bg"  onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})"></td>
+				</tr>
+				<tr>
+					<td width="15%"></td>
+					<td width="35%"></td>
+					<td colspan="4">
+						<a id="10060105" href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryattend()"><label><span id="crms.importantevent.importantevent.query" class="paltform-i18n">查询</span></label></a>
+						<a id="10060108" href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryForm('q_form')"><label><span id="crms.importantevent.importantevent.clear" class="paltform-i18n">清空</span></label></a>
+					</td>
+				</tr>
+			</table>
+	</div>
+<table id="01010101" class="easyui-datagrid" toolbar="#toolbar" 
+		width="98%" nowrap="false" striped="true" collapsible="false"
+		pagination="true" sigleSelect="false">
+	</table>
+	<div id="toolbar">
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-import" plain="true" onclick="leading()">导入</a>
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-import" plain="true" onclick="addattend()">新增</a>
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-import" plain="true" onclick="updateattend()">修改</a>
+		<a id="" href="#" class="easyui-linkbutton" iconCls="icon-work" plain="true" onclick="audit()">提交审核</a>
+	</div>
+	<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+</body>
+</html>

@@ -1,0 +1,63 @@
+#offset {
+	width: 100%;
+}
+#calculationMileage {
+	display: block;
+    position: absolute;
+    top: 0em;
+    left: 0em;
+/*     width: 24em; */
+    height: 17em;
+    background-color: white;
+    border: 1px solid gainsboro;
+}
+.table-content .clear-btn{
+	    margin: 0 5px;
+}
+
+/* 申报 */
+.icon-declare {
+     background: transparent url("../images/declare.svg") no-repeat scroll center center;
+ }
+ 
+/* 审核 */
+.icon-review {
+     background: transparent url("../images/review.svg") no-repeat scroll center center;
+ }
+ 
+/* 注销 */
+.icon-logout {
+     background: transparent url("../images/logout.svg") no-repeat scroll center center;
+ }
+ 
+ 
+ /* 定位*/
+.icon-location {
+     background: transparent url("../images/location.svg") no-repeat scroll center center;
+ }
+ 
+/* 生成任务 */
+.icon-task {
+     background: transparent url("../images/task.svg") no-repeat scroll center center;
+ }
+ 
+/* 同步数据 */
+.icon-sync {
+     background: transparent url("../images/sync.svg") no-repeat scroll center center;
+ }
+ 
+ /* 缓冲带宽度设置 */
+.icon-bufferwidth {
+     background: transparent url("../images/bufferwidth.svg") no-repeat scroll center center;
+ }
+ 
+ /* 取消分享 */
+.icon-cancelshare{
+	background: transparent url("../images/cancelshare.png")  no-repeat scroll center center;
+}
+
+ /* 分享 */
+.icon-share{
+	background: transparent url("../images/share.png")  no-repeat scroll center center;
+}
+

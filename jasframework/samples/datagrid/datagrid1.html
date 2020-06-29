@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/thirdparty/jquery/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../common/thirdparty/jquery/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/queryStyle.css">
+	<script type="text/javascript" src="../../common/thirdparty/jquery/jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../../common/thirdparty/jquery/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/baseJasDatagrid.js"></script>
+	<script type="text/javascript" src="../../common/thirdparty/jquery/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="../../i18n/i18n.js"></script>
+	<script>
+	//第1实例
+	var dagrid = new $.baseJasDatagrid();
+	//查看执行方法
+	function search(ids){
+		alert(ids);
+	}
+	//新增执行方法
+	function add(){
+		alert();
+	}
+	//删除执行方法
+	function del(ids){
+		alert(ids);
+	}
+	//拼写工具栏按钮id为按钮权限number的后两位，method为点击该按钮所执行的方法，name为按钮名称。
+	var toolbars =[{
+					id:'02',
+					method:'search',//查看所执行的方法
+					name : '查看'
+				},{
+					id:'03',
+					method:'add',
+					name : '新增'
+				},{
+					id:'04',
+					method:'del',
+					name : '修改'
+				},{
+					id:'05',
+					method:'add',
+					name : '删除'
+				},{
+					id:'06',
+					method:'add',
+					name : '定位'
+				},{
+					id:'07',
+					method:'add',
+					name : '导出'
+				},{
+					id:'09',
+					method:'add',
+					name : '关联文档'
+				},{
+					id:'10',
+					method:'add',
+					name : '数据版本'
+				},{
+				//id为00的为datagrid加载数据的url
+					id:'00',
+					url:'../../logsample/getAll.do?datagridNumber=10130530'
+				}];
+	$(document).ready(function () {
+		//调用datagrid加载类
+		dagrid.getButtonPrivilege('101305','10130530',toolbars,'eventid');
+	});  
+	</script>
+</head>
+<body>
+<!--实例1-->
+	<div id="queryDiv" class="easyui-panel" collapsible="true" collapsed="true" title="查询条件">
+		<table class="querytable" align="center">
+		   	<tr>
+		   		<td width="20%"><span>条件：</span></td>
+		   		<td width="30%"><input class="input_bg"/></td>
+		   		<td width="20%"></td>
+		   		<td width="30%"></td>
+		   	</tr>
+		</table>
+	</div>
+	<table id="10130530"></table>
+</body>
+</html>

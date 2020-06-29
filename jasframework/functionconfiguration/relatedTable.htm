@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	
+	<link rel="stylesheet" href="../common/css/font-awesome.css" type="text/css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/add.css"/>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/commonMethod.js"></script>
+	<script type="text/javascript" src="js/relatedTable.js"></script>
+	<title>修改功能模块基本信息</title>
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<form id="updateRelated" method="post">
+<!-- 	表单区域 -->
+	<input id="eventid" name="eventid" type="hidden"/>
+	<input id="mastertableid" name="mastertableid" type="hidden"/>
+		<table class="edit-table">
+			<tr height="35px">
+			    <td width="20%"><span>主表名称：</span></td>
+				<td width="30%"><span id="mastertabletext"></span></td>
+				<td width="20%"><span>主表关联字段：</span></td>
+				<td width="30%"><select id="mastertablefieldid" name="mastertablefieldid" panelHeight="200px" required="true"></select></td>
+			</tr>
+			<tr>
+			    <td><span>子表名称：</span></td>
+			    <td width="30%"><select id="subtableid" name="subtableid" panelHeight="200px" required="true"></select></td>
+				<td><span>子表关联字段：</span></td>
+				<td><select id="subtablefieldid" name="subtablefieldid" panelHeight="200px" required="true"></select></td>
+			</tr>
+		</table>
+
+		
+	</form>
+	</div>
+	<!--	按钮区域	 -->
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+ 				<td colspan="4" align="center">
+ 					<a id="10120306" href="#" class="easyui-linkbutton submit" onclick="updateRelatedTable()">保存</a>
+					<a id="10120308" href="#" class="easyui-linkbutton test" onclick="deleteRelatedByTableId()">删除</a>
+					<a id="10120307" href="#" class="easyui-linkbutton cancel"  onclick="top.closeDlg('tablecolumnadd')">取消</a>
+ 				</td>
+  			</tr>
+  		</table>	 
+	</div>
+	
+</body>
+</html>

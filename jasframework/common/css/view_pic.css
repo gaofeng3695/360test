@@ -1,0 +1,97 @@
+@charset "utf-8";
+/** 
+ * @file
+ * @author  xxx
+ * @desc  图片大图预览样式
+ * @date  2017-08-15
+ * @last modified by xxx
+ * @last modified time  2017-08-15
+ */
+ 
+body.viewer-open{
+    overflow:hidden
+}
+.viewWindow{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:2017;
+    background:rgba(0,0,0,0.75) !important;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C8404040,endColorstr=#C8404040);
+    top:0
+}
+
+.viewWindow .viewClose{
+    width:80px;
+    height:80px;
+   
+    position:absolute;
+    right:-30px;
+    top:-35px;
+
+    border:none;
+     -webkit-border-radius: 50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+    behavior: url(../../js/ie-css3.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+
+    background-color:rgba(0,0,0,0.5);
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C8787878,endColorstr=#C8787878);
+    cursor:pointer;
+    color:#fff
+}
+.viewWindow .viewClose i{
+    width:20px;
+    height:20px;
+    color:#fff;
+    position:absolute;
+    top:45px;
+    left:15px;
+    font-size:30px;
+    line-height:20px
+}
+.viewWindow .viewLeft,.viewWindow .viewRight{
+    width:80px;
+    height:80px;
+    position:absolute;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+    behavior: url(../../js/ie-css3.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+
+
+    background-color:rgba(0,0,0,0.5);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C8787878,endColorstr=#C8787878);
+    top:50%;
+    margin-top:-40px;
+    color:#fff;
+    font-size:30px;
+    text-align:center;
+    line-height:80px;
+    cursor:pointer
+}
+.viewWindow .viewLeft{
+    left:30px
+}
+.viewWindow .viewRight{
+    right:30px
+}
+.viewWindow .viewMain{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    overflow:hidden
+    
+}
+.viewWindow .viewMain img{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:56px;
+    height:56px;
+    margin-left:-28px;
+    margin-top:-28px
+}

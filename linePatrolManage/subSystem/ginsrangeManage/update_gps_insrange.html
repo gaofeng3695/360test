@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta name="keywords" content="gis,web">
+    <meta name="description" content="">
+    <title></title>
+    <!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+    <!-- css引用，注意引用顺序 -->
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/font-awesome.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/common.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/querySpanCommon.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/style.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"></link>
+    <!-- js引用， 注意引用顺序 -->
+
+    <script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+    <script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+    <script type="text/javascript" src="../../../common/js/querySpanCommon.js"></script>
+    <script type="text/javascript" src="js/update_gps_insrange.js"></script>
+
+    <style>
+        .button-area {
+            height: 54px;
+        }
+
+        .block-point, .textbox-label {
+            cursor: pointer;
+        }
+
+        #previous {
+            border: 1px solid #ddd;
+            min-width: 100%;
+            min-height: 100px;
+            word-break: break-all;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 5px 5px;
+            padding-bottom: 16px;
+        }
+
+        #description {
+            word-break: break-all;
+            line-height: 25px;
+        }
+
+        #description p {
+            letter-spacing: 4px;
+        }
+
+        .block-point {
+            display: inline-block;
+            width: 189px;
+            height: 21px;
+            margin: 16px 29px;
+        }
+
+        .tgl-btn {
+            display: inline-block !important;
+            margin-left: 29px;
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 28px 53px !important;
+        }
+
+        #person-detail input {
+            /*width: 245px !important;*/
+        }
+
+        .panel-body.panel-body-noheader.panel-body-noborder {
+            /*overflow-y: hidden;*/
+            /*width: 760px !important;*/
+        }
+
+        label {
+            display: block;
+        }
+
+        #description input {
+            height: 20px;
+            margin: 0;
+            padding: 0 2px;
+            box-sizing: content-box;
+            border-bottom: 1px solid #000000;
+            width: 60px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        #description input {
+            border-radius: 0px !important;
+        }
+
+        #description .Wdate_focus,
+        #description .input_bg_focus {
+            outline: 0;
+            border-bottom: 1px solid #000000 !important;
+            border-top: 0px !important;
+            border-left: 0px !important;
+            border-right: 0px !important;
+            box-shadow: 0px 0px 0px 0 white !important;
+        }
+
+        #description .Wdate.Wdate_focus,
+        #description textarea.input_bg_focus,
+        #description .textbox-focused.textbox.combo,
+        #description .input_bg.input_bg_focus {
+            border-bottom: 1px solid !important;
+            box-shadow: 0px 0px 0px 0 white !important;
+        }
+
+        #province, #city, #area {
+            width: 17.1%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="easyui-tabs-container">
+    <div id="tabContainer" class="easyui-tabs" style="height: 600px;">
+        <div title="管段信息">
+            <div id="contentArea" class="content-area" style="overflow-y: auto !important;overflow-x: hidden">
+                <!-- 表单区域，每行四列 -->
+                <form id="gpsInsrangeForm" method="post">
+                    <h6 class="table-title">基础数据</h6>
+                    <input id="oid" name="oid" type="hidden" value=""/>
+                    <input id="sign" name="sign" type="hidden" value="01"/>
+                    <input id="inspectorType" name="inspectorType" type="hidden" value="02"/>
+                    <input type="hidden" name="taskTime" id="taskTime" />
+                    <table align="center" class="edit-table">
+                        <tr>
+                            <td width="20%"><span>管段编号：</span></td>
+                            <td width="30%">
+                                <input id="segmentcode" name="segmentcode" class="easyui-validatebox input_bg"
+                                       required="true" validType="general" maxlength="100"/>
+                            </td>
+                            <td width="20%"><span>部门名称：</span></td>
+                            <td width="30%">
+                                <select id="unitid" name="unitid" class="easyui-validatebox select"
+                                        required="true"></select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%"><span>管线名称：</span></td>
+                            <td width="30%">
+                                <select id="lineloopoid" name="lineloopoid" class="easyui-validatebox select"
+                                        required="true"></select>
+                            </td>
+                            <td width="20%"><span>段长：</span></td>
+                            <td width="30%">
+                                <input id="inspectorid" required="true" name="inspectorid" value="" validType="comboxExists['inspectorid']" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%"><span>起始位置：</span></td>
+                            <td width="30%">
+                                <input id="beginlocation" name="beginlocation" class="easyui-validatebox input_bg"
+                                       required="true" validType="" maxlength="100"/>
+                                <input id="beginstation" name="beginstation" type="hidden" value=""/>
+                            </td>
+                            <td width="20%"><span>终止位置：</span></td>
+                            <td width="30%">
+                                <input id="endlocation" name="endlocation" class="easyui-validatebox input_bg"
+                                       required="true" validType="" maxlength="100"/>
+                                <input id="endstation" name="endstation" type="hidden" value=""/>
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td width="20%"><span>起始关键点：</span></td>
+                            <td width="30%">
+                                <select id="beginkeypoint" name="beginkeypoint" class="input_bg"  ></select>
+                            </td>
+                            <td width="20%"><span>终止关键点：</span></td>
+                            <td width="30%">
+                                <select id="endkeypoint" name="endkeypoint" class="input_bg"  ></select>
+                            </td>
+                        </tr>-->
+                        <tr>
+                            <td width="20%"><span>联系电话：</span></td>
+                            <td width="30%">
+                                <input id="phone" name="phone" class="easyui-validatebox input_bg"
+                                       required="true" validType="" maxlength="100"/>
+                            </td>
+                            <td width="20%"><span>管径（mm）：</span></td>
+                            <td width="30%">
+                                <input id="pipeDiameter" name="pipeDiameter" class="easyui-validatebox input_bg"
+                                       validType="intOrFloat" maxlength="100"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%"><span>管材：</span></td>
+                            <td width="30%">
+                                <input id="pipeMaterial" name="pipeMaterial" class="easyui-validatebox input_bg"
+                                       validType="" maxlength="100"/>
+                            </td>
+                            <td width="20%"><span>设计压力（Mpa）：</span></td>
+                            <td width="30%">
+                                <input id="designPressure" name="designPressure" class="easyui-validatebox input_bg"
+                                       validType="intOrFloat" maxlength="100"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%"><span>输送介质：</span></td>
+                            <td width="30%">
+                                <input id="transmissionMedia" name="transmissionMedia" class="easyui-validatebox input_bg"
+                                       validType="" maxlength="100"/>
+                            </td>
+                            <td width="20%"><span>所在区域：</span></td>
+                            <td width="30%" >
+                                <input id="province" name="province" class="easyui-validatebox input_bg"
+                                       validType="" maxlength="100"/>
+                                <span>&nbsp;&nbsp;省&nbsp;&nbsp;</span>
+                                <input id="city" name="city" class="easyui-validatebox input_bg"
+                                       validType="" maxlength="100"/>
+                                <span>&nbsp;&nbsp;市&nbsp;&nbsp;</span>
+                                <input id="area" name="area" class="easyui-validatebox input_bg"
+                                       validType="" maxlength="100"/>
+                                <span>&nbsp;&nbsp;区/县&nbsp;&nbsp;</span>
+                            </td>
+
+                        </tr>
+
+                        <tr id="workTime">
+                            <td width="20%"><span>任务开始日期：</span></td>
+                            <td width="30%">
+                                <input id="insbdate" name="insbdate" required = "required" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  />
+                            </td>
+                            <td width="20%"><span>任务结束日期：</span></td>
+                            <td width="30%">
+                                <input id="insedate" name="insedate" required = "required" class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                            </td>
+                        </tr>
+
+                        <tr id='taskTimeNode'>
+                            <td width="20%"><span>巡检频次：</span></td>
+                            <td width="30%">
+                                <select id="insfreq" name="insfreq" readonly="readonly"  class="easyui-validatebox select" required="true" ></select>
+                            </td>
+                            <td width="20%"><span>巡线类型 ：</span></td>
+                            <td width="30%">
+                                <select id="instype" name="instype" required="true"  class="easyui-validatebox select"></select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <h6 class="table-title">关键点（蓝色表示选中，红色表示未选中。）</h6>
+                <!-- 拖拽区 -->
+                <div id="previous">
+
+                </div>
+
+            </div>
+        </div>
+
+        <div title="岗位描述" icon="icon-reload" id="changeinfo">
+            <div class="table-content">
+                <h6 class="table-title" id="addchangetitle">岗位描述</h6>
+                <div id="description">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;各位领导大家好，欢迎来到<input id = "1" type="text"/>分公司<input id = "2" type="text"/>作业区检查指导工作，我是段长<input id = "3" type="text"/>，下面由我为各位领导介绍本段管道保护情况。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;我是<input id = "4" type="text"/>线管道线路段长，负责桩号 <input id = "5" type="text"/>- <input id = "6" type="text"/>线路管理及日常巡护，所辖管段里程长<input id = "7" type="text"/> km，途经<input id = "8" type="text"/>个乡（镇）<input id = "9" type="text"/>个村，沿线地貌主要为<input id = "10" type="text"/>。沿线有 <input id = "11" type="text"/>座阀室，<input id = "12" type="text"/>条隧道，<input id = "13" type="text"/>条河流穿跨越，<input id = "14" type="text"/>处公路、铁路穿越；<input id = "15" type="text"/>处地灾隐患点，治理完成<input id = "16" type="text"/>处，需重点关注<input id = "17" type="text"/>处；<input id = "18" type="text"/>处高后果区，其中Ⅲ级<input id = "19" type="text"/>处，Ⅱ级<input id = "20" type="text"/>处，Ⅰ级<input id = "21" type="text"/>处，人员密集型<input id = "22" type="text"/>处；目前有<input id = "23" type="text"/>处第三方施工，其中红色预警<input id = "24" type="text"/>处，黄色预警<input id = "25" type="text"/>处，蓝色预警<input id = "26" type="text"/>处。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;本段所采取的防护措施主要有：人防措施，有<input id = "27" type="text"/>名巡线工，<input id = "28" type="text"/>名阀室值守员，每日<input id = "29" type="text"/>巡；物防措施，三桩<input id = "30" type="text"/>个，警示牌<input id = "31" type="text"/>个；技防措施，视频监控<input id = "32" type="text"/>个，其中移动视频监控<input id = "33" type="text"/>处，分别安装在<input id = "34" type="text"/>处；地灾监测<input id = "35" type="text"/>处，分别安装在<input id = "36" type="text"/>处；应力应变监测<input id = "37" type="text"/>处，分别安装在<input id = "38" type="text"/>处。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;我的主要职责是：</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;1. 掌握所辖管道设施分布情况和沿线交通、社会、自然等情况，管道本体信息，形成一段一图。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;2. 编制段长岗位描述，并熟悉其内容。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;3. 每周至少与属地巡线工开展1次徒步巡线工作，每季度完成所辖管段的徒步巡线工作，并留下记录。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;4. 负责属地巡线工的管理，每天了解所辖管段的巡护情况，按要求定期开展培训，提升属地巡线工识别风险的能力。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;5. 负责地面标识、视频监控、应力应变监测、地灾监测等设施设备的完好性，及时组织更换、修复破损设施。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;6. 严格执行三色预警制度，有效管控管辖段内第三方施工，对危害管道安全的挖掘、钻探、堆土、占压、爆破等活动及时处置。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;7. 负责管道治早治小、水毁处理、植被恢复、水土保持、水工工程等工作的落实。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;8. 负责所辖段与当地方政府相关部门信息沟通，了解管道沿线最新动态，及时上报并做好后续跟进工作。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;9. 负责对所辖管段线路安全风险的识别、上报及整改落实。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;10. 负责所辖管段沿线的管道保护宣传工作，每月至少开展1次入户宣传，每季度组织1次所辖管段沿线的集中宣传，每年完成所辖管段的入户宣传。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;11. 参与编制所辖管段的巡护方案，负责开展所辖管段的管道外检测及阴保数据采集。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;12. 熟悉所辖管段维抢修方案和事故应急预案，发生紧急事态时，按照应急预案做好初期控制。</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="button-area" class="button-area">
+    <table width="100%">
+        <tr>
+            <td align="center">
+                <a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsInsrange()">
+                    <span>保存</span></a>
+                <a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- 计算位置div -->
+<div id="calculationMileage" class="table-content" style="display:none;">
+</div>
+</body>
+</html>

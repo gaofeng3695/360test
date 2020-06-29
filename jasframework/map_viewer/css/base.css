@@ -1,0 +1,854 @@
+.level-left {
+    left: 14px;
+    position: relative;
+}
+
+.level-right {
+   /* margin-right: 17px !important;*/
+}
+
+.level-item.heading p {
+    margin-left: -27px;
+}
+
+.level-item {
+    margin-right: 0rem !important;
+}
+
+.group-person {
+    padding-right: 0px;
+    padding-left: 40px;
+    position: relative;
+    left: -8px;
+}
+
+.group-person:last-child {
+    left: -18px;
+}
+
+.group-person .per {
+    margin-bottom: 5px;
+}
+
+.group-person span {
+    display: block;
+    float: right;
+    margin-top: 4px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.card {
+    height: 675px;
+    margin-left: 15px;
+}
+
+.card-content .level {
+}
+
+.level.company {
+    background-color: #f4f4f4;
+}
+
+.level.person {
+    margin-bottom: 0px;
+    border-bottom: 1px #dbdbdb solid;
+    height: 50px;
+}
+
+.all-company {
+    height: 559px;
+    overflow: auto;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+    scrollbar-arrow-color: #f0f0f2; /**//*三角箭头的颜色*/
+    scrollbar-face-color: #969696; /**//*立体滚动条的颜色*/
+    scrollbar-3dlight-color: #f0f0f2; /**//*立体滚动条亮边的颜色*/
+    scrollbar-highlight-color: #f0f0f2; /**//*滚动条空白部分的颜色*/
+    scrollbar-shadow-color: #f0f0f2; /**//*立体滚动条阴影的颜色*/
+    scrollbar-darkshadow-color: #f0f0f2; /**//*立体滚动条强阴影的颜色*/
+    scrollbar-track-color: #f0f0f2; /**//*立体滚动条背景颜色*/
+    scrollbar-base-color:#f0f0f2; /**//*滚动条的基本颜色*/
+
+
+}
+
+.all-company::-webkit-scrollbar {
+    width: 4px;
+}
+
+.all-company::-webkit-scrollbar-track {
+    background-color: #f0f0f2;
+}
+
+.all-company::-webkit-scrollbar-thumb {
+    background: #969696;
+}
+
+.all-department {
+    height: 635px;
+}
+
+.left-button {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+
+.card-header {
+    background-color: #3589df;
+
+}
+
+.card-header-title {
+    color: #dbedff;
+    height: 36px;
+}
+
+.department-head {
+    background-color: #f7fbff;
+}
+
+.breadcrumb {
+    margin-bottom: 0px !important;
+}
+
+.breadcrumb ul {
+    padding-top: 8px;
+    padding-left: 12px;
+}
+
+.level.person .level-item {
+    border-right: 1px #b3b3b3 dashed;
+}
+
+.level.person .level-item.last {
+    margin-right: 0px !important;
+    border-right: 0px #e6e6e6 dashed;
+}
+
+.level.person .level-item p {
+    margin-bottom: 0px;
+    margin-top: 3px;
+}
+.level.person .level-item .ins-img {
+    position: relative;
+    right: 5px;
+}
+
+.level.person .level-item .ins-count {
+    cursor: pointer;
+}
+
+.level.person .level-item .ins-count .heading {
+    position: relative;
+    top: 4px;
+    left: 4px;
+}
+
+.level.person .level-item .ins-count .count {
+    position: relative;
+    bottom: 3px;
+    left: 4px;
+}
+
+.all-company .count-detail {
+    position: relative;
+    top: 13px;
+    right: 7px;
+}
+
+.all-company .level-item.count-detail-img {
+    position: relative;
+    top: 9px;
+}
+
+.all-company .level-right .count-detail .level-item.heading {
+    justify-content: flex-start;
+    color: #333333 ;
+
+}
+
+.all-company .level-right .count-detail .level-item.heading a {
+    position: relative;
+    left: 33px;
+    color: #333333 ;
+    font-family: "Microsoft YaHei bold" ! important;
+    font-weight: bold ;
+    font-size: 12px ;
+}
+
+.breadcrumb a {
+    color: #333333 ;
+    font-family: "Microsoft YaHei bold" ! important;
+    /*font-weight: 100 ;*/
+    font-weight: bold;
+    font-size: 12px ;
+}
+
+.level-left.person-img {
+    position: relative;
+    top: 10px;
+    left: 26px;
+}
+
+.person-list {
+    position: relative;
+    right: 53px;
+}
+
+.person-list p {
+    width: 146px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.group-person span {
+    width: 14px;
+    height: 18px;
+}
+
+img {
+    cursor: pointer;
+}
+
+.card-header img {
+    position: relative;
+    right: 8px;
+    top: 13px;
+    height: 13px;
+    width: 13px;
+}
+
+.level-item.person-name {
+    width: 67px;
+}
+
+.person-name p {
+    position: relative;
+    left: 9px;
+    cursor: pointer;
+    width: 50px;
+}
+
+.person-score {
+    position: relative;
+    left: 3px;
+    width: 51px;
+}
+
+.person-matching {
+    position: relative;
+    left: 15px;
+    width: 60px;
+}
+
+.detail.person.none {
+    margin: auto 0;
+    text-align: center;
+    color: #4a4a4a;
+    font-size: 11px;
+    border-bottom: 0px #dbdbdb solid;
+}
+
+
+.score-rate {
+    position: relative;
+    left: 5px;
+}
+
+.level-right .level-item.position {
+    position: relative;
+    right: 8px;
+}
+
+.all-company .detail.person {
+    width: 280px;
+    position: relative;
+    left: 10px;
+    border-bottom: 1px #dbdbdb solid;
+}
+
+.detail.person .level.company {
+    background-color: transparent;
+}
+
+.level-left.person {
+    left: 4px;
+    width: 196px;
+}
+
+.level-left.form-person {
+    top: 14px;
+    margin-bottom: 6px;
+}
+.level-left.form-person input {
+    /*width: 103px;*/
+    height: 35px;
+    box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px ;
+    font-size: 11px;
+}
+.level-left.form-person .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 115px;
+}
+
+.level-left.form-person .input.time {
+    left: -7px;
+    width: 108px;
+}
+
+.level-left.form-person .input.person-name {
+    left: 4px;
+    width: 108px;
+}
+
+.level-left.form-person .button {
+    width: 49px;
+    height: 30px;
+    font-size: 11px;
+    margin-left: 8px;
+}
+
+.detail.person {
+    margin-top: 7px;
+    padding-bottom: 4px;
+}
+
+.level-item.position img {
+    height: 17px;
+}
+
+.level-item.score img {
+    height: 28px;
+}
+
+/* 人员详情*/
+.person-detail {
+    display: block;
+   /* height: 154px;*/
+}
+
+.person-detail input {
+    width: 215px;
+    height: 30px;
+    box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px ;
+    font-size: 11px;
+    position: relative;
+
+}
+
+.person-detail .button {
+    width: 49px;
+    height: 30px;
+    font-size: 11px;
+    right: -4px;
+}
+
+.person-detail .level.search {
+    top: 10px;
+    position: relative;
+}
+
+.person-detail .content {
+    border-bottom: 1px #b3b3b3 dashed;
+    margin-left: 12px;
+}
+.person-detail .content .info {
+    display: inline-block;
+    width: 54%;
+}
+
+.person-detail .content .info a {
+    border-bottom-width: 0px;
+}
+
+.person-detail .content .info .columns {
+    margin-bottom: 0px;
+}
+
+.person-detail .content .info .columns .column {
+    margin-bottom: 5px;
+
+}
+
+.person-detail .content .info span {
+    font-size: 11px;
+}
+
+.person-detail .content .info .tel {
+    display: inline-block;
+    width: 48px;
+}
+
+.person-detail .content .score-img {
+    display: inline-block;
+    width: 44%;
+    background-color: white;
+}
+
+.person-detail .content .score-img .columns {
+    margin-bottom: 0px;
+}
+
+.person-detail .content .score-img .columns .column {
+   /* margin-bottom: 7px;*/
+    text-align: center;
+}
+
+.person-detail .info .name {
+    font-size: 18px;
+}
+
+.person-detail .info .status {
+    position: relative;
+    right: 4px;
+    /*left: -8px;*/
+    top: 4px;
+    font-size: 10px;
+}
+
+.person-detail .info .type {
+    position: relative;
+    top: 4px;
+    /*left: 3px;
+    font-size: 10px;
+    display: inline-block;
+    border: 1px solid;*/
+}
+
+.score-img .day-score-img {
+}
+
+.score-img .day-matching-img {
+}
+
+.score-img .day-score {
+}
+
+.score-img .day-matching {
+}
+
+.task-detail {
+    scrollbar-width: thin;
+    overflow-x: hidden;
+    display: block;
+    overflow: auto;
+    margin-top: 0px;
+    height: 379px;
+    margin-top: 16px;
+    padding-right: 8px;
+
+}
+
+.task-detail::-webkit-scrollbar {
+    width: 4px;
+}
+
+.task-detail::-webkit-scrollbar-track {
+    background-color: #f0f0f2;
+}
+
+.task-detail::-webkit-scrollbar-thumb {
+    background: #969696;
+}
+
+.task-detail .columns {
+    margin-bottom: 0px !important;
+}
+
+.task-section {
+    padding-bottom: 16px;
+    padding-left: 14px;
+}
+
+.task-section-length {
+    padding-bottom: 16px;
+    padding-left: 14px;
+}
+
+.task-standard {
+    padding-bottom: 16px;
+    padding-left: 14px;
+}
+
+.task-point-count {
+    padding-bottom: 16px;
+    padding-left: 14px;
+}
+
+.task-time {
+    padding-left: 11px;
+    padding-bottom: 14px;
+}
+
+.task-detail img {
+    height: 14px;
+}
+
+.task-detail .subTitle strong {
+    font-family: 微软雅黑;
+    font-size: 12px;
+    position: relative;
+    top: -1px;
+    left: 5px;
+}
+
+.task-detail .subTitle.length {
+    font-size: 12px;
+    left: 17px;
+    position: relative;
+}
+
+.task-detail .subTitle.count {
+    font-size: 12px;
+    left: 17px;
+    position: relative;
+}
+
+.task-time .time {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.task-time .time .box {
+    padding: 4px;
+/*    width: 85px;*/
+    text-align: center;
+}
+
+.time-content {
+    border: 1px solid #dbdbdb;
+    margin-top: 13px;
+    border-radius: 6px;
+}
+
+.time-content .keypoint {
+    background-color: #F5F5F5;
+}
+
+.time-content .progress-title img {
+    height: 18px;
+    position: relative;
+    right: 14px;
+}
+
+.time-content .progress-title .column {
+    text-align: center;
+    padding-top: 12px !important;
+}
+
+.time-content .keypoint .columns {
+    margin-left: 16px;
+}
+
+.time-content .keypoint {
+    margin-top: -3px;
+    padding-bottom: 20px;
+}
+
+.time-content .keypoint img {
+    height: 10px;
+    position: relative;
+    top: 1px;
+    right: 0px;
+}
+
+.time-content .keypoint .title {
+    padding-top: 14px;
+}
+
+.time-content .keypoint .title img {
+    height: 14px;
+    position: relative;
+    left: 1px;
+}
+
+.time-content .keypoint .title strong {
+    top: 1px;
+    left: -1px;
+}
+
+.time-content .keypoint .keypoint-content {
+    margin-top: 6px;
+}
+
+.time-content .keypoint .keypoint-content .columns {
+    margin-top: 16px;
+}
+
+.time-content .slide {
+    margin-left: 4px;
+    margin-top: 3px;
+    width: 180px;
+    cursor: pointer;
+    height: 20px;
+}
+
+.time-content .start {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.time-content .end {
+    margin-left: 6px;
+    margin-top: 3px;
+}
+
+.time-content .hide-line {
+    background-color: #209cee;
+    width: 0px;
+    height: 1px;
+    display: inline-block;
+    position: relative;
+    left: 41px;
+    top: -22px;
+}
+
+.day-score-val {
+    color: #188dd7;
+    font-size: 16px;
+    position: relative;
+    top: 18px;
+}
+
+.score-val-group {
+    height: 1px;
+    z-index: 100;
+}
+
+.matching-val-group {
+    height: 1px;
+    z-index: 100;
+}
+
+.day-matching-val {
+    color: #3a58b7;
+    font-size: 16px;
+    position: relative;
+    top: 18px;
+}
+
+.day-score-later {
+    position: relative;
+    left: 4px;
+    color: #666666;
+    font-size: 10px;
+}
+
+.day-matching-later {
+    position: relative;
+    left: 4px;
+    color: #666666;
+    font-size: 10px;
+}
+
+.task-time .time .begin-date {
+    display: inline-block;
+    width: 56px;
+}
+
+.task-time .time .end-date {
+    display: inline-block;
+    width: 56px;
+}
+
+.task-time .time .begin-end-date {
+    display: inline-block;
+    width: 83px;
+}
+
+.task-time .time .middle {
+    display: inline-block;
+    position: relative;
+    top: -8px;
+}
+
+.task-time .time .column {
+    padding-right: 12px !important;
+    padding-bottom: 10px !important;
+}
+
+.task-time .time .box {
+    cursor: pointer;
+}
+
+.time-content .speeds {
+    cursor: pointer;
+}
+
+.speedBackground {
+    color: green;
+}
+
+.havePatrolKeyPointCount {
+    color: red;
+}
+
+.point-name {
+    cursor: pointer;
+}
+
+.point-index {
+    display: inline-block;
+    width: 13px;
+}
+
+.timeBackground {
+    background-color: #f1f8ff;
+    border: 1px solid #3589df;
+    color: #3589df;
+}
+
+.popover-self {
+    z-index: 1060;
+    max-width: 141px;
+    padding: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    white-space: normal;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    position: absolute;
+    left:0px;
+    top:0px;
+}
+
+.popover-self .popover-arrow {
+    border-top-color: #999;
+    border-width: 10px;
+    position: absolute;
+    border-top-color: #999;
+    border--color: rgba(0,0,0,.25);
+    border-bottom-width: 0px;
+    left: calc(50% - 5px);
+    margin-top: 2px;
+    margin-bottom: 0;
+}
+
+.timeBoxDisplayStyle {
+    display: none;
+}
+
+.esriPopup .titlePane {
+    background-color: #3589df !important;
+    align-items: center;
+    color: #363636;
+    display: flex;
+    flex-grow: 1;
+    font-weight: 700;
+    padding: 0.75rem;
+
+    border-radius: 0px 0px 0px 0px !important;
+    -webkit-border-radius: 0px 0px 0px 0px !important;
+}
+
+.esriPopup .contentPane {
+    background-color: white !important;
+    padding: 1.5rem;
+}
+
+.esriPopup .actionsPane {
+    background-color: white !important;
+}
+
+.titlePane .title {
+    color: #dbedff;;
+    font-size: 1.25rem;
+    height: 17px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0rem;
+}
+
+.esriPopupWrapper {
+    background: white;
+}
+
+.esriPopup .titleButton {
+
+}
+
+.esriPopupWrapper {
+    height: 245px;
+}
+
+.esriPopup .pointer {
+    display: none !important;
+}
+
+.esriPopup .outerPointer {
+    display: none !important;
+}
+
+.content {
+    margin-bottom: 0px !important ;
+}
+
+.esriPopup .esriPopupWrapper {
+    box-shadow: 0 0 0em #777777 !important;
+    -webkit-box-shadow: 0 0 0em #777777 !important;
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+}
+
+.department-detail-info .column {
+    margin-top: 9px !important;
+}
+
+image {
+    cursor: pointer;
+}
+
+#allDetail .level-left.person .level-item {
+    justify-content: left;
+}
+
+.qbt {
+    background-color: #3589df;
+    border: none;
+    color: white;
+    padding: -4px 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 0px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    margin-left: 70px;
+    margin-top: 7px;
+}
+
+.cbt {
+    background-color: #3589df;
+    border: none;
+    color: white;
+    padding: -4px 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 0px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+/* 禁用CSS */
+.count-detail .disable a {
+    color: #858585 !important;
+}
+
+.conscount-detail .disable a {
+    color: #858585 !important;
+}
+
+.panel.window.panel-htop .title {
+    font-size: 1rem;
+}

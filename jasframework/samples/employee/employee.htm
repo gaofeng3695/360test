@@ -1,0 +1,117 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>geotools测试</title>
+<meta http-equiv="pragma" content="no-cache" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/lib/easyui/demo/demo.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../common/css/common.css" />
+
+<script type="text/javascript"
+	src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/js/privilege.js"></script>
+<script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+<script type="text/javascript" src="js/query.js"></script>
+</head>
+
+<body scroll="no" style="margin: 0px">
+	<input type="hidden" id="menuid" value="107147"></input>
+	<iframe id="exprotPlanframe" style="display: none;"></iframe>
+
+	<div id="cc" class="easyui-layout" fit="true">
+		<div id="left" region="west" maxWidth=200 scroll="no"
+			class="easyui-panel" collapsible="false" key="unit.zuzhijigouguanli"
+			split="true" title="用户信息" style="width: 200px; height: 90%;">
+			<div>
+				<!-- 部门树 -->
+				<ul id="tt" class="easyui-tree" animate="false">
+				</ul>
+			</div>
+		</div>
+
+		<!-- 查询面板结束 -->
+		<div region="center">
+			<div class="easyui-panel" key="user_yonghuchaxun" id="userquery"
+				collapsible="true" collapsed="true" title="查询条件"
+				style="padding: 1px">
+
+				<form method="post" id="approvalQueryForm">
+					<table align="center" class="querytable" id="queryDiv">
+						<tr>
+							<!-- 员工姓名 -->
+							<td width="15%"><span key="user.name" class="paltform-i18n">姓
+									名：</span></td>
+							<td width="35%"><input type="text" id="queryname"
+								class="easyui-validatebox input_bg" /></td>
+							<!-- 性别 -->
+							<td width="15%"><span key="user.yonghufanwei"
+								class="paltform-i18n">性别</span></td>
+							<td width="35%"><input id="sexrange" editable=false
+								name="sexrange" /></td>
+						</tr>
+						<tr>
+							<td colspan="4"><a href="#" class="easyui-linkbutton"
+								iconCls="icon-search" onclick="queryUser()"><label><span
+										key="query" class="paltform-i18n">查询</span></label></a> <a href="#"
+								class="easyui-linkbutton" iconCls="icon-clear"
+								onclick="clearselectform()"><label><span key="clear"
+										class="paltform-i18n">清空</span></label></a></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+
+
+			<!-- 分页显示 -->
+			<div class="easyui-panel" key="user_show" id="showuser"
+				collapsible="false" collapsed="false" title="用戶列表"
+				style="padding: 1px">
+				<!--callapible 下拉按钮       collapsed  默认显示 -->
+
+				<table id="showEmplorye" class="easyui-datagrid"
+					url="../../emploryTest/getAll.do" rownumbers="true"
+					pagination="true" toolbar="#tb">
+				
+					<thead>
+						<tr>
+							<th field="ck" checkbox="true" />
+							<th field="username" width="150"><span id="loginLog.name"
+								class="paltform-i18n">名称</span></th>
+							<th field="sex" width="150"><span id="loginLog.type"
+								class="paltform-i18n">性别</span></th>
+							<th field="brithday" width="150"><span
+								id="loginLog.createdate" class="paltform-i18n">生日</span></th>
+						</tr>
+					</thead>
+				</table>
+					<!-- toolbar 工具栏 （查看、更新、删除。。。） -->
+				<div id="tb">
+					<a href="#" id="10130501" class="easyui-linkbutton"
+						iconCls="icon-view" plain="true" onclick="viewUser();">查看</a> <a
+						href="#" id="10130502" class="easyui-linkbutton"
+						iconCls="icon-add" plain="true" onclick="add();">添加</a> <a
+						href="#" id="10130503" class="easyui-linkbutton"
+						iconCls="icon-update" plain="true" onclick="update();">更新</a> <a
+						href="#" id="10130504" class="easyui-linkbutton"
+						iconCls="icon-remove" plain="true" onclick="dele();">删除</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

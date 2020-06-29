@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SWFUpload Demos - External Interface Demo</title>
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<!-- <script type="text/javascript" src="swfupload/swfupload.js"></script> -->
+<!-- <script type="text/javascript" src="js/fileprogress.js"></script> -->
+<!-- <script type="text/javascript" src="js/handlers.js"></script> -->
+<!-- <script type="text/javascript" src="js/swfupload.queue.js"></script> -->
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<!-- <script type="text/javascript" src="../../common/lib/jquery.min.js"></script> -->
+<script type="text/javascript" src="js/insert.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+<script type="text/javascript">
+var businessid=getParamter("businessid");
+//系统根路径
+var rootPath = getRootPath();
+
+
+function getParamter(parameter) {
+	var params = this.location.search.substr(1).split("&");
+	var value = null;
+	$.each(params, function(i, item) {
+		var prop = item.split("=");
+		var key = prop[0];
+		if (parameter == key) {
+			value = prop[1];
+		}
+	});
+	return value;
+}
+/** 获取系统根路径
+ */
+function getRootPath() {
+	//获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+	var curWwwPath = window.document.location.href;
+	//获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+	var pathName = window.document.location.pathname;
+	var pos = curWwwPath.indexOf(pathName);
+	//获取主机地址，如： http://localhost:8083
+	var localhostPaht = curWwwPath.substring(0, pos);
+	//获取带"/"的项目名，如：/uimcardprj
+	var projectName = pathName
+			.substring(0, pathName.substr(1).indexOf('/') + 1);
+	return (projectName);
+}
+</script>
+
+</head>
+<body>
+
+
+测试业务id<input id="businessid" type="hidden" value="" /><input  onclick="sumbitbus()" value="提交" type="hidden"/>
+<input type="button" value="添加附件" onclick="addTR()" />
+<form id="uploadform" enctype="MULTIPART/FORM-DATA" method="post">
+<table id="uploadtable"></table>
+<input type="submit" id="submitw"/>
+</form>
+<input type="hidden" name="exts" id="exts" value="rar,txt,doc,docx"></input>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/ztree/css/zTreeStyle/zTreeStyle.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+
+<!-- ztree begin-->
+<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.exedit-3.5.js"></script>
+
+<script type="text/javascript" src="../js/documentImport.js"></script>
+</head>
+<body>
+	<div id="dlg">
+		<form id="saveHistory" method="post">
+			<input type="hidden" id="foldreeventid" name="foldreeventid">
+			<table  class="edit-table">	
+				<tr>
+					<td width="25%"><span key="file.filename"  class="paltform-i18n">原文件或文件夹路径：</span></td>
+					<td width="75%">
+						<input type="text" id="localPath" name='localPath' required="true"  panelHeight="80px" class="easyui-validatebox input_bg">
+<!-- 						<input type="button" value="选择文件夹" onfocus="changePirctureUrl()"/> -->
+					</td>
+				</tr>
+				<tr>
+					<td width="25%"><span key="file.filename"  class="paltform-i18n">文档中心文件夹路径：</span></td>
+					<td width="75%">
+<!-- 						<select id ="foldreeventid" name="foldreeventid" required="true"  class="easyui-combotree" style="width: 530px" panelHeight="auto" onclick="queryTree()"></select> -->
+						<input type="text" id="foldrname"  required="true" panelHeight="80px"  class="easyui-textbox input_bg"/>
+					</td>
+				</tr>
+			</table>
+			<div style="position:relative;top:20px; left:20px;line-height:24px;" >
+				温馨提示：<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;1.该功能是提供给管理员使用的，在服务器上进行文档的批量入库，一般用户在本机是无法使用该功能<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;2.首先执行文档入库，文档保存进入数据库<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;3.然后执行文档处理，主要包含创建索引、生成摘要、属性、预览、添加水印等操作<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;4.导入文件夹路径下的文件不宜太多，如果文件太多，可以分多次导入<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;5.如果文档保存方式为FILE时，文件导入总大小不超过系统盘剩余容量的四分之一<br/><br/>
+			</div>
+		    <div class="button_area_absolute">
+			   	<table width="100%">
+		 		 	<tr>
+	      				<td align="center">
+							<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="documentImport()"><span key="unit.save" class="paltform-i18n">文档入库并处理</span></a>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeWindow()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+	      				</td>
+	       			</tr>
+	         	</table>	 
+		    </div>
+		</form>
+	</div>
+	<div id="floderZtreeDiv" class="easyui-panel" style="position:absolute;left:-1000px;top:-1000px;z-index:1000;overflow: auto;background-color: #fff;">
+		<ul id="floderZtree"  class="ztree"></ul>
+	</div>
+</body>
+</html>
+	

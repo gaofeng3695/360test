@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>业务域</title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+<link rel="stylesheet" href="../../common/css/add.css" type="text/css"></link>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/queryBusinessDomain.js"></script>
+</head>
+<body>
+	<div id="main" class="easyui-layout" style=" width:100%; height: 100%" >
+		<div id="left" region="west" collapsible="false" style="width:20%;overflow:visible;" split="true">
+			<div class="easyui-panel" style="padding: 2px;"title="业务域" data-options="tools:'#toolbar',fit:true,border:false">
+				<div id="divtree" style="overflow:auto;width: 100%;height: 95%">
+					<ul id="businessTree" class="easyui-tree" style="width: 100%;"></ul>
+				</div>
+			</div>
+		</div>
+		<div id="right" region="center" style="padding: 1px; margin-right: 1px;overflow: auto;">
+			<div id="" class="easyui-layout" style="height: 100%;">
+				<div region="west" collapsible="false" style="width:25%;overflow:visible;" split="true" >
+					<div class="easyui-panel" style="padding: 2px;"title="中心库表" data-options="tools:'#toolbar1',fit:true,border:false">
+						<ul id="treeTable" class="easyui-tree" style="width: 100%"></ul>
+					</div>
+				</div>
+				<div region="center" style="padding: 1px; margin-right: 1px;overflow: auto;width: 100%;height: 90%">
+					<iframe id="field" width="100%" height="95%"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

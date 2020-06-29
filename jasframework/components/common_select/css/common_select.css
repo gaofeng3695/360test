@@ -1,0 +1,210 @@
+/* datagrid  table的样式 */
+.datagrid{
+	padding: 5px;
+	background:#fff;
+	border:0;
+	-moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    -ms-border-radius:4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+.datagrid .datagrid-header .datagrid-header-row .datagrid-cell{
+	 font-weight:bold;
+	 color:#333;
+}
+
+.datagrid .datagrid-view{
+	border:1px solid #eee;
+	-moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    -ms-border-radius:4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+.datagrid .datagrid-header-row, 
+.datagrid .datagrid-row,
+.datagrid .datagrid-cell,
+.datagrid .datagrid-cell-group,
+.datagrid .datagrid-header-rownumber, 
+.datagrid .datagrid-cell-rownumber{
+	height:35px;
+	line-height:35px;
+	font-size:12px;
+}
+
+.datagrid .datagrid-header td,
+.datagrid .datagrid-body td,
+.datagrid .datagrid-footer td{
+      border-width:0 1px 1px 0;
+   	  border-style: solid;
+   	  border-color:#e5e5e5;
+  }
+
+/* toobar样式与分页按钮样式 */ 
+.datagrid .datagrid-toolbar,
+.datagrid .datagrid-pager{
+	background:#fff;
+	height: 30px;
+    line-height: 30px;
+    border:0; 
+}
+.datagrid .datagrid-pager{
+	padding:5px 0 10px 0;
+}
+
+.datagrid .datagrid-toolbar{
+	margin-bottom:5px;
+	padding:0;
+}
+.datagrid .datagrid-toolbar a{
+	padding: 0px 3px;
+	/* margin-right:8px; */
+	border:1px  solid #59b6fc;
+	color:#1b9af7;
+	background:#fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#ffffff,GradientType=0);
+    
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    -ms-border-radius:4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.datagrid .datagrid-toolbar .l-btn-left{
+	vertical-align:middle;
+}
+.datagrid .datagrid-toolbar .fa{
+	padding-left:5px\9;
+	padding-left:5px\9 !important;/*ie6,ie7,ie8*/
+
+}
+.datagrid .datagrid-toolbar .fa::before{
+   	position:relative;
+    top:2px;
+}
+.datagrid .datagrid-toolbar a:hover,
+.datagrid .datagrid-toolbar .l-btn-focus{
+	background: #d2e9fc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d2e9fc,endColorstr=#d2e9fc,GradientType=0);
+}
+
+/* 另一种toobar的样式 */
+#right .datagrid-toolbar a{
+	border:1px solid transparent;
+}
+#right .datagrid-toolbar a:hover,
+#right .datagrid-toolbar .l-btn-focus{
+	border:1px solid #59b6fc;
+}
+
+ /* 表头 */
+.datagrid .datagrid-header-inner,
+.datagrid .datagrid-header,
+.datagrid .datagrid-header-row,
+.datagrid .datagrid-header td{
+	background:#e7f2fd !important;
+}
+.datagrid .datagrid-header-row td:hover{
+	background:#d2e9fb !important;
+}
+
+/* 表身斑马线1 */
+.datagrid .datagrid-btable tr:nth-child(even){
+	background:#fff url();
+}
+.datagrid .datagrid-btable tr:nth-child(odd){
+	background:#f6f6f6 url();
+} 
+
+/* 表格左侧序号咧 */
+.datagrid-header,
+.datagrid-td-rownumber{
+	background:transparent;
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#00000000,endColorstr=#00000000);
+}
+
+/* 表格复选框选中样式 */
+.datagrid-header-check, .datagrid-cell-check {
+    height: 21px;
+}
+.datagrid-row-checked .datagrid-header-check input,
+.datagrid-row-selected .datagrid-cell-check input{
+	-webkit-appearance:none;
+	width:15px;
+	height:15px;
+	outline:none;
+	
+	-moz-border-radius: 4px;
+    -webkit-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius: 4px;
+    
+	background: url(../image/checkbox.png) no-repeat center center;
+    background-size: 100% 100%;
+    background: none\9;     /*针对IE8的hack，目的是除掉之前background*/
+    /*下一行为关键设置  路径是绝对路径 这里不对*/
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jasframework/common/image/checkbox.png', sizingMethod='scale');        
+}
+
+/* 表格通用操作栏样式 */
+.datagrid .table-operate{
+	text-align:center;
+}
+.datagrid .table-operate a{
+	padding:0 5px;
+}
+
+/* 表格任务状态栏样式 */
+.datagrid .processing,
+.datagrid .checking,
+.datagrid .end{
+	-moz-border-radius: 4px;
+    -webkit-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius: 4px;
+    
+	padding:2px 3px;
+	color:#fff;
+	
+}
+/* 进行中 */
+.datagrid .processing{
+	background:#ffab3e;
+}
+/* 审核中 */
+.datagrid .checking{
+	background:#59b6fc;
+}
+/* 结束 */
+.datagrid .end{
+	background:#50c979;
+}
+
+/* 表格状态栏样式 */
+.datagrid .no-normal{
+	color:red
+}
+
+/* 表格右键菜单样式 */
+.menu-top.menu{
+	padding:5px;
+}
+.menu-line {
+    left: 30px;
+}
+
+.easyui-tabs .panel-body{
+	padding:0 !important;
+	overflow:hidden;
+}
+
+.right{
+	overflow:hidden;
+}
+
+body{
+	background:#fff;
+}
+
+.content-area{
+	overflow:auto;
+}

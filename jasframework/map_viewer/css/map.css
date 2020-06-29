@@ -1,0 +1,20 @@
+.dialogid-style .panel-header .panel-title{
+	text-align:center;
+}
+.dialogid-style .panel-header .panel-self-back{
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 15px;
+    background: #3589df;
+    border-radius: 0 20px 20px 0;
+    color: #fff;
+    font-size: 12px;
+}
+.panel-self-back{
+	cursor: pointer;
+}

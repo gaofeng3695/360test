@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">	
+<link rel="stylesheet"  type="text/css" href="../../../common/css/querySpanCommon.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/query_gps_temporary_task.js"></script>
+
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../../jasframework/privilege/js/privilege.js"></script>
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value="100603"/>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>执行部门：</span></td>
+					<td width="15%"><select id="unitid" name="unitid" class="input_bg"></select></td>
+
+					<td width="10%" class="text-right"><span>巡检人员：</span></td>
+					<!--<td width="15%"><input id="inspectorId" name="inspectorId" class="input_bg"/></td>-->
+					<td width="15%"><input id="inspectorName" name="inspectorName" class="input_bg"/></td>
+					<td width="10%" class="text-right"><span>巡检频次：</span></td>
+					<td width="15%"><select id="insfreq" name="insfreq" class="input_bg"></select></td>
+					
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','gpsTemporaryTaskdatagrid')"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true)"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../../jasframework/common/image/triangle.png" /></td></tr>
+				<tr>
+					<td width="11%" class="text-right"><span>任务开始日期：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="insbdate" name="insbdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="insbdatequery" name="insbdatequery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11%" class="text-right"><span>任务结束日期：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="insedate" name="insedate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="insedatequery" name="insedatequery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+					<td width="33%"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="gpsTemporaryTaskdatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="10060301" href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="view()"><label><span>查看</span></label></a>
+		<a id="10060302" href="#" class="easyui-linkbutton fa" data-options="iconCls:'fa icon-task'" plain="true" onclick="generateTemporaryTask()"><label><span>生成任务</span></label></a>
+	</div>
+</body>
+</html>

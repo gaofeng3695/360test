@@ -1,0 +1,49 @@
+/* navigation style reference [lol](http://lol.52pk.com/xinwen/7223284.shtml) */
+.localHost {
+    color: #8f8f8f;
+    /* float : left; */
+    position: relative;
+    top: 3px;
+    /* margin-top: 5px;  */
+    margin-left: 3px;
+    /*  margin-right: 10px; */
+}
+
+.home {
+    /* float : left; */
+    position: relative;
+    top: 5px;
+    left : 2px;
+    /* margin-top: 5px; */
+    /* margin-left: 4px; */
+}
+
+.nav-unit {
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 4px;
+}
+
+#export {
+    font-size: 13px;
+    border: none;
+    color: #8f8f8f;
+    /* position: relative;
+    left: 75em; */
+    /* float: left; */
+    margin-right: 1px;
+}
+
+.span-title {
+    border: 1px solid;
+    padding: 2px;
+    border-radius: 12px;
+}
+
+.datagrid .datagrid-header-inner, .datagrid .datagrid-header, .datagrid .datagrid-header-row, .datagrid .datagrid-header td {
+    /*background: #ffffff !important;*/
+
+}
+.datagrid-view {
+    border-top: 1px solid;
+}

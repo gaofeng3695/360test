@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<script type="text/javascript" src="../../common/js/es6-promise.js"></script>
+<script type="text/javascript" src="../../common/js/vue.js"></script>
+<script type="text/javascript" src="../../common/js/vue-router.js"></script>
+<script type="text/javascript" src="../../common/js/axios.min.js"></script>
+<script type="text/javascript" src="../../common/element/js/element.js"></script>
+
+<script type="text/javascript" src="component/commontop.js"></script>
+<script type="text/javascript" src="component/company.js"></script>
+<script type="text/javascript" src="component/person.js"></script>
+<script type="text/javascript" src="component/messagebottom.js"></script>
+
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="../../common/element/css/element.css"/>
+<link rel="stylesheet" type="text/css" href="css/query.css"/>
+</head>
+<body>
+<div id = "app">
+	<el-container>
+		<!-- 顶部查询 -->
+		<el-header v-bind:height = "headerHeight">
+			<transition name="fade">
+				<company-top @childevent = "getTypeFromChild"
+							 @childupdatecompanyevent="updateCompany">
+				</company-top>
+			</transition>
+			<!--动态切换模板 -->
+		</el-header>
+		<el-main  v-bind:style = "{height:mainHeight}" >
+			<transition name="fade">
+				<compoment :is="message" v-bind:maxheightprop = "maxheightprop"
+						   v-bind:unitidprop= "unitidprop"
+						   v-bind:flag= "flag"
+						   @childupdatepersonevent="updatePerson"
+				></compoment>
+			</transition>
+		</el-main>
+		<el-footer  v-bind:height = "footerHeight">
+			<keep-alive>
+				<compoment :is="messageBottom" ></compoment>
+			</keep-alive>
+		</el-footer>
+	</el-container>
+</div>
+
+<script type="application/javascript">
+    ES6Promise.polyfill()
+    /* 定义路由 */
+    var router = new VueRouter({
+        routes:[]
+    })
+
+    /* Vue请求全局定义。 */
+    Vue.prototype.$http = axios;
+
+    var tvm = new Vue({
+        el: '#app',
+        data: {
+            message: "company",
+            messageBottom: "messagebottom",
+            headerHeight:"0px",
+            mainHeight:"0px",
+            footerHeight:"0px",
+            maxheightprop:"0px",
+            unitidprop:"",
+			/* 在切换组件的时候，是否需要默认加载列表 */
+			flag: "1",
+            /* 声明一个空的vue对象，用于发送广播和接收广播。 */
+            eventHub: new Vue()
+        },
+        mounted: function() {
+            this.$options.methods.setBodyHeight( this );
+        },
+        methods: {
+            /**
+			 * 查询条件
+             * @param data
+             */
+            getTypeFromChild: function( data ) {
+                console.log( data );
+            },
+			setBodyHeight: function( target ) {
+                var bodyHeight = document.body.clientHeight;
+                target.headerHeight = bodyHeight * (1/15) + "px";
+                target.mainHeight =  bodyHeight * (11/15) + "px";
+                target.maxheightprop =  bodyHeight * (11/15) - 40 + "px";
+                target.footerHeight = bodyHeight * (2/15) + "px";
+			},
+            /**
+			 * 切换到人员组件
+             */
+            updatePerson: function( oid ) {
+                console.log("切换到人员组件");
+                this.message = "person";
+                this.unitidprop = oid;
+			},
+            /**
+             * 切换到站或者分公司组件
+             */
+            updateCompany: function( oid, flag ) {
+                console.log("切换到分公司组件");
+                this.message = "company";
+                this.unitidprop = oid;
+                this.flag = flag;
+            }
+        },
+        components: {
+            commontop: commontop,
+			company:company,
+            messagebottom:messagebottom,
+			person:person
+        },
+        router: router
+    })
+</script>
+</body>
+</html>

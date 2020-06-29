@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>操作日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/webServiceLogDataGrid.js"></script>
+</head>
+
+<body>
+	<input type="hidden"  id="menuid" value="101305"></input>
+	<!-- 查询面板开始 -->
+	<!-- <div class="easyui-panel" id="searchpanel" key="" title="服务日志查询" collapsed="true" collapsible="true"> -->
+		 <div  id="searchpanel" key=""  class="query-conditions">
+		 <table align="center" class="query-table" id="queryDiv">
+			 <tr>
+				<td width="15%"><span key="" class="paltform-i18n">系统名称：</span></td>
+			    <td width="35%"><input id="systemNumber" name="systemNumber" class="easyui-combobox"/></td>
+				<td width="15%"><span key="" class="paltform-i18n">操作人：</span></td>
+				<td width="35%"><input id="userName" class="easyui-validatebox input_bg" type="text" validType="general" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td><span key="operatelog.startdate" class="paltform-i18n">起始时间：</span></td>
+				<td><input id="beginDate" editable="false" class="easyui-datetimebox"/></td>
+				<td><span key="operatelog.enddate" class="paltform-i18n">结束时间：</span></td>
+				<td><input id="endDate" editable="false" class="easyui-datetimebox"/></td>
+			</tr>
+			<tr>
+				<td width="15%"><span key="operatelog.businessname" class="paltform-i18n">服务模块：</span></td>
+			    <td width="35%"><input id="serviceModule" class="easyui-validatebox input_bg" type="text"/></td>
+			    <td colspan="2" align="right">
+					<a href="#" class="easyui-linkbutton submit" onclick="executeQuery()"><span key="" class="paltform-i18n">查询</span></a>
+					<a href="#" class="easyui-linkbutton cancel" onclick="clearAll()"><span key="" class="paltform-i18n">清空</span></a>
+				</td>
+			</tr>
+			
+		</table>
+	</div>
+	<!-- 查询面板结束 -->
+	<table id="dg"></table>
+	<div id="toolbar">  
+	    <a href="#" id="sel_but" class="easyui-linkbutton fa fa-eye"  plain="true" onclick="viewLog();"><span key="view" class="paltform-i18n">查看</span></a>  
+	</div>  
+</body>
+</html>

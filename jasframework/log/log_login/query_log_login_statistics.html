@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>用户登录日志统计</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css"></link>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="js/query_log_login_statistics.js"></script>
+	<script type="text/javascript" src="../../commom/i18n/i18n.js"></script>
+</head>
+<body>
+	<input type="hidden"  id="menuid" value="101301"></input>
+	<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>用户姓名：</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="userName" name="userName"/></td>
+					<td width="10%" class="text-right"><span>登录名：</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="loginName" name="loginName"/></td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryLog()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,'logLoginDatagrid')"><span>清空</span></a>
+					</td>
+				 </tr>
+			</table>
+		</form>
+	</div>
+	<table id="logLoginDatagrid" key="loginLogStatis.list" class="easyui-datagrid"></table>
+</body>
+</html>

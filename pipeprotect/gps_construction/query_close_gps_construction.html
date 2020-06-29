@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/querySpanCommon.css"></link>		
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/query.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/workflow/js/workflow.js"></script>
+<script type="text/javascript" src="../../common/js/querySpanCommon.js"></script>
+<script type="text/javascript" src="js/query_close_gps_construction.js"></script>
+
+	<script type="text/javascript" src="../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../jasframework/privilege/js/privilege.js"></script>
+</head>
+<body>
+<!-- 存放权限编号的隐藏域，id必须是menuid，不能删除 -->
+	<input type="hidden" id="menuid" value="130103"/>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span>部门名称：</span></td>
+					<td width="15%"><select id="unitid" name="unitid" class="input_bg"></select></td>
+					<td width="10%" class="text-right"><span>管线名称：</span></td>
+					<td width="15%"><select id="lineloopoid" name="lineloopoid" class="input_bg"></select></td>
+
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryDatagrid('queryForm','gpsConstructiondatagrid')"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,true)"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../jasframework/common/image/triangle.png" /></td></tr>
+				 <tr>
+					 <td width="11%" class="text-right"><span>风险等级(变更前)：</span></td>
+					 <td width="22%">
+						 <select id="riskrating" name="riskrating"  class="easyui-validatebox select"></select>
+					 </td>
+					<td width="11%" class="text-right"><span>审批状态：</span></td>
+					<td width="22%">
+						<select id="approvestatus" name="approvestatus"  class="easyui-validatebox select"></select>
+					</td>
+					<td width="11%" class="text-right"><span>距离管线长度(m)：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="distanceline" name="distanceline" class="input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="distancelinequery" name="distancelinequery"  class="input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="11%" class="text-right"><span>施工关闭日期：</span></td>
+					<td width="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="closedate" name="closedate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="closedatequery" name="closedatequery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+
+					<td width="11%" class="text-right"><span>第三方施工名称：</span></td>
+					<td width="22%">
+						<input id="projectname" name="projectname"  class="easyui-validatebox input_bg"></input>
+					</td>
+
+					<td width="10%" class="text-right"><span>施工开始日期：</span></td>
+					<td width="15%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="happenbegindate" name="happenbegindate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+								<td width="10%" class="text-center">到</td>
+								<td width="45%" style="padding-right:0em"><input id="happenbegindatequery" name="happenbegindatequery" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="11%" class="text-right"><span>风险等级(变更)：</span></td>
+					<td width="22%">
+						<select id="changeriskrating" name="changeriskrating"  class="easyui-validatebox select"></select>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="gpsConstructiondatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="13010301" href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="view()"><label><span>查看</span></label></a>
+		<a id="13010302" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="update()"><label><span>修改</span></label></a>
+		<a id="13010303" href="#" class="easyui-linkbutton fa fa-file-text-o" plain="true" onclick="constructclose()"><span>施工关闭</span></a>
+		<!-- <a id="del" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele()"><label><span>删除</span></label></a> -->
+		<a id="13010304" href="#" class="easyui-menubutton fa fa-map-marker"  plain="true" ><label><span>定位</span></label></a>
+		<a id="13010305" href="#" class="easyui-linkbutton fa fa-file-word-o" plain="true" onclick="sumbit()"><span>提交</span></a>
+		<a id="13010306" href="#" class="easyui-linkbutton fa fa-stethoscope" plain="true" onclick="viewWorkflow()"><span>流程图</span></a>
+	</div>
+	<div id="locationBars" style="width:100px;">
+		<div class="easyui-linkbuttin fa fa-map-marker" onclick="positionSelectOnTop()">定位选中</div>  
+    	<div class="easyui-linkbuttin fa fa-map-marker" onclick="positionSelectOnTop('all')">定位所有</div>  
+	</div>
+</body>
+</html>

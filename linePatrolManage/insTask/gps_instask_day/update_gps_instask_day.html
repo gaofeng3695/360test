@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css">		
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/update_gps_instask_day.js"></script> 	
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+		<!-- 表单区域，每行四列 -->
+		<form id="gpsInstaskDayForm" class="content-area-main" method="post">
+			<input id="oid" name="oid" type="hidden" value="" />
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="20%"><span>巡检类型：</span></td>
+					<td width="30%">
+						<select id="instype" name="instype"  class="easyui-validatebox select"></select>
+					</td>
+					<td width="20%"><span>01巡线工、02管道工：</span></td>
+					<td width="30%">
+						<select id="inspectortype" name="inspectortype"  class="easyui-validatebox select"></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>巡检频次值：</span></td>
+					<td width="30%">
+						<input id="insfreq" name="insfreq"  class="easyui-validatebox input_bg" validType="doubleNumber" maxlength="22"/>
+					</td>
+					<td width="20%"><span>巡检频次单位：</span></td>
+					<td width="30%">
+						<select id="insfrequnit" name="insfrequnit"  class="easyui-validatebox select"></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>巡检频次单位值：</span></td>
+					<td width="30%">
+						<input id="insfrequnitval" name="insfrequnitval"  class="easyui-validatebox input_bg" validType="doubleNumber" maxlength="22"/>
+					</td>
+					<td width="20%"><span>巡检工具：</span></td>
+					<td width="30%">
+						<select id="insvehicle" name="insvehicle"  class="easyui-validatebox select"></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>巡检人员标识：</span></td>
+					<td width="30%">
+						<input id="inspectorid" name="inspectorid" class="easyui-validatebox input_bg"  validType="" maxlength="45"/>
+					</td>
+					<td width="20%"><span>任务开始时间：</span></td>
+					<td width="30%">
+						<input id="insbdate" name="insbdate"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>任务结束时间：</span></td>
+					<td width="30%">
+						<input id="insedate" name="insedate"  class="easyui-validatebox Wdate input_bg"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+					</td>
+					<td width="20%"><span>执行部门：</span></td>
+					<td width="30%">
+						<select id="execunitid" name="execunitid"  class="easyui-validatebox select"></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%"><span>巡检计划标识：</span></td>
+					<td width="30%">
+						<input id="planevoid" name="planevoid" class="easyui-validatebox input_bg"  validType="" maxlength="45"/>
+					</td>
+			</table>					
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="updateGpsInstaskDay()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

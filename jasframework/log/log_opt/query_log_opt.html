@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>网格化页面</title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/query.css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../privilege/js/privilege.js"></script>
+<script type="text/javascript" src="js/query_log_opt.js"></script> 		
+</head>
+<body>
+<!-- 	查询区域 -->
+	<div class="query-conditions" id="queryDiv">
+		<form method="post" id="queryForm">
+			<!-- 简单查询区域 -->
+			<table class="query-table" align="center">
+				<tr>
+					<td width="10%" class="text-right"><span key="operatelog.businessname" class="paltform-i18n">对象类型</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="businessName" name="businessName"/></td>
+					<td width="10%" class="text-right"><span>操作类型：</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="optType" name="optType" type="text" style="width: 100%;"/></td>
+					<td width="10%" class="text-right"><span>操作人：</span></td>
+					<td width="15%"><input class="easyui-validatebox input_bg" id="optUserName" name="optUserName" type="text"/></td>
+					<td align="right" colspan="2">
+						<a href="#" class="easyui-linkbutton query-btn" onclick="queryOptLog()"><span>查询</span></a>
+						<a href="#" class="easyui-linkbutton clear-btn" onclick="clearQueryForm('queryForm',true,true,true,true,'logOptDatagrid')"><span>清空</span></a>
+						<a href="#" id='moreQuery' class="easyui-linkbutton more-query-btn" iconCls="accordion-expand" iconAlign="right"><span>高级搜索</span></a>
+					</td>
+				 </tr>
+			</table>
+			
+			<!-- 高级查询区域 -->
+			<table class="more-query-table" id="moreTable">
+				<tr class="table-arrow"><td><img src="../../common/image/triangle.png" /></td></tr>
+				 <tr>
+					 <td width="11%" class="text-right"><span>操作时间：</span></td>
+					 <td width ="22%">
+						<table width="100%">
+							<tr>
+								<td width="45%" style="padding-left:0em"><input id="beginDate" name="beginDate" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')}',dateFmt:'yyyy-MM-dd HH:mm'})" class="Wdate input_bg"/></td>
+								<td width="10%">到：</td>
+								<td width="45%" style="padding-right:0em"><input id="endDate" name="endDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'beginDate\')}',dateFmt:'yyyy-MM-dd HH:mm'})" class="Wdate input_bg"/></td>
+							</tr>
+						</table>
+					 </td>
+					 <td></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 	datagrid列表  -->
+	<table id="logOptDatagrid" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<a id="10940201" href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="view()"><label><span>查看</span></label></a>
+		<a id="10940202" href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="add()"><label><span>新增</span></label></a>
+		<a id="10940203" href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="update()"><label><span>修改</span></label></a>
+		<a id="10940204" href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele()"><label><span>删除</span></label></a>
+		<a id="10940205" href="#" class="easyui-menubutton fa fa-download" onclick="exportSelect()" plain="true" ><label><span>导出</span></label></a>
+		<a id="10940206" href="#" class="easyui-linkbutton fa fa-download" plain="true" onClick="submitData()"> <span >下发</span></a>
+	</div>
+</body>
+</html>

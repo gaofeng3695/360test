@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>操作日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="js/operateLogDataGrid.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+</head>
+
+<body>
+	<input type="hidden"  id="menuid" value="101301"></input>
+	<input type="hidden" name="eventid" />
+	<!-- 查询面板开始 -->
+		<div id="searchpanel" key="operatelog.query" class="query-conditions" > 
+		 <table align="center" class="query-table" id="queryDiv">
+			<tr>
+				<td width="15%"><span key="operatelog.operator" class="paltform-i18n">操作人：</span></td>
+				<td width="35%"><input id="username" class="easyui-validatebox input_bg" type="text" validType="general" maxlength="20"/></td>
+				<td width="15%"><span key="operatelog.businessname" class="paltform-i18n">业务模块：</span></td>
+			    <td width="35%"><input id="businessname" /></td>
+			</tr>
+			<tr>
+				<td><span key="operatelog.startdate" class="paltform-i18n">起始时间：</span></td>
+				<td><input id="beginDate" editable="false" class="easyui-datetimebox"/></td>
+				<td><span key="operatelog.enddate" class="paltform-i18n">结束时间：</span></td>
+				<td><input id="endDate" editable="false" class="easyui-datetimebox"/></td>
+			</tr>
+			<tr>
+				<td><span key="operatelog.operatetype" class="paltform-i18n">操作类型：</span></td>
+				<td>
+					<select id="operatetype" class="easyui-combobox" editable="false" panelHeight="100">
+					    <option value=""><span key="operatelog.all" class="paltform-i18n">全部</span></option>  
+					    <option value="1"><span key="operatelog.add" class="paltform-i18n">添加</span></option>  
+					    <option value="2"><span key="operatelog.update" class="paltform-i18n">更新</span></option>  
+					    <option value="3"><span key="operatelog.delete" class="paltform-i18n">删除</span></option>  
+					    <option value="4"><span key="operatelog.export" class="paltform-i18n">导出</span></option>  
+					</select>
+				</td>
+				<td></td>
+				<td>
+					<a href="#" class="easyui-linkbutton submit" onclick="operateLogExecuteQuery()"><span key="operatelog.select" class="paltform-i18n">查询</span></a>
+					<a href="#" class="easyui-linkbutton cancel"  onclick="operateLogClearAll()"><span key="operatelog.clear" class="paltform-i18n">清空</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- 查询面板结束 -->
+	<table id="operateLogTable" key="operatelog.list"></table>
+	<div id="tb">  
+	    <a href="#" id="sel_but" class="easyui-linkbutton fa fa-eye" plain="true" onclick="sele();"><span key="view" class="paltform-i18n">查看</span></a>  
+	    <a id="comp_but" href="#" class="easyui-linkbutton fa fa-eye"  plain="true" onclick="compare();"><span key="operatelog.compare" class="paltform-i18n">对比</span></a>  
+	</div>  
+</body>
+</html>

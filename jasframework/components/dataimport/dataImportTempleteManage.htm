@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta http-equiv="description" content="this is my page"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/font-awesome.css"  ></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/query.css"/>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/dataImportTempleteManage.js"></script>
+	<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+	<title>数据导入模版管理</title>
+  </head>
+  
+  <body>
+  <input type="hidden" id="menuid" value="102102"></input>
+  	<!-- 查询条件 -->
+	<!-- <div class="easyui-panel" id="queryDiv" key="importdata_templetequery" title="模版信息查询" collapsed="true" collapsible="true"> -->
+		<div class="query-conditions" id="queryDiv" key="importdata_templetequery">
+		<form id="queryForm" >
+			<table class="query-table">
+				<tr>
+					<td width="20%"><span key="importdata_businessname" class="paltform-i18n" >业务名称：</span></td>
+				    <td width="30%"><input id="businessname" name="businessname" class="easyui-validatebox input_bg" ></td>
+				    <td width="20%"><span  key="importdata_tablename" class="paltform-i18n" >数据表名：</span></td>
+				    <td width="30%"><select id="tablename" name="tablename" ></select></td>
+				</tr>
+				<tr>
+					<td><span key="importdata_templetename" class="paltform-i18n" >模版名称：</span></td>
+				    <td><input id="filename" name="filename" class="easyui-validatebox input_bg"></td>
+					<td colspan="2" align="right">
+						<a href="#" class="easyui-linkbutton submit" onclick="queryTempleteInfo()"><span key="query" class="paltform-i18n">查询</span></a>
+						<a href="#" class="easyui-linkbutton cancel" onclick="clearAll()"><span key="clear" class="paltform-i18n">清空</span></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+  	<!-- 数据表格 -->
+	<table id="datatableid" key="importdata_templetelist" ></table>
+	
+	<div id="toolbar">
+<!-- 		<a href="#" class="easyui-linkbutton" iconCls="icon-view" plain="true" onclick="viewUser()"><label><span key="view" class="paltform-i18n">查看</span></label></a> -->
+		<a href="#" class="easyui-linkbutton fa fa-plus" plain="true" onclick="addTemplete()"><span key="add" class="paltform-i18n">新增</span></a>
+		<a href="#" class="easyui-linkbutton fa fa-edit" plain="true" onclick="updateTemplete()"><span key="edit" class="paltform-i18n">修改</span></a>
+		<a href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="deleteTemplete()"><span key="delete" class="paltform-i18n">删除</span></a>
+		<a href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="downloadAllTemplete()"><span key="downloadall" class="paltform-i18n">下载所有</span></a>
+		<a href="#" class="easyui-linkbutton fa fa-minus" plain="true" onclick="downloadSelectedTemplete()"><span key="downloadselected" class="paltform-i18n">下载选中</span></a>
+	</div>
+	<form id="zipDownloadDocfrom" name="zipDownloadDocfrom" >
+		<input type="hidden" value="" name="eventids" id="eventids">
+		<input type="hidden" id="folderName" name="folderName" value="模版文件"  >
+	</form>
+  </body>
+</html>

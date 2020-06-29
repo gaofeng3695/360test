@@ -1,0 +1,78 @@
+
+{
+  "app-weather":{
+    "description":"气象地图配置",
+    "resources":[],
+    "services":{
+      "resource":{ "url":"","url2":"" },
+      "geometryService":"http://192.168.100.51:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+      "printService":"http://192.168.101.51:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+    },
+    "map":{
+      "id":"mapDivId",
+      "mapOptions":{
+        "extent":{
+          "xmax":122.536931,
+          "xmin":107.046640,
+          "ymax":31.568955,
+          "ymin":23.942782,
+          "spatialReference": { "wkid": 4490 }
+        },
+        "sliderStyle":"small"
+      },
+      "basemaps":{
+        "thumbnail":"../app02/images/map_yx.png",
+        "label": "基础底图",
+        "baseMapLayers": [{
+          "id":"china_shp","type":"tile","label":"气象底图","index":0,"visible":true  ,
+          "url2":"http://192.168.100.51:6080/arcgis/rest/services/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E5%9C%B0%E5%9B%BE/MapServer",
+          "url":"http://192.168.100.51:6080/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer"
+        }]
+      },
+      "optionallayers":[{
+        "id":"layerSet000",
+        "label":"基础地理数据",
+        "layerSet":[
+          {
+            "id":"countryLayer","type":"flash","label":"县级要素图层","index":10,"visible":true  ,
+            "url":"http://192.168.100.51:6080/arcgis/rest/services/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E5%9C%B0%E5%9B%BE/MapServer/1"
+          },
+          {
+            "id":"pipeline","type":"feature","label":"管线图层","index":20,"visible":true  ,
+            "url":"http://192.168.100.51:6080/arcgis/rest/services/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E5%9C%B0%E5%9B%BE/MapServer/0"
+          }]
+      }]
+    },
+    "dojoConfig":{},
+    "proxy":[],
+    "platform":{}
+  },
+  "app-index":{
+    "description":"首页地图配置",
+    "services":{
+      "geometryService":"http://192.168.100.51:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+      "printService":"http://192.168.101.51:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+    },
+    "map":{
+      "id":"mapDivId",
+      "mapOptions":{
+        "extent":{
+          "xmin":70.47808,
+          "ymin":18.5414,
+          "xmax":155.78176,
+          "ymax":52.38923,
+          "spatialReference": { "wkid": 4490 }
+        }
+      },
+      "basemaps":{
+        "thumbnail":"../app02/images/map_yx.png",
+        "label": "基础底图",
+        "baseMapLayers": [{
+          "id":"china_shp","type":"tile","label":"矢量底图","index":0,"visible":true  ,
+          "url":"http://192.168.100.51:6080/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer"
+        }]
+      },
+      "optionallayers":[]
+    }
+  }
+}

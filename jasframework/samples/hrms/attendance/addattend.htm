@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../../common/css/querystyle.css">
+	<script type="text/javascript" src="../../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../common/js/validate_class.js"></script>
+	 <script type="text/javascript" src="../../../common/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="js/attendancedata.js"></script>
+	<script type="text/javascript" src="../../../common/js/common.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		loadUsername();
+		    	//绑定表单的ajax事件
+		});
+	</script>
+</head>
+<body>
+<div>
+	<table align="center" class="querytable" >
+	<form id="saveattend" action="/platform/hrms/attendance/saveAttend.do" method="post">
+		<input type="hidden" name="eventid">
+			<tr>
+		    <td width="15%">人员姓名：</td>
+			<td width="35%"><select id="attendanceboname" name='attendanceboname'></select></td>
+			<td width="15%">日期：</td>
+			<td width="35%"><input id="attendancebodate" class="easyui-validatebox" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})"  name='attendancebodate'/></td>
+		</tr>
+		<tr> 
+			<td width="15%">上班时间 ：</td>
+			<td width="35%"><input id="attendancebostarttime" name="attendancebostarttime" class="easyui-validatebox"  onfocus="WdatePicker({dateFmt:'HH:mm:ss'})" class="Wdate"></td>
+			<td width="15%">下班时间 ：</td>
+			<td width="35%"><input id="attendanceboendtime" name="attendanceboendtime" class="easyui-validatebox"  onfocus="WdatePicker({dateFmt:'HH:mm:ss'})" class="Wdate"></td>
+		</tr>
+		<tr>
+		<tr> 
+			<td width="15%">原因：</td>
+			<td width="35%" align="center"><input name="reason" checked="checked" value="1" type="radio"/>无事由<input id="qingjia" name="reason" value="5" type="radio"/>请假<input id="tiaoxiu" name="reason" value="6" type="radio"/>调休</td>
+		</tr>
+			<tr> 
+			<td width="15%">说明：</td>
+			<td width="35%" colspan="3" ><textarea id="explain" name="explain" style="height: 60px;" class="easyui-validatebox" validType="maxLength[200]"></textarea></td>
+		</tr>
+		<td  colspan="4">
+        	<a id="10060106" href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveattend()"><span id="user.save" class="paltform-i18n">保存</span></a>
+			<a id="10060107" href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeUser()"><span id="user.cancel" class="paltform-i18n">取消</span></a>
+         </td>
+        </tr>
+	</form>
+	</table>
+</div>
+
+</body>
+</html>

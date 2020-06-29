@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>操作日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/query.css" ></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/operateLog.js"></script>
+</head>
+
+<body>
+	<!-- 查询面板开始 -->
+	<div class="easyui-panel" id="searchpanel" title="操作日志查询" collapsed="true" collapsible="true">
+		 <table align="center" class="querytable" id="queryDiv">
+			<tr>
+				<td width="15%"><span key="operatelog.operator" class="paltform-i18n">操作人：</span></td>
+				<td width="35%"><input id="username" class="easyui-validatebox input_bg"/></td>
+				<td width="15%"><span key="operatelog.businessname" class="paltform-i18n">业务模块：</span></td>
+			    <td width="35%"><input id="businessname" class="easyui-validatebox input_bg"/></td>
+			</tr>
+			<tr>
+				<td><span key="operatelog.startdate" class="paltform-i18n">起始时间：</span></td>
+				<td><input id="beginDate" editable="false" class="easyui-datetimebox"/></td>
+				<td><span key="operatelog.enddate" class="paltform-i18n">结束时间：</span></td>
+				<td><input id="endDate" editable="false" class="easyui-datetimebox"/></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="operateLogExecuteQuery()"><span key="operatelog.select" class="paltform-i18n">查询</span></a>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="operateLogClearAll()"><span key="operatelog.clear" class="paltform-i18n">清空</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- 查询面板结束 -->
+	<table id="operateLogTable" title="操作日志列表" >
+		
+	</table>
+	<div id="toolbar">  
+	    <a href="#" id="sel_but" class="easyui-linkbutton" iconCls="icon-view" plain="true" onclick="viewLog();"><span key="operatelog.select" class="paltform-i18n">查看</span></a>  
+	</div>  
+</body>
+</html>

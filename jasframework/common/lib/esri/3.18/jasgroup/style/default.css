@@ -1,0 +1,54 @@
+html, body, div.map {width: 100%;height:100%;padding:0;margin:0 auto;overflow: hidden;position: relative;}
+.mapWidget{/*background-color: #6daef2;border: solid #6174c1 1px;*/}
+.Map-Widget-BaseMapToolsBar { position: absolute; top: 0;left:50%; width: auto;  height: 40px;  padding: 5px;  margin-left: 0px; }
+.Map-Widget-BaseMapToolsBar ul{ list-style: none; padding: 0; margin: 0 auto;}
+.Map-Widget-BaseMapToolsBar ul li{ margin: 0 auto;float: left; width: 35px;height: 35px;vertical-align: middle;  text-align: center;}
+.Map-Widget-BaseMapToolsBar ul li:hover{ cursor:pointer; background: #6c8add; }
+.Map-Widget-BaseMapToolsBar ul li.selected{ background: #6c8add; }
+.Map-Widget-BaseMapToolsBar ul li img{ width:30px;height:30px;}
+
+.Map-Widget-CoorsPicker{ position: relative;margin: 0 auto;top:-20px;height:20px;width: 440px;text-shadow:0 0 2px #fff;font-size: smaller;}
+
+.mapLayerListSliderPanel .Map-Widget-LayerList{ width:100%;height: 100%;overflow-y: auto;}
+.mapLayerListSliderPanel .panel .panel-body{ left: 0;top: 30px; padding: 5px;}
+.mapLayerListSliderPanel .panel .panel-header{ background-size: 100% 100%;}
+.mapLayerListSliderPanel .panel .panel-header .panel-title{ ;font-weight: bold;font-size: 12px; font-family: "宋体";}
+.mapLayerListSliderPanel{ position: absolute;right: 0;top: 60px;height:auto;width:0px;background:#f5fcff;transition: width 0.2s ease-out 0s; -webkit-transition:width 0.2s ease-out 0s;}
+.panel-hide{ width:0;}
+.panel-show{ width:200px;}
+.Map-widget-DrawBox{display: none;position: absolute;top:60px;right:5px;}
+.Map-widget-DrawBox ul{list-style: none;}
+.Map-widget-DrawBox ul li img{cursor:pointer;}
+
+.Map-Widget-Basemap{position: absolute; top: 10px;right:10px;}
+.Map-Widget-Basemap .container{display: block; overflow: hidden; padding: 0 3px 0 3px;background-color: white;  transition: width 0.2s ease-out 0s;  -webkit-transition:width 0.2s ease-out 0s;  }
+.Map-Widget-Basemap ul{ list-style: none;display: inline; font-size: 10px;overflow: auto; padding: 0; margin: 0 auto;}
+.Map-Widget-Basemap ul li{float: left; padding: 2px;}
+.Map-Widget-Basemap ul li div.listItem{text-align: center;padding:1px;}
+.Map-Widget-Basemap ul li div.listItem:hover{border: solid 2px blue;}
+.Map-Widget-Basemap ul li div.selected{ border: solid 2px blue;}
+.Map-Widget-Basemap ul div.listItem img{width:100px;height:60px;cursor: pointer;}
+.map-widget-ScaleRangeSlider{position: absolute; top: 10px;left:10px;}
+.esriLargeSliderVertical { height: 100px;  }
+.esriLargeSliderTR { right: 10px;top: 10px;  }
+.myInfoWindow{}
+.myInfoWindow .tabs-control{ display: block;line-height: 20px; height: 28px; margin-bottom: -1px; position: absolute; top: 10px; background-color: #f7f7f7;}
+.myInfoWindow .tabs-control .control-btn{ float: left;height:20px;padding:3px;border:1px solid grey ;cursor: pointer; border-bottom:1px solid dodgerblue;}
+.myInfoWindow .tabs-control .selected{ border-left:1px solid dodgerblue;border-top:1px solid dodgerblue;border-right:1px solid dodgerblue; border-bottom:none;!important;}
+.myInfoWindow .tab{ border:1px solid dodgerblue; background-color: #f7f7f7; margin-top: 27px;display: none; }
+.myInfoWindow .selected{ display: block; }
+.myInfoWindow .tab table  tr td { vertical-align: top;}
+
+.esriPopup .titlePane{
+    background-color :#266daf
+}
+.jasmap_mask_container{ z-index:10;position: absolute ;left: 0; top: 0;}
+.jasmap_mask_container span.jasmap_label{ z-index:1000;white-space:nowrap; font-size: 12px; position: absolute; background-color: white; border: solid 1px #aaa;  padding:1px 2px 1px 2px;}
+.jasmap_mask_container span.jasmap_label:hover{ z-index:999999; font-size: 12px; position: absolute; background-color: white; border: solid 1px #aaa;  padding:1px 2px 1px 2px;}
+.jasmap_mask_container span.jasmap_label label.jasmap_label_stress {  font-size: 14px; color: red ;font-weight: 600 ; }
+.jasmap_mask_container label.jasmap_icon{}
+.jasmap_mask_container label.jasmap_icon_delete{  cursor:pointer ;background-repeat:no-repeat;background-size:16px 16px; padding: 7px; margin:-7px;background-position: center;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAh1BMVEX////pIyPrIyPrIyPrIyPoIyPuPT37gYH9jIzkIyP7Xl79ZWXgIyP8W1v9f3/9bGzcIyL0Tkz8W1n9bGrXIyLZJybpPj3uYF/uVlXSIyLXOzrNIyLZV1bIIyLVV1bDIyHRV1W+IyHNVFPNV1W6IyG6IyG2IyG2IyG0IyGzIyGzIyGzIyH////OQTWCAAAALHRSTlMAD4PM3IPl+PvM+f3c/P393PT8/dze6/Dw3ODc5Nzk3OTc5OTM3IPcD4PM3LR4qOwAAAABYktHRACIBR1IAAAAB3RJTUUH2wcSDhQYy0FnQQAAAJJJREFUGNNlz9kOgjAURVEGAUEuM6hIKQVEwPv/3+epEkPCfmhOV9KHGsYh07JPW7ZlAhzXO295rgPwg8u/wAeERBHHRDFHRCEgSTNmznMcWZoAirK68rdbVRaAO6r1vdYL8ECNhkYvgBCi/T1pMQFSSly6DgcmQCnV86DUwD0mYHzuGgHTa9cEmJf1vbUu8/HzH+3+FSL/3/yRAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA2LTI4VDIyOjU0OjA1KzA4OjAwl8sHwgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxMS0wNy0xOFQxNDoyMDoyNCswODowMNSDZVQAAABDdEVYdHNvZnR3YXJlAC91c3IvbG9jYWwvaW1hZ2VtYWdpY2svc2hhcmUvZG9jL0ltYWdlTWFnaWNrLTcvL2luZGV4Lmh0bWy9tXkKAAAAGHRFWHRUaHVtYjo6RG9jdW1lbnQ6OlBhZ2VzADGn/7svAAAAF3RFWHRUaHVtYjo6SW1hZ2U6OkhlaWdodAAxNh2vXm8AAAAWdEVYdFRodW1iOjpJbWFnZTo6V2lkdGgAMTblAJ7iAAAAGXRFWHRUaHVtYjo6TWltZXR5cGUAaW1hZ2UvcG5nP7JWTgAAABd0RVh0VGh1bWI6Ok1UaW1lADEzMTA5NzAwMjQkRhHxAAAAEXRFWHRUaHVtYjo6U2l6ZQAxMzAxQpVqUm8AAABgdEVYdFRodW1iOjpVUkkAZmlsZTovLy9ob21lL3d3d3Jvb3QvbmV3c2l0ZS93d3cuZWFzeWljb24ubmV0L2Nkbi1pbWcuZWFzeWljb24uY24vc3JjLzU1MjUvNTUyNTk3LnBuZ5QfRDEAAAAASUVORK5CYII=)}
+.jasmap_mask_container .jasmap_icon_delete:hover{border-radius:3px ;-moz-box-shadow: 0 0 5px #888; box-shadow: 0 0 3px #888; }
+.jasmap_mask_container label.jasmap_icon_point{  background-repeat:no-repeat;background-position:center ;background-size:10px 10px; padding:5px;margin:-5px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAALVBMVEUAAAC5FBS5FBS5FBTeGRn/ISH8Gxv/SUn/Gxv/Hx/cGBj/bW3/eXn/LS3////pL4XhAAAAA3RSTlMAQIDntwj7AAAAAWJLR0QOb70wTwAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAd0SU1FB9sEEQ8IAGqNHUMAAABnSURBVAjXY2BAACFjY0UQzWTsGmKsAGQop1d0dBoxMDBa7a7o6GgWYGCyPrO9oqNZgYH5zpnTFR0tBgzMe0CMViCjGiQFYiwHKQZKMZmXAxnBCkDtHUDgLAA0cEVHR4gRshVwS6EAABgGI3Slf5L5AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA2LTI4VDIyOjQ4OjU2KzA4OjAwNXEsdQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxMS0wNC0xN1QxNTowODowMCswODowMNl4hxkAAABDdEVYdHNvZnR3YXJlAC91c3IvbG9jYWwvaW1hZ2VtYWdpY2svc2hhcmUvZG9jL0ltYWdlTWFnaWNrLTcvL2luZGV4Lmh0bWy9tXkKAAAAGHRFWHRUaHVtYjo6RG9jdW1lbnQ6OlBhZ2VzADGn/7svAAAAF3RFWHRUaHVtYjo6SW1hZ2U6OkhlaWdodAAxNh2vXm8AAAAWdEVYdFRodW1iOjpJbWFnZTo6V2lkdGgAMTblAJ7iAAAAGXRFWHRUaHVtYjo6TWltZXR5cGUAaW1hZ2UvcG5nP7JWTgAAABd0RVh0VGh1bWI6Ok1UaW1lADEzMDMwMjQwODBEC26OAAAAEHRFWHRUaHVtYjo6U2l6ZQAzNDhCdOHpLAAAAGB0RVh0VGh1bWI6OlVSSQBmaWxlOi8vL2hvbWUvd3d3cm9vdC9uZXdzaXRlL3d3dy5lYXN5aWNvbi5uZXQvY2RuLWltZy5lYXN5aWNvbi5jbi9zcmMvNTM2OC81MzY4MDAucG5nMWP/lwAAAABJRU5ErkJggg==)}
+.jasmap_show_mask_container{position: absolute;width: 100%; height: 100%;}
+.jasmap_hide_mask_container{position: absolute;width: 100%; height: 100%;}

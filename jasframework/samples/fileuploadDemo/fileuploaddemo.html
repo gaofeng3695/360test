@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="../../common/thirdparty/jquery/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/thirdparty/jquery/themes/icon.css"/>
+	    <link rel="stylesheet" href="../../common/css/querystyle_easyuicombo.css" type="text/css"></link>
+	<script type="text/javascript" src="../../common/thirdparty/jquery/jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../../common/thirdparty/jquery/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+</head>
+<body>
+	<form class="uploadform" id="uploadform" enctype="MULTIPART/FORM-DATA" method="post">
+	<table  class="xiangxitablelb">
+	<tr><th width="15%">姓名：</th><td width="35%"><input  class='input_bg' type="text" name="name" /></td width="15%"><th>性别 ：</th><td width="35%"><input  class='input_bg'  type="text" name="sex" /></td></tr>
+	</table>
+	
+	<table id="downlisttable" class="xiangxitablelb">
+	<tr><td>文件名</td><td>文件说明</td>
+	<tr>
+	<td><input id='file' class='input_bg' type='file' name='file1' /></td>
+	<td>
+	<input type='text' class='input_bg' class='text' name="file1desc" />
+	</td>
+	</tr>
+	<tr>
+	<td><input id='file' class='input_bg' type='file' name='file2' /></td>
+	<td>
+	<input type='text' class='input_bg' class='text' name="file2desc" />
+	</td>
+	</tr>
+	</table>
+	</form>
+	<input type="button" onclick="tijiao()" value="提交" />
+</body>
+<script type="text/javascript">
+function tijiao(){
+$('#uploadform').form('submit', {
+	url : rootPath+"/jasframework/uploaddemo/upload.do",
+	success : function(result) {
+	}
+});
+}
+</script>
+</html>

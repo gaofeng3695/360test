@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>流程实例管理</title>
+	<meta http-equiv="pragma" content="cache"><!-- 禁止浏览器从本地计算机的缓存中访问页面内容。 -->
+	<meta http-equiv="cache-control" content="no-cache"><!-- 指定请求和响应遵循的缓存机制，设定为不缓存 -->
+	<meta http-equiv="expires" content="0"><!-- 用于设定网页的到期时间 0表示立即超期-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 设定页面使用的字符集，设定为utf-8 -->
+    
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css"></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript"src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/workflow.js"></script>
+	<script type="text/javascript" src="js/proInst.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var proInstIds = getParamter("proInstIds");
+			$("#proInstIds").val(proInstIds);
+		});
+	</script>
+</head>
+<body>
+	<input type="hidden" id="proInstIds" name="proInstIds">
+	<form id="reasonForm" action="">
+	<table align="center" class="query-table">
+		<tr>
+			<td width="25%"><span key="user.description" class="paltform-i18n">描述：</span></td>
+			<td width="75%"><textarea id="deleteReason" name="deleteReason" style="height: 90px;" class="easyui-validatebox" 
+				missingmessage="不能为空" required="true" onpropertychange="if(value.length>500) value=value.substr(0,500)"></textarea> </td>
+		</tr>
+		<tr>
+			<td colspan="4" class="button_area" align="center">
+				<table width="200px" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>
+						<a href="#" class="easyui-linkbutton submit" onclick="deleteProInst()">
+							<span key="workflow.delete" class="paltform-i18n">确认</span>
+						</a>
+						</td>
+						<td>
+							<a href="#" class="easyui-linkbutton cancel" onclick="closePanel()">
+								<span key="workflow.cancel" class="paltform-i18n">取消</span>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

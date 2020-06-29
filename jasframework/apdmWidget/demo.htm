@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>选桩控件demo</title>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/addAndUpdateStyle.css">
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/json2.js"></script>
+	<script type="text/javascript" src="js/chonsepilecontrol.js"></script>
+	<title></title>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			choosePileControl.init('statearea','lineLoopText','beginMarkerLocation','endMarkerLocation');
+		});
+		function show(){
+			//btnclick.choosePileControl.returnControlData();
+			alert(JSON.stringify(contolData));
+		}
+	</script>
+</head>
+<body>
+	<div>
+      <form id="plans" method="post">
+       		<table class="edit-table" >
+			<tr>
+				<td width="10%"><span id="patrol.fd.add2" class="paltform-i18n">区域:</span></td>
+				<td width="35%"><select id="statearea" name="startarea" class="easyui-validatebox input_bg" required="true"></select></td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add4" class="paltform-i18n">管线:</span></td>
+				<td width="5%">
+					<input name="lineLoopText" id="lineLoopText"  class="easyui-validatebox input_bg" required="true"/>
+				</td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">起点桩号:</span></td>
+				<td width="35%">
+					<input name="beginMarkerLocation" id="beginMarkerLocation"  class="easyui-validatebox input_bg" missingMessage="不能为空" required="true"/>
+				</td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add5" class="paltform-i18n">终点桩号:</span></td>
+				<td width="35%">
+					<input name="endMarkerLocation" id="endMarkerLocation"  class="easyui-validatebox input_bg" missingMessage="不能为空" required="true" onchange="onchangeStation()"/>
+				</td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+			    <td height="33" colspan="2" class="button_area" align="center">
+		            <table width="450px" border="0" cellspacing="0" cellpadding="0">
+        				<tr>
+         					 <td>
+         					    <a id="btn1" href="#" class="easyui-linkbutton" onclick="show();" iconCls="icon-ok"><span id="patrol.fd.add13" class="paltform-i18n">显示数据</span></a>
+         					 </td>
+         				</tr>
+         			</table>	 
+		        </td>
+			</tr>
+	  	</table>
+	  </form>
+	</div>
+</body>
+</html>

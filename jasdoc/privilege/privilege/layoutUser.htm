@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>配置权限</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/ztree/css/zTreeStyle/zTreeStyle.css">
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/jsonUtil.js"></script>
+	<!-- ztree begin -->
+	<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.core-3.5.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/ztree/js/jquery.ztree.exedit-3.5.js"></script>
+	<!-- ztree end -->
+	<script language="javascript" src="../../folder/js/layoutUser.js"></script>
+	<style type="text/css">
+		html { overflow-x: hidden; overflow-y: hidden; }
+	</style>
+	
+</head>
+<!-- <body style="overflow:hidden" oncontextmenu="return false" onselectstart="return false" > -->
+<body>
+		<div class="easyui-panel"  data-options="iconCls:'icon-ok',fit:true" >  
+            <div class="easyui-layout" fit="true" >  
+                <div region="west" id="left" border="false" title="部门用户列表" style="width:280px;height:100px;" data-options="split:true,collapsible:false" >  
+                    	<div style="width: 90%;margin-left: 15px; ">
+                    		<table style="width: 100%">
+                    			<tr>
+                    				<td width="25%">部门：</td>
+                    				<td width="75%" id="search" >
+                    					<input type="text" id="searchUnit" name="searchUnit" style="width: 97%" class="easyui-validatebox input_bg"/>
+                    					<input type="hidden" id="unitId"/>
+                    				</td>
+                    			</tr>
+                    			<tr>
+                    				<td>用户：</td>
+<!--                     				<td ><input type="text" id="user" name="user" style="width:98%" class="easyui-validatebox input_bg"/></td> -->
+										<td ><input type="text" id="user" name="user" style="width:99%" data-options="prompt:'输入用户名'" /></td>
+                    			</tr>
+                    		</table>
+                    	</div>
+                    	<div  id="unitTree" style="width:0px;height:0px;top:-600px;direction:none;position: absolute;z-index: 1000;height:150px; margin:5px; border: 1px solid #95B8E7;overflow-y:auto; overflow-x:auto;background-color: #fff">
+							<ul id="deptprivilegeEventId"></ul>
+						</div>
+                    	<div style="width: 100%;border-top:1px solid #95B8E7;padding-top: 5px;">
+                    		<ul id="rolePrivilegeEventId" ></ul>
+<!-- 								<input id="rolePrivilegeEventId" /> -->
+                    	</div>
+<!--                     	<div class="easyui-panel" id="unit" style="position: absolute;z-index: 1000;height:200px; margin:5px; border: 1px solid #95B8E7;overflow-y:auto; overflow-x:auto;background-color: #fff"> -->
+<!-- 							<ul id="deptprivilegeEventId" class="ztree"></ul> -->
+<!-- 						</div> -->
+						
+                </div>  
+                <div id="center" region="center" border="false" style="border:1px solid #ccc;" >  
+                    <div class="easyui-layout" fit="true">  
+                        <div region="center" border="false">
+<!-- 							<table id="folderPrivilegeEventId"></table> -->
+							<ul id="folderPrivilegeEventId" class="ztree"></ul>
+                        </div>  
+                        <div region="south" style="text-align: center;margin-top: 10px;margin-bottom: 10px" border="false">
+                        	<a href="#" id="savebutton" onclick="saveConfig()" class="easyui-linkbutton" iconCls='icon-save'>保存</a>
+                        	<a href="#" id="savebutton" onclick="cancel()" class="easyui-linkbutton" iconCls="icon-no">取消</a>
+                   	</div>
+                    </div>
+                </div>  
+            </div>  
+		</div>
+		<div id="mm" style="width:120px"> 
+			<div data-options="name:'unit',iconCls:'icon-ok'">部门</div> 
+			<div data-options="name:'user'">用户</div> 
+		</div>
+</body>
+</html>

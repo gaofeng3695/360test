@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/view.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../i18n/i18n.js"></script>
+</head>
+<body onload="loadData();" scroll="no">
+	<div id="main_area">
+	<input type="hidden" id="menuid" value="107147"/>
+	<div>
+		<table class="detail-table">
+			<tr>
+				<th><span key="user.name" class="paltform-i18n">姓名：</span></th>
+				<td><span id="name"></span></td>
+				<th>性别</th>
+				<td><span id="sex"></span></td>
+			</tr>
+		</table>
+		<div class="button_area_absolute">
+			<table width="100%">
+				<tr>
+					<td>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeUser();">
+						<span key="close" class="paltform-i18n">关闭</span>
+					</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

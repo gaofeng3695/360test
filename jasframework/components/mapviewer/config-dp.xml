@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<!-- //////////////////////////////////////////////////////////////////////////////// 
+	// // Read more about ArcGIS Viewer for Flex - http://links.esri.com/flexviewer 
+	// //////////////////////////////////////////////////////////////////////////////// -->
+<configuration>
+	<title>MapViewer1.3</title>
+	<subtitle></subtitle>
+	<logo>assets/images/cn.png</logo>
+	<style>
+		<colors>0xFFFFFF,0x4989C8,0x101010,0x000000,0xFFD700</colors>
+		<alpha>0.8</alpha>
+		<font size="14" name="微软雅黑" />
+		<titlefont name="微软雅黑" />
+	</style>
+	<!-- replace the following url with your own geometryservice -->
+	<geometryservice
+		url="http://192.168.8.196:8399/ArcGIS/rest/services/Geometry/GeometryServer" />
+
+	<!-- UI elements -->
+	<widget left="10" top="0" config="widgets/Navigation/NavigationWidget.xml"
+		url="widgets/Navigation/NavigationWidget.swf" />
+	<widget right="2" top="0" bottom="0"
+		config="widgets/Layer/LayerTreeWidget.xml" url="widgets/Layer/LayerTreeWidget.swf" />	
+	<widget left="0" top="0"
+		config="widgets/MenuController/MenuControllerWidget.xml" url="widgets/MenuController/MenuControllerWidget.swf" />
+	<widget left="0" top="0" config="widgets/JSConnector/JSConnectorWidget.xml"
+		url="widgets/JSConnector/JSConnectorWidget.swf" />
+	<widget left="0" top="0" config="widgets/Extension/ExtensionWidget.xml"
+		url="widgets/Extension/ExtensionWidget.swf" />	
+	<widget left="0" right="0" top="0" bottom="0"
+		config="widgets/Plot/PlotWidget.xml" url="widgets/Plot/PlotWidget.swf" />
+		
+
+	<map wraparound180="true" top="0"
+		fullextent="319461.5836 2450432.5244 783749.9461 2702361.9051"
+		esrilogovisible="false" scalebarvisible="true" wkid="2383">
+		<lods>
+			<lod resolution="476.25" scale="1800000" />
+			<lod resolution="211.666666666667" scale="800000" />
+			<lod resolution="79.375" scale="300000" />
+			<lod resolution="39.6875" scale="150000" />
+			<lod resolution="19.84375" scale="75000" />
+			<lod resolution="13.2291666666667" scale="50000" />
+			<lod resolution="5.29166666666667" scale="20000" />
+			<lod resolution="2.64583333333333" scale="10000" />
+			<lod resolution="1.32291666666667" scale="5000" />
+			<lod resolution="0.529166666666667" scale="2000" />
+			<lod resolution="0.264583333333333" scale="1000" />
+		</lods>
+		<basemaps>
+			<layer id="layerSetBasemaps" label="背景图层">
+				<layer id="layerDlg" label="地形图" type="antutiled" visible="true"
+					alpha="1.0" wkid="2383" url="http://127.0.0.1/map/dpmap80/geo" />				
+			</layer>
+		</basemaps>
+		<operationallayers>
+			<layer id="layerSetBasalLayer" label="ArcGIS图层">
+				<layer id="layerCoating" label="点" type="feature" visible="false" alpha="1.0" 
+					url="http://pcofinakcis/ArcGIS/rest/services/EsriDemo/FeatureServer/2" 
+					renderParameter='{ 
+						"iconUrl":"assets/trace",
+						"iconPrefix":"CITYGAS",
+						"tipMode":"auto",
+						"hoverResponseType":"iframe_tip",
+						"clickResponseType":"iframe_tip",
+						"dbclickResponseType":"js_function",
+						"groupby":"",
+						"callback":"defautJSCallback",
+						"tipUrl":"demo/IFrameTipDemo.htm",
+						"tipWidth":"200",
+						"tipHeight":"300",
+						"returnObjectId":"true",
+						"returnGeometry":"true",
+						"returnAttributes":"true",
+						"outFields":"Objectid,name"
+						}' 
+				/>
+				<layer id="layerHighWay" label="线" type="feature" visible="false" alpha="1.0" 
+					url="http://pcofinakcis/ArcGIS/rest/services/EsriDemo/FeatureServer/3" 
+					renderParameter='{ 
+						"tipMode":"auto",
+						"hoverResponseType":"",
+						"clickResponseType":"iframe_tip",
+						"dbclickResponseType":"js_function",
+						"groupby":"",
+						"callback":"defautJSCallback",
+						"tipUrl":"demo/IFrameTipDemo.htm",
+						"tipWidth":"200",
+						"tipHeight":"300"
+						}' 
+					/>
+				<layer id="layerArea" label="面" type="feature" visible="false" alpha="1.0" 
+					url="http://pcofinakcis/ArcGIS/rest/services/EsriDemo/FeatureServer/4"
+					renderParameter='{						
+						"tipMode":"auto",
+						"hoverResponseType":"",
+						"clickResponseType":"iframe_tip",
+						"dbclickResponseType":"js_function",
+						"groupby":"",
+						"callback":"defautJSCallback",
+						"tipUrl":"demo/IFrameTipDemo.htm",
+						"tipWidth":"280",
+						"tipHeight":"220",
+						"returnAttributes":"true",
+						"displayField":"object_id,name,code",
+						"defaultFieldTitle":"序号,名称,编码",
+						"flexTipWidth":"150",
+						"flexTipHeight":"90"
+						}' 
+					 />
+			</layer>
+			<layer id="layerSet1" label="GeoTools图层">					
+			</layer>			
+		</operationallayers>
+	</map>
+
+	<!-- widgets organized into widget containers that manage close/open etc -->
+	<!-- supported layout property options: horizontal(default)|float|vertical|fix -->
+	<widgetcontainer layout="float">
+		<widget id="menuExcel" label="Excel加载" icon="assets/dock/Excel.png"
+			config="widgets/Excel/XlsWidget.xml" url="widgets/Excel/XlsWidget.swf" />
+	</widgetcontainer>
+
+	<buttonasset>
+		<!-- <button id="linkageJS" label="维修停气分析JS" icon="assets/images/i_draw2.png" 
+			grouped="false" groupIcon="" groupLabel="" callBackFunction="buttonJsFunction"></button> -->
+	</buttonasset>
+
+	<mapsettings>
+		<!-- 版本信息 -->
+		<add key="version" value="MapViewer1.4.1.20130416" />
+		<!-- 地图范围变化是否回调 -->
+		<add key="JsSynchMapExtentChangeFunction" value="mapExtendChangeHanlder" />
+		<!-- ApdmSOE服务地址 -->
+		<add key="ApdmSOEService"
+			value="http://192.168.8.196/ArcGIS/rest/services/apdm/MapServer/exts/apdm" />
+		<!-- 画面回调函数(一般用于面查询) -->
+		<add key="drawPolygonCallBack" value="geoAreaQueryFlex" />
+		<!-- 画圆回调函数(一般用于点+半径查询) -->
+		<add key="drawCircleCallBack" value="defautJSCallback" />
+		<!--二三维联动开关 -->
+		<add key="setIsLinkage" value="setIsLinkage" />
+		<!--获取坐标默认回调函数 -->
+		<add key="getXYDefautFunction" value="defautJSCallback" />
+		<!--停气分析地址 -->
+		<add key="traceUrl"
+			value="http://192.168.8.196/ArcGIS/rest/services/soe/MapServer/exts/GeometricNetwork/traceDownstream" />
+		<!--停气分析拾取点容差 -->
+		<add key="traceTolerance" value="100" />
+		<!--停气分析之影响点Tip IFrame地址 -->
+		<add key="trace.iframe.url" value=":8080/platform/crms/repairManager/tips/tipinfo.html" />
+		<!--停气分析之影响点Tip IFrame宽度 -->
+		<add key="trace.iframe.width" value="210" />
+		<!--停气分析之影响点Tip IFrame高度 -->
+		<add key="trace.iframe.height" value="130" />
+		<!--停气分析之闪烁后需要显示的点图层集合 -->
+		<add key="trace.layer.needLocateLayer"
+			value="DgStation_dagongye,DgStation_feizhilian,DgStation_zhilian" />
+		<!--停气分析之闪烁后气体流向图层服务 -->
+		<add key="trace.layer.flowDirectionService"
+			value="http://192.168.8.196/ArcGIS/rest/services/arrow_new/MapServer" />
+		<!-- 是否展开图层树 -->
+		<add key="expandTree" value="true" />
+		<!-- 默认JS回调函数 -->
+		<add key="defautJSCallback" value="defautJSCallback" />
+		<!-- 标绘发送邮件服务地址 -->
+		<add key="sendMailService" value="http://192.168.8.105:8181/platform/platform/sendmail.do" />
+		<!-- 是否需要验证登录用户(主要用于图层树控制) -->
+		<add key="verifyUser" value="false" />
+		<!-- 隐藏地图按钮列表集合(pan\zoomin\zoomout\rule\area\clearMap\print\polygonSearch\nearby\linkage\plot) -->
+		<add key="disableMenuItems" value="" />
+	</mapsettings>
+
+</configuration>

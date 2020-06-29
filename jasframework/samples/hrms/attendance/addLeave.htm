@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../platform/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../platform/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../platform/common/css/querystyle.css">
+	<script type="text/javascript" src="../../platform/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../platform/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../platform/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../platform/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../platform/common/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="js/leave.js"></script>
+    <!--<script type="text/javascript" src="../../platform/common/js/AppConfig.js"></script>-->
+    <script type="text/javascript" src="../../platform/common/js/common.js"></script>
+	<!--<script type="text/javascript" src="" id="s1"></script>
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="" id="i18nWdatePicker"></script>
+	<script type="text/javascript">
+	getFileName();
+	</script>
+--></head>
+<body>
+	<div>
+		<table align="center" class="querytable" >
+		<form id="importantevent" method="post">
+			<input type="hidden" name="eventid" id="eventid">
+			<tr>
+				<td width="15%">
+					<span id="crms.importantevent.importantevent.eventno" class="paltform-i18n">请假类型 ：</span>
+					</span><span style="color: red; vertical-align: bottom;">*</span>
+				</td>
+				<td width="35%"><select id="type" name="type" class="easyui-validatebox">
+									<option value="">--请选择--</option>
+									<option value="1">年假</option>
+									<option value="2">病假</option>
+									<option value="3">事假</option>
+									<option value="4">婚嫁</option>
+									<option value="5">产假</option>
+									<option value="6">丧假</option>
+								</select>
+				</td>
+			    <td width="15%">&nbsp;</td>
+				<td width="35%">&nbsp;</td>
+			</tr>
+			<tr>
+			    <td width="15%">
+			    	<span id="crms.importantevent.importantevent.stattime" class="paltform-i18n">起始日期：</span>
+			    	</span><span style="color: red; vertical-align: bottom;">*</span>
+		    	</td>
+				<td width="35%"><input type="text" id="starttime" name="starttime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:ss:mm'})" class="Wdate" validType="general"/></td>
+				<td width="15%">
+					<span id="crms.importantevent.importantevent.endtime" class="paltform-i18n">终止日期：</span>
+					</span><span style="color: red; vertical-align: bottom;">*</span>
+				</td>
+				<td width="35%"><input type="text" id="endtime" name="endtime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:ss:mm'})" class="Wdate" validType="general"/></td>
+			</tr>
+			<tr>
+			    <td ><span id="crms.importantevent.importantevent.shortdesc" class="paltform-i18n">请假原因 ：</span>
+			    	</span><span style="color: red; vertical-align: bottom;">*</span>
+			    </td>
+				<td colspan="3"><textarea id="reason" name="reason" style="height: 60px;" class="easyui-validatebox" validType="maxLength[500]"></textarea></td>
+			</tr>
+	        <tr>
+			    <td><span id="crms.importantevent.importantevent.details" class="paltform-i18n">工作安排 ：</span>
+			    	</span><span style="color: red; vertical-align: bottom;">*</span>
+			    </td>
+				<td colspan="3"><textarea id="arranged" name="arranged" style="height: 60px;" class="easyui-validatebox" validType="maxLength[500]"></textarea></td>
+			</tr>
+	        <tr>
+			    <td colspan="4"><span style="color: red; vertical-align: bottom;padding-left: 20px;float:left;">您可请假时长为48小时，已使用8小时</span>
+			    </td>
+			</tr>
+	        <tr>
+			    <td colspan="4"><span style="color: red; vertical-align: bottom;padding-left: 20px;float:left;">还有加班倒休 10天，还有年假 6天</span>
+			    </td>
+			</tr>
+			
+			<tr>
+		        <td height="33" colspan="4" class="button_area" align="center">
+		            <table width="200px" border="0" cellspacing="0" cellpadding="0">
+        				<tr>
+         					 <td >
+         					    <a id="10060106" href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="addImportanteventObj()"><span id="crms.importantevent.importantevent.sub" class="paltform-i18n">保存</span></a>
+								<a id="10060107" href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cloImportantevent()"><span id="crms.importantevent.importantevent.esc" class="paltform-i18n">取消</span></a>
+         					 </td>
+         				</tr>
+         			</table>	 
+		        </td>
+		    </tr>
+				
+			</form>
+			</table>
+		</div>
+	</body>	
+</html>

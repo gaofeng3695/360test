@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">   
+	
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../platform/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../platform/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../platform/common/css/querystyle.css">
+	<script type="text/javascript" src="../../platform/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../platform/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../platform/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../platform/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../platform/common/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="./js/leave.js"></script>
+	<!--<script type="text/javascript" src="../../platform/common/js/privilege.js"></script>-->
+    <script type="text/javascript" src="../../platform/common/js/common.js"></script>
+	<!--<script type="text/javascript" src="" id="s1"></script>
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="" id="i18nWdatePicker"></script>
+	--><script type="text/javascript">
+	//getFileName();
+	$(document).ready(function(){
+		initDatagrigHeight('10060201','queryDiv','95');
+		/*$("#10060201").datagrid({
+			onDblClickRow:function(index, row){
+			    $('#10060201').datagrid('selectRow',index);  //指定行选中
+				top.getDlg("viewImportantevent.htm?eventID=" + row.eventid,"viewiframe",
+					getLanguageValue("crms.importantevent.importantevent.view"),700,330);
+			}
+		});*/
+	});
+	</script>
+</head>
+<body>
+	<input type="hidden" id="menuid" value="1006"/>
+	<div id="queryDiv" class="easyui-panel" key="crms.importantevent.importantevent.queryTitle" title="请假申请管理查询条件"
+		 collapsible="true" collapsed="true" style="padding:1px">
+			<table align="center" class="querytable" id="q_form">
+				<tr>
+					<td width="15%"><span id="crms.importantevent.importantevent.stattime" class="paltform-i18n">部门名称 ：</span></td>
+					<td width="35%"><select id="name" name="name" class="easyui-validatebox">
+										<option>--请选择--</option>
+										<option>中盈安信研发中心</option>
+										<option>中盈高科研发中心</option>
+										<option>人事部</option>
+									</select></td>
+					<td width="15%"><span id="crms.importantevent.importantevent.endtime" class="paltform-i18n">用户名称：</span></td>
+				    <td width="35%"><input type="text" id="name" name="name" class="easyui-validatebox" onkeydown="return enterEvent();" /></td>
+				</tr>
+				<tr>
+					<td width="15%"><span id="crms.importantevent.importantevent.stattime" class="paltform-i18n">起始时间 ：</span></td>
+					<td width="35%"><input id="stattime" class="easyui-validatebox"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" /></td>
+					<td width="15%"><span id="crms.importantevent.importantevent.endtime" class="paltform-i18n">终止日期：</span></td>
+				    <td width="35%"><input id="endtime" class="easyui-validatebox"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" ></td>
+				</tr>
+				<tr>
+					<td width="15%"></td>
+					<td width="35%"></td>
+					<td colspan="4">
+						<a id="10060105" href="#" class="easyui-linkbutton" iconCls="icon-query" onclick="queryImportantevent()"><label><span id="crms.importantevent.importantevent.query" class="paltform-i18n">查询</span></label></a>
+						<a id="10060108" href="#" class="easyui-linkbutton" iconCls="icon-clear" onclick="clearQueryForm('q_form')"><label><span id="crms.importantevent.importantevent.clear" class="paltform-i18n">清空</span></label></a>
+					</td>
+				</tr>
+			</table>
+	</div>
+	<table id="10060201" class="easyui-datagrid" toolbar="#toolbar" title="请假申请管理列表"
+		width="98%" nowrap="false" striped="true" collapsible="false"
+		pagination="true" sigleSelect="false">
+			<thead>
+				<tr>
+					<th field="ck" checkbox="true">
+						全选
+					</th>
+					<th field="no" width="50">
+						编号
+					</th>
+					<th field="name" width="100">
+						请假人
+					</th>
+					<th field="dept" width="150" >
+						请假人部门
+					</th>
+					<th field="type" width="100">
+						请假类型
+					</th>
+					<th field="starttime" width="100" >
+						起始时间
+					</th>
+					<th field="endtime" width="100">
+						终止时间
+					</th>
+					<th field="backtime" width="100">
+						返回时间
+					</th>
+					<th field="totaltime" width="100">
+						时长（小时）
+					</th>
+					<th field="reason" width="100">
+						请假原因
+					</th>
+					<th field="arranged" width="100">
+						工作安排
+					</th>
+				</tr>
+			</thead>
+			
+			
+			<tr class=datagrid-row-alt datagrid-row-index="1"
+				jquery1602998231749321426="77">
+				<td field="ck" jquery1602998231749321426="90">
+					<div style="text-align: left; white-space: normal"
+						class="datagrid-cell-check " sizcache="2" sizset="1">
+						<input type=checkbox jquery1602998231749321426="103">
+					</div>
+				</td>
+				<td field="no" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						1
+					</div>
+				</td>
+				<td field="name" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						韩峰
+					</div>
+				</td>
+				<td field="dept" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						中盈安信研发中心
+					</div>
+				</td>
+				<td field="type" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						事假
+					</div>
+				</td>
+				<td field="starttime" jquery1602998231749321426="92">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-08-1
+					</div>
+				</td>
+				<td field="endtime" jquery1602998231749321426="93">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-8-7
+					</div>
+				</td>
+				<td field="backtime" jquery1602998231749321426="94">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-08-8
+					</div>
+				</td>
+				<td field="totaltime" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						40
+					</div>
+				</td>
+				<td field="reason" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						事假
+					</div>
+				</td>
+				<td field="arranged" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						暂时由XX代理
+					</div>
+				</td>
+			</tr>
+			<tr class=datagrid-row-alt datagrid-row-index="1"
+				jquery1602998231749321426="77">
+				<td field="ck" jquery1602998231749321426="90">
+					<div style="text-align: left; white-space: normal"
+						class="datagrid-cell-check " sizcache="2" sizset="1">
+						<input type=checkbox jquery1602998231749321426="103">
+					</div>
+				</td>
+				<td field="no" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2
+					</div>
+				</td>
+				<td field="name" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						韩峰
+					</div>
+				</td>
+				<td field="dept" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						中盈安信研发中心
+					</div>
+				</td>
+				<td field="type" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						病假
+					</div>
+				</td>
+				<td field="starttime" jquery1602998231749321426="92">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-07-1
+					</div>
+				</td>
+				<td field="endtime" jquery1602998231749321426="93">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-07-7
+					</div>
+				</td>
+				<td field="backtime" jquery1602998231749321426="94">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-07-8
+					</div>
+				</td>
+				<td field="totaltime" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						40
+					</div>
+				</td>
+				<td field="reason" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						病假
+					</div>
+				</td>
+				<td field="arranged" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						暂时由XX代理
+					</div>
+				</td>
+			</tr>
+			<tr class=datagrid-row-alt datagrid-row-index="1"
+				jquery1602998231749321426="77">
+				<td field="ck" jquery1602998231749321426="90">
+					<div style="text-align: left; white-space: normal"
+						class="datagrid-cell-check " sizcache="2" sizset="1">
+						<input type=checkbox jquery1602998231749321426="103">
+					</div>
+				</td>
+				<td field="no" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						3
+					</div>
+				</td>
+				<td field="name" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						韩峰
+					</div>
+				</td>
+				<td field="dept" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						中盈安信研发中心
+					</div>
+				</td>
+				<td field="type" jquery1602998231749321426="91">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						年假
+					</div>
+				</td>
+				<td field="starttime" jquery1602998231749321426="92">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-05-19
+					</div>
+				</td>
+				<td field="endtime" jquery1602998231749321426="93">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-06-19
+					</div>
+				</td>
+				<td field="backtime" jquery1602998231749321426="94">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						2012-06-20
+					</div>
+				</td>
+				<td field="totaltime" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						196
+					</div>
+				</td>
+				<td field="reason" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						例行年假
+					</div>
+				</td>
+				<td field="arranged" jquery1602998231749321426="95">
+					<div style="text-align: left; width: 142px; white-space: normal"
+						class="datagrid-cell ">
+						无
+					</div>
+				</td>
+			</tr>
+			
+	</table>
+	<div id="toolbar">
+		<!--<a id="10060103" href="#" class="easyui-linkbutton" iconCls="icon-view" plain="true" onclick="viewImportantevent()"><label><span id="crms.importantevent.importantevent.view" class="paltform-i18n">查看</span></label></a>-->
+		<a id="10060101" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addImportantevent()"><label><span id="crms.importantevent.importantevent.add" class="paltform-i18n">新增</span></label></a>
+		<a id="10060102" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="updateImportantevent()"><label><span id="crms.importantevent.importantevent.update" class="paltform-i18n">修改</span></label></a>
+		<a id="10060104" href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeImportantevent()"><label><span id="crms.importantevent.importantevent.remove" class="paltform-i18n">删除</span></label></a>
+		<a id="10060109" href="#" class="easyui-linkbutton" iconCls="icon-back" plain="true" onclick="back()"><label><span id="crms.importantevent.importantevent.locate" class="paltform-i18n">撤回</span></label></a>
+		<a id="10060110" href="#" class="easyui-linkbutton" iconCls="icon-role" plain="true" onclick="audit()"><label><span id="crms.importantevent.importantevent.export" class="paltform-i18n">审核</span></label></a>
+	</div>
+	<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+	<script type="text/javascript">
+  		i18nDivTitle();
+  	</script>
+</body>
+</html>

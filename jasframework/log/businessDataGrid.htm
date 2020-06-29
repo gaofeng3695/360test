@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>操作日志测试</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" href="../common/css/common.css" type="text/css"></link>
+	 
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css"/>
+
+
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+<!-- 	<script type="text/javascript" src="../workflow/js/workflow.js"></script> -->
+	<script type="text/javascript" src="" id="i18nEasyui"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+	<script type="text/javascript" src="js/businessDataGrid.js"></script>
+</head>
+<body>
+<!-- 	权限隐藏域 -->
+	<input type="hidden"  id="menuid" value="107124"></input>
+<!-- 	导出excel -->
+	<iframe id="exprotPlanframe" style="display: none;"></iframe>
+<!-- 	查询面板 -->
+	<div id="searchpanel"></div>
+<!-- 	列表 -->
+	<table id="loginLogTable" class="easyui-datagrid"></table>
+	<!-- <table id="loginLogTable" class="easyui-datagrid" url="../logsample/getAll.do?datagridNumber=10712410" rownumbers="true" pagination="true"  nowrap="true" toolbar="#tb">
+		<thead>
+			<tr>
+				<th field="ck" checkbox="true" />
+	            <th field="username" width="150"><span id="loginLog.name" class="paltform-i18n">用户名称</span></th>
+            	<th field="sex" width="150"><span id="loginLog.depart" class="paltform-i18n">性别</span></th>
+     	        <th field="unitName" width="150"><span id="loginLog.depart" class="paltform-i18n">部门</span></th> 
+	    	</tr>
+	    </thead>
+	</table> -->
+<!-- 	按钮工具栏 -->
+	<div id="tb">  
+	    <a href="#" id="10130501" class="easyui-linkbutton fa fa-eye" plain="true" onclick="sel();">查看</a>  
+	    <a href="#" id="10130502" class="easyui-linkbutton fa fa-plus" plain="true" onclick="add();">添加</a>  
+	    <a href="#" id="10130503" class="easyui-linkbutton fa fa-edit" plain="true" onclick="upda();">更新</a>  
+	    <a href="#" id="10130504" class="easyui-linkbutton fa fa-minus" plain="true" onclick="dele();">删除</a>  
+	    <a href="#" id="10130505" class="easyui-linkbutton fa fa-minus"  plain="true" onclick="export1();">导出</a>  
+	    <a href="#" id="" class="easyui-linkbutton workflo" iconCls="icon-flow" plain="true" onclick="audit();">发起流程</a>  
+	    <a href="#" id="approveButtton" class="easyui-linkbutton" iconCls="icon-transact" plain="true" onclick="approve()">办理</a>
+	    <a href="#" id="approveButtton" class="easyui-linkbutton" iconCls="icon-transact" plain="true" onclick="runqianReport()">报表</a>
+	</div>  
+</body>
+</html>

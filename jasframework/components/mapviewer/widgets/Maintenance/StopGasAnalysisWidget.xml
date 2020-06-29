@@ -1,0 +1,15 @@
+<!-- 
+菜单栏按钮业务功能扩展
+菜单按钮：维修停气分析
+	         最近站列及管线
+-->
+
+<configuration>
+      <extensionsetting>
+    	<add key="GeoNet.PipelineColor" value="0xFF8000"/>
+    	<add key="GeoNet.PipelineWidth" value="8"/>
+    	<add key="GeoNet.OtherlineColor" value="0xC0C0C0"/>
+    	<add key="GeoNet.OtherlineWidth" value="3.5"/>
+    </extensionsetting>
+</configuration>
+

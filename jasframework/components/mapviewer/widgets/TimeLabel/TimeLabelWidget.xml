@@ -1,0 +1,6 @@
+<configuration>
+	<color>0x0000dd</color>     <!-- 颜色 -->
+ 	<fontFamily></fontFamily>   <!-- 字体 -->
+ 	<fontSize>12</fontSize>         <!-- 字体 大小-->
+ 	<fontWeight>bold</fontWeight>   <!-- 字体 样式-->
+</configuration>

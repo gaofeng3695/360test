@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">   
+	
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/querystyle.css">
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+   <script type="text/javascript" src="../../common/js/common.js"></script>
+      <script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	  <script type="text/javascript" src="js/salarystatistics.js"></script>
+	  <script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+	<script type="text/javascript">
+	function updatesalary() {
+	var rows = $("#01020101").datagrid("getSelections");
+	var unitid;
+	if (rows.length == 1) {
+		var eventid=rows[0].eventid;
+		top.getDlg("updatesalary.html?eventid="+eventid,"saveiframe","修改工资",600,300);
+
+	} else {
+		$.messager.alert("提示", "请选择一条部门用户记录", 'info');
+	}
+}
+	
+	
+	function editot(){
+		var rows = $("#01020101").datagrid("getSelections");
+		var unitid;
+		if(rows.length == 1) {
+		$.messager.alert("提示","只能撤回后才能修改",'info');
+		} else {
+			$.messager.alert("提示","请选择一条部门用户记录",'info');
+		}
+	}
+	
+	var comment = "考勤发起工作流意见...";
+	var businessEventId = "salary-2012-06";
+	var workflowName = "duedate";
+	//是否含有发起用户变量
+	//var applyUserFlag = true;
+	//发起工作流
+	function audit(){
+		startWorkflow(businessEventId, workflowName, comment,-1, callbackFun);
+	}
+	/**
+	 * 流程图
+	 * */
+	function getWorkFlowChart() {
+		//流程图弹出页面，url需要根据页面所在位置作相应的调整
+		top.getDlg('../../../workflow/workflow.htm?businessEventId=' + businessEventId
+				+ "&r=" + new Date().getTime(), '', '流程图', 800, 600);
+	}
+	//回调函数
+	function callbackFun(result){
+		if (result.success){
+			$.messager.alert('正确',result.ok,'ok',function(){
+			});
+		} else {
+			$.messager.alert('错误',result.msg,'error');
+		}
+		
+	}
+	
+	function uploadattend(){
+		var rows = $("#01020101").datagrid("getSelections");
+		if(rows.length == 1) {
+			top.getDlg("../../components/attachment/uploadtest.html?businessid="+rows[0].eventid,"saveiframe","上传附件",600,300);
+		} else {
+			$.messager.alert("提示","请选择一条部门用户记录",'info');
+		}
+	}
+
+	function downloadattend(){
+		var rows = $("#01020101").datagrid("getSelections");
+		if(rows.length == 1) {
+			top.getDlg("../../components/attachment/download.html?businessid="+rows[0].eventid,"saveiframe","下载",600,600);
+		} else {
+			$.messager.alert("提示","请选择一条部门用户记录",'info');
+		}
+	}
+  </script>
+</head>
+<body>
+	<input type="hidden" id="menuid" value="1006"/>
+		<table id="01020101" class="easyui-datagrid" toolbar="#toolbar"
+			width="98%" height="100%" style="height: 5000" nowrap="false" striped="true" collapsible="false"
+			pagination="true" sigleSelect="false">
+		</table>
+	<div id="toolbar">
+			<a id="" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="updatesalary()"><label>修改</label></a>
+			<a id="" href="#" class="easyui-linkbutton" iconCls="icon-work" plain="true" onclick="audit()">提交审核</a>
+			<a id="" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="uploadattend()"><label>上传</label></a>
+			<a id="" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="downloadattend()"><label>下载</label></a>
+	
+	</div>
+</body>
+<script type="text/javascript">
+</script>
+</html>

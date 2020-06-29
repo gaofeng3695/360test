@@ -1,0 +1,95 @@
+.content-area .content-area-main{
+	padding:0 5px;
+}
+.accordion{
+	border:1px solid #fff;
+}
+.accordion .accordion-header{
+	background:#fff;
+
+}
+#left-container .panel-header:hover{
+	background:#edf5ff;
+}
+#left-container .panel-header .panel-title{
+	font-weight:bold;
+	font-size:14px;
+}
+.panel-header .panel-title .title-right{
+	float:right;
+	margin-top: 6px;
+    margin-right: 4px;
+}
+.accordion .panel-header .panel-icon{
+	 margin-top: -25px;
+}
+.accordion .panel-header .panel-with-icon {
+    padding-left: 60px;
+    padding-right: 20px;
+}
+.icon-one{
+	background: url(../image/one.png) no-repeat center center;
+    width: 50px;
+    height: 50px;
+    background-size:100% 100%;
+}
+.icon-two{
+	background: url(../image/two.png) no-repeat center center;
+    width: 40px;
+    height: 40px;
+    background-size:100% 100%;
+}
+
+.icon-mark{
+	background: url(../image/mark.png) no-repeat center center;
+}
+.icon-warning{
+	background: url(../image/warning.png) no-repeat center center;
+}
+.icon-mark,
+.icon-warning{
+	dispaly:inline-block;
+	width: 25px;
+    height: 25px;
+    background-size:100% 100%;
+}
+.icon-mark:hover,
+.icon-warning:hover{
+	background-color:#e2e8f0
+}
+
+
+#left-container .tree-node, 
+#left-container .tree-title{
+	height: 40px;
+    line-height: 40px;
+}
+#left-container .tree-title{
+	width: 220px;
+}
+#left-container .tree-node {
+    padding-left: 0px;
+}
+.tree-node .tree-title .title-right{
+	float:right;
+	margin-top: 6px;
+    margin-right: 4px;
+}
+.tree-file,
+.tree-folder{
+	background: url(../image/two.png) no-repeat center center;
+    width: 40px;
+    height: 40px;
+    background-size:100% 100%;
+}
+.tree .tree-file,
+.tree .tree-icon{
+	margin-top: 0px;
+}
+.tree-node-selected{
+	background: #fff
+}
+.tree .tree-collapsed,
+.tree .tree-hit {
+	margin-top: 12px;
+}

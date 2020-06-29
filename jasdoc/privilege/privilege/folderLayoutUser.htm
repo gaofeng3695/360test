@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>配置权限</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css">
+	<link rel="stylesheet" href="../../../jasframework/common/css/detail.css" type="text/css"></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/i18n/i18n.js"></script>
+	<script language="javascript" src="../../../jasframework/common/js/jsonUtil.js"></script>
+	<script language="javascript" src="js/folderLayoutUser.js"></script>
+	<style type="text/css">
+		html { overflow-x: hidden; overflow-y: hidden; }
+	</style>
+	
+</head>
+<body>
+	<div class="easyui-panel"  data-options="iconCls:'icon-ok',fit:true" > 
+		<input id="folderUserRefId" type="hidden"> 
+          <div class="easyui-layout" fit="true" >  
+              <div region="west" id="left" border="false" title="部门用户列表" style="width:250px;height:100px;" data-options="split:true,collapsible:false" >  
+                  	<div style="width: 90%;margin-left: 15px; ">
+                  		<table style="width: 100%">
+                  			<tr>
+                  				<td width="20%">部门：</td>
+                  				<td width="80%" id="search" >
+                  				<span class="textbox easyui-fluid searchbox" style="width:calc( 100% - 4px);">
+                  					<input type="text" id="searchUnit" name="searchUnit" style="width: 100%;padding:3px;" class="easyui-validatebox input_bg"/>
+                  					<input type="hidden" id="unitId"/></span>	
+                  					<div  id="unitTree" collapsed="false" style="width:0px;height:0px;top:-600px;direction:none;position: absolute;z-index: 1000;height:150px; margin:5px; border: 1px solid #95B8E7;overflow-y:auto; overflow-x:auto;background-color: #fff">
+									<ul id="deptPrivilegeEventId" class="ztree"></ul>
+								</div>
+                  				</td>
+                  			</tr>
+                  			<tr>
+                  				<td>用户：</td>
+<!--                     				<td ><input type="text" id="user" name="user" style="width:98%" class="easyui-validatebox input_bg"/></td> -->
+								<td ><input type="text" id="user" name="user" style="width:99%" data-options="prompt:'Please Input Value'" /></td>
+                  			</tr>
+                  		</table>
+                  	</div>
+                  	<div style="width: 100%;border-top:1px solid #95B8E7;padding-top: 5px;">
+                  		<ul id="userPrivilegeEventId" ></ul>
+                  	</div>
+              </div>  
+       		<div region="center" title="可分配的权限"  border="false" style="border:1px solid #ccc;">
+    			       <div id="privelegetype" style="height:100px; padding-top:10px;width:100%;overflow:auto; border-style:inset; border-width:0px; background-color:#ffffff;">
+				 <div id="20" style='width: 50%;padding-left:20px;' >
+					<input type="checkbox" value="20" id="viewFile" name="viewFile" onclick="clickBox(20)">
+					查看
+				</div>
+				<div id="30" style='width: 50%;padding-left:20px;'>
+					<input type="checkbox" value="30" id="DownloadFolder" name="DownloadFolder" onclick="clickBox(30)">
+					下载
+				</div>
+				<div id="60" style='width: 50%;padding-left:20px;'>
+					<input type="checkbox" value="30" id="maintainFile" name="maintainFile" onclick="clickBox(60)">
+					文档维护
+				</div>
+				<div id="90" style='width: 50%;padding-left:20px;'>
+					<input type="checkbox" value="30" id="maintainFolder" name="maintainFolder" onclick="clickBox(90)">
+					完全控制
+				</div>
+			</div>
+			<div class="button_area_absolute">
+		 		 <table width="100%">
+				  <tr>
+		     			<td align="center">
+	     					<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveFolderUser()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+	     				</td>
+		      		</tr>
+		      	</table>	 
+		   </div>
+       	</div>  
+	</div>
+	<div id="mm" style="width:120px"> 
+		<div data-options="name:'unit',iconCls:'icon-ok'">部门</div> 
+		<div data-options="name:'user'">用户</div> 
+	</div>
+</body>
+</html>

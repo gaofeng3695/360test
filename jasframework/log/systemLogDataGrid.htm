@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>系统日志信息</title>
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/common.css"></link>
+
+	<link rel="stylesheet" type="text/css" href="../common/css/query.css" ></link>
+	
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="js/systemLogDataGrid.js"></script>
+	<script type="text/javascript" src="../common/i18n/i18n.js"></script>
+</head>
+<body>
+	<input type="hidden" name="eventid" />
+	<input type="hidden" id="menuid" value="101304" />
+	<!-- 查询面板开始 -->
+		<div key="runlog_queryrunlog" id="searchpanel" class="query-conditions">
+		<table align="center" class="query-table" id="queryDiv" >
+			<tr>
+				<td width="15%"><span key="runlog_startdate" class="paltform-i18n">起始时间：</span></td>
+				<td width="35%"><input id="beginDate"  editable="false" class=""/></td>
+				<td width="15%"><span key="runlog_enddate" class="paltform-i18n">结束时间的：</span></td>
+			    <td width="35%"><input id="endDate"  editable="false" class=""/></td>
+			</tr>
+			<tr>
+				<td colspan="4" class="button_area">
+					<a href="#" class="easyui-linkbutton submit"  onclick="systemLogExecuteQuery()"><span key="query" class="paltform-i18n">查询</span></a>
+					<a href="#" class="easyui-linkbutton cancel" onclick="systemLogClearAll()"><span key="clear" class="paltform-i18n">清空</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- 查询面板结束 -->
+<!-- 	运行日志列表 -->
+	<table id="systemLogTable" key="runlog_datalist"></table>
+	<div id="tb">  
+	    <a href="#" class="easyui-linkbutton fa fa-eye" plain="true" onclick="select();"><span key="syslog.select" class="paltform-i18n">查看</span></a>  
+	</div>  
+</body>
+</html>

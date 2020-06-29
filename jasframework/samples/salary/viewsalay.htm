@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/querystyle.css">
+	<link rel="stylesheet" href="../common/css/common.css" type="text/css"></link>
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+			<script type="text/javascript" src="../common/js/common.js"></script>
+			<script type="text/javascript" src="js/salarystatistics.js"></script>
+		<script language="JavaScript" src="" id="s1"></script>
+			      
+	<script type="text/javascript">
+		function closeUser(){
+			parent.$('#dlg').dialog('close');
+		}
+		$(document).ready(function(){
+		var eventid=getParamter("eventid");
+		
+			 getMsg(eventid);
+		});
+			
+	</script>
+</head>
+<body  scroll="no">
+	<div>
+		<div region="center" border="false"	style="width: 100%; height: 100%; padding: 0px; background: #ffffff; overflow:hidden"> 
+	
+	
+	<div class="easyui-tabs" style="background: #f5fcff;">  
+	    <div title="外表">  
+		    
+				<table class="xiangxitablelb" id="outwages">
+			<tr><td colspan="4">基本信息</td></tr>
+				<tr>
+					<th>姓名：</th>
+					<td><span id="username" class="username"> </span></td>
+					<th>所属公司：</th>
+					<td><span id="company" class="company"></span></td>
+				</tr>
+				<tr>
+					<th>部门名称：</th>
+					<td><span id="unitname" class="unitname"></span></td>
+					<th>数据月份：</th>
+					<td><span id="tjyf" class="tjyf"></span></td>
+				</tr>
+				<tr>
+				    <th>出勤天数：</th>
+				    <td><span id="cqts" class="cqts"></span></td>
+				    <th>缺勤天数：</th>
+				    <td><span id="qqts" class="qqts"></span></td>
+				</tr>
+				<tr>
+				    <th>出差天数：</th>
+				    <td><span id="ccts" class="ccts"></span></td>
+				    <th></th>
+				    <td><span id=""></span></td>
+				</tr>
+				<tr><td colspan="4">工资信息</td></tr>
+				<tr>
+					<th>外表工资：</th>
+					<td><span id="wbgz"></span></td>
+					<th>工资调整</th>
+					<td><span id="gztz" class="gztz"></span></td>
+				</tr>
+				
+				<tr><td colspan="4">补助信息</td></tr>
+				<tr>
+				    <th><span id="user.description" class="paltform-i18n">午餐补助：</span></th>
+				    <td><span id="cb" class="cb"></span></td>
+				    <th><span id="user.description" class="paltform-i18n">通讯补助：</span></th>
+				    <td><span id="dhbz" class="dhbz"></span></td>
+				</tr>
+							<tr>
+					<th>差旅补助：</th>
+					<td><span id="ccbz" class="ccbz"></span></td>
+					<th>补助总计：</th>
+					<td><span id="bzzj" class="bzzj"></span></td>
+				</tr>
+				<tr>
+					
+				</tr>
+				<tr><td colspan="4">扣款信息</td></tr>
+				<tr>
+				    <th><span id="user.description" class="paltform-i18n">住房公积金：</span></th>
+				    <td><span id="gjj" class="gjj"></span></td>
+				    <th><span id="user.description" class="paltform-i18n">养老金：</span></th>
+				    <td><span id="yanglaobx" class="yanglaobx"></span></td>
+				</tr>
+							<tr>
+					<th>医疗保险：</th>
+					<td><span id="yiliaobx" class="yiliaobx"></span></td>
+					<th>失业保险：</th>
+					<td><span id="sybx" class="sybx"></span></td>
+					
+				</tr>
+				<tr>
+					<th>个人所得税：</th>
+					<td><span id="sds" class="sds"></span></td>
+					<th>外缺勤扣款</th>
+					<td><span id="wqqkk"></span></td>
+				</tr>
+				<tr>
+				    <th><span id="user.description" class="paltform-i18n">扣款总计：</span></th>
+				    <td colspan="3"><span id="wkouzj"></span></td>
+				</tr>
+				<tr><td colspan="4" >合计信息</td></tr>
+				<tr>
+					<th><span id="user.description" class="paltform-i18n">外表应发工资：</span></th>
+				    <td><span id="wyfgz"></span></td>
+					<th>外表实发工资：</th>
+					<td><span id="wbsjffgz"></span></td>
+				</tr>
+					
+			</table>
+		    			
+	    </div>  
+	    <div title="内表">  
+		    	<table class="xiangxitablelb" id="insidewages">
+			<tr><td colspan="4">基本信息</td></tr>
+				<tr>
+					<th>姓名：</th>
+					<td><span id="username" class="username"> </span></td>
+					<th>所属公司：</th>
+					<td><span id="company" class="company"></span></td>
+				</tr>
+				<tr>
+					<th>部门名称：</th>
+					<td><span id="unitname" class="unitname"></span></td>
+					<th>数据月份：</th>
+					<td><span id="tjyf" class="tjyf"></span></td>
+				</tr>
+				<tr>
+				    <th>出勤天数：</th>
+				    <td><span id="cqts" class="cqts"></span></td>
+				    <th>缺勤天数：</th>
+				    <td><span id="qqts" class="qqts"></span></td>
+				</tr>
+				<tr>
+				    <th>出差天数：</th>
+				    <td><span id="ccts" class="ccts"></span></td>
+				    <th></th>
+				    <td><span id=""></span></td>
+				</tr>
+				<tr><td colspan="4">工资信息</td></tr>
+				<tr>
+					<th>内表工资：</th>
+					<td><span id="nbgz"></span></td>
+					<th>工资调整</th>
+					<td><span id="gztz" class="gztz"></span></td>
+				</tr>
+				
+				<tr><td colspan="4">补助信息</td></tr>
+				<tr>
+				    <th><span id="user.description" class="paltform-i18n">午餐补助：</span></th>
+				    <td><span id="cb" class="cb"></span></td>
+				    <th><span id="user.description" class="paltform-i18n">通讯补助：</span></th>
+				    <td><span id="dhbz" class="dhbz"></span></td>
+				</tr>
+							<tr>
+					<th>差旅补助：</th>
+					<td><span id="ccbz" class="ccbz"></span></td>
+					<th>补助总计：</th>
+					<td><span id="bzzj" class="bzzj"></span></td>
+				</tr>
+				<!--<tr>
+					<th>补助总计：</th>
+					<td colspan="3"><span id="wbbzzj" class="wbbzzj"></span></td>
+				</tr>
+				--><tr><td colspan="4">扣款信息</td></tr>
+				<tr>
+				    <th><span id="user.description" class="paltform-i18n">住房公积金：</span></th>
+				    <td><span id="gjj" class="gjj"></span></td>
+				    <th><span id="user.description" class="paltform-i18n">养老金：</span></th>
+				    <td><span id="yanglaobx" class="yanglaobx"></span></td>
+				</tr>
+							<tr>
+					<th>医疗保险：</th>
+					<td><span id="yiliaobx" class="yiliaobx"></span></td>
+					<th>失业保险：</th>
+					<td><span id="sybx" class="sybx"></span></td>
+					
+				</tr>
+				<tr>
+					<th>个人所得税：</th>
+					<td><span id="sds" class="sds"></span></td>
+					<th>内缺勤扣款</th>
+					<td><span id="nqqkk"></span></td>
+				</tr>
+				<tr>
+				    <th><span id="user.description" class="paltform-i18n">扣款总计：</span></th>
+				    <td colspan="3"><span id="nkouzj"></span></td>
+				</tr>
+				<tr><td colspan="4" >合计信息</td></tr>
+				<tr>
+					<th><span id="" >内表应发工资：</span></th>
+				    <td><span id="nyfgz"></span></td>
+					<th>内表实发工资：</th>
+					<td><span id="nbsjffgz"></span></td>
+				</tr>
+				<tr>
+					<th>差额：</th>
+					<td><span id="chae"></span></td>
+					<th></th>
+					<td><span id=""></span></td>
+				</tr>
+			</table>
+	    </div>
+	   
+	<table  align="center" class="querytable">
+		 	<tr>
+				<td colspan="4" class="button_area" align="center">
+					<table width="200px" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeUser();"><span id="user.cancel" class="paltform-i18n">关闭</span></a>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		 </table>
+	</div>
+</body>
+</html>

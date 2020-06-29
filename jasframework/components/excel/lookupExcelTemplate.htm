@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+	
+	<link rel="stylesheet" type="text/css" href="../../common/css/detail.css"/>
+	
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+	<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+	<script type="text/javascript" src="js/lookupExcelTemplate.js"></script>
+	<title>查看模板基本信息</title>
+</head>
+<body onload="loadData();" class="content-area" >
+		<table class="detail-table">
+			<tr>
+				<th><span>模板名称：</span></th>
+				<td><span id="templateName"></span></td>
+				<th><span>模板类型：</span></th>
+				<td><span id="templateType"></span></td>
+			</tr>
+			<tr>
+				<th><span>数据源：</span></th>
+				<td  colspan="3"><span id="dataSourceName"></span></td>
+			</tr>
+			<tr>
+				<th><span>备注：</span></th>
+				<td colspan="3"><span id="remark"></span></td>
+		    </tr>
+		</table>
+	<!-- 按钮区域 -->
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+ 				<td><a id="closeExcelTempInfoButton" href="#" class="easyui-linkbutton cancel" onclick="top.closeDlg('templatelookup')">关闭</a></td>
+  			</tr>
+  		</table>	
+ 	</div>
+</body>
+</html>

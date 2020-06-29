@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="js/updateFileClassifyInfo.js"></script>
+</head>
+<body>
+	<div id="dlg" style="width: 100%;height: 100% ;">
+		<form id="updateClassifyfrom" method="post">
+			<input type="hidden" name="fileId" id="fileId"/>
+			<table align="center" class="edit-table" >	
+				<tr>
+					<td height="115px"  width="23%"><span  id="name" key="file.filename">文件名称：</span></td>
+					<td width="77%">
+						<input type="text" id="filename" name='filename' disabled="disabled" validtype="general" required="true" class="easyui-validatebox input_bg"  missingmessage="不能为空" maxlength="25">
+					</td>
+				</tr>
+				<tr>
+					<td height="115px"  width="23%"><span   key="file.description">描述：</span></td>
+					<td width="77%">
+						<input id="folderClassifyId" name="folderClassifyId" />
+					</td>
+				</tr>
+			</table>
+		 	<table width="100%" style="margin-top: 25px;">
+				<tr>
+					<td class="button_area" align="center">
+						<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeFolder()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+					</td>
+				</tr>
+			</table>	
+		</form>
+	</div>
+</body>
+</html>
+	

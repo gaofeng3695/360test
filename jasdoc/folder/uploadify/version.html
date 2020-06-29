@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>上传附件</title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" href="../../common/css/icon.css" type="text/css"></link>
+	<link rel="stylesheet" href="css/uploadify.css" type="text/css"></link>
+	<link rel="stylesheet" href="../../../jasframework/common/css/add.css" type="text/css"></link>
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<!-- 引入jQuery -->
+	<script type="text/javascript" src="jquery/uploadify/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="jquery/uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="jquery/json2.js"></script>	
+	<style>
+		.uploadpage_textStyle {
+			line-height: 30px;
+			color: #666BA2;
+			padding-left: 0;
+			margin: 0;
+			border: none;
+			font-size: 12px;
+			font-family:"宋体";
+			color: #333;
+		}
+	</style>	
+		
+		
+		
+		
+		
+		
+<script type="text/javascript">
+var fileid = "";
+var versionnumber = "";
+var filename = "";
+$(function (){
+	fileid = getParamter("fileid");
+	versionnumber = getParamter("versionnumber");
+	$("#versionnumber").val(versionnumber);
+	filename = getParamter("filename");
+	
+    $("#fileInput").uploadify({
+        'uploader'     : 'jquery/uploadify/uploadify.swf',//设置uploadify路径
+        'script'       : '../../version/updateversion.do',//请求响应的Action
+        'method'	   :'GET',
+        'scriptData'   :{'fileid':fileid,'versionnumber':versionnumber},
+        'cancelImg'    : 'images/cancel.png',//设置  取消按钮图片的路径  
+        'buttonText'   : '选择上传照片',
+        'buttonImg'    : 'images/upload.jpg',
+        'width'		   : 64,
+        'height'	   : 20,
+        'folder'       : '',//设置上传文件后保存的路径
+        'fileExt'      : filename,
+        'fileDesc'     : '附件格式:'+filename,
+        'fileDataName' : 'fileInput',//上传文件的文件
+        'queueID' 	   : 'fileQueue',  
+        'auto'         : false,//设置是否自动上传  
+        'sizeLimit'	   : top.uploadMaxsize, //设置文件大小
+        'multi'        : false,//设置是否多文件上传  
+        'queueSizeLimit':10,
+        'simUploadLimit':1,
+        onComplete: function (event, queueID, fileObj, response, data){  
+        	//刷新列表
+            refreshParentPage();
+        },
+	    onError: function(event, queueID, fileObj) {
+        },
+		onCancel: function(event, queueID, fileObj){  
+		} 
+    });
+	
+})
+//刷新数据列表
+function refreshParentPage(){
+	reloadData('queryFolder.htm', '#dg');
+	var obj=top.getTabIframeByid(fileid+"history");
+	obj.reloaddata();
+}
+//刷新数据列表
+function reloadData(shortUrl, elementId) {
+	var fra = parent.$("iframe");
+	for ( var i = 0; i < fra.length; i++) {
+		if (fra[i].src.indexOf(shortUrl) != -1) {
+			fra[i].contentWindow.$(elementId).datagrid("reload");
+		}
+	}
+}
+//保存事件
+function save(){
+	alert(1);
+	var versionreark = $("#versionreark").val();
+	$('#fileInput').uploadifySettings('scriptData',{'versionreark':versionreark }); 
+	$('#fileInput').uploadifyUpload();
+}
+</script>
+
+</head>
+
+<body style="overflow:hidden ;">
+	<div style="width: 100%;height:315px;" >
+		<table>
+			<tr>
+				<td>
+					<span >&nbsp;&nbsp;当前版本：</span>
+				</td>
+				<td>
+					<input type="text" id="versionnumber" name='versionnumber' disabled="disabled"  style="width: 350px"  class="easyui-validatebox input_bg" >
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span >&nbsp;&nbsp;版本描述：</span>
+				</td>
+				<td>
+					<textarea id="versionreark" class="easyui-validatebox"  name="versionreark" style="height: 80px;" onpropertychange="if(value.length>150) value=value.substr(0,150)"></textarea>
+				</td>
+			</tr>
+		</table>
+		<div style="width: 100%">
+		  	<fieldset>
+		  		<legend align="right"><input type="file" name="fileInput" id="fileInput" /></legend>
+		  		
+		  		<div id="fileQueue" style="overflow:auto ;height:260px"></div>  
+		  	</fieldset>
+	  	</div>
+	</div>
+	  	<div style="">
+		 	<table align="center" class="querytable" >
+				<tr>
+				   <td height="33" colspan="4" class="button_area" align="center">
+						<table width="786px" border="0" cellspacing="0" cellpadding="0">
+				   			<tr>
+								<td >
+									<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+									<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeUnit()"><span key="unit.cancel" class="paltform-i18n">关闭</span></a>
+								</td>
+							</tr>
+				    	</table>
+		    		</td>
+		    	</tr>
+		 	</table>
+	 	</div>
+ 	
+</body>
+<script type="text/javascript">	
+	function closeUnit(){
+		top.closeDlg('uploadify');
+	}
+</script>
+</html>

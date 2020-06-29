@@ -1,0 +1,26 @@
+1、RouteObject
+{
+	geometry:PolylineObject,
+	attributes:[
+		{
+			objectId:number,//对象ID,如果为新添加的顶点，为空
+			name:string,//顶点名称，一般为桩号
+			nameUsedBefore:string,//修改之前顶点名称
+			x:number,//横坐标
+			y:number,//纵坐标
+			z:number,//高程
+			m:number,//里程值
+			updatedGeometry:boolean//是否修改了顶点坐标。如果为新添加的，该值为true;
+		},
+		{
+			objectId:number,//对象ID,如果为新添加的顶点，为空
+			name:string,//顶点名称，一般为桩号
+			nameUsedBefore:string,//修改之前顶点名称
+			x:number,//横坐标
+			y:number,//纵坐标
+			z:number,//高程
+			m:number,//里程值
+			updatedGeometry:boolean//是否修改了顶点坐标。如果为新添加的，该值为true;		
+		}
+	]
+}

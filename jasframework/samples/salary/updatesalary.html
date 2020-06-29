@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../common/thirdparty/jquery/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/thirdparty/jquery/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/querystyle.css">
+	<script type="text/javascript" src="../common/thirdparty/jquery/jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="../common/thirdparty/jquery/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/thirdparty/jquery/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/validate_class.js"></script>
+	 <script type="text/javascript" src="../common/thirdparty/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var eventid=getParamter("eventid");
+		initpage(eventid);
+		});
+		function closePanel(){
+		parent.$('#dlg').dialog('close');
+	}
+	
+	function initpage(eventid){
+			$.ajax({
+		url:rootPath+"/hrms/SalaryStatistics/getUserSalary.do?eventid="+eventid,
+		success:function(result){
+			setval(result)
+		},
+		async:false,
+		dataType:"json"
+		});
+	}
+	
+	function setval(result){
+			$("#eventid").val(result.eventid);
+			$("#userid").val(result.userid);
+			$("#username").val(result.username);
+			$("#saladate").val(result.tjyf);
+			$("#cqts").val(result.cqts);
+			$("#ycqs").val(result.ycqs);
+			$("#ccts").val(result.ccts);
+			$("#wbgz").val(result.wbgz);
+			$("#nbgz").val(result.nbgz);
+			$("#gztz").val(result.gztz);
+			$("#dhbz").val(result.dhbz);
+			$("#yanglaobx").val(result.yanglaobx);
+			$("#yiliaobx").val(result.yiliaobx);
+			$("#sybx").val(result.sybx);
+			$("#gjj").val(result.gjj);
+	}
+	
+	function updatesalery(){
+			$('#savesalary').form('submit',{
+				url: rootPath+"/hrms/SalaryStatistics/updatesalsrystatistics.do",
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				dataType:"json",
+				success: function(result){
+					var result=	eval('('+result+')');
+				if(result.success==1){
+					$.messager.alert("提示",result.ok,"info",function(){reloadData();closePanel()});
+				}else{
+					$.messager.alert("提示","计算失败","info",function(){closePanel()});
+				}
+				}
+			});
+	}
+		function reloadData(){
+			var fra= parent.$("iframe");
+			for(var i=0; i<fra.length;i++) {
+				if(fra[i].src.indexOf("salarystatistics.htm") != -1) {
+			  fra[i].contentWindow.$("#01020101").datagrid("reload");
+				}
+			}
+		}
+ </script>
+</head>
+<body>
+<div>
+	<table align="center" class="querytable" >
+	<form id="savesalary" method="post">
+		<input type="hidden" id="eventid" name="eventid">
+		<input type="hidden" id="userid" name="userid">
+			<tr>
+		    <td width="15%">员工姓名：</td>
+			<td width="35%"><input id="username" readonly="readonly" name='username' class="easyui-validatebox"  /></td>
+			<td width="15%">日期：</td>
+			<td width="35%"><input id=saladate readonly="readonly" class="easyui-validatebox"  name='saladate'/></td>
+		</tr>
+		<tr> 
+			<td width="15%"><span>出勤天数 ：</span></td>
+			<td width="35%"><input id="cqts" class="easyui-validatebox" required="true" validType="doubleNumber" name="cqts"  ></td>
+			<td width="15%"><span>应出勤数：</span></td>
+			<td width="35%"><input id="ycqs" required="true" name="ycqs" class="easyui-validatebox" ></td>
+		</tr>
+		<tr> 
+			<td width="15%">出差天数：</td>
+			<td width="35%"><input id="ccts" name="ccts" class="easyui-validatebox" ></td>
+			<td width="15%">外表工资：</td>
+			<td width="35%"><input id="wbgz" name="wbgz" class="easyui-validatebox"  ></td>
+		</tr>
+		<tr> 
+			<td width="15%">内表工资：</td>
+			<td width="35%"><input id="nbgz" name="nbgz" class="easyui-validatebox" ></td>
+			<td width="15%">工资调整：</td>
+			<td width="35%"><input id="gztz" name="gztz" class="easyui-validatebox" ></td>
+		</tr>
+		<tr> 
+			<td width="15%">通讯补助：</td>
+			<td width="35%"><input id="dhbz" name="dhbz" class="easyui-validatebox" ></td>
+			<td width="15%">养老保险：</td>
+			<td width="35%"><input id="yanglaobx" name="yanglaobx" class="easyui-validatebox" ></td>
+		</tr>
+		<tr> 
+			<td width="15%">医疗保险：</td>
+			<td width="35%"><input id="yiliaobx" name="yiliaobx" class="easyui-validatebox" ></td>
+			<td width="15%">失业保险：</td>
+			<td width="35%"><input id="sybx" name="sybx" class="easyui-validatebox" ></td>
+		</tr>
+		<tr> 
+			<td width="15%">公积金：</td>
+			<td width="35%"><input id="gjj" name="gjj" class="easyui-validatebox" ></td>
+		</tr>
+		<tr>
+		<td  colspan="4">
+        	<a id="10060106" href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="updatesalery()">重新计算工资</a>
+			<a id="10060107" href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closePanel()">取消</a>
+         </td>
+        </tr>
+	</form>
+	</table>
+</div>
+
+</body>
+</html>

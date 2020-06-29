@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/add.css">		
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/webuploader/view_pic.css"></link>
+<link rel="stylesheet"  type="text/css" href="../..//jasframework/common/css/webuploader/view_photo.css"></link>
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/webuploader/initialize_webuploader.css">
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/initialize_webuploader.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_pic.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_images.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/webuploader/view_file.js"></script>
+<script type="text/javascript" src="../../jasframework/workflow/js/workflow.js"></script>
+
+<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/close_gps_construction.js"></script> 	
+
+</head>
+<body class="master-table">
+	<div class="easyui-tabs-container">
+	   	<div id="tabContainer" class="easyui-tabs" style="height: 300px;">
+			<div title="施工关闭信息" icon="icon-reload">
+				<div class="table-content">
+					<h6 class="table-title" id="addchangetitle">关闭信息</h6>
+					<form id="gpsConstructionForm" class="content-area-main" method="post">
+						<!-- <input id="oid" name="oid" type="hidden" value="" /> -->
+						<input type="hidden" id="approvestatus" name="approvestatus" value="02"></input>
+						<input id="coid" name="coid" type="hidden" value="" />
+						<input id="closeuserid" name="closeuserid" type="hidden" value="" />
+						<input id="closeuserunitid" name="closeuserunitid" type="hidden" value="" />
+						<table align="center" class="edit-table">
+							<tr>
+								<td width="20%"><span>关闭发起人：</span></td>
+								<td width="30%">
+									<input id="closeuseridname" name="closeuseridname" required = "required" readonly="readonly" class="easyui-validatebox input_bg" maxlength="22"/>
+								</td>
+								<td width="20%"><span>施工结束日期：</span></td>
+								<td width="30%">
+									<input id="closedate" name="closedate"  class="easyui-validatebox Wdate input_bg" readonly="readonly" required = "required" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+								</td>
+							</tr>
+							<tr>
+								<td width="20%"><span>关闭发起理由（100字以内）：</span></td>
+								<td width="80%" colspan="3">
+									<textarea id="closedescr" name="closedescr"  style="height:100px" class="easyui-validatebox input_bg" validType="maxLength[1000]"></textarea>
+								</td>
+							</tr>
+						</table>
+						<!--<div id="uploadanddownloadDIV" align="right"></div>-->
+						<!-- 存放图片的容器  不带描述-->
+						<!-- <div class="table-content">
+                            <h6 class="table-title">图片信息</h6>
+                            <div id="viewPicContainer"></div>
+                        </div>
+                                存放附件的容器   带描述
+                        <div class="table-content">
+                            <h6 class="table-title">附件信息</h6>
+                            <table align="center" class="edit-table">
+                                <tr>
+                                    <td width="20%">添加附件：</td>
+                                    <td width="80%" align="left"  class="add-attachment again-add-btn">
+                                        <div id="addFile" class="save-btn"></div>
+                                        <div id="againSaveFileBtn"  class="again-save-btn"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="viewFileContainer"></td>
+                                </tr>
+                            </table>
+                        </div> -->
+					</form>
+				</div>
+			</div>
+	   	<div title="施工上报信息">
+	   		<div id="contentArea" class="content-area">
+	   			<div class="content-area-main">
+		
+					<!-- 表单区域，每行四列 -->
+					<div class="table-content">
+					<h6 class="table-title">基础信息</h6>
+						<!-- 表单区域，每行四列 -->
+						<table align="center" class="detail-table" >
+							<tr>
+								<th width="15%"><span>部门名称</span></th>
+								<td width="35%"><span id="unitidname"></span></td>
+								<th width="15%"><span>管线名称</span></th>
+								<td width="35%"><span id="lineloopoidname"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>项目名称</span></th>
+								<td width="35%"><span id="projectname"></span></td>
+								<th width="15%"><span>施工原因</span></th>
+								<td width="35%"><span id="constructreason"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>位置经度</span></th>
+								<td width="35%"><span id="lon"></span></td>
+								<th width="15%"><span>位置纬度</span></th>
+								<td width="35%"><span id="lat"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>施工开始日期</span></th>
+								<td width="35%"><span id="happenbegindate"></span></td>
+								<th width="15%"><span>桩号</span></th>
+								<td width="35%"><span id="stakenumname"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>施工地点</span></th>
+								<td width="35%"><span id="location"></span></td>
+								<th width="15%"><span>距离管线长度</span></th>
+								<td width="35%"><span id="distanceline"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>风险等级</span></th>
+								<td width="35%"><span id="riskratingCodeName"></span></td>
+								<th width="15%"><span>工程进展</span></th>
+								<td width="35%"><span id="progressidCodeName"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>建设（施工）单位名称</span></th>
+								<td width="35%"><span id="constructunit"></span></td>
+								<th width="15%"><span>建设（施工）单位联系人及联系方式</span></th>
+								<td width="35%"><span id="constructunituser"></span></td>
+								
+							</tr>
+							<tr>
+								<th width="15%"><span>输油站现场负责人及其电话</span></th>
+								<td width="35%"><span id="stationuser"></span></td>
+								<th width="15%"><span>现场监护人员</span></th>
+								<td width="35%"><span id="inspectoroidname"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>巡检人员联系方式</span></th>
+								<td width="35%"><span id="inspectorphone"></span></td>
+								<th width="15%"><span>临时关键点</span></th>
+								<td width="35%"><span id="temporarykeypointoidname"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>工程简要描述（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="constructdescr"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>风险点描述（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="riskdescr"></span></td>
+							</tr>
+							<tr>
+								<th width="15%"><span>备注（100字以内）</span></th>
+								<td width="85%" colspan="3" style="height:100px"><span id="descr"></span></td>
+							</tr>
+						</table>
+					</div>
+					<!-- <div id="downloadDIV"></div> -->
+					<!-- 存放图片的容器   带描述 不带描述都是这个-->
+					<div class="table-content">
+						<h6 class="table-title">图片信息</h6>
+						<div id="viewPicContainer"></div>
+					</div>
+						<!-- 存放附件的容器   带描述-->
+					<div class="table-content">
+						<h6 class="table-title">附件信息</h6>
+						<div id="viewFileContainer" ></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div title="风险等级变更信息" icon="icon-reload" id="changeinfo">
+		</div>
+
+	</div>	
+	</div>
+	
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="saveGpscloseConstruction()"> <span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+					<!-- <a id="saveAndSubmit" href="#" class="easyui-linkbutton save-btn" onclick="saveAndSubmit()"><span>保存并提交</span></a> -->
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

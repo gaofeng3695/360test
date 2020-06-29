@@ -1,0 +1,51 @@
+1、开发环境及开发注意事项说明
+
+1.1、开发环境：Adobe Flash Builder 4.7(IDE)、ArcGIS API For Flex 3.2(lib包)、ArcGIS Viewer for Flex 2.5(开发框架)
+1.2、开发语言：ActionScript 3.0,JavaScript
+1.3、记录修改日志。日志文件地址:FlexViewer\src\readme\版本更新说明.txt。需有使用说明及帮助文档，存放路径均在FlexViewer\src\readme下。
+1.4、新功能/接口开发完成时，须在Demo页面提供对应JS 调用演示方法。
+1.5、地图组件主页面。组件主调页面：flexviewer\src\map.html（供其它平台IFreme调用）；Demo参考页面:flexviewer\src\index.htm(功能演示、API调用参考作用).
+
+2、组件使用说明：
+2.1 版本打包发布 
+	I、利用FB4.7的Export Release Build功能发布版本，默认发布到bin-release下。
+	II、拷贝bin-release下的所有文件至mapviewer文件夹（没有新建mapviewer文件夹）.
+2.2 组件集成
+	I、拷贝mapviewer文件夹至项目中，项目调用mapviewer\map.html.
+	II、在项目主页面中引入mapviewer\js\MapViewerAPI.js(js主调API).
+2.3 接口调用
+	I、采用JS调用，利用top.+函数名调用对应的方法,函数API参考MapViewer.js.如MapViewer.js中有ZoomAt方法，则在项目其它页面中直接使用top.ZoomAt代码调用。
+
+
+3、常用涉及文件：
+
+3.1、js文件.
+
+3.1.1 FlashAPI.js 地图JS接口，被引用在map.html页面中。地址：FlexViewer\src\FlashAPI.js
+3.1.2 MapViewerAPI.js 地图JS再次包装接口,目前便于项目各页面均能采取top.方式调用.
+
+3.2、flex文件
+3.2.1 JSConnectorWidget.as:位于src\widgets\JSConnector下。
+	地图as接口，主要用于js与as通信交互，在发布新的js接口之前，必须在此定义与之对应的as接口。
+3.2.2 SpriteTiledMap.as:位于src\com\scd\flex\map下。
+	安图切片图层支持类。主要用于兼容安图切片显示。
+3.2.3 ConfigManager.as:位地src\com\esri\viewer\managers目录下。
+	config.xml解析类。如果自定义了xml节点，需要修改此类.
+3.2.4 MapManager.mxml：位于src\com\esri\viewer\managers目录下。
+	地图图层管理类。在此类中根据config.xml配置实例化对应的各图层，以及feature类型图层鼠标交互行为实现类。
+3.2.5 GraphicManager.as：位于src\com\antu\map下。
+	图形管理类：主要用于地图图标定位、标绘实现类。
+3.2.6 ExtensionWidget.as:位于src\widgets\Extension下。
+	自定义扩展类：主要用于点线面鼠标点绘、停气分析。
+3.2.7 MenuControllerWidget.mxml||MenuControllerWidget_MoveAndZoom.mxml:位于src\widgets\MenuController下.
+	地图按钮条实现类：
+3.2.8 PlotWidget.mxml:位于src\widgets\Plot.
+	地图标记控件实现类：用于在地图上添加点、线、面、矩形、图片标记等功能。
+3.2.9 LayerTreeWidget.as 位于src\widgets\Layer下
+	图层控制类：主要用于图层列表显示、图层开关控制、图层权限控制等功能。
+3.2.10 MaintenanceWidget.as:位于src\widgets\Maintenance下。
+	停气分析实现类：主要用于停气分析。	
+3.2.11 NavigationWidget.mxml:位于src\widgets\Navigation下。
+	导航条实现类：主要用于地图级别显示、地图平移控制等。
+3.2.12 CoordinateWidget.mxml:位于src\widgets\Coordinate。
+	坐标实现类：主要用于地图坐标显示

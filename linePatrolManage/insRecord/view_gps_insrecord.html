@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/common.css"></link>
+	<link rel="stylesheet"  type="text/css" href="../../jasframework/common/css/query.css"></link>
+<link rel="stylesheet" href="../../jasframework/common/css/detail.css" type="text/css"></link>
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/js-xss/xss.min.js"></script>
+<script type="text/javascript" src="../../jasframework/common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/view_gps_insrecord.js"></script> 	 
+</head>
+<body>
+    <div id="contentArea" class="content-area">
+    	<form class="content-area-main">
+		<!-- 表单区域，每行四列 -->
+		<div class="table-content">
+			<h6 class="table-title">基础信息</h6>
+			<table align="center" class="detail-table" >
+				<tr>
+					<th width="15%"><span>巡检部门</span></th>
+					<td width="35%"><span id="unitname"></span></td>
+					<th width="15%"><span>巡检人员</span></th>
+					<td width="35%"><span id="inspectoridname"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>出发时间</span></th>
+					<td width="35%"><span id="begindatetime"></span></td>
+					<th width="15%"><span>返回时间</span></th>
+					<td width="35%"><span id="enddatetime"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>巡线类别</span></th>
+					<td width="35%"><span id="instypename"></span></td>
+					<th width="15%"><span>巡检频次</span></th>
+					<td width="35%"><span id="insfreq"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>巡检工具</span></th>
+					<td width="35%"><span id="insvehicle"></span></td>
+					<th width="15%"><span>巡检合格率</span></th>
+					<td width="35%"><span id="completionrate"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>平均时速</span></th>
+					<td width="35%"><span id="avgspeed"></span></td>
+					<th width="15%"><span>同步状态</span></th>
+					<td width="35%"><span id="uploader"></span></td>
+				</tr>
+				<tr>
+					<th width="15%"><span>异常原因</span></th>
+					<td width="85%" colspan="3"><span id="notreason"></span></td>
+				</tr>
+			</table>
+		</div>
+		<div class="table-content">
+			<h6 class="table-title">巡检记录线路信息</h6>
+			<table id="gpslinedatagrid" class="easyui-datagrid"></table>
+		</div>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td  align="center">
+					<a href="#" class="easyui-linkbutton close-btn" onclick="closePanel()"> <span>关闭</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

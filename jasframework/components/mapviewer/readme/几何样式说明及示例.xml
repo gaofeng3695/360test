@@ -1,0 +1,108 @@
+﻿
+<!--**************包括点、线、面、图片等的样式****************-->
+
+
+1.点样式
+	1.1 填充点(ArcGIS Symbol Object)
+		var simpleMarkerSymbol={
+			"type" : "esriSMS",
+			"style" : "esriSMSCircle",//< esriSMSCircle | esriSMSCross | esriSMSDiamond | esriSMSSquare | esriSMSTriangle | esriSMSX >
+			"color" : [255,0,0,255],    //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+			"size" : 16,
+			"angle" : 0,
+			"xoffset" : 0,
+			"yoffset" : 0
+		};
+	1.2 填充点(SimpleMarkerSymbol)
+		var markerSymbolObject={    //SimpleMarkerSymbol
+			"style":"square",      //可选参数：circle|cross|diamond|square|triangle|x
+			"size":15,
+			"color":0x000000,
+			"alpha":1,
+			"xoffset":0,
+			"yoffset":0,
+			"angle":0,
+			"outline":{   //SimpleLineSymbol
+				"style":"solid",      //可选参数：solid|dash|dashdot|dashdotdot|dot|none
+				"color":0x000000,
+				"alpha":1,
+				"width":1
+			}
+		};			
+
+2.图片样式 
+	2.1 图片(ArcGIS Symbol Object)
+		var pictureMarkerSymbol=
+		{
+			"type" : "esriPMS",
+			"url" : "assets/images/i_police.png",
+			"imageData" : "",
+			"contentType" : "image/png",
+			"width" : 21,
+			"height" : 21,
+			"angle" : 0,
+			"xoffset" : 0,
+			"yoffset" : 0
+		};
+	2.2 图片(PictureMarkerSymbol)
+		var pictureMarkerSymbolObject={   //PictureMarkerSymbol
+			"width":
+			"height":
+			"source":
+			"xoffset":0,
+			"yoffset":0,
+			"angle":0,
+		};
+
+3、线样式
+	3.1 线(ArcGIS Symbol Object)
+		var simpleLineSymbol={	
+			"type" : "esriSLS",
+			"style" : "solid",//"< none | solid | dot | dash | dashdot | dashdotdot >",
+			"color" : [255,0,0,255], //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+			"width" : 3
+		};
+	3.2 线(SimpleLineSymbol)
+		var lineSymbolObject={    //SimpleLineSymbol
+			"style":"solid",      //可选参数：solid|dash|dashdot|dashdotdot|dot|none
+			"color":0x000000,
+			"alpha":1,
+			"width":1
+		};
+	3.3 箭头线(系统定义)
+		var ArrowLineSymbol={
+			"style":"solid",      //可选参数：solid|dash|dashdot|dashdotdot|dot|none
+			"color":0x000000,
+			"alpha":1,
+			"width":1,
+			"arrowLength":10,       //箭头长度
+			"arrowWidth":1:		  //箭头宽度
+		};
+
+4.面样式
+	4.1 面(ArcGIS Symbol Object)
+		var simpleFillSymbol={
+			"type" : "esriSFS",
+			"style" : "solid", //< solid | backwarddiagonal | cross | diagonalcross | forwarddiagonal | horizontal | vertical>
+			"color" : [255,145,0,255], //color:[R,G,B,alpha]或者16进制，如[255,0,0,255]或者0xffffff(不能加引号)
+			"alpha":1,   
+			"outline" : //<simpleLineSymbol>if outline has been specified
+			{
+				 "type": "esriSLS",
+				 "style": "dashdotdot",//< none | solid | dot | dash | dashdot | dashdotdot >
+				 "color": [255,0,0,255],
+				 "width": 4
+			}
+		};
+	4.2 面(SimpleFillSymbol)
+		var fillSymbolObject={    //SimpleFillSymbol
+			"style":"solid",      //可选参数：backwarddiagonal|diagonalcross|forwarddiagonal|horizontal|solid|vertical|none
+			"color":0x000000,
+			"alpha":1,
+			"outline":{   //SimpleLineSymbol
+				"style":"solid",      //可选参数：solid|dash|dashdot|dashdotdot|dot|none
+				"color":0x000000,
+				"alpha":1,
+				"width":1
+			}
+		};

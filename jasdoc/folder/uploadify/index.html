@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>上传附件</title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css" ></link>
+	<link rel="stylesheet" type="text/css" href="css/uploadify.css" ></link>
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="jquery/uploadify/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="jquery/uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="jquery/json2.js"></script>	
+	<style>
+		.uploadpage_textStyle {
+			line-height: 30px;
+			color: #666BA2;
+			padding-left: 0;
+			margin: 0;
+			border: none;
+			font-size: 12px;
+			font-family:"宋体";
+			color: #333;
+		}
+	</style>
+	<script type="text/javascript">	
+		var folderId = "";
+		$(function (){
+			folderId =getParamter("folderId");
+			$("#fileclassify").combotree({
+				url: rootPath+"jasdoc/folder/classify/getDocClassifyTreeAsync.do",
+				cascadeCheck:false,
+				onBeforeExpand:function(node){
+					url=rootPath+"/jasdoc/folder/classify/getChildrenClassify.do";
+				 	$('#fileclassify').combotree("tree").tree("options").url= url+"?folderId="+node.id;
+				 	node.iconCls= 'icon-tree-classify-node-open';
+					$('#fileclassify').combotree("tree").tree('update', node);
+				},onBeforeCollapse: function(node){
+					node.iconCls= 'icon-tree-classify-node-close';
+					$('#fileclassify').combotree("tree").tree('update', node);
+				}
+			});
+			var token = localStorage.getItem("token");
+			var fileExt = uploadFileTypes.replace(new RegExp(",",'g'),";");
+		    $("#fileInput").uploadify({
+		        'uploader'     : 'jquery/uploadify/uploadify.swf',//设置uploadify路径
+		        'script'       : '../../folder/doccenter/uploadDoc.do',//请求响应的Action
+		        'method'	   :'GET',
+		        'scriptData'   :{'folderId':folderId,"token":token},
+		        'cancelImg'    : 'images/cancel.png',//设置  取消按钮图片的路径  
+		        'buttonText'   : '选择上传照片',
+		        'buttonImg'    : 'images/upload1.jpg',
+		        'width'		   : 64,
+		        'height'	   : 20,
+		        'folder'       : '',//设置上传文件后保存的路径
+		        'fileExt'      : fileExt,
+		        'fileDesc'     : '附件格式:'+uploadFileTypes,
+		        'fileDataName' : 'fileInput',//上传文件的文件
+		        'queueID' 	   : 'fileQueue',  
+		        'auto'         : false,//设置是否自动上传  
+		        'sizeLimit'	   : uploadMaxsize, //设置文件大小
+		        'multi'        : true,//设置是否多文件上传  
+		        'queueSizeLimit':uploadFileCount,
+		        'simUploadLimit':1,
+		        onAllComplete: function (event, queueID, fileObj, response, data){  
+		               // $("#result").html(response);//显示上传成功结果  
+		              // setInterval("showResult()",60000);//两秒后删除显示的上传成功结果  
+		        	//刷新列表
+		            refreshParentPage();
+		        },
+			    onError: function(event, queueID, fileObj) {
+		    	    alert("文件:" + fileObj.name + "上传失败");
+		        },
+				onCancel: function(event, queueID, fileObj){  
+					//alert("取消了" + fileObj.name);
+				}
+		    });
+			
+		})
+		//刷新数据列表
+		function refreshParentPage(){
+			 parent.reloadDataTree(null,0);
+			 closeWindow();
+		}
+		//保存事件
+		function save(){
+			var remarkGroup = "";
+			$("[name='remark']").each(function(){  
+				remarkGroup+=$(this).val()+",";  
+			})
+			var fileclassifys = $("#fileclassify").combotree('getValues');
+			$('#fileInput').uploadifySettings('scriptData',{'fileclassifys':fileclassifys ,'folderId':folderId}); 
+			$('#fileInput').uploadifyUpload();
+		}
+		
+		function closeWindow(){
+			parent.closeDlg('uploadify');
+		}
+	</script>
+</head>
+
+<body style="overflow:hidden ;">
+	<div style="width: 100%;height:315px;" >
+		<div>
+			<span class="uploadpage_textStyle" >&nbsp;&nbsp;文档分类：</span><input type="text" id="fileclassify" name='fileclassify' validType="fileclassify"  style="width: 650px"  class="easyui-combotree" multiple="true" panelHeight="150px"/>
+		</div>	
+		<div style="width: 100%">
+		  	<fieldset>
+		  		<legend align="right"><input type="file" name="fileInput" id="fileInput" /></legend>
+		  		<div id="fileQueue" style="overflow:auto ;height:260px"></div>  
+		  	</fieldset>
+	  	</div>
+	</div>
+	  	<div style="">
+		 	<table align="center" class="querytable" >
+				<tr>
+				   <td height="33" colspan="4" class="button_area" align="center">
+						<table width="786px" border="0" cellspacing="0" cellpadding="0">
+				   			<tr>
+								<td >
+									<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+									<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeWindow()"><span key="unit.cancel" class="paltform-i18n">关闭</span></a>
+								</td>
+							</tr>
+				    	</table>
+		    		</td>
+		    	</tr>
+		 	</table>
+	 	</div>
+</body>
+</html>

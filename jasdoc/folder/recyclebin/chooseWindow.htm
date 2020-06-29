@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>回收站</title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" href="../../../jasframework/common/css/query.css" type="text/css"></link>
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	
+	
+	<script type="text/javascript" src="jqModal.js"></script>
+	<link type="text/css" href="jqModal.css" rel="Stylesheet" />
+	
+	
+	<script type="text/javascript">
+	
+    $().ready(function() {
+        $('#dialog').jqm();
+    });
+
+		
+	</script>
+</head>
+<body >
+		<a href="#" class="jqModal">弹出对话框</a>
+		<div class="jqmWindow" id="dialog">
+		
+		<a href="#" class="jqmClose">Close</a>
+		<hr />
+		<em>READ ME</em> -->
+		This is a "vanilla plain" jqModal window. Behavior and appeareance extend far beyond this.
+		The demonstrations on this page will show off a few possibilites. I recommend walking
+		through each one to get an understanding of jqModal <em>before</em> using it.
+		
+		<br /><br />
+		You can view the sourcecode of examples by clicking the Javascript, CSS, and HTML tabs.
+		Be sure to checkout the <a href="README">documentation</a> too!
+		
+		<br /><br />
+		<em>NOTE</em>; You can close windows by clicking the tinted background known as the "overlay".
+		Clicking the overlay will have no effect if the "modal" parameter is passed, or if the
+		overlay is disabled.
+		</div>
+		
+				
+	
+	
+	
+	
+		<div>重名文档</div><div id="objnamestr" name = "objnamestr" ></div>
+		<div>重名文档位置</div><div id="locationstr"  name = "locationstr" ></div>
+		<div id="recycleobjtypestr"  name = "recycleobjtypestr" ></div>
+		
+		<table align="center" class="querytable" >	
+			<tr>
+		        <td height="33" colspan="4" class="button_area" align="center">
+		            <table width="200px" border="0" cellspacing="0" cellpadding="0">
+        				<tr>
+         					 <td >
+         					    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="updateFile()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+								<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeUnit()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+         					 </td>
+         				</tr>
+         			</table>	 
+		        </td>
+		    </tr>		
+		</table>
+</body>
+	<script type="text/javascript">
+	function setValue(){
+		var param = this.location.search;
+		var objnamestr = "";
+		var locationstr= "";
+		var recycleobjtypestr="";	
+		if (param != null && "" != param) {
+			var p = param.substr(1).split("&");
+			$.each(p,function(i,item){
+				var d = item.split("=");
+				 if(d[0]=='objname'){
+					 objnamestr=d[1];
+				}
+				if(d[0]=='location'){
+					locationstr=d[1];
+				}
+				if(d[0]=='recycleobjtype'){
+					recycleobjtypestr=d[1];
+				}
+			});
+			 $("#objnamestr").text(objnamestr);
+			 $("#locationstr").text(locationstr);
+			 $("#recycleobjtypestr").text(recycleobjtypestr);
+			 //document.getElementById("objnamestr").innerHTML=objnamestr;
+		}
+	}
+		
+	</script>
+</html>

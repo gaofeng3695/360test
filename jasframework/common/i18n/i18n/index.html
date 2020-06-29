@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="../../lib/easyui/themes/icon.css" type="text/css"></link>
+<link rel="stylesheet"	href="../../lib/easyui/themes/default/easyui.css"	type="text/css"></link>
+
+
+<link rel="stylesheet" href="../../css/querystyle.css"	type="text/css"></link>
+<link rel="stylesheet" href="../../css/common.css"	type="text/css"></link>
+
+
+<script type="text/javascript"	src="../../lib/jquery.min.js"></script>
+<script type="text/javascript"	src="../../lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" id="i18nEasyui" scr=""></script>
+<script type="text/javascript" src="../i18n.js"></script>
+<script type="text/javascript" src="../../js/validate_class.js"></script>
+
+</head>
+<script type="text/javascript">
+	
+</script>
+<body>
+	<input type="hidden" id="menuid" value="111" />
+	<div>
+		<div id="queryDiv" key="queryDiv04" class="easyui-panel" collapsed="false" collapsible="true" collapsed="true" title="默认（未替换）" style="padding: 1px">
+			<table align="center" class="query-table">
+				<tr>
+					<td width="15%"><span key="span1Test" class="paltform-i18n">11</span></td>
+					<td width="35%"><input type="text" id="slideid" name="slideid" class="easyui-validatebox" /></td>
+					<td width="15%"><span id="spansa1" key="span1Test"	class="paltform-i18n">11</span></td>
+					<td width="35%"><input id="year" type="text" /></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div>
+		<table id="10060201" key="gridTitle" class="easyui-datagrid" toolbar="#toolbar" width="98%"	style="position: relative; height: 400px" idField="eventid"
+			width="100%" height="500" nowrap="false" striped="true" collapsible="false" sortName="id" sortOrder="asc" remoteSort="false" pagination="true" sigleSelect="false">
+			<thead>
+				<tr>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<a id="settingi18n" onclick="settinglanguage('zh_CN')" href="#">变换中文</a>
+	<br />
+	<a id="settingi18n" onclick="settinglanguage('en')" href="#">变换英文</a>
+	<script type="text/javascript">
+		function settinglanguage(language) {
+			$.ajax({
+				url : rootPath + "/jasframework/I18N/setlocale.do?language="+ language,
+				success : function() {
+					top.location.reload();
+				}
+			});
+		}
+	</script>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#10060201").datagrid({
+			loadMsg : '数据装载中......',
+			columns : [ [ {
+				field : 'ck',
+				checkbox : true
+			}, {
+				field : 'userid',
+				width : 100,
+				sortable : true
+			}, {
+				field : 'roleList',
+				width : 100,
+				sortable : true
+			}, {
+				field : 'name',
+				width : 100,
+				sortable : true
+			}, {
+				field : 'phone',
+				width : 100,
+				sortable : true
+			}, {
+				field : 'email',
+				width : 150,
+				sortable : true
+			}, {
+				field : 'description',
+				width : 200,
+				sortable : true
+			} ] ]
+		});
+	});
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title>业务域</title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+<link rel="stylesheet" href="../../common/css/add.css" type="text/css"></link>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/jsonUtil.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/addTableForDomain.js"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+</head>
+<body>
+	<div id="contentArea">
+		<input type="hidden" id="menuid" value="100601" />
+		<table width="100%" style="padding-left: 10px; padding-top: 10px;"
+			border="0">
+			<tr class="edit1">
+				<td nowrap align="left" width="40%"><span  class="paltform-i18n">未分配中心库表</span></td>
+				<td nowrap align="center" width="20%"><span
+					key="userrole_caozuo" class="paltform-i18n">操作</span></td>
+				<td nowrap width="40%"><span class="paltform-i18n">已分配中心库表</span></td>
+			</tr>
+			<tr class='edit'>
+				<td align="left">
+					<div id="noSearchDiv">
+						<input id="noSearch" name="search" style="width:200px;" class="easyui-validatebox input_bg"/>
+					</div>
+					<div style="float: left;border: 1px #A0A0A4 solid;width: 100%;height: 380px;overflow: auto;">
+						<div id="nodivtree" style="overflow:auto;width: 100%;height: 100%;">
+							<ul id="notabletree" style="width: 200px;"></ul>
+						</div>
+					</div>
+				</td>
+				<td align="center"><span></span><br /> <a id="add" href="#"
+					class="easyui-linkbutton">>&nbsp; </a> <br /> <br /> <a
+					id="add_all" href="#" class="easyui-linkbutton">>></a> <br /> <br />
+					<a id="remove" href="#" class="easyui-linkbutton"><&nbsp;</a> <br />
+					<br /> <a id="remove_all" href="#" class="easyui-linkbutton"><<</a>
+				</td>
+				<td>
+					<div id="hsSearchDiv">
+						<input id="hsSearch" name="search" style="width:200px;" class="easyui-validatebox input_bg"/>
+					</div>
+					<div style="float: left;border: 1px #A0A0A4 solid;width: 100%;height: 380px;overflow: auto;">
+						<div id="hsdivtree" style="overflow:auto;width: 100%;height: 100%;">
+							<ul id="hstabletree"  style="width: 200px;"></ul>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<div class="button-area">
+			<table width="100%">
+				<tr>
+					<td><a href="#" id="savebutton" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveInfo()"> <span key="save"
+							class="paltform-i18n">保存</span>
+					</a> <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+						onclick="closeWindow()"> <span key="cancel"
+							class="paltform-i18n">取消</span>
+					</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

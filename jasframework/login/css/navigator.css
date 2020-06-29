@@ -1,0 +1,124 @@
+
+/*****************************************************************/
+*{
+	font-family:"MicrosoftYaHei";
+}
+#outerCenter{
+	height:calc(100% - 130px);
+	padding:20px;
+	/* background:#f2f7fd; */
+	overflow:auto;
+	background:url(../image/navigator/bg.png) no-repeat;
+	background-size:100% 100%;
+}
+
+.system-section fieldset{
+	width:80%;
+	border: 1px solid #8fb9e0;
+	border-radius: 10px; 
+	box-shadow:0px 0px 32px  rgba(16,102,181,.20) inset; 
+    padding: 12px 12px 0;
+    margin:20px 10%;
+}
+
+.system-section fieldset legend{
+	font-size:18px;
+    color:#1166b6;
+    font-weight:400;
+    margin-left: 8px;
+}
+
+.system-section fieldset .btn{
+	display:inline-block;
+	width:100px;
+	margin:0 0 15px;
+	/* border:1px solid red; */
+    text-align:center;
+    position:relative;
+    color: #666;
+
+}
+fieldset .btn:hover{
+	cursor:pointer;
+}
+fieldset .btn:hover dt img{
+	transform: scale(1.1);
+}
+.system-section .menu-position::after{
+	content: url(../image/navigator/unselected.png);
+    position: absolute;
+    top: -6px;
+    right: 6px;
+}
+.system-section .btn.checked::after{
+	content: url(../image/navigator/selected.png);
+    position: absolute;
+    top: -6px;
+    right: 6px;
+}
+
+.system-section fieldset .btn dt{
+	width:70px;
+	height:70px;
+	display:inline-block;
+	
+}
+.system-section fieldset .btn dt img{
+	width:100%;
+	height:100%;
+}
+.system-section fieldset .btn dd{
+	height:25px;
+	line-height:25px;
+	font-size:14px;
+}
+
+.shield{
+	position:absolute;
+	top:60px;
+	left:0px;
+	bottom:30px;
+	z-index:9000;
+	padding: 20px;
+	/* background:#f2f7fd; */
+	overflow:auto;
+	background:url(../image/navigator/bg.png) no-repeat;
+	background-size:100% 100%;
+}
+.save-area{
+	float: left;
+	height: 32px;
+    width: 100%;
+    text-align: center; 
+    margin-bottom: 0;
+}
+.save-area .custom-btn{
+	height: 32px;
+    width: 60px;
+	margin: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #ccc;
+    color: #333;
+    background: #ffffff;
+}
+.custom-btn:last-child{
+	margin-left:30px;
+}
+
+.save-area .save-btn{
+	border: 1px solid #0080ff;
+    background: #048aec;
+    color:#fff;
+}
+
+.save-area .cancel-btn{
+	border: 1px solid #dddddd;
+	background: #eeeeee;
+}
+
+.ui-layout-south .bottom {
+	padding-left: 0
+}

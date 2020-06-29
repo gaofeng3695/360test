@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="-1">
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../../jasframework/common/css/query.css" ></link>
+	<link rel="stylesheet" type="text/css" href="../common/css/icon.css"></link>
+	<script type="text/javascript" src="../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/lib/date/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../jasframework/common/js/AppConfig.js"></script>	
+	<script type="text/javascript" src="../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="js/attachmentAssociationCenter.js"></script>
+	<script type="text/javascript" src="../folder/js/search.js"></script>
+</head>
+<body  class="easyui-layout">
+	<input type="hidden" id="id" value=""/>
+	<input type="hidden" id="foldertype" value=""/>
+	<!-- 按文档属性查询文档 -->
+	<div region="center">
+		<div id="searchbox" class="easyui-panel" style="position:absolute;left:-1000px;top:-1000px;z-index:1000;height:300px;background-color:#99CCFF;" >
+			<form id="searchfile" method="post">
+				<input  id="fileclass" name="fileclass" type='hidden' value=''/>
+				<input  id="userId" name="userId" type='hidden' value=''/>
+				<input  id="language" name="language" type='hidden' value=''/>
+				<table align="center" class="querytable" >	
+					<tr>
+						<td width="35%"><span class="paltform-i18n">文档名称：</span></td>
+						<td width="65%">
+							<input type="text" id="filename" name="filename" validType="filename" class="easyui-validatebox  input_bg"  maxlength="25"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">文档编号：</span></td>
+						<td width="65%">
+						 	<input type="text" id="fileno" name="fileno" validType="fileno"  class="easyui-validatebox  input_bg" maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">关键词：</span></td>
+						<td width="65%">
+							<input type="text" id="keyword" name="keyword"  class="easyui-validatebox  input_bg"  maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">摘要：</span></td>
+						<td width="65%">
+							<input type="text" id="summary" name="summary"  class="easyui-validatebox input_bg"  maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">上传时间：</span></td>
+						<td width="65%"><input id="uploadtimeStart" name="uploadtimeStart" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">到：</span></td>
+						<td width="65%"><input id="uploadtimeEnd" name="uploadtimeEnd"onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					</tr> 
+					 <tr>
+						<td width="35%"><span class="paltform-i18n">文档分类：</span></td>
+						<td width="65%">
+							<input type="text" id="fileclassify" name="fileclassify"  style="width: 200px" class="easyui-combotree" multiple="true" panelHeight="80px"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="35%"><span  class="paltform-i18n">备注：</span></td>
+						<td width="65%">
+							<input type="text" id="remark" name="remark" class="easyui-validatebox input_bg" maxlength="50"/>
+						</td>
+					</tr>
+					<tr>
+				        <td height="33" colspan="2" class="button_area" align="center">
+				            <table  border="0" cellspacing="0" cellpadding="0">
+		        				<tr>
+		         					 <td style="width: 60px">
+		         					    <a href="#"  class="easyui-linkbutton" plain="true"  iconCls="icon-search" onclick="searchFile()"><span class="paltform-i18n">搜索</span></a>
+		         					 </td>
+		         					 <td style="width: 60px">
+										<a href="#"   class="easyui-linkbutton"    plain="true"  iconCls="icon-clear" onclick="clean()"><span  class="paltform-i18n">清空</span></a>
+		         					 </td>
+		         				</tr>
+		         			</table>	 
+				        </td>
+				    </tr>		
+			    </table>		
+			</form>
+		</div>
+		<div class="easyui-layout" style="width: 100%;height: 100%">
+			<div region="center" id="unSelectDoc" style="height:60%;">
+				<table id="docDataGrid"></table>
+			</div>
+			<div region="south" id="selectDoc"style="height:40%;background-color: green">
+				<table id="selectDocDataGrid"></table>
+			</div>
+		</div>
+		<div id="selectToolbar">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="unSelectAssociation()"><span key="" class="paltform-i18n">删除</span></a>
+		</div>
+		<div id="docDataGridToolbar">
+			<div id="platformlocalcon" style="margin:0px;padding:0px;width: 34%;" >
+				<table style="width: 100%">
+					<tr>
+						<td style="width: 81%">
+							<input style="height:15px" id="searchstring" name='searchstring' class="easyui-validatebox input_bg"   maxlength="50"  validtype="filename"/>
+						</td>
+						<td style="width: 5%" id="dddd">
+							<img id="imgid"  onclick ="showProvince()" src='../common/images/minus.gif' style="cursor:hand" />
+						</td>
+						<td style="width: 5%">
+							<img src="../common/images/searchbox_button.png" style="cursor:hand" onclick="searchFileBycontent()"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="southId" border="false" region="south" style="text-align: center;padding-top: 10px;padding-bottom: 10px;">
+		<a href="#" id="savebutton" onclick="saveAssociation()" class="easyui-linkbutton" iconCls='icon-save'>保存</a>
+		<a href="#" id="cancelbutton" onclick="refresh()" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
+	</div>
+</body>
+</html>

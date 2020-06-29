@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="keywords" content="gis,web">
+	<meta name="description" content="">
+	<title>选桩控件demo</title>
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../common/css/addAndUpdateStyle.css">
+	<script type="text/javascript" src="../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../common/js/common.js"></script>
+	<script type="text/javascript" src="../common/js/json2.js"></script>
+	<script type="text/javascript" src="js/initmarkermessage.js"></script>
+	<title></title>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//区域不级联到管线实例
+// 			initSystemArea("systemarea");
+			//区域不级联到桩实例
+// 			initSystemArea("systemarea","lineloopid");
+			//区域级联到管线和桩实例
+		 	initSystemArea("systemarea","lineloopid","beginMarker","endMarker");
+ 		 	//管线不级联桩实例
+// 		 	initLineloop("lineloopid");
+		 	//管线级联到桩实例
+		 	initLineloop("lineloopid","systemarea","beginMarker","endMarker");
+		 	//加载桩实例
+		 	initLineMarker("beginMarker");
+		 	initLineMarker("endMarker");
+			//只加载桩实例
+			initPileControl("beginMarkerLocation");
+			initPileControl("endMarkerLocation");
+			//combox控件设置自适应大小
+			setComboObjWidth("systemarea",0.35,"combobox");
+			setComboObjWidth("lineloopid",0.35,"combotree");
+			setComboObjWidth("beginMarkerLocation",0.15,"combobox");
+			setComboObjWidth("endMarkerLocation",0.15,"combobox");
+			setComboObjWidth("beginMarker",0.15,"combobox");
+			setComboObjWidth("endMarker",0.15,"combobox");
+			
+// 			choosePileControl.init('statearea','lineLoopText','beginMarkerLocation','endMarkerLocation');
+		});
+		function show(){
+			//btnclick.choosePileControl.returnControlData();
+			alert($("#beginMarkerLocation1").val());
+		}
+	</script>
+</head>
+<body>
+	<div>
+      <form id="plans" method="post">
+       		<table class="edit-table" >
+       		<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">区域:</span></td>
+				<td width="35%">
+					 <input name="systemarea" id="systemarea"  class="easyui-validatebox input_bg" panelHeight="100" required="true"/>
+				</td>
+				<td width="5%"></td>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n"></span></td>
+				<td width="35%"> 
+				</td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">管线：</span></td>
+				<td width="35%">
+					 <input name="lineloopid" id="lineloopid"  class="easyui-validatebox input_bg" panelHeight="150" required="true"/>
+				</td>
+				<td width="5%"></td>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n"></span></td>
+				<td width="35%"> 
+				</td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">桩号:</span></td>
+				<td width="35%">
+					<table width="100%">
+						<tr>
+							<td width="40%">
+								<input name="beginMarker" id="beginMarker"  class="easyui-validatebox input_bg" missingMessage="不能为空" required="true"/>
+								<input name="beginMarker1" id="beginMarker1" class="easyui-marker" type="hidden"/>
+							<td>
+							<td width="20%">偏移：</td>
+							<td width="40%"><input name="begin" id="begin"  class="easyui-validatebox input_bg"/></td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n"></span></td>
+				<td width="35%"></td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">桩号:</span></td>
+				<td width="35%">
+					<table width="100%">
+						<tr>
+							<td width="40%">
+								<input name="endMarker" id="endMarker"  class="easyui-validatebox input_bg" missingMessage="不能为空" required="true"/>
+								<input name="endMarker1" id="endMarker1" class="easyui-marker" type="hidden"/>
+							<td>
+							<td width="20%">偏移：</td>
+							<td width="40%"><input name="end" id="end"  class="easyui-validatebox input_bg"/></td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n"></span></td>
+				<td width="35%"></td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">桩号:</span></td>
+				<td width="35%">
+					<table width="100%">
+						<tr>
+							<td width="40%">
+								<input name="beginMarkerLocation" id="beginMarkerLocation"  class="easyui-validatebox input_bg" missingMessage="不能为空" required="true"/>
+								<input name="beginMarkerLocation1" id="beginMarkerLocation1" class="easyui-marker" type="hidden"/>
+							<td>
+							<td width="20%">偏移：</td>
+							<td width="40%"><input name="beginValue" id="beginValue"  class="easyui-validatebox input_bg"/></td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n"></span></td>
+				<td width="35%"></td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n">桩号:</span></td>
+				<td width="35%">
+					<table width="100%">
+						<tr>
+							<td width="40%">
+								<input name="endMarkerLocation" id="endMarkerLocation"  class="easyui-validatebox input_bg" missingMessage="不能为空" required="true"/>
+								<input name="endMarkerLocation1" id="endMarkerLocation1" class="easyui-marker" type="hidden"/>
+							<td>
+							<td width="20%">偏移：</td>
+							<td width="40%"><input name="endValue" id="endValue"  class="easyui-validatebox input_bg"/></td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+				<td width="10%"><span id="patrol.fd.add3" class="paltform-i18n"></span></td>
+				<td width="35%"></td>
+				<td width="5%"></td>
+			</tr>
+			<tr>
+			    <td height="33" colspan="2" class="button_area" align="center">
+		            <table width="450px" border="0" cellspacing="0" cellpadding="0">
+        				<tr>
+         					 <td>
+         					    <a id="btn1" href="#" class="easyui-linkbutton" onclick="show();" iconCls="icon-ok"><span id="patrol.fd.add13" class="paltform-i18n">显示数据</span></a>
+         					 </td>
+         				</tr>
+         			</table>	 
+		        </td>
+			</tr>
+	  	</table>
+	  </form>
+	</div>
+</body>
+</html>

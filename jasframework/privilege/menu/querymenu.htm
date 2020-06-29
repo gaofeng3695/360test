@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet" href="../../common/css/detail.css" type="text/css"></link>
+<link rel="stylesheet" href="../../common/css/add.css" type="text/css"></link>
+<style>
+	.textbox.combo{
+		width:200px !important;
+	}
+</style>
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/querymenu.js"></script>
+</head>
+<body>
+	<input type="hidden" id="menuid" value="P-PRI-0060" />
+	<!-- 整个布局 -->
+	<div id="cc" class="easyui-layout" style="width: 100%; height: 700px;overflow:hidden;">
+		<!-- 左侧布局	 -->
+		<div  id="left" region="west"  class="easyui-panel"  key="primenu_caidanjiegou" split="false"  title="菜单结构"
+				style="width: 200px; height: 90%; overflow:auto;" >
+			<select id="appId1" name="appId1">
+			</select>
+				<!-- 左侧权限树	 -->
+					<ul id="tt" class="easyui-tree" animate="false" collapsible="true" closable="false">
+					</ul>
+		</div>
+		<!-- 右侧布局 -->
+		<div id="right" region="center" style="padding: 1px; margin-right: 1px; background: #ffffff; overflow: auto;">
+			<div style="height: 100%;">
+				<form id="viewSiteForm" method="post">
+					<table border="1" class="detail-table">
+						<tr>
+							<th style="width: 25%;">
+								<label id="pri.parentid">
+									<span key="menu.parentId" class="paltform-i18n">父菜单：</span>
+								</label>
+							</th>
+							<td style="width: 75%;">
+								<input id="parentId" name="parentId" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label id="unit.name">
+									<span key="menu.oid" class="paltform-i18n">菜单id：</span>
+								</label>
+							</th>
+							<td>
+								<input id="oid" name="oid" class="easyui-validatebox input_bg" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label id="key.name">
+									<span key="menu.menuName" class="paltform-i18n">菜单名称：</span>
+								</label>
+							</th>
+							<td>
+								<input id="menuName" name="menuName" class="easyui-validatebox input_bg" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label id="pri.appnumber">
+									<span key="menu.appId" class="paltform-i18n">应用系统：</span>
+								</label>
+							</th>
+							<td>
+								<select id="appId" name="appId"  class="easyui-validatebox input_bg">
+<!-- 									<option value="1">基础开发平台</option> -->
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label id="pri.url">
+									<span key="menu.url" class="paltform-i18n">URL：</span>
+								</label>
+							</th>
+							<td>
+								<input id="url" name="url" class="easyui-validatebox input_bg" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label id="pri.ordernumber">
+									<span key="menu.orderNum" class="paltform-i18n">菜单顺序号：</span>
+								</label>
+							</th>
+							<td>
+								<input id="orderNum" name="orderNum" class="easyui-validatebox input_bg" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+									<span key="menu.icon" class="paltform-i18n">菜单图标：</span>
+							</th>
+							<td>
+								<input id="icon" name="icon" class="easyui-validatebox input_bg" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+									<span key="menu.background" class="paltform-i18n">菜单背景色：</span>
+							</th>
+							<td>
+								<input id="background" name="background" class="easyui-validatebox input_bg" maxlength="25">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label id="pri.description">
+									<span key="menu.description" class="paltform-i18n">
+									菜单描述：
+									</span>
+								</label>
+							</th>
+							<td>
+									<textarea id="description" class="easyui-validatebox  input_bg" validType="maxLength[300]"  name="description" style="height: 60px;">
+									</textarea>
+							</td>
+						</tr>
+							<tr>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td width="250px"></td>
+								<td>
+									<a href="#" id="addbtn" class="easyui-linkbutton"
+										iconCls="icon-add" onclick="addmenu()"><span
+										key="add" class="paltform-i18n">新增</span>
+									</a>
+								</td>
+								<td style="padding: 0 15px;">
+									<a href="#" id="editbtn" class="easyui-linkbutton"
+										iconCls="icon-edit" onclick="updatemenu()"><span
+										key="edit" class="paltform-i18n">修改</span>
+									</a>
+								</td>
+								<td>
+									<a href="#" id="delbtn" class="easyui-linkbutton"
+										iconCls="icon-remove" onclick="deletemenu()"><span
+										key="delete" class="paltform-i18n">删除</span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	<iframe id="exprotExcelIframe" style="display: none;"></iframe>
+</body>
+<script type="text/javascript">
+	$("#parentId").attr("disabled", "disabled");
+	$("#parentName").attr("disabled", "disabled");
+	$("#parentPrivilegeNumber").attr("disabled", "disabled");
+	$("#oid").attr("disabled", "disabled");
+	$("#unitid").attr("disabled", "disabled");
+	$("#menuName").attr("disabled", "disabled");
+	$("#businessrange").attr("disabled", "disabled");
+	$("#description").attr("disabled", "disabled");
+	$("#privilegeNumber").attr("disabled", "disabled");
+	$("#privilegeType").attr("disabled", "disabled");
+	$("#appId").attr("disabled", "disabled");
+	$("#url").attr("disabled", "disabled");
+	$("#orderNum").attr("disabled", "disabled");
+	$("#icon").attr("disabled", "disabled");
+	$("#background").attr("disabled", "disabled");
+</script>
+
+</html>

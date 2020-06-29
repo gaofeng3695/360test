@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>上传附件</title>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/lib/easyui/themes/icon.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../../jasframework/common/css/add.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../common/css/icon.css" ></link>
+	<link rel="stylesheet" type="text/css" href="css/uploadify.css" ></link>
+	
+	<script type="text/javascript" src="../../../jasframework/common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/validate_class.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/common.js"></script>
+	<script type="text/javascript" src="../../../jasframework/common/js/AppConfig.js"></script>
+	<script type="text/javascript">
+	function uploadDoc(){
+		$('#upload').form('submit',{
+			url:rootPath+"jasdoc/test/uploadDoc.do?token="+localStorage.getItem("token"),
+		});
+	}
+	function downloadDoc(){
+// 		var eventid='d03a489b-76a8-4578-bec8-88ad3f7907a6';
+		var eventid="0c93d0f6-22fa-4014-a7aa-429b9c2d9971";
+		$("<iframe id=\"fileDownload\" style=\"display: none;\"></iframe>").appendTo("body");
+		var url=rootPath+"jasdoc/test/downloadDoc.do?downloaddocid="+eventid+"&token="+localStorage.getItem("token");
+		$("#fileDownload").attr("src",url);
+	}
+	function Preview(){
+		var eventid='702dff79-4801-4d2e-93fa-29dcccd682e7';
+		$.ajax({
+			url:rootPath+ '/jasdoc/folder/doccenter/isExistPdfFile.do?docId='+eventid,
+			success:function(result){
+				if(result=="true"){
+					//var url = rootPath+ "/jasdoc/folder/preview/FlexPaper_2.0.3/index.html?eventid="+ eventid;
+					var url = rootPath + "jasdoc/folder/preview/pdfjs_1.10.88/web/viewer.html?eventid="+ eventid;
+					top.getDlg(url, "viewiframe", "预览", 800, 550, false, true, true);
+				}else{
+					showAlert('提示',"正在生成转换文档，可能需要花费一段时间，请稍后重试！" , 'info');
+				}
+			}
+		});
+	}
+	$(function (){
+		$('#foldreeventid').combotree({
+			url:rootPath+'jasdoc/test/getFolderTree.do?',
+			onBeforeExpand:function(node){
+// 				var hierarchyid=node.attributes.hierarchy;
+// 				var url=rootPath+"jasdoc/test/getChildren.do";
+// 			 	$('#foldreeventid').combotree("tree").tree("options").url= url+"?id="+node.id+"&hierarchy="+hierarchyid;
+// 				node.iconCls= 'icon-tree-center-node-open';
+// 			 	$('#foldreeventid').combotree("tree").tree('update', node);
+			},
+			onClick:function(node){
+				if( node.attributes.hierarchy == docCenterRootFolderHierarchy ){
+					$.messager.alert('提示',"文档中心下不允许存放文档",'info');
+					$('#foldreeventid').combotree("clear",node);
+				}
+			},
+			onBeforeCollapse: function(node){
+				node.iconCls= 'icon-tree-center-node-close';
+				$('#foldreeventid').combotree("tree").tree('update', node);
+			},
+			onLoadSuccess:function(node, data){
+// 				alert(JSON.stringify(node));getFolderTree
+// 				alert(JSON.stringify(data));
+			}
+		}); 
+		$('#folderId').combotree({
+			url:rootPath+'jasdoc/test/getFolderTreeAsync.do',
+			onBeforeExpand:function(node){
+				var hierarchyid=node.attributes.hierarchy;
+				var url=rootPath+"jasdoc/test/getChildrenFolderTreeAsync.do";
+			 	$('#folderId').combotree("tree").tree("options").url= url+"?folderId="+node.id+"&hierarchy="+hierarchyid;
+				node.iconCls= 'icon-tree-center-node-open';
+			 	$('#folderId').combotree("tree").tree('update', node);
+			},
+			onClick:function(node){
+				if( node.attributes.hierarchy == docCenterRootFolderHierarchy ){
+					$.messager.alert('提示',"文档中心下不允许存放文档",'info');
+					$('#folderId').combotree("clear",node);
+				}
+			},
+			onBeforeCollapse: function(node){
+				node.iconCls= 'icon-tree-center-node-close';
+				$('#folderId').combotree("tree").tree('update', node);
+			},
+			onLoadSuccess:function(node, data){
+// 				alert(JSON.stringify(node));getFolderTree
+// 				alert(JSON.stringify(data));
+			}
+		}); 
+
+	});
+	</script>
+</head>
+<body>
+
+<form id="upload" action="" enctype="multipart/form-data" method="post">
+	<span class="uploadpage_textStyle" >&nbsp;&nbsp;文档中心：</span><input type="text" id="foldreeventid" name='foldreeventid' validType="foldreeventid"  style="width: 650px"  class="easyui-combotree" multiple="true" panelHeight="280px"/><br/>
+	<span class="uploadpage_textStyle" >&nbsp;&nbsp;文档中心1：</span><input type="text" id="folderId" name='folderId' validType="foldreeventid"  style="width: 650px"  class="easyui-combotree" multiple="true" panelHeight="280px"/><br/>
+<!-- 	<input type="text"  name="folderId" id="folderId" value="034967bd-5372-44ee-b40f-94768cebe85f"/><br /> -->
+    <input type="file" name="myfile" /><br/>
+    <input type="file" name="myfile" /><br/>
+<!--     <input type="submit" name="myfile" /><br/> -->
+   <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="uploadDoc()"><span key="unit.save" class="paltform-i18n">保存</span></a>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="downloadDoc()"><span key="unit.save" class="paltform-i18n">下载</span></a>
+   <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="Preview()"><span key="unit.save" class="paltform-i18n">预览</span></a>
+</form>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>附件预览的页面</title>
+<style>
+	*{
+		padding:0;
+		margin:0
+	}
+	html,body{
+		width:100%;
+		height:100%;
+		overflow:hidden;
+	}
+	.hide{
+		margin:50px auto;
+		text-align:center;
+		display:none;
+	}
+</style>
+<script type="text/javascript" src="../../lib/jquery.min.js"></script>
+<script type="text/javascript" src="./jquery.media.js"></script>
+<script type="text/javascript" src="../common.js"></script>
+</head>
+<body>
+	<div class="hide">
+		<img src="../../image/webuploader/error.jpg"/>	
+	</div>	
+	 <a class="media" href=""></a>
+</body>
+  <script>
+	  	var eId = getParamter("eventid");
+	  	
+		$(function(){
+			previewFile();
+		})
+		
+		/**
+		 * @desc 预览文件
+		 */
+		function previewFile(){
+			$.ajax({
+				url: rootPath+"attachment/getPreview.do?eventid="+eId, //业务唯一性验证
+			    type: "get",
+			    dataType: "json",
+			    success:function(data){
+			    	if(data.status == 1){
+			    		mediaPdf(data.data);
+			    		
+			    	}else{
+			    		$(".media").hide();
+			    		$(".hide").show();
+			    	}
+			    },
+			    error: function (XMLHttpRequest, textStatus, errorThrown) {
+			    	$(".media").hide();
+		    		$(".hide").show();
+		    		
+		            console.log(XMLHttpRequest);
+		            console.log(textStatus);
+		            console.log(errorThrown);
+		        }
+			})
+			
+		}
+		
+		/**
+		 * @desc 设置预览窗口的大小
+		 */
+        function mediaPdf(src){
+            var contentWidth = $(window).width(),
+                contentHeight = $(window).height();
+            $('a.media').media({
+           		'src':src,
+                'width': contentWidth + 'px',
+                'height': contentHeight + 'px',
+            });
+        }
+        
+    </script>	
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet" href="../../common/css/add.css" type="text/css"></link>
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="js/addUnit.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+</head>
+<body>
+<div id="contentArea" class="content-area">
+<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-PRI-0080"/>
+	<!-- <div id="dlg"> -->
+		<form id="addunit" method="post">
+			<input type="hidden" name="eventid" id="eventid"/>
+			<input type="hidden" name="businessrange" id="businessrange" value="1"/>
+			<input type="hidden" name="isPis" id="isPis" value="0"/>
+			<table align="center" class="edit-table" >	
+				<tr>
+					<td width="20%"><span key="unit.parentid" class="paltform-i18n">上级组织机构：</span></td>
+					<td width="30%"><input id="parentId" name="parentId" class="easyui-combotree" panelHeight="auto" style="width: 230px"></td>
+					<td width="20%"><span key="unit.name" class="paltform-i18n">组织机构名称：</span></td>
+					<td width="30%"><input id="unitName" name="unitName" class="easyui-validatebox input_bg" missingMessage="不能为空" required="true" validType="general" maxlength="25"></td>
+				</tr>
+				<tr>
+					<td width="20%"><span key="unit.unitCode" class="paltform-i18n">组织机构编号：</span></td>
+					<td width="30%"><input id="unitCode" name="unitCode" class="easyui-validatebox input_bg" missingMessage="不能为空" required="true" validType="general" maxlength="25" ></td>
+					<td width="20%"><span key="unit.unittype" class="paltform-i18n">组织机构类型：</span></td>
+					<td>
+						<select name="unitType" id="unitType" class="easyui-combobox" editable="false" panelHeight="auto"  style="width: 230px" required="true">
+							<option value="1">部门</option>
+							<option value="2">单位</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="20%">是否有巡检任务：</td>
+					<td width="30%">
+						<select name="isPatrol" id="isPatrol" class="easyui-combobox" editable="false" panelHeight="auto" style="width: 230px">
+							<option value="0">否</option>
+							<option value="1">是</option>
+						</select>
+					</td>
+					<!--<td width="20%">对应PIS巡线负责人：</td>-->
+					<td width="20%">部门巡检负责人：</td>
+					<td width="30%"><input id="pisUserId" name="pisUserId" class="easyui-combobox" panelHeight="auto" style="width: 230px"></td>
+				</tr>
+				<tr>
+					<td width="20%">经度（中心点）：</td>
+					<td width="30%"><input id="lon" name="lon" class="easyui-validatebox input_bg" validType="lon"></td>
+					<td width="20%">纬度（中心点）：</td>
+					<td width="30%"><input id="lat" name="lat" class="easyui-validatebox input_bg" validType="lat"></td>
+				</tr>
+				<tr>
+					<td width="20%">最小经度（管理范围）：</td>
+					<td width="30%"><input id="minLon" name="minLon" class="easyui-validatebox input_bg" validType="lon"></td>
+					<td width="20%">最小纬度（管理范围）：</td>
+					<td width="30%"><input id="minLat" name="minLat" class="easyui-validatebox input_bg" validType="lat"></td>
+				</tr>
+				<tr>
+					<td width="20%">最大经度（管理范围）：</td>
+					<td width="30%"><input id="maxLon" name="maxLon" class="easyui-validatebox input_bg" validType="lon"></td>
+					<td width="20%">最大纬度（管理范围）：</td>
+					<td width="30%"><input id="maxLat" name="maxLat" class="easyui-validatebox input_bg" validType="lat"></td>
+				</tr>
+				<tr>
+					<td width="20%"><span key="unit.ordernum" class="paltform-i18n">顺序编号：</span></td>
+					<td width="30%"><input id="ordernum" name="orderNum" Maxlength="4" class="easyui-validatebox input_bg" missingMessage="不能为空" required="true" validType="maxNumber[9999]"></td>
+					<td width="20%"><span key="unit.phone"  class="paltform-i18n">联系电话：</span></td>
+					<td width="30%"><input id="phone" name="phone" class="easyui-validatebox input_bg" validType="maxLength[25]"></td>
+				</tr>
+				<tr>
+					<td width="20%">是否管道处/科：</td>
+					<td width="30%"><input id="isPipeOffice" name="isPipeOffice" class="easyui-combobox" panelHeight="auto" style="width: 230px"></td>
+					<td width="20%"></td>
+					<td width="30%"></td>
+				</tr>
+				<tr>
+					<td><span key="unit.address" class="paltform-i18n">地址：</span></td>
+					<td colspan="3"><input id="address" name="address" class="easyui-validatebox input_bg"  validType="maxLength[100]" ></td>
+				</tr>
+				<tr>
+					<th><label id="unit.throughCounties"> <span key="unit.throughCounties" class="paltform-i18n">所辖管线途经县市：</span></label></th>
+					<td colspan="3"><input id="throughCounties" name="throughCounties" class="easyui-combotree" maxlength="1200"></td>
+				</tr>
+				<tr>
+				    <td><span key="descriptioninfo" class="paltform-i18n">组织机构描述：</span></td>
+					<td colspan="3"><textarea id="description" class="easyui-validatebox" validType="maxLength[300]"  name="description" style="height: 60px;"></textarea></td>
+			</table>
+			
+		</form>
+	<!-- </div> -->
+</div>
+
+<div class="button-area">
+ 	  <table width="100%">
+		<tr>
+			 <td >
+				 <a href="#" id="saveButton" class="easyui-linkbutton submit" onclick="saveUnit()"><span key="save" class="paltform-i18n">保存</span></a>
+				 <a href="#" class="easyui-linkbutton cancel" onclick="closeUnit()"><span key="cancel" class="paltform-i18n">取消</span></a>
+			 </td>
+		</tr>
+	</table>	
+</div> 
+</body>	
+</html>
+	

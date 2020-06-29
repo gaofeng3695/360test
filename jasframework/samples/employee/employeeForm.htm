@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 员工详细信息添加界面   dingwei  add  2013/04/20 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>员工详细信息添加界面</title>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../common/css/addAndUpdateStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../../common/css/detail.css"/>
+    
+	<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../../components/attachment/js/jquery.form.js"></script>
+	<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script> 
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	<script type="text/javascript" src="../../common/js/AppConfig.js"></script>
+	<script type="text/javascript" src="js/employeeForm.js"></script>
+	<script type="text/javascript" src="../../workflow/js/workflow.js"></script>
+	<script type="text/javascript" src="../../components/attachment/js/uploadanddownload.js"></script>
+</head>
+<body>
+<div id="main_area">
+<!-- 	上传文件扩展名 -->
+	<input type="hidden" id="exts" name="exts" value="rar,jar,doc,docx,txt,jpg,png,xls,xlsx,wis,pdf" ></input>
+	<input type="hidden" class="workflowVar" id="area" value="area3" />
+<!-- 	新增form表单 -->
+	<form id="saveEmployeeForm" method="post" style="margin-bottom: 0px;">
+		<input type="hidden" id="eventid" name="eventid"/>
+		<table align="center" class="edit-table" >
+			<tr>
+			    <td width="15%"><span>员工编号:</span></td>
+				<td width="35%"><input id="eventid11" type="text"  name='eventid' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空" validType="general" maxlength="20"/></td>
+				<td width="15%"><span>性别:</span></td>
+				<td width="35%">
+					<select id="sex" class="easyui-combobox" name="sex" style="width:200px;" editable="false" panelHeight="auto" required="true">  
+					   	<option value="男">男</option>
+		 				<option value="女">女</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+			    <td width="15%"><span>员工姓名:</span></td>
+				<td width="35%"><input id="name" type="text"  name='name' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空" validType="general" maxlength="20"/></td>
+				<td width="15%"><span>岗位:</span></td>
+				<td width="35%">
+					<select id="post" class="easyui-combobox" name="post" style="width:200px;" editable="false" panelHeight="auto" required="true">  
+					   	<option value="总经理">总经理</option>
+		 				<option value="副总经理">副总经理</option>
+		 				<option value="销售总监">销售总监</option>
+		 				<option value="技术总监">技术总监</option>
+		 				<option value="部门经理">部门经理</option>
+		 				<option value="项目经理">项目经理</option>
+		 				<option value="研发工程师">研发工程师</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+			    <td width="15%"><span>通讯地址:</span></td>
+				<td width="35%"><input id="address" type="text"  name='address' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空" validType="general" maxlength="20"/></td>
+				<td width="15%"><span>联系电话:</span></td>
+				<td width="35%">
+					<input id="telephone" type="text"  name='telephone' required="true" class="easyui-validatebox input_bg" missingmessage="不能为空" validType="general" maxlength="20"/></td>
+			</tr>
+			<tr>
+			    <td width="15%"><span>备&nbsp;&nbsp;注:</span></td>
+				<td width="35%" colspan=4>
+					<textarea name="description" rows="3" cols="4"></textarea>
+				</td>
+			</tr>
+<!-- 			<tr>  -->
+<!-- 				<td height="33" colspan="4" align="center"> -->
+<!-- 		        	<div id="uploadanddownloadDIV" align="right"></div> -->
+<!-- 		        </td> -->
+<!-- 		    </tr> -->
+			
+		</table>
+		
+	</form>
+	<div id="uploadanddownloadDIV" align="right" style="margin-top: 0px;"></div>
+	</div>
+	<div class="button_area_absolute">
+		<table width="100%">
+			<tr>
+				 <td >
+				    <a id="10060106" href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+					<a id="10060107" href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeWindow();">取消</a>
+				 </td>
+  			</tr>
+	    </table>
+	</div>
+</body>
+</html>

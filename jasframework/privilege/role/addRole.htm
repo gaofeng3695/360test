@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="js/addRole.js"></script>
+</head>
+<body>
+<!-- 权限编号 -->
+	<input type="hidden" id="menuid" value="P-PRI-0220" />
+		
+<!-- 主体内容展示区域 -->
+	<div id="contentArea" class="content-area">
+		<form id="roleForm" class="content-area-main" method="post">
+			<table align="center" class="edit-table">
+				<tr>
+					<td width="15%">
+						<span key="role.roleName" class="paltform-i18n">角色名称：</span>
+					</td>
+					<td width="35%"><input 
+						class="easyui-validatebox input_bg" id='roleName'  name="roleName" missingmessage="不能为空"
+						required="true"  validType="general" maxLength=25>
+					</td>
+					<td  width="15%"><span key="role.unitId" class="paltform-i18n">所属部门：</span></td>
+					<td  width="35%"><input type="text" id="unitId"  class="easyui-combotree" 
+						name="unitId" panelHeight="auto"
+						style="width: 230px"  missingmessage="不能为空" required="true" /></td>
+				</tr>
+				<tr>
+					<td  width="15%"><span key="role.roleType" class="paltform-i18n">角色类型：</span></td>
+					<td width="35%">
+						<select id="roleType" class="easyui-validatebox input_bg"  name="roleType" required="true" style="width: 230px">
+							<option value="2">protect</option>
+							<option value="1">private</option>
+						</select>
+					</td>
+					<td width="15%">
+						<span>数据权限过滤规则：</span>
+					</td>
+					<td width="35%">
+						<input id="dataFilterRegulationCode" name="dataFilterRegulationCode"  class="easyui-validatebox easyui-combobox" style="width:100%;">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="1"><span key="role.description" class="paltform-i18n">描述：</span></td>
+					<td colspan="3">
+					<textarea name="description" cols="25" rows="5"
+							id="description" class="easyui-validatebox"
+							validType="maxLength[300]"></textarea>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+<!-- 按钮区域 -->
+	<div class="button-area">
+			<table width="100%">
+				<tr>
+					<td  align="center">
+						<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="save()"> <span key="save" class="paltform-i18n">保存</span></a>
+						<a href="#" class="easyui-linkbutton cancel-btn"  onclick="closePanel()"> <span key="cancel" class="paltform-i18n">取消</span></a>
+					</td>
+				</tr>
+			</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	    <title>选人控件</title>
+		
+	    <meta http-equiv="keywords" content="选人">
+	    <meta http-equiv="description" content="选人控件">
+	    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	    <META http-equiv="pragma" content="no-cache"> 
+		<META http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+		<META http-equiv="expires" content="-1">
+	    
+	   	<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../../common/css/query.css" ></link>
+		<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+		<script type="text/javascript" src="../../common/js/common.js"></script>
+		<script type="text/javascript" src="js/person.js"></script>
+		<script type="text/javascript" src="js/personfordoc.js"></script>
+  	</head>
+	<body  class="easyui-layout">
+			<div id="west" region="west" class="easyui-accordion" style="width:200px;" animate=false>
+				<div title="部门"  style="overflow:auto;padding:10px;">  
+					<ul id="unittree" class="easyui-tree" ></ul>
+				</div>
+				<div title="角色"  style="overflow:auto;padding:10px;">  
+					<ul id="roletree" class="easyui-tree" ></ul>
+				</div>
+				<div title="搜索用户"  style="overflow:auto;padding:10px;">  
+					<table align="center" class="query-table">
+						<tr>
+							<td width="40%"><span key="user.loginname" class="paltform-i18n">用户名：</span></td>
+							<td width="60%"><input type="text" id="loginname" class="easyui-validatebox input_bg" /></td>
+						</tr>
+						<tr>
+							<td width="40%"><span key="user.name" class="paltform-i18n">姓     名：</span></td>
+						    <td width="60%"><input type="text" id="name" class="easyui-validatebox input_bg" /></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<a id="10060105" href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryUser()"><label><span id="crms.importantevent.importantevent.query" class="paltform-i18n">搜索</span></label></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+<!--				<ul id="unittree" class="easyui-tree" ></ul>-->
+			</div>
+			<div region="center" id="centerDiv" title="" style="background:#eee;overflow: hidden;">
+				
+				<div id="queryDiv" >
+					<input type="text" id="shareScope" class="easyui-validatebox input_bg" /></td>
+					</div>
+					<table id="10060201" toolbar="#toolbar" title="用户列表"
+							width="98%" style="position: relative;height:430px"  
+							idField="eventid"  nowrap="false" striped="true" collapsible="false"
+							sortName="id" sortOrder="asc" remoteSort="false" pagination="true" sigleSelect="false">
+							
+					</table>
+					<div class="button-area">
+						 <table width="100%">
+						 	<tr>
+						      	<td align="right">
+									<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="getUserAndClose()"><span key="unit.save" class="paltform-i18n">选择</span></a>
+									<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closePanol()"><span key="unit.cancel" class="paltform-i18n">取消</span></a>
+								</td>
+         					</tr>
+         				</table>	 
+		   			 </div>
+			</div>
+	</body>
+</html>
+<script>
+
+
+</script>

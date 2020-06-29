@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 用户信息显示页面 -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../common/lib/easyui/themes/icon.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="../common/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../common/css/detail.css" />
+		
+		<script language="javascript" src="../common/lib/jquery.min.js"></script>
+		<script language="javascript" src="../common/lib/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../common/js/common.js"></script>
+		<script type="text/javascript" src="../common/js/jsonUtil.js"></script> 
+		<script type="text/javascript" src="js/userInfo.js"></script>
+</head>
+
+<body>
+    <div id="contentArea" class="content-area">
+    	<form class="content-area-main">
+			<table class="detail-table">
+				<tr>
+					<th style="width:10%"><span key="user.loginname" class="paltform-i18n">用户名：</span></th>
+					<td><span id="loginName"></span></td>
+				</tr>
+				<tr>
+					<th><span key="user.name" class="paltform-i18n">姓名：</span></th>
+					<td><span id="userName"></span></td>
+				</tr>
+				<tr>
+					<th><span key="user.phone" class="paltform-i18n">电话：</span></th>
+					<td><span id="phone"></span></td>
+				</tr>
+				<tr>
+					<th><span key="user.email" class="paltform-i18n">Email：</span></th>
+					<td><span id="email"></span></td>
+				</tr>
+				<tr>
+				    <th><span key="view_passwordexpireddate" class="paltform-i18n">密码过期时间：</span></th>
+					<td><span id="passwordExpiredDate"></span></td>
+				</tr>
+				<tr>
+				    <th><span  class="paltform-i18n">拥有角色：</span></th>
+				    <td><span id="role"></span></td>
+				</tr>
+				<tr>
+				    <th><span  class="paltform-i18n">所属部门：</span></th>
+				    <td><span id="unit"></span></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div class="button-area">
+		<table width="100%">
+			<tr>
+				<td>
+				<a href="#" class="easyui-linkbutton cancel" onclick="top.closeDlg('userInfo');">
+					<span key="close" class="paltform-i18n">关闭</span>
+				</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

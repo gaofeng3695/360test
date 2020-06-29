@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title>新增</title>
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+
+<link rel="stylesheet" type="text/css" href="../../common/css/common.css" ></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="" id="i18nEasyui"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+<script type="text/javascript" src="../../common/js/validate_class.js"></script>
+<script type="text/javascript" src="js/addUser.js"></script>
+
+</head>
+<body>
+	<!-- 新增修改主体内容区域 -->
+	<div id="contentArea" class="content-area">
+		<!--  菜单id隐藏域 -->
+		<input type="hidden" id="menuid" value="P-PRI-0100"/>
+		<!-- 新增、修改主体部分 -->
+		<form id="userForm" class="content-area-main" method="post" >
+			<input type="hidden" name="eventid">
+			<input type="hidden" name="isPis" id="isPis" value="0"/>
+			<!-- 数据录入或展示区域 -->
+			<table align="center" class="edit-table" >
+				<!-- eventid隐藏域	 -->
+				<tr>
+				    <td width="20%"><span key="user.loginname" class="paltform-i18n">用户名：0000000000000</span></td>
+					<td width="30%"><input type="text" id="loginName" name='loginName' validtype="username" required="true" class="easyui-validatebox input_bg"
+									missingmessage="不能为空" maxlength="25"></td>
+					<td width="20%"><span key="user.username" class="paltform-i18n">姓名：000000000</span></td>
+					<td width="30%"><input id="userName" name="userName" class="easyui-validatebox input_bg"
+									validType="general" required="true" missingmessage="不能为空" maxlength="25"></td>
+				</tr>
+				<tr>
+					<td ><span key="user.phone" class="paltform-i18n">电话00000000：</span></td>
+					<td ><input id="phone" name="phone" class="easyui-validatebox input_bg" validType="mobileAndPhone" maxlength="18"></td>
+					<td ><span key="user.email" class="paltform-i18n">Email：0000000000</span></td>
+					<td ><input id="email" name="email"  class="easyui-validatebox input_bg" validType="email" maxlength="40"></td>
+				</tr>
+				<tr>
+					<td ><span key="user.passwordexpireddate" class="paltform-i18n">密码过期时间：0000000</span></td>
+					<td ><input id="passwordExpiredDate" name="passwordExpiredDate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate easyui-validatebox input_bg"  /></td>
+					<td >用户岗位</td>
+					<td ><select id="userPost" name="userPost"  class="easyui-validatebox select" ></select></td>
+				</tr> 
+				<tr>
+				    <td><span key="user.description" class="paltform-i18n">描述：00000</span></td>
+					<td colspan="3"><textarea id="description" name="description" style="height: 60px;" class="easyui-validatebox" validType="maxLength[300]"></textarea></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<!-- 按钮区域 -->
+	<div class="button-area">
+       <table width="100%">
+			<tr>
+				 <td >
+				    <a href="#" id="saveButton" class="easyui-linkbutton save-btn"  onclick="save()"><span key="save" class="paltform-i18n">保存000000000</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn"  onclick="closePanel()"><span key="cancel" class="paltform-i18n">取消000000</span></a>
+				 </td>
+			</tr>
+		</table>	 
+	</div>
+</body>
+</html>

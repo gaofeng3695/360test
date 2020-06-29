@@ -1,0 +1,110 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="keywords" content="gis,web">
+<meta name="description" content="">
+<title></title>
+<!-- css和js的引用，生成代码之后将代码放入项目工程中，并修改相对路径 -->
+<!-- css引用，注意引用顺序 -->
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../common/lib/easyui/themes/icon.css">
+<link rel="stylesheet"  type="text/css" href="../../common/css/font-awesome.css" ></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/common.css"></link>
+<link rel="stylesheet"  type="text/css" href="../../common/css/query.css"></link>
+<link rel="stylesheet" type="text/css" href="../../common/css/add.css">	
+
+<!-- js引用， 注意引用顺序 -->
+
+<script type="text/javascript" src="../../common/lib/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../common/lib/date/My97DatePicker/WdatePicker.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-PlayBar.min.js"></script> -->
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../common/i18n/i18n.js"></script>
+
+</head>
+<body>
+	<div id="contentArea" class="content-area">
+	<!-- 表单区域，每行四列 -->
+		<form id="playbackform" class="content-area-main" method="post">	
+			<table id="plantable" align="center" class="edit-table" width="100%">
+				<tr>
+					<td width="15%"><span>所属部门</span></td>
+					<td width="35%">
+						<input id="unitid" name="unitid" class="easyui-validatebox input_bg" required="true"  validType="" maxlength="50"/>
+					</td>
+					<td width="15%"><span>巡线工</span></td>
+					<td width="35%">
+						<select id="inspectorid" name="inspectorid"  class="easyui-validatebox select" required="true"></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="15%"><span>巡检日期</span></td>
+					<td width="35%">
+						<input id="insdate" name="insdate"  class="easyui-validatebox Wdate input_bg" required="true" onclick="WdatePicker({onpicked:function(){insdatepicked();},dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td width="15%"><span>任务时间</span></td>
+					<td width="35%">
+						<select id="instaskdate" name="instaskdate" class="easyui-validatebox select" required="true"></select>
+					</td>
+				</tr>
+				<tr>
+					<td width="15%"><span>巡检分数</span></td>
+					<td width="35%">
+						<input id="grade" name="grade"  class="easyui-validatebox  input_bg" required="true" />
+					</td>
+					<td width="15%"></td>
+					<td width="35%">
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<a href="#" id="viewGrade1" class="easyui-linkbutton save-btn" onclick="viewGrade1()"><span>在地图中打开</span></a>
+						<a href="#" id="viewGrade2" class="easyui-linkbutton save-btn" onclick="viewGrade2()"><span>在地图中打开</span></a>
+					</td>
+					<td colspan="2">
+						<a href="#" id="viewGrade3" class="easyui-linkbutton save-btn" onclick="viewGrade3()"><span>在框架中打开</span></a>
+						<a href="#" id="viewGrade4" class="easyui-linkbutton save-btn" onclick="viewGrade4()"><span>在框架中打开</span></a>
+					</td>
+				</tr>
+				
+			</table>	
+		</form>
+		
+	</div>
+	<div id="button-area" class="button-area">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<a href="#" id="saveButton" class="easyui-linkbutton save-btn" onclick="saveGpsPlanInfo()"><span>保存</span></a>
+					<a href="#" class="easyui-linkbutton cancel-btn" onclick="closePanel()"> <span>取消</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script>
+
+	function viewGrade1(){
+		parent.showDialog2('viewGrade1','在地图中打开,不关上一弹窗', rootPath + 'realtimemonitor/realtimemonitor/stationscorestatistics.html', 800, 500,false,'');
+	}
+	
+	
+	function viewGrade2(){
+		parent.showDialog2('viewGrade2','在地图中打开,关闭上一弹窗', rootPath + 'statisticsform/insdayworkstatistics/query_daywork.html', 800, 500,true,'demo1');
+	}
+	
+	function viewGrade3(){
+		top.showDialog('viewGrade3','在框架中打开,不关上一弹窗', rootPath + 'statisticsform/insdayworkstatistics/query_daywork.html', 800, 500);
+	}
+	
+	function viewGrade4(){
+		top.showDialog('viewGrade4','在框架中打开,关闭上一弹窗', rootPath + 'statisticsform/insdayworkstatistics/query_daywork.html', 800, 500,'demo1');
+	}
+	
+</script>	
+</html>
